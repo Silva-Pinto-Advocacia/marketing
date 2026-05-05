@@ -25,7 +25,7 @@ from flask import Flask, request, jsonify, Response
 import anthropic
 
 # Config
-APP_VERSION = "v5.1-2026-05-05-janelas-ajustadas"
+APP_VERSION = "v5.2-2026-05-05-com-debug"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -776,6 +776,58 @@ def cron_manual():
         "categorias": cats,
         "mensagem": f"Coleta iniciada ({len(cats)} categorias). Aguarde 2-4 minutos e recarregue."
     })
+
+
+@app.route("/debug")
+def debug_page():
+    """Pagina de diagnostico - mostra estado real do app."""
+    with db_conn() as conn:
+        # Total por tier
+        tier_data = {}
+        for t in (1, 2, 3):
+            r = conn.execute(
+                "SELECT COUNT(*) AS c FROM oportunidades WHERE tier = ?", (t,)
+            ).fetchone()
+            tier_data[t] = r["c"]
+
+        # Total no banco
+        total = conn.execute("SELECT COUNT(*) AS c FROM oportunidades").fetchone()["c"]
+        exemplos = conn.execute(
+            "SELECT COUNT(*) AS c FROM oportunidades WHERE titulo LIKE '%[EXEMPLO]%'"
+        ).fetchone()["c"]
+
+        # Ultimas 10 execucoes do cron com tudo
+        execs = conn.execute(
+            "SELECT * FROM execucoes_cron ORDER BY id DESC LIMIT 10"
+        ).fetchall()
+
+        # Itens recentes (qualquer tier)
+        ultimos_itens = conn.execute(
+            "SELECT id, categoria, tier, titulo, link, data_coleta FROM oportunidades "
+            "ORDER BY id DESC LIMIT 10"
+        ).fetchall()
+
+    info = {
+        "versao_app": APP_VERSION,
+        "modelo": MODEL_NAME,
+        "tem_api_key": bool(ANTHROPIC_API_KEY),
+        "tem_cron_secret": bool(CRON_SECRET),
+        "db_path": str(DB_PATH),
+        "db_existe": DB_PATH.exists(),
+        "total_no_banco": total,
+        "exemplos_no_banco": exemplos,
+        "tier1_total": tier_data[1],
+        "tier2_total": tier_data[2],
+        "tier3_total": tier_data[3],
+        "ultimas_10_execucoes": [dict(r) for r in execs],
+        "ultimos_10_itens_inseridos": [dict(r) for r in ultimos_itens],
+        "categorias_config": {
+            cid: {"tier": c["tier"], "max_idade_dias": c.get("max_idade_dias", 7),
+                  "label": c["label"]}
+            for cid, c in CATEGORIAS.items()
+        },
+    }
+    return jsonify(info)
 
 
 @app.route("/health")
