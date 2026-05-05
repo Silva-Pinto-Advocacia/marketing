@@ -25,7 +25,7 @@ from flask import Flask, request, jsonify, Response
 import anthropic
 
 # Config
-APP_VERSION = "v5-2026-05-04-anti-invencao"
+APP_VERSION = "v5.1-2026-05-05-janelas-ajustadas"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -117,12 +117,13 @@ CATEGORIAS = {
         ],
         "descricao": (
             "NOVOS CONCURSOS abertos com inscricoes ainda vigentes "
-            "(prova objetiva ainda NAO realizada). Para cada concurso INFORMAR "
-            "EXPLICITAMENTE: vagas, salario inicial, banca, prazo de inscricao, "
+            "(prova objetiva ainda NAO realizada) - editais publicados nos "
+            "ultimos 12 meses. Para cada concurso INFORMAR EXPLICITAMENTE: "
+            "vagas, salario inicial, banca, prazo de inscricao, "
             "data prevista da prova."
         ),
         "campos_extras": ["concurso", "cargo", "vagas", "salario", "banca", "prazo_inscricao", "data_prova"],
-        "max_idade_dias": 14,
+        "max_idade_dias": 365,
     },
     "jurisprudencia": {
         "tier": 2,
@@ -155,11 +156,11 @@ CATEGORIAS = {
         ],
         "descricao": (
             "Conteudo de candidatos desabafando em redes sociais, foruns, "
-            "Reddit, YouTube, Telegram - dos ultimos 7 dias. Util para hooks "
+            "Reddit, YouTube, Telegram - dos ultimos 45 dias. Util para hooks "
             "de Reels (citacao real entre aspas)."
         ),
         "campos_extras": ["citacao_candidato", "concurso_mencionado", "padrao_emocional"],
-        "max_idade_dias": 7,
+        "max_idade_dias": 45,
     },
     "concorrencia": {
         "tier": 3,
@@ -172,12 +173,12 @@ CATEGORIAS = {
             "advogado concurso publico viral instagram {ano}",
         ],
         "descricao": (
-            "Atividades recentes (ultimos 30 dias) dos 3 concorrentes diretos: "
+            "Atividades recentes (ultimos 45 dias) dos 3 concorrentes diretos: "
             "Safe & Lima, Queromeuconcurso, Marcus Peterson. Detectar quando "
             "estao entrando em concursos novos ou explorando teses inovadoras."
         ),
         "campos_extras": ["escritorio_concorrente", "concurso_tema", "gap_identificado"],
-        "max_idade_dias": 30,
+        "max_idade_dias": 45,
     },
 }
 
