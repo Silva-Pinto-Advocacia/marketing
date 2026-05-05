@@ -25,7 +25,7 @@ from flask import Flask, request, jsonify, Response
 import anthropic
 
 # Config
-APP_VERSION = "v6-2026-05-05-rate-limit-e-fase-correta"
+APP_VERSION = "v6.1-2026-05-05-haiku-tier23"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -43,6 +43,10 @@ DB_PATH.parent.mkdir(parents=True, exist_ok=True)
 CRON_SECRET = os.environ.get("CRON_SECRET", "")
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL_NAME = os.environ.get("MODEL_NAME", "claude-sonnet-4-5")
+# Tier 2 e 3 usam Haiku para ter rate limit folgado e custo menor.
+# Tier 1 (eliminacoes ativas, fases, recursos) usa Sonnet pra filtragem mais inteligente.
+MODEL_TIER1 = os.environ.get("MODEL_TIER1", "claude-sonnet-4-5")
+MODEL_TIER23 = os.environ.get("MODEL_TIER23", "claude-haiku-4-5-20251001")
 DEMO_MODE = os.environ.get("DEMO_MODE", "0") == "1"
 
 app = Flask(__name__)
@@ -414,10 +418,13 @@ REPETINDO AS REGRAS MAIS IMPORTANTES:
 - Inventar = pior do que retornar []"""
 
     try:
-        log.info("[%s tier%d] iniciando %d buscas (max %d dias)", cat_id, tier, len(queries), max_idade)
+        # Modelo varia por tier: Sonnet pro tier 1 (qualidade), Haiku pro 2/3 (rate limit folgado)
+        modelo_categoria = MODEL_TIER1 if tier == 1 else MODEL_TIER23
+        log.info("[%s tier%d] iniciando %d buscas (max %d dias) com %s",
+                 cat_id, tier, len(queries), max_idade, modelo_categoria)
         client = anthropic.Anthropic(api_key=api_key, timeout=240.0, max_retries=2)
         msg = client.messages.create(
-            model=MODEL_NAME,
+            model=modelo_categoria,
             max_tokens=12000,
             tools=[{"type": "web_search_20250305", "name": "web_search"}],
             messages=[{"role": "user", "content": prompt}],
@@ -739,7 +746,8 @@ def api_status():
         "nao_lidos": nao_lidos,
         "tier_counts": tier_counts,
         "ultima_execucao": dict(ultima) if ultima else None,
-        "model": MODEL_NAME,
+        "model_tier1": MODEL_TIER1,
+        "model_tier23": MODEL_TIER23,
         "version": APP_VERSION,
     })
 
@@ -849,7 +857,8 @@ def debug_page():
 
     info = {
         "versao_app": APP_VERSION,
-        "modelo": MODEL_NAME,
+        "modelo_tier1": MODEL_TIER1,
+        "modelo_tier23": MODEL_TIER23,
         "tem_api_key": bool(ANTHROPIC_API_KEY),
         "tem_cron_secret": bool(CRON_SECRET),
         "db_path": str(DB_PATH),
