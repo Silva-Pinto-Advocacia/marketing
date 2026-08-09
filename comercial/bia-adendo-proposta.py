@@ -277,8 +277,8 @@ pedido, e conversa de proposta que termina assim não volta.
 # a Bia pode ler em voz alta.
 #
 # Modelo da FAIXA 1 (carreiras policiais e militares), concurso de seis fases,
-# fases, piso de R$ 1.500. Ajustar por certame: o piso é ~1/3 do salário mensal
-# do cargo, e os degraus são 1x / 2x / 3,33x.
+# piso de R$ 1.500. Ajustar por certame o numero de fases; o piso vem da faixa
+# (1.500 / 2.500 / 3.500) e os degraus sao 1x / 2x / 3,33x sobre ele.
 
 VALOR_FAIXA_1_SEIS_FASES = """\
 CARREIRA - R$ 5.000,00 a vista no PIX, ou 12x de R$ 497,00 no cartao (total parcelado R$ 5.964,00).
