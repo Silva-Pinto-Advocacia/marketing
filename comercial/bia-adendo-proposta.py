@@ -276,23 +276,33 @@ pedido, e conversa de proposta que termina assim não volta.
 # declara ser "palavra por palavra", então instrução escrita ali é instrução que
 # a Bia pode ler em voz alta.
 #
-# Modelo da FAIXA A (carreira policial/militar de nível médio), concurso de seis
+# Modelo da FAIXA 1 (carreiras policiais e militares), concurso de seis fases,
 # fases, piso de R$ 1.500. Ajustar por certame: o piso é ~1/3 do salário mensal
 # do cargo, e os degraus são 1x / 2x / 3,33x.
 
-VALOR_FAIXA_A_SEIS_FASES = """\
-CARREIRA - R$ 3.500,00 a vista no PIX, ou 12x de R$ 349,00 no cartao (total parcelado R$ 4.188,00).
-Cobre todas as fases deste concurso E do proximo edital do mesmo cargo (ou 24 meses, o que ocorrer primeiro), em todas as instancias, incluindo STJ e STF. Inclui eliminacao no curso de formacao e acao por pretericao na nomeacao. Inclui reuniao estrategica com o Dr. Casil e acao protocolada em ate 24 horas.
+VALOR_FAIXA_1_SEIS_FASES = """\
+CARREIRA - R$ 5.000,00 a vista no PIX, ou 12x de R$ 497,00 no cartao (total parcelado R$ 5.964,00).
+Cobre todas as fases deste concurso E do proximo edital do mesmo cargo (ou 24 meses, o que ocorrer primeiro), em todas as instancias, incluindo STJ e STF. Inclui eliminacao no curso de formacao e acao por pretericao na nomeacao. O Dr. Casil acompanha pessoalmente e a acao e protocolada em ate 24 horas.
 
-BLINDADO - R$ 2.500,00 a vista no PIX, ou 12x de R$ 249,00 no cartao (total parcelado R$ 2.988,00).
+BLINDADO - R$ 3.000,00 a vista no PIX, ou 12x de R$ 298,00 no cartao (total parcelado R$ 3.576,00).
 Cobre todas as 6 fases deste concurso - objetiva, discursiva, TAF, exame de saude, psicologico e investigacao social -, em todas as instancias, incluindo STJ e STF. Acao protocolada em ate 48 horas.
 
 BASICO - R$ 1.500,00 a vista no PIX, ou 12x de R$ 149,00 no cartao (total parcelado R$ 1.788,00).
 Cobre uma fase deste concurso, em todas as instancias, incluindo STJ e STF. Acao protocolada em ate 48 horas.
 
 FRASE DA ANCORA: "Contratando uma fase de cada vez, seriam seis contratos de R$ 1.500,00 - R$ 9.000,00."
-FRASE DA ECONOMIA: "Voce economiza R$ 6.500,00 em relacao a contratar fase por fase."
-FRASE DO INCREMENTO: "A fase sozinha e R$ 149,00 por mes. Por mais R$ 100,00 por mes voce leva as seis."
-FRASE DO INCREMENTO CARREIRA: "E por mais R$ 100,00 por mes, a gente cobre tambem o proximo edital do mesmo cargo."
+FRASE DA ECONOMIA: "Voce economiza R$ 6.000,00 em relacao a contratar fase por fase."
+FRASE DO INCREMENTO: "A fase sozinha e R$ 149,00 por mes. Por mais R$ 149,00 por mes voce leva as seis."
+FRASE DO INCREMENTO CARREIRA: "E por mais R$ 199,00 por mes, a gente cobre tambem o proximo edital do mesmo cargo."
 FRASE DO SALARIO: "O Blindado inteiro custa menos que o seu primeiro salario no cargo."
 """
+
+# FAIXA 2 - tribunais e administrativas. Piso R$ 2.500.
+#   BASICO 2.500 (12x 249) | BLINDADO 5.000 (12x 497) | CARREIRA 8.500 (12x 845)
+#   ANCORA 6x2.500 = R$ 15.000 | ECONOMIA R$ 10.000
+#   INCREMENTO +R$ 248/mes para o Blindado, +R$ 348/mes para o Carreira
+#
+# FAIXA 3 - carreiras juridicas. Piso R$ 3.500.
+#   BASICO 3.500 (12x 349) | BLINDADO 7.000 (12x 695) | CARREIRA 11.500 (12x 1.142)
+#   ANCORA 6x3.500 = R$ 21.000 | ECONOMIA R$ 14.000
+#   INCREMENTO +R$ 346/mes para o Blindado, +R$ 447/mes para o Carreira

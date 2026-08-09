@@ -78,12 +78,12 @@ Apresentação sempre nesta ordem: **Carreira → Blindado → Básico**.
 | Protocolo | 48h | 48h | **24h** |
 | Curso de formação / preterição na nomeação | — | — | ✓ |
 | Dr. Casil pessoalmente | — | — | ✓ |
-| **À vista no PIX** | **R$ 1.500** | **R$ 2.500** | **R$ 3.500** |
-| **12× no cartão** | 12× R$ 149 | 12× R$ 249 | 12× R$ 349 |
-| Total parcelado | R$ 1.788 | R$ 2.988 | R$ 4.188 |
+| **À vista no PIX** | **R$ 1.500** | **R$ 3.000** | **R$ 5.000** |
+| **12× no cartão** | 12× R$ 149 | 12× R$ 298 | 12× R$ 497 |
+| Total parcelado | R$ 1.788 | R$ 3.576 | R$ 5.964 |
 
-Valores da **faixa A** (carreira policial e militar de nível médio). As outras
-faixas saem da mesma regra — seção 6.
+Valores da **faixa 1** (carreiras policiais e militares). As outras duas faixas
+saem dos mesmos multiplicadores sobre um piso maior — seção 6.
 
 ### As duas cercas
 
@@ -116,7 +116,7 @@ checklist, dentro de três opções e atrás de uma âncora de R$ 9.000, R$ 2.00
 passe tranquilo.
 
 **Resolver depois, de graça:** com a escada rodando e o time fluente, testar
-R$ 2.000 de piso em **um** concurso comparável da faixa A por três semanas e
+R$ 2.000 de piso em **um** concurso comparável da faixa 1 por três semanas e
 comparar receita por lead. Passando, sobe a faixa inteira.
 
 ## 3. Por que o corte de instâncias saiu do Nível 1
@@ -171,41 +171,59 @@ entenda no dia da assinatura.
 
 ---
 
-## 6. A tabela de preços: a regra de 1/3 do salário
+## 6. A tabela de preços: três faixas de concurso
 
-O piso não é escolhido concurso a concurso no olho. Ele sai de uma regra, e a
-regra reproduz o preço que o mercado já validou:
+O piso muda por **tipo de concurso**, e os dois degraus acima saem sempre dos
+mesmos multiplicadores:
 
-**Soldado PMERJ / Polícia Penal RJ — salário na faixa de R$ 4.500. Um terço =
-R$ 1.500.** É exatamente o teto que aquele mercado aceita hoje. Não é
-coincidência: o candidato calibra o honorário contra o salário do cargo, mesmo
-sem perceber.
+- **Básico = o piso da faixa**
+- **Blindado = 2 × o piso**
+- **Carreira = 3,33 × o piso**, arredondado para os 500 mais próximos
 
-- **Básico ≈ 1/3 do salário mensal do cargo**
-- **Blindado = Básico + 2/3 do Básico**
-- **Carreira = Blindado + o mesmo degrau**, arredondando para os 500 mais
-  próximos
-
-**Os dois degraus são iguais.** Na faixa A isso dá R$ 1.500 → R$ 2.500 →
-R$ 3.500: dois saltos de R$ 1.000. E o Blindado fica em ~55% do salário do
-cargo, o que mantém verdadeira a frase *"custa menos que o seu primeiro salário
-no cargo"*.
-
-| Faixa | Exemplos | Básico | Blindado ⭐ | Carreira |
+| Faixa | Concursos | Básico | Blindado ⭐ | Carreira |
 |---|---|---|---|---|
-| **A** — policial/militar nível médio | PMERJ, CBMERJ, PP/RJ, PMMG, PCMG, GCM | **R$ 1.500**<br>12× R$ 149 | **R$ 2.500**<br>12× R$ 249 | **R$ 3.500**<br>12× R$ 349 |
-| **B** — administrativas e nível superior | CNU, TJRJ, ALERJ, SEAP, tribunais | R$ 2.000<br>12× R$ 199 | R$ 3.500<br>12× R$ 349 | R$ 5.000<br>12× R$ 497 |
-| **C** — jurídicas e fiscais | delegado, magistratura, MP, auditor fiscal | R$ 5.000<br>12× R$ 497 | R$ 8.500<br>12× R$ 845 | R$ 12.000<br>12× R$ 1.192 |
+| **1** — policiais e militares | PMERJ, CBMERJ, PMMG, PMDF, PMPR, PMES, PP/RJ, PPMG, PPES, PCMG, PCSC, GCM, IASES, SEAP | **R$ 1.500**<br>12× R$ 149 | **R$ 3.000**<br>12× R$ 298 | **R$ 5.000**<br>12× R$ 497 |
+| **2** — tribunais e administrativas | TJRJ, ALERJ, CNU, demais tribunais | **R$ 2.500**<br>12× R$ 249 | **R$ 5.000**<br>12× R$ 497 | **R$ 8.500**<br>12× R$ 845 |
+| **3** — carreiras jurídicas | juiz, promotor, defensor, procurador, delegado | **R$ 3.500**<br>12× R$ 349 | **R$ 7.000**<br>12× R$ 695 | **R$ 11.500**<br>12× R$ 1.142 |
 
-Acima da faixa C — juiz, promotor, procurador federal — não aplicar 1/3
-mecanicamente: ali o salário é tão alto que a regra cospe números sem relação
-com o trabalho. Fixar na mão.
+**Delegado fica na faixa 3**, e não na 1, apesar de ser carreira policial: o que
+define a faixa é o salário do cargo, não a natureza da corporação.
 
-**É por aqui que se captura o candidato de alto poder aquisitivo** — escalando a
-escada inteira por faixa de concurso, e não esticando o topo dentro de um
-concurso popular. O candidato a delegado compra o Blindado a R$ 10.000 sem
-piscar, porque o cargo paga R$ 20.000+ e o Blindado continua custando menos que
-meio salário.
+### A âncora e a economia, por faixa
+
+Cada faixa tem a sua conta de "fase por fase", e ela é a primeira coisa dita em
+qualquer apresentação de preço:
+
+| Faixa | Âncora do Blindado (6 fases) | Economia anunciada | Âncora do Carreira (2 certames) |
+|---|---|---|---|
+| 1 | 6 × R$ 1.500 = **R$ 9.000** | **R$ 6.000** | 12 × R$ 1.500 = **R$ 18.000** |
+| 2 | 6 × R$ 2.500 = **R$ 15.000** | **R$ 10.000** | 12 × R$ 2.500 = **R$ 30.000** |
+| 3 | 6 × R$ 3.500 = **R$ 21.000** | **R$ 14.000** | 12 × R$ 3.500 = **R$ 42.000** |
+
+Ajustar o número de fases por certame — nem todo concurso tem seis. A conta é
+sempre "nº de fases × piso da faixa".
+
+### Por que o piso é o que é
+
+O piso da faixa 1 fica em **R$ 1.500** porque é o valor que o mercado de
+carreiras policiais no RJ e em MG já aceita, testado — e é um valor que a equipe
+acredita, o que importa porque o diagnóstico mostra atendente saindo de R$ 1.500
+para R$ 1.300 em minutos. Piso que o time considera justo é piso que ele não
+desconta.
+
+Nas faixas 2 e 3 o piso sobe porque o candidato calibra o honorário contra o
+salário do cargo, mesmo sem perceber. Um técnico de tribunal ganha o dobro de um
+soldado; um juiz, muito mais. **É por aqui que se captura o candidato de alto
+poder aquisitivo** — escalando a escada inteira por faixa, e não esticando o topo
+dentro de um concurso popular.
+
+### Por que o Blindado é o dobro do piso
+
+Com o piso em R$ 1.500, o Blindado a R$ 3.000 tem o incremento exato de um
+Básico — e é isso que produz a frase mais forte da tabela: *"por mais R$ 1.500,
+uma vez só, você leva as seis"*, ou, em parcela, **"por mais R$ 149 por mês"**.
+Um salto maior poria a barreira de "mais que o dobro" justamente entre o piso e
+o alvo, que é onde se quer migração de massa.
 
 ### Por que o Carreira não é o dobro do Blindado
 
@@ -213,44 +231,18 @@ Cobrar mais que o dobro do nível do meio tira o topo do **conjunto de
 comparação**: o candidato olha, arquiva como "isso é pra outro tipo de pessoa", e
 para de considerar. Opção arquivada não ancora e não vende — vira enfeite.
 
-E há um motivo estrutural: **a âncora não é o Carreira, é o R$ 9.000.** A conta
-de contratar fase por fase é mais forte que qualquer preço de degrau, porque é
-concreta, é sobre o caso dele, e é ele quem faz a conta. Com o trabalho de
-ancoragem já feito, o Carreira fica liberado para ser precificado onde vende, e
-não onde parece grande.
+E há um motivo estrutural: **a âncora não é o Carreira, é a conta de fase por
+fase.** Ela é mais forte que qualquer preço de degrau, porque é concreta, é sobre
+o caso dele, e é ele quem faz a conta. Com o trabalho de ancoragem já feito, o
+Carreira fica liberado para ser precificado onde vende, e não onde parece grande.
 
-**Consequência a antecipar:** a R$ 3.500 o Carreira é barato para o que entrega —
-dois certames, curso de formação, preterição. A adesão vai ser bem maior que a de
-um topo caro, provavelmente entre 25% e 40%, e não os 4–5% de um topo a R$ 8.000.
-Isso é bom para a receita, mas significa que o que o script promete no Carreira
-tem de ser sustentável em volume. Por isso o texto do banco diz **"reunião
-estratégica com o Dr. Casil"**, e não "o Dr. Casil acompanha pessoalmente":
-promessa limitada e datável, que não vira dívida quando o produto vender bem.
+A R$ 8.000 na faixa 1 o topo pegaria uns 4–5% dos compradores; a R$ 5.000, algo
+como 15–18%.
 
-### O presente que a faixa A produziu: dois degraus de R$ 100 por mês
+### Comece mais baixo e suba com dado na mão
 
-Aplicando o multiplicador de parcelamento que o escritório já usa (R$ 1.500 →
-12× R$ 149), a escada sai assim:
-
-| | À vista | 12× | Degrau mensal |
-|---|---|---|---|
-| Básico | R$ 1.500 | R$ 149 | — |
-| Blindado | R$ 2.500 | R$ 249 | **+R$ 100** |
-| Carreira | R$ 3.500 | R$ 349 | **+R$ 100** |
-
-**Os dois saltos mensais são exatamente R$ 100.** Isso é a coisa mais valiosa
-desta tabela, e é sorte da aritmética. Significa que a escada inteira se conta
-numa frase que qualquer atendente decora:
-
-> Por mais R$ 100 por mês você leva as seis fases em vez de uma. E por mais
-> R$ 100 além disso, a gente cobre também o próximo edital.
-
-R$ 100/mês é uma quantia que o cérebro trata como trivial, e ela está comprando
-seis vezes mais cobertura. Nenhuma âncora supera isso como fechamento.
-
-E vale o princípio geral: **comece mais baixo e suba com dado na mão.** Subir
-depois de medir a adesão é trivial; descer parece desconto e reabre o
-Gargalo 2.
+Vale para os três níveis e para as três faixas. Subir depois de medir a adesão é
+trivial; descer parece desconto e reabre o Gargalo 2.
 
 ## 7. Ancoragem e apresentação do preço
 
@@ -258,28 +250,28 @@ Gargalo 2.
 
 - **O R$ 9.000 responde "isso é caro?"** — dispositivo de *escala*, estabelece a
   régua. Abre.
-- **O "+R$ 100 por mês" responde "qual eu levo?"** — dispositivo de *incremento*.
-  Converte uma compra de R$ 2.500 numa decisão de R$ 100/mês. Fecha.
+- **O "+R$ 149 por mês" responde "qual eu levo?"** — dispositivo de *incremento*.
+  Converte uma compra de R$ 3.000 numa decisão de R$ 149/mês. Fecha.
 
 O segundo é o mais forte, porque não exige conta nenhuma do cliente e reaproveita
 um número que ele já aceitou. Mas só funciona depois que o primeiro estabeleceu
 a escala.
 
-**Diga a economia em reais, nunca em proporção.** "Você economiza R$ 6.500" pesa
+**Diga a economia em reais, nunca em proporção.** "Você economiza R$ 6.000" pesa
 mais que "você paga um terço" — acima de cem reais, valor absoluto vence
 percentual. Mesmo desconto, impacto diferente.
 
 ### O total vem antes da parcela — sempre
 
-Apresentar só "12× de R$ 249" quebra a âncora: ninguém compara um valor mensal
+Apresentar só "12× de R$ 298" quebra a âncora: ninguém compara um valor mensal
 com R$ 9.000. O trabalho todo se perde.
 
 **Ordem: total → parcela → à vista.**
 
-> São R$ 2.500 à vista no PIX. No cartão, 12× de R$ 249 — R$ 2.988 no total,
+> São R$ 3.000 à vista no PIX. No cartão, 12× de R$ 298 — R$ 3.576 no total,
 > porque aí entra a taxa da maquininha.
 
-O número que vai contra a âncora é **R$ 2.500**: é ele que o lead compara com os
+O número que vai contra a âncora é **R$ 3.000**: é ele que o lead compara com os
 R$ 9.000. A parcela torna digerível e o total parcelado cumpre a informação
 obrigatória.
 
@@ -312,7 +304,7 @@ Nesta ordem, sem pular e sem inventar um quarto movimento:
 1. **A parcela que está escrita.** Não é concessão, é a condição normal.
 2. **O à vista**, apresentado como fato ("não entra a taxa do cartão"), nunca
    como favor.
-3. **Descer um nível** — Blindado R$ 2.500 → Básico R$ 1.500, dizendo o que ele
+3. **Descer um nível** — Blindado R$ 3.000 → Básico R$ 1.500, dizendo o que ele
    deixa de levar.
 4. Só então o Dr. Casil.
 
@@ -338,18 +330,18 @@ leu, que é o mais caro, com um susto.
 >
 > O **Carreira** cobre este concurso inteiro e o próximo edital do mesmo cargo,
 > incluindo eliminação no curso de formação e ação por preterição na nomeação.
-> Tem reunião estratégica com o Dr. Casil e a ação sai em 24 horas. R$ 3.500 à
-> vista no PIX, ou 12× de R$ 349.
+> O Dr. Casil acompanha pessoalmente e a ação sai em 24 horas. R$ 5.000 à vista
+> no PIX, ou 12× de R$ 497.
 >
 > O **Blindado** cobre as seis fases deste concurso, em todas as instâncias, até
-> STJ e STF. **R$ 2.500 à vista no PIX, ou 12× de R$ 249.** Você economiza
-> R$ 6.500 em relação a contratar fase por fase.
+> STJ e STF. **R$ 3.000 à vista no PIX, ou 12× de R$ 298.** Você economiza
+> R$ 6.000 em relação a contratar fase por fase.
 >
 > O **Básico** é essa fase aqui, sozinha, também em todas as instâncias.
 > R$ 1.500 à vista, ou 12× de R$ 149.
 >
 > **Eu recomendo o Blindado, e repara por quê:** a fase sozinha é R$ 149 por mês.
-> **Por mais R$ 100 por mês, você leva as seis.** Você está a 3 pontos do corte na
+> **Por mais R$ 149 por mês, você leva as seis.** Você está a 3 pontos do corte na
 > objetiva — resolvida essa fase você entra bem colocado, e as outras cinco já
 > ficam cobertas sem você ter que decidir de novo. Posso te mandar o contrato pra
 > assinar ainda hoje?
@@ -407,7 +399,7 @@ de concessões, e a supressão de qualquer menção a honorário de êxito.
    `bia-adendo-proposta.py`.
 6. Cadastrar o campo `valor` do `sp_honorario` na ordem Carreira → Blindado →
    Básico, com as linhas FRASE no fim. **Deixar `condicoes` vazio.**
-7. Classificar os concursos ativos nas faixas A, B e C e aplicar a regra de 1/3.
+7. Classificar os concursos ativos nas faixas 1, 2 e 3 pela tabela da seção 6.
 8. Rodar em **um concurso só** por duas a três semanas antes de abrir para todos.
 
 **O que não muda:** o portão do checklist. As quatro etapas continuam segurando
@@ -415,7 +407,7 @@ os três números como seguravam um. Preço tarde, depois do valor.
 
 ## 11. O que medir — e o aviso sobre a métrica
 
-**A métrica muda de lugar.** Empurrar o mix de R$ 1.500 para R$ 2.500 vai
+**A métrica muda de lugar.** Empurrar o mix de R$ 1.500 para R$ 3.000 vai
 **derrubar a taxa de conversão**. Isso é esperado e é o preço da estratégia. O
 número que passa a importar é **receita por lead**, não conversão. Se a equipe só
 olhar conversão, ela entra em pânico na segunda semana e começa a descontar —
@@ -436,8 +428,8 @@ receita, não sobre número de contratos.
 
 **Dois testes agendados**, depois de três semanas de operação estável:
 
-- **Piso a R$ 2.000** num concurso da faixa A, contra R$ 1.500 no comparável.
-- **Blindado a R$ 3.000** num concurso da faixa A, se a adesão ao Blindado vier
+- **Piso a R$ 2.000** num concurso da faixa 1, contra R$ 1.500 no comparável.
+- **Blindado a R$ 3.500** num concurso da faixa 1, se a adesão ao Blindado vier
   acima de 50%.
 
 Em ambos, o critério é receita por lead, não conversão.

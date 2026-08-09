@@ -20,7 +20,7 @@ arquivo `comercial/bia-adendo-proposta.py`.
 
 Nesse arquivo há duas coisas:
 - a constante `ADENDO_PROPOSTA` — é o texto que vai para o código;
-- a constante `VALOR_FAIXA_A_SEIS_FASES` — é texto de banco, **não vai para o
+- a constante `VALOR_FAIXA_1_SEIS_FASES` — é texto de banco, **não vai para o
   código**. Ignore-a nesta tarefa; eu cadastro à mão pela tela.
 
 **3. Faça a substituição** em `app/routes/sentinela_ops.py` do
