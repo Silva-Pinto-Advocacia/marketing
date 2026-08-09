@@ -281,18 +281,18 @@ pedido, e conversa de proposta que termina assim não volta.
 # do cargo, e os degraus são 1x / 2x / 3,33x.
 
 VALOR_FAIXA_A_SEIS_FASES = """\
-CARREIRA - R$ 5.000,00 a vista no PIX, ou 12x de R$ 497,00 no cartao (total parcelado R$ 5.964,00).
-Cobre todas as fases deste concurso E do proximo edital do mesmo cargo (ou 24 meses, o que ocorrer primeiro), em todas as instancias, incluindo STJ e STF. Inclui eliminacao no curso de formacao e acao por preterica­o na nomeacao. O Dr. Casil acompanha pessoalmente e a acao e protocolada em ate 24 horas.
+CARREIRA - R$ 3.500,00 a vista no PIX, ou 12x de R$ 349,00 no cartao (total parcelado R$ 4.188,00).
+Cobre todas as fases deste concurso E do proximo edital do mesmo cargo (ou 24 meses, o que ocorrer primeiro), em todas as instancias, incluindo STJ e STF. Inclui eliminacao no curso de formacao e acao por pretericao na nomeacao. Inclui reuniao estrategica com o Dr. Casil e acao protocolada em ate 24 horas.
 
-BLINDADO - R$ 3.000,00 a vista no PIX, ou 12x de R$ 298,00 no cartao (total parcelado R$ 3.576,00).
+BLINDADO - R$ 2.500,00 a vista no PIX, ou 12x de R$ 249,00 no cartao (total parcelado R$ 2.988,00).
 Cobre todas as 6 fases deste concurso - objetiva, discursiva, TAF, exame de saude, psicologico e investigacao social -, em todas as instancias, incluindo STJ e STF. Acao protocolada em ate 48 horas.
 
 BASICO - R$ 1.500,00 a vista no PIX, ou 12x de R$ 149,00 no cartao (total parcelado R$ 1.788,00).
 Cobre uma fase deste concurso, em todas as instancias, incluindo STJ e STF. Acao protocolada em ate 48 horas.
 
 FRASE DA ANCORA: "Contratando uma fase de cada vez, seriam seis contratos de R$ 1.500,00 - R$ 9.000,00."
-FRASE DA ECONOMIA: "Voce economiza R$ 6.000,00 em relacao a contratar fase por fase."
-FRASE DO INCREMENTO: "A fase sozinha e R$ 149,00 por mes. Por mais R$ 149,00 por mes voce leva as seis."
-FRASE DO INCREMENTO CARREIRA: "Por mais R$ 199,00 por mes, a gente cobre tambem o proximo edital do mesmo cargo."
+FRASE DA ECONOMIA: "Voce economiza R$ 6.500,00 em relacao a contratar fase por fase."
+FRASE DO INCREMENTO: "A fase sozinha e R$ 149,00 por mes. Por mais R$ 100,00 por mes voce leva as seis."
+FRASE DO INCREMENTO CARREIRA: "E por mais R$ 100,00 por mes, a gente cobre tambem o proximo edital do mesmo cargo."
 FRASE DO SALARIO: "O Blindado inteiro custa menos que o seu primeiro salario no cargo."
 """
