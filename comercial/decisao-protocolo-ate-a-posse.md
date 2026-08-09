@@ -10,6 +10,11 @@ Base: manual `Protocolo Até a Posse — Resumo Executivo`, checklist e scripts
 vigentes (`sentinela_ops.py`), diagnósticos de 37 conversas perdidas e 17
 fechadas, e as fontes listadas no documento anterior.
 
+**Premissa que define toda a estrutura:** a taxa de procedência nestas ações é
+**inferior a 1%**. Isso mata o honorário de êxito como fonte de receita, joga
+todo o lucro para os honorários iniciais, e determina as decisões das seções 4
+e 5.
+
 ---
 
 ## 1. Três correções no manual, antes de qualquer preço
@@ -18,16 +23,16 @@ Estas três quebram a estrutura se ficarem como estão.
 
 ### 1.1 "O Nível 2 é o produto âncora" está trocado
 
-A âncora é o **Nível 3 (Blindado)**. O Nível 2 é o **alvo**. São papéis opostos:
-a âncora existe para ser vista primeiro e dar escala ao número seguinte; o alvo
-é o que você quer que ele leve.
+A âncora é o **nível mais caro**. O nível do meio é o **alvo**. São papéis
+opostos: a âncora existe para ser vista primeiro e dar escala ao número
+seguinte; o alvo é o que se quer que ele leve.
 
-O risco não é semântico. Se a equipe ler "o Nível 2 é a âncora", ela vai **abrir
+O risco não é semântico. Se a equipe ler "o nível 2 é a âncora", ela vai **abrir
 por ele** — e aí não existe ancoragem nenhuma, existe só o preço do meio dito
 sozinho, que é exatamente o que o escritório faz hoje.
 
-**Correção:** *"O Nível 3 (Blindado) é a âncora: apresentado primeiro, sempre.
-O Nível 2 (Superior) é o recomendado: é o que a equipe indica."*
+**Correção:** *"O Carreira é a âncora: apresentado primeiro, sempre. O Blindado
+é o recomendado: é o que a equipe indica."*
 
 ### 1.2 O manual se contradiz sobre recomendar
 
@@ -38,7 +43,7 @@ O Nível 2 (Superior) é o recomendado: é o que a equipe indica."*
 
 As duas não convivem, e a primeira é a errada. Dixon & McKenna (*The JOLT
 Effect*, 2,5 milhões de conversas) mediram que **40% a 60% dos negócios se perdem
-para a indecisão do cliente** — não para o concorrente. E o segundo dos quatro
+para a indecisão do cliente** — não para o concorrente. O segundo dos quatro
 movimentos do método é literalmente *Offer Recommendations*: **recomendar em vez
 de apresentar cardápio**. Deixar escolher é o comportamento que aumenta a
 indecisão de um lead que já está com medo de errar.
@@ -49,8 +54,7 @@ recomendação tira o peso da decisão. Precisa dos dois.
 **Correção:** apagar "deixe o candidato escolher" da seção 3 e alinhar com a
 seção 4.
 
-### 1.3 "Nunca citar preço antes de o candidato se posicionar sobre qual nível
-faz sentido para ele" é impossível como está escrito
+### 1.3 "Nunca citar preço antes de o candidato se posicionar sobre qual nível faz sentido para ele" é impossível como está escrito
 
 Ele não consegue se posicionar sobre um nível sem saber o preço dele. Como está,
 a regra trava a equipe.
@@ -61,220 +65,224 @@ mensagem, do mais caro para o mais barato."*
 
 ---
 
-## 2. O Nível 1 precisa trocar de cerca
+## 2. A escada
 
-O manual diferencia o Nível 1 por **"até a 2ª instância"**. Isso precisa mudar, e
-a informação nova que o escritório trouxe — **percentual de procedência baixo** —
-torna o argumento mais forte, não mais fraco.
+Apresentação sempre nesta ordem: **Carreira → Blindado → Básico**.
 
-Com procedência baixa, **perder em 2ª instância não é o caso raro: é o caso
-comum.** Então o corte de instância produz a conversa ruim — *"recurso ao STJ não
-está no seu contrato"* — no **máximo** de clientes possível, com o cliente já
-derrotado, e no exato momento em que ele decide se escreve ou não no Reclame
-Aqui e no grupo do concurso. É a pior hora possível para cortar, aplicada à
-maior fatia possível da base.
-
-E há um problema interno: a quebra de objeção "Vi advogado mais barato", no
-`ADENDO_PROPOSTA`, manda dizer que o barato sai caríssimo *"porque o que se perde
-é a vaga"*. Vendendo a versão sem instâncias superiores, a atendente tem de
-defender contra o concorrente a lógica que acabou de usar para vender o Nível 1.
-
-**A cerca certa já está no seu manual:** a coluna COBRANÇA. Nível 1 = "Valor fixo
-único"; Níveis 2 e 3 = "Fixo + % êxito". **Risco compartilhado** é uma cerca
-perfeita:
-
-- **Legível na hora da compra.** "Pago tudo agora e acabou" vs. "pago menos agora
-  e o resto só se eu tomar posse". Ninguém confunde.
-- **Não retira proteção nenhuma.** Os três níveis cobrem todas as instâncias.
-- **Não abandona ninguém em momento nenhum.**
-- **É honesta.** Quem não divide o risco paga mais — é precificação de risco, não
-  é castigo. Dá para dizer isso em voz alta sem constrangimento.
-- **Não contradiz nenhum script existente.**
-
----
-
-## 3. A escada final
-
-| | **Nível 1 · Essencial** | **Nível 2 · Superior** ⭐ | **Nível 3 · Blindado** |
+| | **Básico** | **Blindado** ⭐ | **Carreira** |
 |---|---|---|---|
-| Fases cobertas | 1 fase | 1 fase | **todas, até a nomeação** |
+| Fases cobertas | 1 fase | **todas, até a nomeação** | todas |
+| Certames | este | este | **este + o próximo do mesmo cargo (ou 24 meses)** |
 | Instâncias | todas (STJ/STF) | todas (STJ/STF) | todas (STJ/STF) |
 | Ação judicial + liminar | ✓ | ✓ | ✓ |
-| Protocolo em 48h | ✓ | ✓ | ✓ |
-| Relatório técnico | ✓ | ✓ | ✓ em cada fase |
-| Análise preventiva antes de cada fase | — | — | ✓ |
-| Monitoramento do cronograma até a posse | — | — | ✓ |
-| **Você paga agora** | **R$ 3.900** | **R$ 2.500** | **R$ 2.900** |
-| **Você paga depois da posse** | **nada** | **2 salários do cargo** | **3 salários do cargo** |
+| Protocolo | 48h | 48h | **24h** |
+| Relatório técnico | ✓ | ✓ em cada fase | ✓ em cada fase |
+| Análise preventiva antes de cada fase | — | ✓ | ✓ |
+| Monitoramento do cronograma até a posse | — | ✓ | ✓ |
+| Curso de formação / preterição na nomeação | — | — | ✓ |
+| Dr. Casil pessoalmente | — | — | ✓ |
+| **Preço** | **R$ 2.000** | **R$ 3.500** | **R$ 8.000** |
+| Em 12× no cartão | 12× R$ 185 | 12× R$ 325 | 12× R$ 742 |
 
-**Duas cercas, uma por degrau, e as duas legíveis:**
+Valores de referência para uma fase a R$ 2.000 e concurso de seis fases. O piso
+por fase é o parâmetro que se ajusta por certame; os degraus acima derivam dele.
 
-- 1 → 2: **quem carrega o risco** (mesmo escopo jurídico, exatamente o mesmo)
-- 2 → 3: **quantas fases** (o eixo que o escritório identificou como o mais forte,
-  e está certo)
+### As duas cercas
 
-### Por que o Essencial custa mais à vista que o Superior
+- **Básico → Blindado: quantas fases.** É o eixo mais legível que o escritório
+  tem, e o cliente entende na hora.
+- **Blindado → Carreira: quantos certames, mais cobertura pós-aprovação
+  (formação e preterição) e acesso ao Dr. Casil.**
 
-É deliberado, e é o mecanismo que faz a escada funcionar. É a estrutura que
-Ariely mediu nas assinaturas da *The Economist*: uma opção que quase ninguém
-escolhe existe para tornar óbvia a escolha certa. Aqui, pagar R$ 3.900 agora
-para não ter obrigação futura é um produto real — algumas pessoas querem
-exatamente isso, e essas pagam mais. As outras olham e concluem sozinhas que o
-Superior é melhor. Nenhuma das duas conclusões é enganosa.
+Nenhuma das duas retira proteção jurídica: **os três níveis cobrem todas as
+instâncias, incluindo STJ e STF.** Essa é uma decisão firme, e o motivo está na
+seção 3.
 
-O Essencial **não é** o degrau para quem tem pouco dinheiro. Não existe degrau
-para quem tem pouco dinheiro nesta escada, e isso é uma decisão consciente: o
-objetivo declarado é **subir** o ticket médio, não descer.
+### Não existe degrau barato — é decisão consciente
 
-### As duas entregas que sustentam o Blindado
-
-Sem elas, o Blindado é um seguro — e seguro que não aciona parece dinheiro
-jogado fora, principalmente com procedência baixa. Estas duas fazem a entrega
-existir mesmo quando o cliente não é eliminado de novo:
-
-**Análise preventiva antes de cada fase de risco.** Antes da investigação
-social, a equipe revisa antecedentes, dívidas, processos, tatuagem e redes
-sociais contra o edital, e aponta o problema **antes** de virar eliminação.
-Antes do exame médico, cruza as condições dele com os critérios. Antes do TAF,
-avalia se há laudo que justifique adaptação. Custo baixo (é revisão de
-checklist, não é peça) e é advocacia melhor: evitar a eliminação vale mais que
-revertê-la.
-
-**Monitoramento do cronograma.** O `mapa_de_oportunidades` já rastreia
-convocação, nomeação, decreto de excedentes, homologação e posse. Hoje é
-ferramenta interna; vira entrega do Blindado — o cliente é avisado antes de sair
-no Diário Oficial. Custo marginal quase zero, percepção alta, e é o tipo de
-coisa que ele comenta no grupo do concurso.
-
-Isso reposiciona o produto: **o Blindado não é "seis ações pelo preço de duas".
-É acompanhamento jurídico do concurso inteiro, e as ações são o que acontece
-quando precisa.**
+O objetivo declarado é **subir** o ticket médio. O Básico é o piso, não a porta
+de entrada para quem não tem dinheiro; a flexibilidade para esse lead está no
+parcelamento (seção 6), não no preço.
 
 ---
 
-## 4. Por que o prêmio do Blindado é diferido, e não à vista
+## 3. Por que o corte de instâncias saiu do Nível 1
 
-Esta é a decisão mais importante do documento, e ela decorre diretamente da
-procedência baixa.
+O manual diferenciava o Nível 1 por **"até a 2ª instância"**. Com procedência
+abaixo de 1%, **perder em 2ª instância não é o caso raro: é praticamente o caso
+único.** O corte de instância produziria a conversa *"recurso ao STJ não está no
+seu contrato"* com quase toda a base, com o cliente já derrotado, e no exato
+momento em que ele decide se escreve no Reclame Aqui e no grupo do concurso.
 
-Se o Blindado custasse R$ 5.000 **à vista** para cobrir seis fases, o desfecho
-mais provável seria: o cliente perde a primeira ação, não avança, as outras cinco
-fases nunca acontecem — e ele olha para trás tendo pago R$ 5.000 por uma ação
-perdida que custaria R$ 2.500. O contrato estaria cumprido e a experiência seria
-de ter sido passado para trás. Com procedência baixa, esse não é o cenário de
-exceção: **é o cenário modal**.
+Há também um conflito interno: a quebra de objeção "Vi advogado mais barato", no
+`ADENDO_PROPOSTA`, manda dizer que o barato sai caríssimo *"porque o que se perde
+é a vaga"*. Vendendo a versão sem instâncias superiores, a atendente teria de
+defender contra o concorrente a lógica que acabou de usar para vender o Nível 1.
 
-Com o prêmio diferido, a estrutura se autocorrige:
-
-| Desfecho | O que o cliente pagou | O que o escritório entregou |
-|---|---|---|
-| Perde a primeira fase | R$ 2.900 — praticamente o mesmo do Superior | uma ação completa, todas as instâncias |
-| Avança e é eliminado de novo | R$ 2.900 | duas, três ações — e é aí que o Blindado valeu |
-| Toma posse | R$ 2.900 + 3 salários | o caminho inteiro |
-
-Em nenhuma linha existe ressentimento, e o escritório só cobra o prêmio quando
-o cliente está empossado, recebendo. É a mesma lógica que o manual já vende na
-Objeção 2 — só que agora ela também é a arquitetura do produto, e não apenas o
-argumento.
-
-### O ponto de equilíbrio, em número
-
-Com salário de referência de R$ 5.000 e taxa de posse de 20%, o Blindado se
-mantém pelo menos tão rentável quanto o Superior enquanto o cliente médio
-acionar **menos de ~2,7 fases**. Como o trabalho técnico e a relação já estão
-montados, o custo marginal de uma fase adicional é bem menor que o de uma
-contratação nova — o que dá bastante folga. Só é preciso vigiar se esse número
-subir.
-
-### Sobre "lucro equivalente a 3,3 ações"
-
-A aritmética, para não haver ilusão:
-
-- **No cliente que toma posse:** Superior = R$ 2.500 + 2 salários ≈ **R$ 12.500**,
-  ou 5× o ticket atual. Blindado ≈ **R$ 17.900**, ou 7×. Folgadamente acima da
-  meta.
-- **Na média da base, com posse a 20%:** Superior ≈ R$ 4.500 por cliente, contra
-  R$ 1.500–2.500 hoje. Isso é **~2×**, não 3,3×.
-
-Ou seja: a meta de 3,3× é atingida com sobra nos casos vencedores, e a média
-sobe cerca de 2×. Chegar a 3,3× **na média** exigiria elevar também a taxa
-inicial, e a padronização em R$ 2.500 (de um piso atual de R$ 1.500) já é parte
-disso. A ancoragem sozinha não entrega 3,3× de média — ela entrega consistência
-de preço e um teto muito mais alto nos casos bons.
+A cerca por **número de fases** faz o mesmo trabalho comercial sem nenhum desses
+custos.
 
 ---
 
-## 5. Mecânica do honorário de êxito
+## 4. Por que não há honorário de êxito
 
-O escritório já pratica "honorário principal só na posse". O que falta é
-fechar as definições. Pontos de decisão, com a recomendação:
+Com procedência inferior a 1%, o honorário de êxito não é apenas receita que não
+chega — é **uma promessa em formato de produto que quase nunca se cumpre**. O
+cliente ouve "o escritório só ganha se eu ganhar", perde, e olha para o que
+pagou.
 
-| Ponto | Recomendação |
-|---|---|
-| **Base de cálculo** | Múltiplo de **salários mensais do cargo pretendido** — 2 (Superior) / 3 (Blindado) |
-| **Fato gerador** | A **posse**. Não a liminar, não a nomeação. É a única data objetiva e documentável |
-| **Parcelamento** | 6× (Superior) / 10× (Blindado), a partir do primeiro salário recebido |
-| **Instrumento** | Contrato com **duas testemunhas** → título executivo extrajudicial (CPC, art. 784, III) |
-| **Cláusula de teto** | Valor máximo em R$, para não desproporcionar em cargo de salário alto |
-| **Taxa inicial** | Deixar expresso que **não é reembolsável**, em cláusula destacada e confirmada em separado |
+Removê-lo também elimina três problemas de uma vez: a discussão de quota litis
+e do art. 38 do CED, a definição da base de cálculo do êxito, e o risco de
+cobrança anos depois.
 
-**Sobre a base em salários:** é admissível e é a prática recomendada justamente
-para demandas de concurso público, onde não há proveito econômico direto para
-servir de base. A literatura específica sobre honorários contratuais em ações de
-concurso aponta a fixação em "2 a 3 salários" como proxy razoável do benefício
-obtido com a nomeação. Contra o art. 38 do CED — honorários em pecúnia, e que
-somados à sucumbência não superem a vantagem obtida pelo cliente —, 2 ou 3
-salários contra uma carreira estável vitalícia fica folgadamente dentro do
-limite. Ainda assim, a cláusula de teto é barata e resolve o caso do cargo de
-salário atípico.
-
-**Sobre a taxa inicial não reembolsável:** o manual vende "o risco o escritório
-assume junto com o cliente", que é um argumento forte e verdadeiro. Mas o cliente
-que perde e olha para os R$ 2.500 pagos precisa ter confirmado, no ato, que
-aquilo remunerava o trabalho técnico executado — não o resultado. Uma frase que
-ele confirma em separado é um seguro barato contra a reclamação pública.
+**Todo o lucro vem do honorário inicial.** Foi por isso que o piso subiu de
+R$ 1.500 para R$ 2.000 e que os degraus acima existem.
 
 ---
 
-## 6. O script
+## 5. O que sustenta o preço do Blindado — e é obrigatório
 
-Ordem obrigatória: **Blindado → Superior → Essencial**. Termina em recomendação,
+Esta é a seção mais importante do documento do ponto de vista de risco.
+
+Com procedência abaixo de 1%, **as cinco fases extras do Blindado quase nunca
+serão acionadas**. Na prática, o cliente do Blindado e o do Básico recebem quase
+sempre a mesma coisa: uma ação perdida. Se nada mais for entregue, o Blindado é
+75% a mais pelo mesmo resultado — e isso é indefensável em qualquer conversa,
+reclamação ou processo.
+
+As duas entregas abaixo **precisam existir de fato, ser datadas e ficar
+registradas**:
+
+**1. Análise preventiva antes de cada fase de risco — como artefato entregue.**
+Um relatório de uma página, com data, antes de cada etapa. Antes da investigação
+social: antecedentes, dívidas, processos, tatuagem e redes sociais contra o
+edital. Antes do exame médico: as condições dele contra os critérios. Antes do
+TAF: se há laudo que justifique adaptação. Custo baixo — é revisão de checklist,
+não é peça — e é advocacia melhor, porque evitar a eliminação vale mais que
+tentar revertê-la.
+
+**2. Monitoramento do cronograma — como mensagem ao cliente.** O
+`mapa_de_oportunidades` já rastreia convocação, nomeação, decreto de excedentes,
+homologação e posse. Ligar o cliente do Blindado nesse fluxo custa quase nada e
+faz o produto existir entre uma fase e outra.
+
+Com esses dois entregáveis, o Blindado é honesto e o preço se sustenta sozinho.
+Sem eles, é vulnerável.
+
+---
+
+## 6. Preço, âncora e concessões
+
+### A aritmética é a mesma nos três degraus
+
+| | Avulso equivalente | Preço | Desconto |
+|---|---|---|---|
+| Básico — 1 fase | — | R$ 2.000 | é a unidade |
+| Blindado — 6 fases | 6 × 2.000 = **R$ 12.000** | R$ 3.500 | **71%** |
+| Carreira — 2 certames + formação + preterição | 12 × 2.000 = **R$ 24.000** | R$ 8.000 | **67%** |
+
+O mesmo desconto de ~70% nos dois degraus superiores é o que faz o preço parar
+de parecer arbitrário: cada nível tem a sua própria linha de âncora, com a mesma
+lógica. Quando o lead perguntar "por que R$ 8.000?", a resposta é a aritmética
+que ele já aceitou no Blindado.
+
+Números redondos nos três, de propósito: facilitam a conta mental e sustentam
+melhor um produto premium do que R$ 7.900.
+
+### Por que R$ 3.500 e não R$ 4.000 no Blindado
+
+1. **Suba depois, nunca desça.** Comece em R$ 3.500, meça a adesão por 60–90
+   dias, e suba para R$ 4.000 se o mix vier pesado no Blindado. Subir com dado na
+   mão é trivial; descer de R$ 4.000 para R$ 3.500 lê-se como desconto e reabre o
+   Gargalo 2.
+2. **"O dobro" é uma barreira que o cérebro registra.** 2.000 → 4.000 é uma
+   categoria; 2.000 → 3.500 é um incremento. Contra seis vezes mais cobertura,
+   R$ 1.500 a mais é um sim óbvio; R$ 2.000 a mais parece uma segunda compra.
+   Baker formula isso como regra: o degrau do piso até o alvo deve ser o mais
+   fácil de subir, porque é onde se quer migração de massa.
+3. **O que decide não é a comparação com o Básico — é a comparação com a
+   âncora.** R$ 3.500 e R$ 4.000 ganham os dois contra R$ 12.000. Então o preço
+   só muda quantos migram, e migração é a estratégia inteira.
+
+O Carreira pode saltar: ele não é alvo de migração, é âncora e produto de
+segmento.
+
+### O enquadramento mensal
+
+O diagnóstico interno manda dividir sempre por salário do cargo. Com estes
+números, para os concursos da faixa de R$ 4.000–5.000 (PMERJ, Polícia Penal,
+GCM), vale a frase mais forte da tabela:
+
+> O Blindado inteiro custa **menos que o seu primeiro salário** no cargo.
+
+Dita junto com o parcelado: **R$ 3.500, ou 12× de R$ 325.**
+
+### A escada de concessões — e por que não há gordura no preço
+
+Se o R$ 2.000 tiver R$ 500 de gordura embutida para negociação, a equipe usará
+os R$ 500 sempre, e em três meses o preço real é R$ 1.500 de novo — com o
+cliente sabendo que o número anunciado é fictício. Foi exatamente isso que
+derrubou o caso Davi/IASES.
+
+A flexibilidade existe, em outro lugar. **Nesta ordem, e o atendente não pode
+pular etapa nem inventar condição:**
+
+1. **12× no cartão.** É o padrão, não é concessão.
+2. **Entrada menor + saldo parcelado, ou dois cartões.** Os dados internos: 16
+   dos 17 fechamentos vieram de flexibilização de pagamento; nenhum de corte de
+   preço.
+3. **Descer de produto** — Blindado R$ 3.500 → Básico R$ 2.000. Redução real de
+   43% no desembolso que não custa nada ao escritório, porque também se retirou
+   entrega.
+4. **Só então o Dr. Casil.**
+
+Se for preciso um desconto, que seja **troca, não capitulação**: *"R$ 1.800 à
+vista no PIX"* — o PIX economiza a maquininha, então a diferença é real e
+explicável. Nunca "R$ 1.800 porque você insistiu".
+
+---
+
+## 7. O script
+
+Ordem obrigatória: **Carreira → Blindado → Básico**. Termina em recomendação,
 nunca em "qual você prefere?".
 
 > São três formas de contratar, e eu já te digo qual eu recomendo pro seu caso.
 >
-> Esse concurso tem seis fases: objetiva, discursiva, TAF, saúde, psicológico e
-> investigação social. Contratando uma de cada vez, seriam seis contratos de
-> R$ 2.500 — R$ 15.000 no total, e você decidindo tudo de novo seis vezes,
-> sempre logo depois de ser eliminado, que é o pior momento pra decidir.
+> Esse concurso tem seis fases: objetiva, discursiva, TAF, exame de saúde,
+> psicológico e investigação social. Contratando uma de cada vez, seriam **seis
+> contratos de R$ 2.000 — R$ 12.000** —, e você decidindo tudo de novo seis
+> vezes, sempre logo depois de ser eliminado, que é o pior momento pra decidir.
 >
-> O **Blindado** cobre as seis. R$ 2.900 agora, e três salários do cargo só
-> depois que você estiver empossado. Entre uma fase e outra a equipe acompanha o
-> cronograma e revisa o que pode te derrubar na próxima — antes de derrubar.
+> O **Carreira** cobre este concurso inteiro **e o próximo certame do mesmo
+> cargo**, incluindo eliminação no curso de formação e ação por preterição na
+> nomeação. O Dr. Casil acompanha pessoalmente e a ação é protocolada em 24
+> horas. R$ 8.000, ou 12× de R$ 742.
 >
-> O **Superior** resolve essa fase aqui, em todas as instâncias, até STJ e STF.
-> R$ 2.500 agora e dois salários depois da posse.
+> O **Blindado** cobre as seis fases deste concurso, em todas as instâncias, até
+> STJ e STF. **R$ 3.500, ou 12× de R$ 325** — menos que o seu primeiro salário
+> no cargo, pelo concurso inteiro. E entre uma fase e outra a equipe revisa o que
+> pode te derrubar na próxima, antes de derrubar.
 >
-> O **Essencial** é essa mesma fase, mesma cobertura, mesmas instâncias — a
-> diferença é que você paga tudo agora, R$ 3.900, e não deve mais nada ao
-> escritório depois, aconteça o que acontecer.
+> O **Básico** é essa fase aqui, sozinha, também em todas as instâncias.
+> R$ 2.000, ou 12× de R$ 185.
 >
-> **No seu caso eu recomendo o Superior.** Você está a 3 pontos do corte na
-> objetiva — resolvida essa fase você entra bem colocado, e você paga a maior
-> parte só se estiver empossado. Faz sentido pra você?
+> **No seu caso eu recomendo o Blindado.** Você está a 3 pontos do corte na
+> objetiva — resolvida essa fase você entra bem colocado, e as cinco seguintes
+> já ficam cobertas sem você ter que decidir de novo. Faz sentido pra você?
 
 Três coisas deliberadas:
 
 1. **"Eu já te digo qual eu recomendo"** na primeira linha. Ele ouve as três
    opções já sabendo que não vai decidir sozinho — o peso sai antes das opções
    entrarem.
-2. **A âncora é a aritmética das seis fases**, dita em voz alta. R$ 15.000 é o
-   número que dá escala a tudo que vem depois. E não é inventado.
-3. **A recomendação é justificada pelo caso dele, com o número dele.** Não "a
+2. **A âncora é a aritmética das seis fases**, dita em voz alta. R$ 12.000 é o
+   número que dá escala a tudo que vem depois, e não é inventado.
+3. **A recomendação é justificada pelo caso dele, com o número dele.** Nunca "a
    maioria escolhe essa".
 
-**Não chame de desconto.** O Gargalo 3 do diagnóstico é desconto desgastado.
-Se o lead perguntar por que sai mais barato que fase a fase:
+**Não chame de desconto.** O Gargalo 3 do diagnóstico é desconto desgastado. Se
+perguntarem por que sai mais barato que fase a fase:
 
 > Não é desconto. É que contratando tudo de uma vez o escritório estuda o seu
 > caso uma vez só, e a diferença fica com você.
@@ -283,73 +291,117 @@ Se o lead perguntar por que sai mais barato que fase a fase:
 
 > · **"Está caro" / "não tenho esse valor agora"** (depois de mudar a régua da
 > comparação, que continua sendo a primeira tentativa) → **DESÇA DE PRODUTO,
-> NUNCA DE PREÇO.** É proibido reduzir o valor de qualquer nível. O movimento é
-> mostrar que o Superior já é o de menor desembolso hoje: *"O Superior é
-> justamente o que pede menos agora — R$ 2.500, e o resto só se você estiver
-> empossado, pagando com o salário que você só vai ter porque a gente entrou.
-> O que pesa: o valor de hoje ou o compromisso lá na frente?"* A resposta dele
-> diz qual é a objeção real. Só depois de duas tentativas entra a reunião com o
-> Dr. Casil.
+> NUNCA DE PREÇO.** É proibido reduzir o valor de qualquer nível ou criar
+> parcela que não esteja escrita. O movimento é, em ordem: oferecer o
+> parcelamento em 12×; oferecer entrada menor com saldo parcelado; e por último
+> descer para o Básico — *"O Blindado eu não consigo mexer. Mas existe o Básico,
+> que resolve essa fase aqui com a mesma cobertura de instâncias, por R$ 2.000
+> ou 12× de R$ 185. A diferença é que ele cobre só esta fase, e não as seis."*
+> Só depois de duas tentativas entra a reunião com o Dr. Casil.
 
 ---
 
-## 7. Os dois números que precisam ser medidos — e uma premissa a conferir
+## 8. Texto pronto para o `sp_honorario`
 
-**A premissa a conferir, e ela é a mais importante:** o raciocínio de que "o
-cliente raramente precisa de mais de uma ação porque não avança de fase" mistura
-duas taxas diferentes. O modelo do escritório é de **liminar** — o próprio manual
-diz *"liminar deferida → candidato participa sub judice"*. Um cliente com liminar
-**avança**, participa da fase seguinte, e pode ser eliminado nela enquanto a
-primeira ação ainda corre. Ou seja: **quem determina o acionamento do Blindado é
-a taxa de liminar deferida, não a taxa de procedência final.** São números muito
-diferentes, e é perfeitamente possível que o primeiro seja alto e o segundo
-baixo — que é o cenário em que o Blindado aciona muito e o êxito paga pouco.
+Cadastrar **exatamente nesta ordem** — o `ADENDO_PROPOSTA` trata este texto como
+"o teto e o piso, palavra por palavra" e a Bia lê na ordem em que estiver
+escrito. Cadastrar do barato para o caro inverte a âncora.
 
-Se for esse o caso, a correção é simples: limitar o Blindado a 3 fases (cobre
-praticamente todos os casos reais) ou elevar a taxa inicial dele. Mas não decida
-isso no escuro.
+Modelo para um concurso de seis fases com piso de R$ 2.000. Ajustar o número e
+os nomes das fases por certame.
 
-**Os números a levantar:**
+**Campo `valor`:**
 
-1. **Taxa de liminar deferida** por tipo de eliminação → determina quantas fases
-   o Blindado aciona na média.
-2. **Taxa de posse** entre os clientes contratados → determina quanto o honorário
-   de êxito realmente arrecada.
+```
+CARREIRA — R$ 8.000,00 à vista no PIX, ou 12x de R$ 742,00 no cartão.
+Cobre todas as fases deste concurso E do próximo certame do mesmo cargo (ou 24
+meses, o que ocorrer primeiro), em todas as instâncias, incluindo STJ e STF.
+Inclui eliminação no curso de formação e ação por preterição na nomeação.
+Acompanhamento direto com o Dr. Casil e protocolo em até 24 horas.
 
-Ambos saem da planilha `Processos` e do acervo de decisões.
+BLINDADO — R$ 3.500,00 à vista no PIX, ou 12x de R$ 325,00 no cartão.
+Cobre todas as 6 fases deste concurso (objetiva, discursiva, TAF, exame de
+saúde, psicológico e investigação social), em todas as instâncias, incluindo STJ
+e STF. Inclui análise preventiva antes de cada fase e acompanhamento do
+cronograma até a posse. Protocolo em até 48 horas.
+
+BÁSICO — R$ 2.000,00 à vista no PIX, ou 12x de R$ 185,00 no cartão.
+Cobre uma fase deste concurso, em todas as instâncias, incluindo STJ e STF.
+Protocolo em até 48 horas.
+
+Contratando fase por fase, seriam seis contratos de R$ 2.000,00 — R$ 12.000,00.
+```
+
+**Campo `condicoes`:**
+
+```
+Apresentar SEMPRE os três, nesta ordem: CARREIRA, BLINDADO, BASICO.
+RECOMENDAR O BLINDADO, sempre com um motivo ligado ao caso dele.
+Dizer a conta das seis fases (R$ 12.000) ANTES de dizer o preço do Blindado.
+Nao converter em parcelas diferentes das escritas. Nao dar desconto.
+Se o valor pesar: 12x no cartao, depois entrada menor com saldo parcelado,
+depois descer para o BASICO. Nunca reduzir o preco de um nivel.
+Nao existe honorario de exito: o valor cobrado e o valor total.
+```
 
 ---
 
-## 8. Implantação — a ordem
+## 9. Implantação — a ordem
 
-1. Corrigir os três pontos do manual (seção 1). É o que menos custa e o que mais
-   quebra se ficar.
-2. Trocar a cerca do Nível 1: de "até a 2ª instância" para "valor fixo único, sem
-   honorário de êxito". Todas as instâncias nos três níveis.
-3. Fechar as cláusulas do honorário de êxito (seção 5) e ajustar o contrato:
-   fato gerador, base em salários, parcelamento, duas testemunhas, teto, taxa
-   inicial não reembolsável.
-4. Cadastrar em `sp_honorario` **na ordem Blindado → Superior → Essencial**. O
-   `ADENDO_PROPOSTA` trata aquele texto como "o teto e o piso, palavra por
-   palavra" e a Bia lê na ordem em que estiver escrito — cadastrar do barato para
-   o caro inverte a âncora.
-5. Acrescentar a nova quebra de objeção ao `ADENDO_PROPOSTA` (seção 6).
-6. Rodar em **um concurso só** por duas a três semanas antes de abrir para todos.
-7. Levantar os dois números da seção 7 nesse intervalo.
+1. Corrigir os três pontos do manual (seção 1).
+2. Trocar a cerca do Nível 1: de "até a 2ª instância" para "uma fase", com todas
+   as instâncias nos três níveis. Remover "% êxito" das três linhas.
+3. Renomear os níveis no manual: **Básico / Blindado / Carreira**.
+4. Ajustar o contrato: escopo por fases, sem honorário de êxito, e o que o
+   Carreira cobre além do certame atual.
+5. Montar os dois entregáveis do Blindado (seção 5) antes de vender o primeiro —
+   modelo do relatório preventivo de uma página, e o gatilho do
+   `mapa_de_oportunidades` para o cliente.
+6. Cadastrar o texto da seção 8 em `sp_honorario`, na ordem correta.
+7. Acrescentar a quebra de objeção da seção 7 ao `ADENDO_PROPOSTA`.
+8. Rodar em **um concurso só** por duas a três semanas antes de abrir para todos.
 
 **O que não muda:** o portão do checklist. As quatro etapas continuam segurando
-os três números como seguravam um. Preço tarde, depois do valor — é o
-comportamento medido nos melhores vendedores e já está certo no sistema.
+os três números como seguravam um. Preço tarde, depois do valor.
 
 ---
 
-## 9. Nota sobre a marca
+## 10. O que medir — e o aviso sobre a métrica
 
-"Protocolo Até a Posse" como nome da **metodologia**, com os três níveis
-nomeados por baixo, é melhor do que "Até a Posse" sozinho — e resolve a colisão
-que eu tinha apontado antes: o produto passa a ser "Protocolo Até a Posse —
-Nível Superior", e "pagamento após a posse" continua sendo só a condição de
-pagamento. Não há mais ambiguidade para a Bia.
+**A métrica muda de lugar.** Subir o piso de R$ 1.500 para R$ 2.000 e empurrar o
+mix para R$ 3.500 vai **derrubar a taxa de conversão**. Isso é esperado e é o
+preço da estratégia. O número que passa a importar é **receita por lead**, não
+conversão. Se a equipe só olhar conversão, ela entra em pânico na segunda semana
+e começa a descontar — reabrindo exatamente o gargalo que esta mudança fecha.
+
+**A comissão precisa acompanhar.** Se a equipe ganha por contrato fechado, ela
+vai resistir a uma estrutura que fecha menos e fatura mais. Comissão sobre
+receita, não sobre número de contratos.
+
+**Acompanhar semanalmente:**
+
+| Indicador | Por quê |
+|---|---|
+| Receita por lead atendido | A métrica-mãe desta mudança |
+| Mix por nível (% Básico / Blindado / Carreira) | Diz se a âncora está funcionando |
+| Ticket médio | Comparar com a linha de base de R$ 1.500–2.500 |
+| Nº de descontos concedidos | Deve ser zero. Qualquer número acima disso é a escada vazando |
+| Fases acionadas por cliente Blindado | Se subir muito, rever o preço do Blindado |
+| Relatórios preventivos entregues / clientes Blindado ativos | Se não for ~100%, o produto não está sendo entregue |
+
+**Um número ainda em aberto:** a **taxa de liminar deferida**. Ela é diferente da
+taxa de procedência e é ela que determina se o cliente avança de fase — e,
+portanto, quantas vezes o Blindado é acionado. Vale levantar do acervo de
+decisões nas primeiras semanas.
+
+---
+
+## 11. Nota sobre a marca
+
+"Protocolo Até a Posse" como nome da **metodologia**, com os três níveis nomeados
+por baixo, resolve a colisão apontada antes: o produto é "Protocolo Até a Posse —
+Blindado", e "pagamento após a posse" deixa de existir como condição, já que não
+há mais honorário de êxito.
 
 Para o INPI: a composição "Protocolo Até a Posse" tem mais distintividade que a
 expressão isolada, e **marca mista** (nome + logo) tem caminho bem mais folgado
