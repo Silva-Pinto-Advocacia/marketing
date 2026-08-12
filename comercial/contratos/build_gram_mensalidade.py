@@ -266,5 +266,5 @@ def gera(destino):
     return len(novos)
 
 
-n = gera("Contrato_Honorarios_GRAM.docx")
-print(f"Contrato_Honorarios_GRAM.docx: {n} parágrafos, {os.path.getsize('Contrato_Honorarios_GRAM.docx')} bytes")
+n = gera("Contrato_Honorarios_GRAM_Mensalidade.docx")
+print(f"Contrato_Honorarios_GRAM_Mensalidade.docx: {n} parágrafos, {os.path.getsize('Contrato_Honorarios_GRAM.docx')} bytes")
