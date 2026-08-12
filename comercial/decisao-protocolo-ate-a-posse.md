@@ -71,12 +71,13 @@ Apresentação sempre nesta ordem: **Carreira → Blindado → Básico**.
 
 | | **Básico** | **Blindado** ⭐ | **Carreira** |
 |---|---|---|---|
-| Fases cobertas | 1 fase | **todas, até a nomeação** | todas |
+| Fases cobertas | 1 fase | **todas, até a homologação do resultado** | todas, até a posse |
 | Certames | este | este | **este + o próximo do mesmo cargo (ou 24 meses)** |
 | Instâncias | todas (STJ/STF) | todas (STJ/STF) | todas (STJ/STF) |
 | Ação judicial + liminar | ✓ | ✓ | ✓ |
 | Protocolo | 48h | 48h | **24h** |
 | Curso de formação / preterição na nomeação | — | — | ✓ |
+| Contratos-modelo | `contratos/` | `contratos/` | `contratos/` |
 | Dr. Casil pessoalmente | — | — | ✓ |
 | **À vista no PIX** | **R$ 1.500** | **R$ 3.000** | **R$ 5.000** |
 | **12× no cartão** | 12× R$ 149 | 12× R$ 298 | 12× R$ 497 |
