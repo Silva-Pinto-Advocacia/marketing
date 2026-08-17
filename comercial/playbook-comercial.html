@@ -1,0 +1,392 @@
+<title>Playbook comercial — Protocolo Até a Posse</title>
+<style>
+  :root{
+    --paper:#F5F6F8; --card:#FFFFFF; --sunk:#EDEFF3;
+    --ink:#141C2E; --ink-2:#3D485F; --ink-3:#6B7689;
+    --rule:#D9DEE6; --rule-2:#E7EAF0;
+    --brass:#9A7429; --brass-soft:#F3EBD8;
+    --oxblood:#9B3B34; --oxblood-soft:#F7E7E5;
+    --pine:#2C6350; --pine-soft:#E2EDE8;
+    --shadow:0 1px 2px rgba(20,28,46,.06), 0 6px 20px rgba(20,28,46,.05);
+    --serif: ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono: ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0F141F; --card:#171E2C; --sunk:#131A27;
+      --ink:#EDF0F5; --ink-2:#B6BECD; --ink-3:#8A94A6;
+      --rule:#2A3346; --rule-2:#222A3A;
+      --brass:#D6AC5C; --brass-soft:#2B2415;
+      --oxblood:#E08A82; --oxblood-soft:#2E1917;
+      --pine:#7FC3A6; --pine-soft:#14251E;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0F141F; --card:#171E2C; --sunk:#131A27;
+    --ink:#EDF0F5; --ink-2:#B6BECD; --ink-3:#8A94A6;
+    --rule:#2A3346; --rule-2:#222A3A;
+    --brass:#D6AC5C; --brass-soft:#2B2415;
+    --oxblood:#E08A82; --oxblood-soft:#2E1917;
+    --pine:#7FC3A6; --pine-soft:#14251E;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+       font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+  .wrap{max-width:700px;margin:0 auto;padding:0 20px 96px}
+
+  header{padding:40px 0 26px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+           color:var(--brass);margin:0 0 14px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,7.5vw,42px);line-height:1.12;
+     letter-spacing:-.015em;margin:0 0 14px;text-wrap:balance}
+  .dek{font-size:17px;color:var(--ink-2);margin:0;max-width:54ch}
+
+  section{margin:0 0 48px;scroll-margin-top:20px}
+  h2{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.2;letter-spacing:-.01em;
+     margin:0 0 6px;text-wrap:balance}
+  h3{font-family:var(--sans);font-weight:650;font-size:16.5px;margin:26px 0 8px}
+  .sub{color:var(--ink-3);font-size:14.5px;margin:0 0 20px}
+  p{margin:0 0 14px}
+  strong{font-weight:650}
+
+  .tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:12px;background:var(--card)}
+  table{border-collapse:collapse;width:100%;font-size:14.5px}
+  th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--rule-2);vertical-align:top}
+  thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+           color:var(--ink-3);font-weight:500;background:var(--sunk);white-space:nowrap}
+  tbody tr:last-child td{border-bottom:0}
+  td.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+  .who{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+       padding:3px 7px;border-radius:5px;white-space:nowrap;display:inline-block}
+  .w-sdr{background:var(--pine-soft);color:var(--pine)}
+  .w-clo{background:var(--brass-soft);color:var(--brass)}
+  .w-jur{background:var(--sunk);color:var(--ink-3)}
+  .w-ger{background:var(--oxblood-soft);color:var(--oxblood)}
+
+  ol.rules{list-style:none;margin:0;padding:0}
+  ol.rules li{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:13px 0;
+              border-bottom:1px solid var(--rule-2);font-size:15px}
+  ol.rules li:last-child{border-bottom:0}
+  .rn{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--brass);padding-top:3px;
+      font-variant-numeric:tabular-nums}
+
+  .switch{display:flex;gap:6px;margin:0 0 26px;flex-wrap:wrap;position:sticky;top:0;z-index:10;
+          background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);
+          padding:12px 0;border-bottom:1px solid var(--rule-2)}
+  .switch button{font-family:var(--sans);font-size:14px;font-weight:600;background:var(--sunk);
+                 color:var(--ink-3);border:1px solid transparent;padding:9px 16px;border-radius:8px;
+                 cursor:pointer;transition:all .15s}
+  .switch button:hover{color:var(--ink)}
+  .switch button[aria-selected="true"]{background:var(--card);color:var(--ink);
+                                       border-color:var(--rule);box-shadow:var(--shadow)}
+  .role{display:none}
+  .role.on{display:block}
+
+  .goal{border-left:3px solid var(--brass);padding:4px 0 4px 18px;margin:0 0 24px}
+  .goal .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+             color:var(--brass);display:block;margin-bottom:5px}
+  .goal p{font-family:var(--serif);font-size:19px;line-height:1.42;margin:0}
+
+  .call{border-radius:12px;padding:15px 17px;margin:0 0 16px;font-size:14.8px;border:1px solid var(--rule)}
+  .call.pine{background:var(--pine-soft);border-color:color-mix(in srgb,var(--pine) 30%,transparent)}
+  .call.ox{background:var(--oxblood-soft);border-color:color-mix(in srgb,var(--oxblood) 30%,transparent)}
+  .call.brass{background:var(--brass-soft);border-color:color-mix(in srgb,var(--brass) 30%,transparent)}
+  .call .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+               display:block;margin-bottom:7px}
+  .call.pine .label{color:var(--pine)} .call.ox .label{color:var(--oxblood)} .call.brass .label{color:var(--brass)}
+  .call p:last-child{margin-bottom:0}
+
+  ul.plain{list-style:none;margin:0 0 16px;padding:0}
+  ul.plain li{display:grid;grid-template-columns:20px 1fr;gap:10px;padding:8px 0;font-size:15px;
+              border-bottom:1px solid var(--rule-2)}
+  ul.plain li:last-child{border-bottom:0}
+  .ck{color:var(--pine);font-weight:700;font-family:var(--mono);line-height:1.6}
+  .x{color:var(--oxblood);font-weight:700;font-family:var(--mono);line-height:1.6}
+
+  .say{background:var(--sunk);border:1px solid var(--rule-2);border-radius:10px;padding:13px 15px;
+       font-size:14.5px;line-height:1.6;margin:0 0 14px}
+  .say .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+            color:var(--ink-3);display:block;margin-bottom:6px}
+
+  .gate{background:var(--card);border:1px solid var(--brass);border-radius:12px;padding:17px 19px;
+        margin:22px 0;box-shadow:var(--shadow)}
+  .gate .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+               color:var(--brass);display:block;margin-bottom:9px}
+
+  footer{border-top:1px solid var(--rule);padding-top:20px;margin-top:8px;font-size:13px;color:var(--ink-3)}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Protocolo Até a Posse · Playbook comercial</p>
+  <h1>Quem faz o quê, e até onde</h1>
+  <p class="dek">O funil dividido em três funções, com o critério exato de passagem entre elas. Escolha a sua função abaixo.</p>
+</header>
+
+<section id="funil">
+  <h2>O funil em uma tela</h2>
+  <p class="sub">Cinco etapas. Duas são do SDR, duas do closer, uma é técnica.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Etapa</th><th>Quem</th><th>Termina quando</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1. Triagem</strong><br><span style="color:var(--ink-3);font-size:13.5px">Lead chega, é qualificado, dossiê montado</span></td><td><span class="who w-sdr">SDR</span></td><td>Os 5 dados estão no sistema</td></tr>
+        <tr><td><strong>2. Diagnóstico técnico</strong><br><span style="color:var(--ink-3);font-size:13.5px">Análise do edital, da banca e do ato</span></td><td><span class="who w-jur">Dr. Casil</span></td><td>Veredito devolvido ao SDR</td></tr>
+        <tr><td><strong>3. Veredito e autoridade</strong><br><span style="color:var(--ink-3);font-size:13.5px">O lead entende o caso dele e por que este escritório</span></td><td><span class="who w-sdr">SDR</span></td><td><strong>Checklist em 2 de 4</strong></td></tr>
+        <tr><td><strong>4. Prova, valor e oferta</strong><br><span style="color:var(--ink-3);font-size:13.5px">Evidência, urgência, os três níveis, fechamento</span></td><td><span class="who w-clo">Closer</span></td><td>Contrato assinado</td></tr>
+        <tr><td><strong>5. Passagem ao jurídico</strong><br><span style="color:var(--ink-3);font-size:13.5px">Documentos, protocolo em 48h, apresentação da equipe</span></td><td><span class="who w-clo">Closer</span> <span class="who w-jur">Jurídico</span></td><td>Cliente recebe o número do processo</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="call brass" style="margin-top:16px">
+    <span class="label">O checklist é o painel de controle</span>
+    <p>O sistema conta sozinho quantas das quatro etapas — <strong>Diagnóstico, Autoridade, Prova, Valor</strong> — já foram cumpridas em cada conversa, e trava o preço enquanto faltar alguma. É esse contador que define a passagem do SDR para o closer, e é ele que o gerente audita. Ninguém precisa achar: está na tela.</p>
+  </div>
+</section>
+
+<section id="regras">
+  <h2>As sete regras da casa</h2>
+  <p class="sub">Valem para todo mundo. Não são preferências.</p>
+  <ol class="rules">
+    <li><span class="rn">01</span><div><strong>Ninguém fala preço antes das quatro etapas fecharem.</strong> Nem quando o lead pergunta. Principalmente quando o lead pergunta.</div></li>
+    <li><span class="rn">02</span><div><strong>Os três níveis saem sempre juntos</strong>, numa mensagem só, do mais caro para o mais barato, e com uma recomendação explícita no fim.</div></li>
+    <li><span class="rn">03</span><div><strong>Ninguém dá desconto.</strong> Quando o valor pesa, desce-se de produto — nunca de preço.</div></li>
+    <li><span class="rn">04</span><div><strong>Ninguém promete</strong> liminar, resultado, aprovação, nomeação ou prazo de decisão.</div></li>
+    <li><span class="rn">05</span><div><strong>Só se cita decisão, lei ou questão do caso daquele lead.</strong> Fato de um concurso dito para o candidato de outro é mentira, mesmo sendo verdade.</div></li>
+    <li><span class="rn">06</span><div><strong>Nenhuma conversa termina em "fico à disposição".</strong> Toda mensagem nossa acaba numa pergunta que avança.</div></li>
+    <li><span class="rn">07</span><div><strong>Todo valor dito é o que está cadastrado no sistema</strong>, palavra por palavra. Ninguém arredonda, ninguém cria parcela, ninguém inventa condição.</div></li>
+  </ol>
+</section>
+
+<div class="switch" role="tablist" aria-label="Função">
+  <button role="tab" aria-selected="true" data-r="sdr">SDR</button>
+  <button role="tab" aria-selected="false" data-r="closer">Closer</button>
+  <button role="tab" aria-selected="false" data-r="gerente">Gerente</button>
+</div>
+
+<!-- ============================== SDR ============================== -->
+<div class="role on" id="r-sdr">
+
+<section>
+  <h2>SDR</h2>
+  <div class="goal">
+    <span class="lbl">Seu objetivo</span>
+    <p>Entregar ao closer um lead que já sabe o que aconteceu com ele, já sabe que o caso tem saída, e já sabe por que é com a gente. Não é marcar reunião: é entregar convencido pela metade.</p>
+  </div>
+
+  <h3>Os cinco dados, e nenhum é opcional</h3>
+  <ul class="plain">
+    <li><span class="ck">1</span><div><strong>Qual concurso e qual edital.</strong> Órgão, cargo, ano.</div></li>
+    <li><span class="ck">2</span><div><strong>Em que fase ele caiu</strong> — objetiva, discursiva, TAF, saúde, psicológico, investigação social, formação ou nomeação.</div></li>
+    <li><span class="ck">3</span><div><strong>A nota e a colocação</strong>, se houver, e quantos pontos faltaram para o corte.</div></li>
+    <li><span class="ck">4</span><div><strong>A data do ato que o eliminou.</strong> É dela que sai o prazo de 120 dias do mandado de segurança. Sem essa data, ninguém sabe se o caso ainda existe.</div></li>
+    <li><span class="ck">5</span><div><strong>Se ele tem os documentos</strong>: edital, gabarito ou espelho, e o documento da eliminação.</div></li>
+  </ul>
+  <div class="call ox">
+    <span class="label">O dado que todo mundo esquece</span>
+    <p>A <strong>data do ato</strong>. O prazo do mandado de segurança é de 120 dias e não prorroga. Lead que chega no dia 118 é urgência real; lead que chega no dia 130 talvez não tenha mais essa via. Perguntar isso na triagem economiza o trabalho de todo mundo e é o que torna a urgência verdadeira em vez de inventada.</p>
+  </div>
+
+  <h3>As duas etapas que são suas</h3>
+  <p><strong>DIAGNÓSTICO</strong> — depois que o Dr. Casil devolver a análise, você entrega o veredito <em>sobre a conta dele</em>. Não é frase de abertura genérica: é "com essas 8 questões anuladas, você sai de 62 para 70 e entra no corte". Veredito sem número não é veredito.</p>
+  <p><strong>AUTORIDADE</strong> — <em>uma</em> razão, bem dita. Não quatro enfileiradas. Escolha a que couber no que ele acabou de falar: 12 anos só com concurso público · equipe técnica dedicada, com nome · processos em 22 estados · o método de comparar edital, ato e prova.</p>
+
+  <div class="gate">
+    <span class="label">Critério de passagem — os três, sem exceção</span>
+    <ul class="plain" style="margin:0">
+      <li><span class="ck">✓</span><div>Checklist em <strong>2 de 4</strong> (Diagnóstico e Autoridade fechados)</div></li>
+      <li><span class="ck">✓</span><div>Os <strong>cinco dados</strong> registrados no sistema</div></li>
+      <li><span class="ck">✓</span><div>O lead <strong>respondeu à sua última mensagem</strong> — se ele não reagiu, você ainda não conduziu ninguém a lugar nenhum</div></li>
+    </ul>
+  </div>
+
+  <h3>O que você nunca faz</h3>
+  <ul class="plain">
+    <li><span class="x">✕</span><div>Falar em valor, parcela, desconto ou "a partir de".</div></li>
+    <li><span class="x">✕</span><div>Dar diagnóstico jurídico por conta própria. O veredito é do Dr. Casil; você entrega, não inventa.</div></li>
+    <li><span class="x">✕</span><div>Passar o lead sem os cinco dados. Closer que precisa perguntar de novo é closer que perdeu o lead.</div></li>
+    <li><span class="x">✕</span><div>Mandar "tudo bem? espero que esteja bem". Todo toque leva informação nova.</div></li>
+  </ul>
+
+  <div class="say">
+    <span class="lbl">Quando ele perguntar o preço — e ele vai</span>
+    "Já te passo os valores. Antes só preciso te mostrar uma coisa que muda o peso da sua decisão: [o próximo item que você tem que cumprir]."<br><br>
+    Reconhece a pergunta, promete o número, e emenda no degrau seguinte. Não é fugir — é entregar o preço depois que ele sabe o que está comprando.
+  </div>
+
+  <h3>Como você é medido</h3>
+  <div class="tablewrap">
+    <table><thead><tr><th>Indicador</th><th>Meta</th></tr></thead><tbody>
+      <tr><td>Leads passados com checklist ≥ 2/4</td><td class="num">100%</td></tr>
+      <tr><td>Leads com os 5 dados completos</td><td class="num">100%</td></tr>
+      <tr><td>Tempo do primeiro contato até o dossiê no Dr. Casil</td><td class="num">≤ 4h úteis</td></tr>
+      <tr><td>Tempo do diagnóstico pronto até o veredito entregue ao lead</td><td class="num">≤ 2h úteis</td></tr>
+      <tr><td>Lead sem resposta há mais de 4h úteis</td><td class="num">zero</td></tr>
+    </tbody></table>
+  </div>
+</section>
+</div>
+
+<!-- ============================ CLOSER ============================ -->
+<div class="role" id="r-closer">
+
+<section>
+  <h2>Closer</h2>
+  <div class="goal">
+    <span class="lbl">Seu objetivo</span>
+    <p>Fechar hoje. Não é apresentar proposta, não é marcar retorno, não é deixar o cliente pensando. É contrato assinado — ou, no limite, hora marcada com o Dr. Casil.</p>
+  </div>
+
+  <h3>As duas etapas que são suas</h3>
+  <p><strong>PROVA</strong> — evidência de terceiro, não afirmação nossa. Um depoimento de cliente com nome, o relatório técnico, uma decisão real daquele concurso ou daquela banca. Oferecer não é mostrar: "quer que eu te mande um caso parecido?" não fecha a etapa. Mandar, fecha.</p>
+  <p><strong>VALOR</strong> — ele precisa <em>verbalizar</em> por que agir importa agora. O sonho, a projeção de estar empossado, o custo de não agir, e a urgência — que é a da liminar, não a do edital: cada dia que passa enfraquece o pedido.</p>
+
+  <h3>Os cinco tempos da apresentação</h3>
+  <ul class="plain">
+    <li><span class="ck">1</span><div><strong>A conta.</strong> "Seis fases, R$ 1.500 cada, dá R$ 9.000 — e você decidindo tudo de novo seis vezes, sempre logo depois de ser eliminado."</div></li>
+    <li><span class="ck">2</span><div><strong>Os três níveis</strong>, numa mensagem só, do caro para o barato. Valor cheio antes da parcela, sempre.</div></li>
+    <li><span class="ck">3</span><div><strong>A economia em reais</strong> — "você economiza R$ 6.000". Nunca "um terço".</div></li>
+    <li><span class="ck">4</span><div><strong>A recomendação</strong>, com o número dele dentro. Nunca "a maioria escolhe essa".</div></li>
+    <li><span class="ck">5</span><div><strong>O incremento.</strong> "A fase sozinha é R$ 149 por mês. Por mais R$ 149 por mês, você leva as seis."</div></li>
+  </ul>
+
+  <div class="call ox">
+    <span class="label">Depois de mandar, não mande mais nada</span>
+    <p>Nem "ficou alguma dúvida?", nem áudio explicando de novo. Mensagem em seguida comunica insegurança no preço, e insegurança sua vira desconfiança dele. Deixe o número respirar.</p>
+  </div>
+
+  <h3>A tabela</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Faixa</th><th>Básico</th><th>Blindado ⭐</th><th>Carreira</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1</strong><br><span style="color:var(--ink-3);font-size:13px">policiais e militares</span></td><td class="num">R$ 1.500<br><span style="color:var(--ink-3);font-size:12.5px">12× 149</span></td><td class="num">R$ 3.000<br><span style="color:var(--ink-3);font-size:12.5px">12× 298</span></td><td class="num">R$ 5.000<br><span style="color:var(--ink-3);font-size:12.5px">12× 497</span></td></tr>
+        <tr><td><strong>2</strong><br><span style="color:var(--ink-3);font-size:13px">tribunais</span></td><td class="num">R$ 2.500<br><span style="color:var(--ink-3);font-size:12.5px">12× 249</span></td><td class="num">R$ 5.000<br><span style="color:var(--ink-3);font-size:12.5px">12× 497</span></td><td class="num">R$ 8.500<br><span style="color:var(--ink-3);font-size:12.5px">12× 845</span></td></tr>
+        <tr><td><strong>3</strong><br><span style="color:var(--ink-3);font-size:13px">jurídicas</span></td><td class="num">R$ 3.500<br><span style="color:var(--ink-3);font-size:12.5px">12× 349</span></td><td class="num">R$ 7.000<br><span style="color:var(--ink-3);font-size:12.5px">12× 695</span></td><td class="num">R$ 11.500<br><span style="color:var(--ink-3);font-size:12.5px">12× 1.142</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:14.5px;color:var(--ink-2);margin-top:12px">A âncora é sempre <strong>nº de fases × valor do Básico</strong>. Faixa 1 com seis fases: R$ 9.000.</p>
+
+  <h3>A escada de concessões</h3>
+  <p class="sub" style="margin-bottom:12px">Nesta ordem. Sem pular, sem inventar um quarto movimento.</p>
+  <ul class="plain">
+    <li><span class="ck">1</span><div><strong>12× no cartão.</strong> Não é concessão, é a condição normal.</div></li>
+    <li><span class="ck">2</span><div><strong>Entrada menor com saldo parcelado, ou dois cartões.</strong> Dos 17 fechamentos analisados, 16 vieram de flexibilizar pagamento. Nenhum veio de cortar preço.</div></li>
+    <li><span class="ck">3</span><div><strong>Descer um nível</strong> — Blindado para Básico, dizendo o que ele deixa de levar.</div></li>
+    <li><span class="ck">4</span><div><strong>Só então o Dr. Casil.</strong></div></li>
+  </ul>
+
+  <div class="call pine">
+    <span class="label">Quando chamar o Dr. Casil</span>
+    <p>Depois de duas tentativas na mesma objeção · quando o lead pede condição fora da tabela · quando o cônjuge entra na decisão · quando o lead pede para falar com uma pessoa.</p>
+    <p><strong>O dado:</strong> ele apareceu em 76% das conversas que fecharam e em 8% das que não fecharam. É a alavanca mais forte que existe — e por isso não pode ser gasta em objeção de preço que a escada resolve.</p>
+  </div>
+
+  <h3>O follow-up</h3>
+  <p class="sub" style="margin-bottom:12px">80% das vendas precisam de cinco ou mais toques. Cada toque leva informação nova.</p>
+  <div class="tablewrap">
+    <table><thead><tr><th>Quando</th><th>O quê</th></tr></thead><tbody>
+      <tr><td><strong>Mesmo dia</strong></td><td>Prova, não cobrança. O print de uma liminar do mesmo concurso.</td></tr>
+      <tr><td><strong>Dia seguinte</strong></td><td>"O que travou foi o valor, a forma de pagar, ou a estratégia do caso?"</td></tr>
+      <tr><td><strong>Dia 3–4</strong></td><td>O prazo real: os 120 dias e quantos já correram no caso dele.</td></tr>
+      <tr><td><strong>Dia 7</strong></td><td>Muda o ângulo. Áudio, não texto. Ou reunião com o Dr. Casil, com hora.</td></tr>
+      <tr><td><strong>Dia 14</strong></td><td>"Você quer que eu continue acompanhando, ou prefere que eu encerre?"</td></tr>
+    </tbody></table>
+  </div>
+  <p style="font-size:14.5px;color:var(--ink-2);margin-top:12px">Os casos fechados têm em média <strong>sete áudios</strong> trocados. Os perdidos, menos de um. Áudio não é preferência de estilo — é a variável mais forte da base.</p>
+
+  <h3>Como você é medido</h3>
+  <div class="tablewrap">
+    <table><thead><tr><th>Indicador</th><th>Meta</th></tr></thead><tbody>
+      <tr><td>Receita por lead recebido</td><td class="num">a métrica-mãe</td></tr>
+      <tr><td>Propostas com os três níveis numa mensagem só</td><td class="num">100%</td></tr>
+      <tr><td>Descontos concedidos</td><td class="num">zero</td></tr>
+      <tr><td>Mix no Blindado ou acima</td><td class="num">≥ 50%</td></tr>
+      <tr><td>Leads com os 5 toques de follow-up cumpridos</td><td class="num">100%</td></tr>
+    </tbody></table>
+  </div>
+  <div class="call brass" style="margin-top:16px">
+    <span class="label">A taxa de conversão vai cair — e tudo bem</span>
+    <p>Subir o mix derruba conversão por definição. O que tem que subir é <strong>receita por lead</strong>. Se você olhar só conversão, vai entrar em pânico e voltar a descontar.</p>
+  </div>
+</section>
+</div>
+
+<!-- =========================== GERENTE =========================== -->
+<div class="role" id="r-gerente">
+
+<section>
+  <h2>Gerente comercial</h2>
+  <div class="goal">
+    <span class="lbl">Seu objetivo</span>
+    <p>Fazer o processo acontecer igual todos os dias, com todo mundo. Você não fecha venda: você garante que o preço não vaze, que o checklist não seja pulado e que nenhum lead morra no vácuo.</p>
+  </div>
+
+  <h3>Os três rituais</h3>
+  <p><strong>Diário — 15 minutos, de manhã.</strong> Duas listas: leads sem resposta nossa há mais de 4 horas úteis, e leads parados em 2/4 há mais de 24 horas. Nada mais. É a reunião mais curta e a que mais salva dinheiro.</p>
+  <p><strong>Semanal — 45 minutos.</strong> O painel abaixo, e a escuta de duas conversas: uma que fechou e uma que não. Ler junto, apontando o momento exato em que a conversa virou. Não é avaliação de pessoa; é leitura de jogo.</p>
+  <p><strong>Mensal.</strong> Mix por nível, preço médio, e a decisão sobre os dois testes agendados.</p>
+
+  <h3>O painel semanal</h3>
+  <div class="tablewrap">
+    <table><thead><tr><th>Indicador</th><th>Por que importa</th></tr></thead><tbody>
+      <tr><td><strong>Receita por lead atendido</strong></td><td>A métrica-mãe. Substitui a taxa de conversão como número principal.</td></tr>
+      <tr><td><strong>Mix por nível</strong></td><td>Diz se a âncora está funcionando. Blindado abaixo de 40% = a apresentação está errada.</td></tr>
+      <tr><td><strong>Descontos concedidos</strong></td><td>Meta zero. Qualquer número acima disso é a escada vazando.</td></tr>
+      <tr><td><strong>Propostas com os três níveis juntos</strong></td><td>Se cair, a âncora não está sendo dita e o preço volta a ser comparado com o concorrente.</td></tr>
+      <tr><td><strong>Adesão ao Carreira</strong></td><td>Acima de 40% significa que o topo está barato demais — hora de subir.</td></tr>
+      <tr><td><strong>Dias entre o ato lesivo e o protocolo</strong></td><td>É o prazo de 120 dias. Também é a qualidade da liminar.</td></tr>
+      <tr><td><strong>Leads perdidos por silêncio</strong></td><td>Lead que some sem os 5 toques é falha de processo, não falta de interesse.</td></tr>
+    </tbody></table>
+  </div>
+
+  <h3>A auditoria de cinco conversas por semana</h3>
+  <p class="sub" style="margin-bottom:12px">Sorteie cinco. Para cada uma, cinco perguntas de sim ou não.</p>
+  <ul class="plain">
+    <li><span class="ck">1</span><div>As <strong>quatro etapas</strong> fecharam antes de qualquer número aparecer?</div></li>
+    <li><span class="ck">2</span><div>Os <strong>três níveis</strong> saíram juntos, numa mensagem, do caro para o barato?</div></li>
+    <li><span class="ck">3</span><div>Houve <strong>recomendação explícita</strong>, com o número do lead dentro?</div></li>
+    <li><span class="ck">4</span><div>Algum <strong>valor foi dito fora do que está cadastrado</strong> no sistema?</div></li>
+    <li><span class="ck">5</span><div>A conversa terminou em <strong>pergunta que avança</strong>, ou em "fico à disposição"?</div></li>
+  </ul>
+
+  <div class="call ox">
+    <span class="label">O gargalo histórico que você existe para impedir</span>
+    <p>O mesmo concurso já foi vendido de R$ 1.500 a R$ 3.700 — variação de 147% entre atendentes. E um lead recebeu R$ 1.500, depois R$ 1.300 minutos depois, e não fechou. Ele não saiu porque era caro: saiu porque descobriu que o preço era negociável.</p>
+    <p><strong>Preço inconsistente destrói mais venda do que preço alto.</strong> Zero desconto não é rigidez — é a única forma de o número voltar a ser verdade.</p>
+  </div>
+
+  <h3>Três decisões estruturais que são suas</h3>
+  <p><strong>A comissão tem que ser sobre receita, não sobre número de contratos.</strong> Se a equipe ganha por contrato fechado, ela vai empurrar todo mundo para o Básico a partir do primeiro dia — e a reestruturação inteira morre em duas semanas.</p>
+  <p><strong>A escalada ao Dr. Casil é recurso escasso.</strong> Ele fecha, mas o tempo dele é o bem mais limitado do escritório. Gastar essa entrada em objeção de preço que a escada resolve é desperdiçar a alavanca mais forte que vocês têm.</p>
+  <p><strong>Os dois testes, depois de três semanas de operação estável.</strong> Piso a R$ 2.000 num concurso da faixa 1, contra R$ 1.500 num comparável. E Blindado a R$ 3.500 se a adesão passar de 50%. Em ambos, o critério é receita por lead — nunca conversão.</p>
+
+  <div class="call pine">
+    <span class="label">Como treinar, e é uma coisa só</span>
+    <p>Role-play de <strong>trinta segundos</strong>, todo dia, antes de abrir o WhatsApp: alguém diz "tá caro" e a pessoa responde sem pensar. Depois "vou pensar". Depois "me dá um desconto". Três objeções, um minuto e meio. Repetição diária vence treinamento longo — o que trava a equipe na hora da objeção não é falta de argumento, é hesitação.</p>
+  </div>
+</section>
+</div>
+
+<footer>
+  Silva Pinto Sociedade Individual de Advocacia · Uso interno · Protocolo Até a Posse
+</footer>
+</div>
+
+<script>
+document.querySelectorAll('[data-r]').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('[data-r]').forEach(o => o.setAttribute('aria-selected','false'));
+    b.setAttribute('aria-selected','true');
+    document.querySelectorAll('.role').forEach(s => s.classList.remove('on'));
+    document.getElementById('r-' + b.dataset.r).classList.add('on');
+    window.scrollTo({top: document.querySelector('.switch').offsetTop - 8, behavior: 'instant'});
+  });
+});
+</script>
