@@ -50,7 +50,7 @@ dentro dele — e aí o Carreira perde o seu principal diferencial.
 
 Nos modelos: **Blindado = todas as fases até a homologação do resultado final**,
 excluído o curso de formação. **Carreira = isso + curso de formação + preterição
-na nomeação + o próximo edital.**
+na nomeação + outro concurso da mesma carreira.**
 
 Isso exige um ajuste de uma linha na tabela do documento de decisão, onde ainda
 está escrito "todas, até a nomeação". As mensagens de venda já dizem "cobre as 6
@@ -340,12 +340,14 @@ contratante, abrangendo:
 a) **todas as fases** do concurso público de {{CONCURSO E ÓRGÃO}}, edital
 {{NÚMERO E ANO DO EDITAL}}, até a nomeação e a posse; e
 
-b) **todas as fases do próximo certame** para o mesmo cargo e o mesmo órgão,
-assim entendido o primeiro edital publicado no prazo de 24 (vinte e quatro)
-meses contados da assinatura deste contrato.
+b) **todas as fases de outro concurso público para a mesma carreira ou cargo**,
+ainda que de órgão ou ente federativo diverso, cujo edital seja publicado no
+prazo de 12 (doze) meses contados da assinatura deste contrato.
 
 Entende-se por *fase* cada etapa eliminatória ou classificatória prevista no
-edital do certame.
+edital do certame. Entende-se por *mesma carreira ou cargo* aquele cujas
+atribuições e requisitos sejam equivalentes aos do concurso indicado na cláusula
+1, ainda que a denominação, o órgão ou o ente sejam diversos.
 
 ### 2 | O que está incluído
 *Até onde vai o nosso trabalho*
@@ -383,7 +385,7 @@ cláusula 1.
 
 a) concursos para cargo ou órgão diversos dos indicados na cláusula 1;
 
-b) o terceiro e os demais certames, além dos dois previstos na cláusula 1;
+b) o terceiro e os demais concursos, além dos dois previstos na cláusula 1;
 
 c) ações de natureza diversa, como indenização por danos morais ou materiais,
 que dependem de contratação própria;
@@ -399,8 +401,8 @@ forma da cláusula 5.
 Este contrato tem início na data da sua assinatura e vigora até a conclusão dos
 serviços contratados, após o trânsito em julgado das ações propostas.
 
-A cobertura do segundo certame, prevista na cláusula 1, alínea "b", extingue-se
-com a publicação do edital que a acionar ou com o decurso do prazo de 24 meses
+A cobertura do segundo concurso, prevista na cláusula 1, alínea "b", extingue-se
+com a publicação do edital que a acionar ou com o decurso do prazo de 12 meses
 contados da assinatura, o que ocorrer primeiro. Não publicado edital nesse
 prazo, a cobertura se extingue sem direito a restituição, uma vez que os
 honorários remuneram a disponibilidade do serviço durante todo o período.

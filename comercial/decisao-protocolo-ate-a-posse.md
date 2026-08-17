@@ -72,7 +72,7 @@ Apresentação sempre nesta ordem: **Carreira → Blindado → Básico**.
 | | **Básico** | **Blindado** ⭐ | **Carreira** |
 |---|---|---|---|
 | Fases cobertas | 1 fase | **todas, até a homologação do resultado** | todas, até a posse |
-| Certames | este | este | **este + o próximo do mesmo cargo (ou 24 meses)** |
+| Concursos | este | este | **este + outro da mesma carreira, em até 12 meses** |
 | Instâncias | todas (STJ/STF) | todas (STJ/STF) | todas (STJ/STF) |
 | Ação judicial + liminar | ✓ | ✓ | ✓ |
 | Protocolo | 48h | 48h | **24h** |
@@ -90,7 +90,7 @@ saem dos mesmos multiplicadores sobre um piso maior — seção 6.
 
 - **Básico → Blindado: quantas fases.** É o eixo mais legível que o escritório
   tem, e o cliente entende na hora.
-- **Blindado → Carreira: quantos certames**, mais cobertura pós-aprovação
+- **Blindado → Carreira: quantos concursos**, mais cobertura pós-aprovação
   (curso de formação e preterição) e acesso ao Dr. Casil.
 
 Nenhuma das duas retira proteção jurídica: **os três níveis cobrem todas as
@@ -329,7 +329,7 @@ leu, que é o mais caro, com um susto.
 > contratos de R$ 1.500 — R$ 9.000** —, e você decidindo tudo de novo seis vezes,
 > sempre logo depois de ser eliminado, que é o pior momento pra decidir.
 >
-> O **Carreira** cobre este concurso inteiro e o próximo edital do mesmo cargo,
+> O **Carreira** cobre este concurso inteiro e outro concurso da mesma carreira,
 > incluindo eliminação no curso de formação e ação por preterição na nomeação.
 > O Dr. Casil acompanha pessoalmente e a ação sai em 24 horas. R$ 5.000 à vista
 > no PIX, ou 12× de R$ 497.

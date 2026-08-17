@@ -77,7 +77,7 @@ Depois do deploy, confirme que o Render ficou Live e que `GET /health` responde
 
 O escritório passou a vender três níveis em vez de um preço só: Básico (uma fase
 do concurso), Blindado (todas as fases) e Carreira (este concurso e o próximo
-edital do mesmo cargo). Os três cobrem todas as instâncias. Não existe mais
+concurso da mesma carreira). Os três cobrem todas as instâncias. Não existe mais
 honorário de êxito.
 
 O prompt novo faz a Bia apresentar os três juntos, do mais caro para o mais

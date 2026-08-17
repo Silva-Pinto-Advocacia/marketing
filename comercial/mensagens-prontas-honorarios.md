@@ -38,7 +38,7 @@ Contratando uma fase de cada vez, seriam 6 contratos de R$ 1.500 — *R$ 9.000 n
 Por isso a gente trabalha com três formas de contratar:
 
 *CARREIRA*
-Cobre este concurso inteiro e também o próximo edital do mesmo cargo. Inclui eliminação no curso de formação e ação por preterição na nomeação. O Dr. Casil acompanha pessoalmente e a ação é protocolada em 24h.
+Cobre este concurso inteiro e também outro concurso da mesma carreira, se sair edital em até 12 meses. Inclui eliminação no curso de formação e ação por preterição na nomeação. O Dr. Casil acompanha pessoalmente e a ação é protocolada em 24h.
 *R$ 5.000* à vista no PIX, ou 12x de R$ 497.
 
 *BLINDADO*
@@ -78,7 +78,7 @@ Esse concurso tem 6 fases. Contratando uma de cada vez, seriam 6 contratos de R$
 Por isso a gente trabalha com três formas de contratar:
 
 *CARREIRA*
-Cobre este concurso inteiro e também o próximo edital do mesmo cargo. Inclui eliminação no curso de formação e ação por preterição na nomeação. O Dr. Casil acompanha pessoalmente e a ação é protocolada em 24h.
+Cobre este concurso inteiro e também outro concurso da mesma carreira, se sair edital em até 12 meses. Inclui eliminação no curso de formação e ação por preterição na nomeação. O Dr. Casil acompanha pessoalmente e a ação é protocolada em 24h.
 *R$ 8.500* à vista no PIX, ou 12x de R$ 845.
 
 *BLINDADO*
@@ -111,7 +111,7 @@ Esse concurso tem 6 fases. Contratando uma de cada vez, seriam 6 contratos de R$
 Por isso a gente trabalha com três formas de contratar:
 
 *CARREIRA*
-Cobre este concurso inteiro e também o próximo edital do mesmo cargo. Inclui eliminação no curso de formação e ação por preterição na nomeação. O Dr. Casil acompanha pessoalmente e a ação é protocolada em 24h.
+Cobre este concurso inteiro e também outro concurso da mesma carreira, se sair edital em até 12 meses. Inclui eliminação no curso de formação e ação por preterição na nomeação. O Dr. Casil acompanha pessoalmente e a ação é protocolada em 24h.
 *R$ 11.500* à vista no PIX, ou 12x de R$ 1.142.
 
 *BLINDADO*

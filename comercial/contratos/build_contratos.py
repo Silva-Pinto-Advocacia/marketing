@@ -111,8 +111,8 @@ def objeto(nivel):
                 "ilegalidades com o objetivo de reverter eliminações, majorar a pontuação, garantir a "
                 "matrícula no curso de formação ou obter a nomeação do contratante, abrangendo:", 0)]),
         ("L", "todas as fases do concurso público de {{CONCURSO E ÓRGÃO}}, edital {{NÚMERO E ANO DO EDITAL}}, até a nomeação e a posse; e"),
-        ("L", "todas as fases do próximo certame para o mesmo cargo e o mesmo órgão, assim entendido o primeiro edital publicado no prazo de 24 (vinte e quatro) meses contados da assinatura deste contrato."),
-        ("P", [("Entende-se por fase cada etapa eliminatória ou classificatória prevista no edital do certame.", 0)]),
+        ("L", "todas as fases de outro concurso público para a mesma carreira ou cargo, ainda que de órgão ou ente federativo diverso, cujo edital seja publicado no prazo de 12 (doze) meses contados da assinatura deste contrato."),
+        ("P", [("Entende-se por fase cada etapa eliminatória ou classificatória prevista no edital do certame. Entende-se por mesma carreira ou cargo aquele cujas atribuições e requisitos sejam equivalentes aos do concurso indicado na cláusula 1, ainda que a denominação, o órgão ou o ente sejam diversos.", 0)]),
 
         ("T", "2 | O que está incluído"),
         ("S", "Até onde vai o nosso trabalho"),
@@ -131,7 +131,7 @@ def objeto(nivel):
         ("T", "3 | O que não está incluído"),
         ("S", "O que fica de fora"),
         ("L", "concursos para cargo ou órgão diversos dos indicados na cláusula 1;"),
-        ("L", "o terceiro e os demais certames, além dos dois previstos na cláusula 1;"),
+        ("L", "o terceiro e os demais concursos, além dos dois previstos na cláusula 1;"),
         ("L", "ações de natureza diversa, como indenização por danos morais ou materiais, que dependem de contratação própria;"),
         ("L", "matéria disciplinar ou funcional posterior à posse;"),
         ("L", "custas judiciais, taxas, despesas de cartório e honorários periciais, na forma da cláusula 5."),
@@ -151,8 +151,8 @@ PRAZO_CARREIRA = [
     ("S", "Da duração do contrato"),
     ("P", [("Este contrato tem início na data da sua assinatura e vigora até a conclusão dos serviços "
             "contratados, após o trânsito em julgado das ações propostas.", 0)]),
-    ("P", [("A cobertura do segundo certame, prevista na cláusula 1, extingue-se com a publicação do "
-            "edital que a acionar ou com o decurso do prazo de 24 meses contados da assinatura, o que "
+    ("P", [("A cobertura do segundo concurso, prevista na cláusula 1, extingue-se com a publicação do "
+            "edital que a acionar ou com o decurso do prazo de 12 meses contados da assinatura, o que "
             "ocorrer primeiro. Não publicado edital nesse prazo, a cobertura se extingue sem direito a "
             "restituição, uma vez que os honorários remuneram a disponibilidade do serviço durante todo "
             "o período.", 0)]),

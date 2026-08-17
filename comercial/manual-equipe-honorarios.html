@@ -474,7 +474,7 @@ function msg(f){
   return "Esse concurso tem seis fases: objetiva, discursiva, TAF, exame de saúde, psicológico e investigação social. "
    + "Contratando uma de cada vez, seriam seis contratos de R$ " + d.basico + " — R$ " + d.ancora + " —, "
    + "e você decidindo tudo de novo seis vezes, sempre logo depois de ser eliminado, que é o pior momento pra decidir.\n\n"
-   + "O CARREIRA cobre este concurso inteiro e o próximo edital do mesmo cargo, incluindo eliminação no curso de formação "
+   + "O CARREIRA cobre este concurso inteiro e também outro concurso da mesma carreira, se sair edital em até 12 meses, incluindo eliminação no curso de formação "
    + "e ação por preterição na nomeação. O Dr. Casil acompanha pessoalmente e a ação sai em 24 horas. "
    + "R$ " + d.carreira + " à vista no PIX, ou 12x de R$ " + d.carreiraP + ".\n\n"
    + "O BLINDADO cobre as seis fases deste concurso, em todas as instâncias, até STJ e STF. "
@@ -497,7 +497,7 @@ function renderTable(f){
   document.getElementById('ptable').innerHTML =
     '<tr class="row-target"><td>Blindado <span class="star">★</span></td><td>Todas as fases deste concurso</td>'
     + '<td class="num-cell">R$ ' + d.blindado + '<span class="parc">12× R$ ' + d.blindadoP + '</span></td></tr>'
-    + '<tr><td>Carreira</td><td>Este concurso e o próximo edital do mesmo cargo, curso de formação e preterição</td>'
+    + '<tr><td>Carreira</td><td>Este concurso e outro da mesma carreira (edital em até 12 meses), curso de formação e preterição</td>'
     + '<td class="num-cell">R$ ' + d.carreira + '<span class="parc">12× R$ ' + d.carreiraP + '</span></td></tr>'
     + '<tr><td>Básico</td><td>Uma fase deste concurso</td>'
     + '<td class="num-cell">R$ ' + d.basico + '<span class="parc">12× R$ ' + d.basicoP + '</span></td></tr>';
