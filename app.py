@@ -24,8 +24,10 @@ from pathlib import Path
 from flask import Flask, request, jsonify, Response
 import anthropic
 
+from redes import init_redes
+
 # Config
-APP_VERSION = "v6.1-2026-05-05-haiku-tier23"
+APP_VERSION = "v7.0-2026-09-08-redes-instagram"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -886,6 +888,7 @@ def health():
 
 # Init
 init_db()
+init_redes(app, DB_PATH)
 
 
 # Logo PNG transparente embutido (gerado a partir da logo Silva Pinto)
@@ -1417,6 +1420,7 @@ HTML_INDEX = r"""<!DOCTYPE html>
         </div>
       </div>
       <div class="btn-group">
+        <a class="btn btn-ghost" href="/redes">Redes</a>
         <button class="btn btn-ghost" onclick="rodarTier(1)" id="btn-tier1">Coletar Tier 1</button>
         <button class="btn" onclick="rodarCompleto()" id="btn-completo">Coletar Tudo</button>
       </div>
