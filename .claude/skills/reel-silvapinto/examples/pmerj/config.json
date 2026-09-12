@@ -1,0 +1,46 @@
+{
+  "_comment": "Configuração real do reel PMERJ (versão 13, aprovada). Vídeo fonte: fonte.mp4 (não versionado). Ele já vinha editado, com brasão, legendas e cartela gravados; por isso os campos delogo/crop/frame_replace. Para filmagem bruta, deixe só video, brand, cards, scenes, hits, outro.",
+  "video": "fonte.mp4",
+  "language": "pt",
+  "crop": {"w": 939, "h": 1670, "x": 70, "y": 0},
+  "delogo": [
+    {"x": 659, "y": 80, "w": 305, "h": 373},
+    {"x": 130, "y": 1330, "w": 820, "h": 260}
+  ],
+  "blur_patches": [{"x": 667, "y": 88, "w": 289, "h": 357, "sigma": 14}],
+  "bottom_blur": {"y": 1280, "h": 400, "sigma": 20, "feather": 110},
+  "frame_replace": [{"from": 1, "to": 140, "source_start": 439}],
+  "sharpen": 0.6,
+  "badge": "badge_pmerj.png",
+  "brand": {
+    "mono": "assets/brand/logo_mono.png",
+    "name": "Silva Pinto",
+    "sub": "Advocacia",
+    "whatsapp": "wa.me/5521993996262",
+    "outroLine": "Silva Pinto Advocacia · concursos públicos"
+  },
+  "intro_end": {"src": 5.65},
+  "cards": [
+    {"at": 0.0, "dur": 2.6, "kicker": "Concurso PMERJ · edital 2023", "title": "FICOU FORA<br>DAS VAGAS?", "size": "small"},
+    {"at": 2.6, "dur": 3.05, "kicker": "fica até o fim", "title": "TENHO UMA<br>BOA NOTÍCIA", "size": "small", "white": true},
+    {"at": {"word": "Agora", "after": 20, "offset": -0.1}, "dur": 2.1, "kicker": "a boa notícia", "title": "VOCÊ PODE<br>SUBIR", "size": "small", "sub": "de classificação com a anulação de questões"},
+    {"at": {"word": "8", "after": 60, "offset": -0.1}, "dur": 2.1, "kicker": "2 mil + 2 mil + 4 mil", "title": "8 MIL<br>VAGAS"}
+  ],
+  "scenes": [
+    {"from": {"src": 5.65}, "to": {"word": "2", "after": 8, "offset": -0.2}, "type": "text", "kicker": "PMERJ · concurso 2023", "head": "FORA DAS VAGAS?", "text": "Aprovado, mas sem convocação. <b>Isso ainda pode mudar.</b>"},
+    {"from": {"word": "2", "after": 8, "offset": -0.2}, "to": {"word": "4", "after": 16, "offset": -0.3}, "type": "counter", "kicker": "anúncio do governador", "prefix": "+", "value": 2000, "unit": "vagas", "sub": "criadas para <b>este concurso</b> de 2024"},
+    {"from": {"word": "4", "after": 16, "offset": -0.3}, "to": "next", "type": "counter", "kicker": "minuta do concurso 2026", "prefix": "+", "value": 4000, "unit": "vagas", "sub": "<b>imediatas</b>, já previstas para o próximo edital"},
+    {"from": {"word": "Agora", "after": 20, "offset": 2.0}, "to": {"word": "Tanto", "after": 34}, "type": "list", "kicker": "o caminho", "items": ["Questões anuláveis na sua prova", "Pontuação recuperada", "Reclassificação: dentro das vagas"], "stagger": [0.3, {"word": "anulação", "after": 24, "offset": 1.8}, {"word": "anulação", "after": 24, "offset": 4.8}]},
+    {"from": {"word": "Tanto", "after": 34}, "to": {"word": "Acontece", "after": 38}, "type": "sum", "kicker": "vagas em disputa", "terms": ["2.000", "4.000"], "value": 6000, "unit": "vagas"},
+    {"from": {"word": "Acontece", "after": 38}, "to": {"word": "direito", "after": 48, "offset": -0.3}, "type": "timeline", "kicker": "a ação judicial não expira com o concurso", "nodes": [{"b": "2024", "l": "prova"}, {"b": "validade", "l": "vence"}, {"b": "decisão", "l": "judicial"}, {"b": "2026", "l": "nomeação"}], "sub": "o processo continua <b>mesmo depois</b> do prazo de validade"},
+    {"from": {"word": "direito", "after": 48, "offset": -0.3}, "to": "next", "type": "text", "kicker": "quem ganha a ação", "head": "DIREITO SUBJETIVO<br>À NOMEAÇÃO", "text": "aproveitando as <b>4 mil vagas de 2026</b>"},
+    {"from": {"word": "8", "after": 60, "offset": 2.0}, "to": {"word": "Se", "after": 66}, "type": "sum", "kicker": "de 2 mil para", "terms": ["2.000", "2.000", "4.000"], "value": 8000, "unit": "vagas"},
+    {"from": {"word": "Se", "after": 66}, "to": "outro", "type": "cta", "kicker": "clique no link", "head": "ANÁLISE SEM<br>COMPROMISSO", "text": "Vem conversar comigo.", "pill": "wa.me/5521993996262"}
+  ],
+  "hits": [
+    {"word": "2", "after": 8}, {"word": "4", "after": 16}, {"word": "anulação", "after": 24},
+    {"word": "direito", "after": 48}, {"word": "8", "after": 60}, {"word": "clica", "after": 66}
+  ],
+  "inserts": [{"at": {"word": "PM", "after": 0}, "img": "badge_pmerj.png", "dur": 1.3}],
+  "outro": {"at": {"word": "direitos", "after": 70, "offset": 1.3}}
+}

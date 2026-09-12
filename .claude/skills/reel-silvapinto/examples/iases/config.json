@@ -1,0 +1,167 @@
+{
+  "_comment": "Reel IASES (setembro de 2026): filmagem bruta, selfie no carro, 28 s, rosto grande no quadro. Por isso framings baixos, pivot alto e hit_scale menor. Sem brasão (o Casil não mandou o do IASES). tail 3.2 para o encerramento entrar sobre a última frase.",
+  "video": "fonte.mp4",
+  "language": "pt",
+  "bottom_blur": {
+    "y": 1280,
+    "h": 400,
+    "sigma": 20,
+    "feather": 110
+  },
+  "framings": [
+    1.0,
+    1.08,
+    1.0,
+    1.15,
+    1.08,
+    1.0,
+    1.15,
+    1.0,
+    1.08,
+    1.15,
+    1.0,
+    1.08
+  ],
+  "tail": 3.2,
+  "brand": {
+    "mono": "assets/brand/logo_mono.png",
+    "name": "Silva Pinto",
+    "sub": "Advocacia",
+    "whatsapp": "wa.me/5521993996262",
+    "outroLine": "Silva Pinto Advocacia · concursos públicos"
+  },
+  "intro_end": {
+    "src": 6.1
+  },
+  "cards": [
+    {
+      "at": 0.0,
+      "dur": 2.5,
+      "kicker": "boa tarde, pessoal",
+      "title": "NOVIDADE<br>EM PRIMEIRA MÃO",
+      "size": "small"
+    },
+    {
+      "at": {
+        "word": "concurso",
+        "after": 3,
+        "offset": -0.15
+      },
+      "dur": 2.1,
+      "kicker": "em primeiríssima mão",
+      "title": "CONCURSO<br>IASES",
+      "size": "small",
+      "white": true
+    },
+    {
+      "at": {
+        "word": "reintegrar",
+        "after": 7,
+        "offset": -0.2
+      },
+      "dur": 2.2,
+      "kicker": "acabamos de conseguir",
+      "title": "CANDIDATO<br>REINTEGRADO",
+      "size": "small"
+    },
+    {
+      "at": {
+        "word": "vitória",
+        "after": 22,
+        "offset": -0.15
+      },
+      "dur": 1.7,
+      "kicker": "bora pra cima",
+      "title": "MAIS UMA<br>VITÓRIA"
+    }
+  ],
+  "scenes": [
+    {
+      "from": {
+        "word": "candidato",
+        "after": 10,
+        "offset": -0.3
+      },
+      "to": {
+        "word": "Nós",
+        "after": 15
+      },
+      "type": "text",
+      "kicker": "o problema",
+      "head": "INSCRIÇÃO PCD<br>INDEFERIDA",
+      "text": "candidato barrado na <b>vaga de pessoa com deficiência</b>"
+    },
+    {
+      "from": {
+        "word": "Nós",
+        "after": 15
+      },
+      "to": {
+        "word": "resguardando",
+        "after": 20
+      },
+      "type": "list",
+      "kicker": "o caminho",
+      "items": [
+        "Ação judicial do escritório",
+        "Candidato devolvido ao concurso",
+        "Vaga PCD garantida"
+      ],
+      "stagger": [
+        0.3,
+        {
+          "word": "devolvê",
+          "after": 17.5
+        },
+        {
+          "word": "PCD",
+          "after": 19.5,
+          "offset": -0.1
+        }
+      ]
+    },
+    {
+      "from": {
+        "word": "resguardando",
+        "after": 20
+      },
+      "to": "next",
+      "type": "text",
+      "kicker": "resultado",
+      "head": "DIREITO<br>RESGUARDADO",
+      "text": "a vaga PCD dele está <b>preservada</b>"
+    }
+  ],
+  "hits": [
+    {
+      "word": "primeiríssima",
+      "after": 2
+    },
+    {
+      "word": "indeferida",
+      "after": 14
+    },
+    {
+      "word": "judicial",
+      "after": 16
+    },
+    {
+      "word": "direito",
+      "after": 20
+    }
+  ],
+  "inserts": [],
+  "outro": {
+    "at": {
+      "word": "Iasis",
+      "after": 24,
+      "offset": 0.1
+    }
+  },
+  "min_shot": 5.0,
+  "pivot": [
+    50,
+    24
+  ],
+  "hit_scale": 1.12
+}
