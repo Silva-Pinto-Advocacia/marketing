@@ -11,8 +11,8 @@ aprovado explicitamente por ele; a seção "O que foi rejeitado" é tão importa
 - Enquadramento aberto: cabeça, ombros e tronco. Ele rejeitou enquadramento fechado ("só a cabeça, metade
   do frame vazio"). Zoom de reenquadramento máximo 1,15x sobre a filmagem original.
 - Leve correção de cor: `contrast(1.07) saturate(1.1) brightness(1.03)` e vinheta radial suave.
-- Degradê de legibilidade no rodapé (transparente até 35% de altura, chegando a 0,82 de opacidade na base)
-  é o único escurecimento permitido. Ele o aceitou porque os números dourados não se leem sobre a camiseta
+- Degradê de legibilidade no rodapé (grafite, transparente até 35% de altura, chegando a 0,82 de opacidade na
+  base) é o único escurecimento permitido. Nunca azulado: ele pediu tom de cinza. Ele o aceitou porque os números dourados não se leem sobre a camiseta
   branca sem isso. Nada de retângulos.
 - Desfoque progressivo dos 20% inferiores da imagem (sigma 20, pena de 110 px) lê como profundidade de campo
   e é onde os infográficos assentam. Usar mesmo em filmagem bruta: ajuda a legibilidade e ficou aprovado.
@@ -36,7 +36,7 @@ aprovado explicitamente por ele; a seção "O que foi rejeitado" é tão importa
 
 | token   | valor   | uso |
 |---------|---------|-----|
-| navy    | #0B1220 | tints, halos, encerramento |
+| grafite | #17181B | tints, halos, degradê do rodapé, encerramento (era navy #0B1220; ele pediu cinza para casar com a identidade cream/grafite/dourado do escritório, set/2026) |
 | gold    | #F0CF86 | palavra ativa da legenda, kickers, pílulas de checklist |
 | gold2   | #DDB363 | base dos degradês |
 | gold3   | #FFF0CC | topo dos degradês |
