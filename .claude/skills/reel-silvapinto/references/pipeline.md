@@ -67,7 +67,7 @@ transcrição retimada, ou `{"src": 5.65}` para um instante do vídeo original.
 |---|---|
 | `video` | arquivo fonte |
 | `crop`, `delogo`, `blur_patches`, `bottom_blur`, `sharpen`, `frame_replace` | limpeza e reenquadramento; ver abaixo |
-| `badge` | PNG do brasão do órgão, canto superior direito (opcional) |
+| `badge`, `badge_width` | PNG da logo/brasão do órgão do concurso, canto superior direito, OBRIGATÓRIO (o Casil pediu sempre a logo da instituição); largura em px, padrão 200, usar 160-180 quando o rosto chega perto do canto |
 | `brand` | `mono`, `name`, `sub`, `whatsapp`, `outroLine` |
 | `intro_end` | instante em que os textos de abertura terminam |
 | `cards` | textos grandes: `at`, `dur`, `kicker`, `title` (com `<br>`), `size` ("small" ou ""), `white`, `sub` |
@@ -102,6 +102,16 @@ Foi o caso do PMERJ. Os passos que funcionaram:
 5. Cartela gravada sobre o tronco na abertura: `frame_replace` com um trecho limpo da mesma tomada. Escolher
    o trecho comparando a região dos olhos com `cv2.matchTemplate` (o de 18,3 s deu score 0,90). Não tentar
    emendar cabeça de um momento com tronco de outro: rejeitado.
+
+## Logo do órgão do concurso
+
+Sempre presente. Procurar no site oficial (`curl` na home e listar `src=...png|svg`; costuma haver uma
+versão "fundo transparente" na pasta de logomarca). Com PIL: recortar para símbolo + sigla (a linha longa
+com o nome por extenso não se lê a 200 px), `thumbnail` para ~900 px, e se houver grafia escura,
+acrescentar um brilho branco atrás (dilatar o alfa com `MaxFilter(9)`, `GaussianBlur(10)`, branco a 85%,
+compor por baixo). Salvar como `badge_<orgao>.png` no projeto e usar em `badge` e no `insert` da primeira
+menção. Exemplo pronto: `examples/iases/badge_iases.png`. Brasão gravado num vídeo já editado: recortar
+com máscara por saturação (caso PMERJ).
 
 ## Analisar novos vídeos de referência
 

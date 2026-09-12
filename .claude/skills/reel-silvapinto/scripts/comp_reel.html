@@ -143,7 +143,7 @@
 const TL=__TIMELINE__; const FPS=TL.fps;
   if(TL.pivot){ document.getElementById('vid').style.transformOrigin=TL.pivot[0]+'% '+TL.pivot[1]+'%'; }
 // brand + assets from the timeline (set by build_timeline.py from config.json)
-(function(){ const b=TL.brand||{}; document.getElementById('logomono').src=b.mono||''; document.getElementById('ologo').src=b.mono||''; document.getElementById('brandn1').textContent=b.name||''; document.getElementById('brandn2').textContent=b.sub||''; document.getElementById('owa').textContent=b.whatsapp||''; document.getElementById('obrand').textContent=b.outroLine||''; const pm=document.getElementById('pmerj'); if(TL.badge){ pm.src=TL.badge; } else { pm.style.display='none'; } const ins=(TL.inserts||[])[0]; document.querySelector('#insert img').src=ins?ins.img:''; })();
+(function(){ const b=TL.brand||{}; document.getElementById('logomono').src=b.mono||''; document.getElementById('ologo').src=b.mono||''; document.getElementById('brandn1').textContent=b.name||''; document.getElementById('brandn2').textContent=b.sub||''; document.getElementById('owa').textContent=b.whatsapp||''; document.getElementById('obrand').textContent=b.outroLine||''; const pm=document.getElementById('pmerj'); if(TL.badge){ pm.src=TL.badge; if(TL.badgeWidth) pm.style.width=TL.badgeWidth+'px'; } else { pm.style.display='none'; } const ins=(TL.inserts||[])[0]; document.querySelector('#insert img').src=ins?ins.img:''; })();
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const eo=p=>1-Math.pow(1-p,3), eio=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2, eb=p=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2);}, eq=p=>1-Math.pow(1-p,5);
 const prog=(t,s,d)=>clamp((t-s)/d,0,1);
@@ -203,7 +203,7 @@ window.seek=async function(t){
 
   // captions
   const cap=document.getElementById('cap'); const ch=TL.chunks.find(c=>t>=c.s&&t<c.e+0.1);
-  if(ch&&cardOp<0.999&&t<TL.outroAt){ cap.style.opacity=1; const q=prog(t,ch.s,0.16); cap.style.transform=`scale(${0.92+0.08*eb(q)}) translateY(${(1-eo(q))*16}px)`;
+  if(ch&&cardOp<0.35&&t<TL.outroAt){ cap.style.opacity=1; const q=prog(t,ch.s,0.16); cap.style.transform=`scale(${0.92+0.08*eb(q)}) translateY(${(1-eo(q))*16}px)`;
     cap.innerHTML='<span class="capin">'+ch.words.map(w=>`<span class="${t>=w.e?'done':(t>=w.s?'cur':'todo')}">${w.w}</span>`).join(' ')+'</span>'; } else cap.style.opacity=0;
   document.getElementById('tag').style.opacity=(t>=TL.outroAt)?0:1; document.getElementById('pmerj').style.opacity=(t>=TL.outroAt)?0:1;
 

@@ -23,8 +23,10 @@ aprovado explicitamente por ele; a seção "O que foi rejeitado" é tão importa
   Fraunces 300, 36 px, tracking 0,16 em, cor #EDE9DD, e "ADVOCACIA" em Manrope 600, 15 px, tracking
   0,42 em, dourado. Ele pediu a logo COM o nome do escritório. A versão empilhada oficial ainda não chegou
   como arquivo; se um dia chegar (PNG/SVG), substituir esse bloco por ela.
-- Canto superior direito: brasão do órgão do concurso (PMERJ, TJRJ...), 200 px de largura, estático, não
-  acompanha o zoom. Ele pediu "menor" quando estava com 435 px.
+- Canto superior direito: logo ou brasão do órgão do concurso (PMERJ, IASES, TJRJ...), 200 px de largura
+  (160-180 quando o rosto chega perto do canto), estático, não acompanha o zoom. Ele pediu "menor"
+  quando estava com 435 px e pediu que a logo do órgão esteja SEMPRE presente (IASES, set/2026). A mesma
+  imagem entra como insert de ~1,3 s sobre o vídeo desfocado na primeira menção ao órgão.
 - Barra de progresso dourada de 6 px no topo.
 - Encerramento: fundo do vídeo desfocado e escurecido, monograma, "FALE COM A GENTE PELO WHATSAPP." em
   Bebas Neue 190 px com "WhatsApp" em dourado, pílula verde #25D366 com o link, linha de marca em mono e o

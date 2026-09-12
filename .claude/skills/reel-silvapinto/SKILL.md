@@ -23,6 +23,11 @@ Leia antes de começar:
    curto, pegar a URL `lh3.googleusercontent.com/pw/...` do HTML e baixar com o sufixo `=dv`.
    Conferir com ffprobe se é filmagem bruta (ideal) ou uma exportação já editada com legendas e
    brasão gravados (aí entram `delogo`, `crop`, `frame_replace`, ver pipeline.md).
+   **Obter a logo do órgão do concurso** (ele quer sempre a logo da instituição que oferece as
+   vagas: PMERJ, IASES, TJRJ...). Buscar no site oficial do órgão um PNG com fundo transparente;
+   recortar para símbolo + sigla, e se a grafia for escura acrescentar um brilho branco suave atrás
+   (receita em pipeline.md). Ela entra como `badge` (canto superior direito) e como `insert` na
+   primeira vez que ele cita o órgão. Se não achar, pedir o arquivo antes de renderizar.
 2. **Transcrever e extrair quadros** com `scripts/transcribe.py` e `scripts/extract_frames.py`.
    Olhar uma folha de contatos dos quadros: onde está o rosto, o que aparece embaixo (é onde ficam
    os infográficos), se há gestos.
