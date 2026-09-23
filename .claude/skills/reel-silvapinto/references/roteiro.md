@@ -5,8 +5,50 @@ na hora de gravar e para quem edita. Tudo aqui saiu da medição de setembro de 
 escritório, 750 posts e 99 reels de 14 concorrentes, lidos pela API da Meta (Business Discovery) e
 medidos quadro a quadro. Os números estão no fim.
 
-**Em uma frase:** a nossa edição já é a melhor do nicho; o que falta é publicar mais vídeo e escolher
-pautas que tenham um número, uma pessoa ou um grupo afetado.
+**Em uma frase:** a nossa copy e a nossa edição são as melhores do nicho; o que falta é levar gente
+até elas, com mais vídeo, título fixo e pautas que tenham um número, uma pessoa ou um grupo afetado.
+
+Os formatos dos vídeos que mais engajam nos concorrentes estão em `formatos.md`.
+
+---
+
+## 0. O nosso trunfo: a copy
+
+Lendo lado a lado as legendas dos 15 perfis, a nossa é a mais técnica e a mais precisa: cita banca,
+cargo, número da questão, data e fundamento (STF, STJ, lei) sem prometer resultado. Os nossos dois
+melhores posts são pura copy: "CBMMG divulgou o resultado — mas manteve 9 questões ilegais" (53
+interações, 18 comentários) e "PPRS anula 15 questões — mas a discussão está longe de acabar". E as
+análises de questões, mesmo irregulares, trouxeram **44 dos 59 comentários** do período: é a copy que
+gera conversa e cliente.
+
+**O problema não é a copy, é o caminho até ela.** 48 dos 50 posts foram imagem ou carrossel, com
+mediana de 3 interações. A copy boa fica escondida embaixo de um formato que o Instagram mostra pouco.
+
+**O fluxo passa a ser: copy primeiro, vídeo depois.**
+1. Escreva a legenda completa como hoje: título com virada ("X — mas Y"), quem é afetado, os fatos com
+   número, o fundamento, o que fazer.
+2. O vídeo sai da copy: o título vira o `titulo` fixo; a pergunta "ficou eliminado…?" vira o gancho
+   falado; os números viram os textos grandes e os infográficos; o fecho vira a chamada.
+3. Quando o assunto for técnico demais para 60 segundos, use o formato **"Explico na legenda"**:
+   vídeo curto (15 a 30 s) com a sigla grande, uma frase e a chamada "Explico na legenda ↓", e a copy
+   inteira na legenda. Foi assim que o Daniel Assunção levou o público para o texto (CBMDF, 7 vezes a
+   mediana dele).
+
+**O que ajustar na copy (dados de 750 posts):**
+- **Número na primeira linha**: posts assim renderam 1,13 vez a mediana. Já é o nosso padrão; manter.
+- **Legenda longa não atrapalha**: acima de 1.500 caracteres, 1,41 vez a mediana. Não cortar a
+  análise para "caber".
+- **Caixa alta na primeira linha da legenda rendeu menos** (0,89 vez). Metade das nossas começa assim.
+  O título em caixa alta já está na arte ou no vídeo; na legenda, escreva a primeira linha normal.
+- **Chamada genérica não ajuda** (0,92 vez). O que funcionou foi a **chamada com palavra-chave e
+  material**: o post do Marcus Peterson com mais comentários (121) termina em "Comenta 'cotas raciais'
+  que eu te envio meu e-book". Nós já produzimos o melhor material do nicho, a análise de questões:
+  "Comente CBMMG que eu te envio a lista das 9 questões que a banca manteve". Confirme com o jurídico
+  que o material é informativo (Provimento 205/2021).
+- **História com nome** vence explicação: "Ela passou, tomou posse e foi exonerada por ter pele clara.
+  24 dias depois, a AGU devolveu tudo." Com cliente, só com autorização por escrito; com caso público,
+  cite a fonte.
+- **Frase-síntese no fim**, curta, que a pessoa repete: "Recusada não é resolvida."
 
 ---
 
@@ -89,6 +131,13 @@ Uma ideia por vídeo. Se a pauta tem três pontos, são três vídeos.
   por post.
 - Encerramento com WhatsApp e aviso do Provimento 205/2021.
 
+**O que acrescentar:** o **título fixo** no alto (campo `titulo`), com o assunto ou o grupo afetado,
+do início ao encerramento. Aparece em 9 dos 12 reels que mais engajaram nos concorrentes. Com título
+fixo, um texto grande de gancho basta na abertura.
+
+**Onde não gastar edição:** comemoração, depoimento e trecho de decisão falam sozinhos. Os reels que
+mais engajaram nos concorrentes têm mediana de 0,9 transição por minuto (ver `formatos.md`).
+
 **O que conferir antes de renderizar:**
 - Duração até 60 segundos. Se a gravação passar disso, entregar também uma versão curta.
 - Os 3 primeiros segundos têm número, órgão ou pessoa, na fala ou em texto grande.
@@ -100,8 +149,9 @@ Uma ideia por vídeo. Se a pauta tem três pontos, são três vídeos.
 
 - **Frequência:** 3 reels por semana. Hoje é cerca de 1 por mês.
 - **Primeira linha da legenda = o gancho do vídeo**, com o número ou o órgão.
-- **Peça o comentário:** "comente o seu cargo", "comente CBMMG". Comentário faz o Instagram mostrar o
-  vídeo a mais gente e abre conversa no direct.
+- **Peça o comentário com palavra-chave e material:** "comente CBMMG que eu te envio a análise".
+  Comentário faz o Instagram mostrar o vídeo a mais gente e abre conversa no direct.
+- **Primeira linha da legenda em texto normal**, não em caixa alta.
 - **Regras da OAB (Provimento 205/2021):** informar, não captar. Decisão conquistada pode ser
   divulgada sem prometer resultado, sem ostentação e sem identificar o cliente sem autorização por
   escrito. Na dúvida, o jurídico do escritório decide.
@@ -115,6 +165,9 @@ Uma ideia por vídeo. Se a pauta tem três pontos, são três vídeos.
 - Passar de 60 segundos sem necessidade.
 - Prometer resultado ("você vai voltar ao concurso").
 - Abertura com logo, vinheta ou "olá, pessoal": o gancho vem no primeiro segundo.
+- Copy boa só em imagem estática: toda análise forte ganha um vídeo que leve até ela.
+- Cena de comemoração ou trecho de TV tirado da internet: tem dono. Só material próprio ou de cliente
+  com autorização.
 
 ---
 

@@ -147,11 +147,17 @@ def P(x):
     return os.path.join(SKILL_ASSETS, x[len("assets/"):]) if x.startswith("assets/") else os.path.join(proj, x)
 brand = dict(cfg.get("brand", {})); brand["mono"] = P(brand.get("mono", "assets/brand/logo_mono.png"))
 for ins in inserts: ins["img"] = P(ins["img"])
+# titulo fixo no alto: o assunto do video visivel do inicio ao encerramento (padrao dos reels que mais
+# engajaram nos concorrentes); "chamada" e a linha menor embaixo, ex. "Explico na legenda"
+titulo = None
+if cfg.get("titulo"):
+    tc = cfg["titulo"] if isinstance(cfg["titulo"], dict) else {"texto": cfg["titulo"]}
+    titulo = {"texto": tc["texto"], "chamada": tc.get("chamada"), "t": T(tc.get("de"), intro_end)}
 tl = {"fps": FPS, "frameCount": frame_count, "framePrefix": cfg.get("frames", "src_frames") + "/f", "total": round(out_total, 2),
       "edl": edl, "chunks": chunks, "cards": cards, "scenes": scenes, "shots": shots, "hits": hits, "inserts": inserts,
       "cuts": edl_cuts, "introEnd": round(intro_end, 2), "outroAt": round(outro_at, 2),
       "outFrames": os.path.join(proj, "out_frames"), "brand": brand, "badge": P(cfg.get("badge")), "badgeWidth": cfg.get("badge_width"),
-      "source": os.path.join(proj, cfg["video"]), "pivot": cfg.get("pivot")}
+      "source": os.path.join(proj, cfg["video"]), "pivot": cfg.get("pivot"), "titulo": titulo}
 json.dump(tl, open(os.path.join(proj, "timeline.json"), "w"), ensure_ascii=False, indent=1)
 print("cards", [(round(c["t"], 2), c["title"].replace("<br>", " ")) for c in cards])
 print("scenes", [(round(s["t"], 2), round(s["dur"], 2), s["type"]) for s in scenes])

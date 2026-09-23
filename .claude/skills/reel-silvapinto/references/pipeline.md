@@ -67,6 +67,7 @@ transcrição retimada, ou `{"src": 5.65}` para um instante do vídeo original.
 |---|---|
 | `video` | arquivo fonte |
 | `crop`, `delogo`, `blur_patches`, `bottom_blur`, `sharpen`, `frame_replace` | limpeza e reenquadramento; ver abaixo |
+| `titulo` | título fixo no alto, do início ao encerramento: `{"texto": "IASES: candidato <b>volta ao concurso</b>", "chamada": "Explico na legenda ↓", "de": 0.6}` (ou só a string). `<b>` pinta de dourado; `chamada` é a etiqueta dourada embaixo (opcional); `de` é a âncora de entrada (padrão: fim dos textos de abertura). Some sozinho enquanto há texto grande na tela e no encerramento. Até ~40 caracteres em 2 linhas. Use seta "↓" e não emoji: o Chromium do render não tem fonte de emoji |
 | `badge`, `badge_width` | PNG da logo/brasão do órgão do concurso, canto superior direito, OBRIGATÓRIO (o Casil pediu sempre a logo da instituição); largura em px, padrão 200, usar 160-180 quando o rosto chega perto do canto |
 | `brand` | `mono`, `name`, `sub`, `whatsapp`, `outroLine` |
 | `intro_end` | instante em que os textos de abertura terminam |

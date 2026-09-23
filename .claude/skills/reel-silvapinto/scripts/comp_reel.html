@@ -112,6 +112,11 @@
   .flash{position:absolute;inset:0;background:var(--gold);opacity:0;pointer-events:none;mix-blend-mode:screen}
   .insert{position:absolute;inset:0;display:grid;place-items:center;opacity:0;pointer-events:none}
   .insert img{width:520px;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
+  /* titulo fixo: faixa grafite abaixo do logo e do brasao, o assunto do video do inicio ao fim */
+  .titulo{position:absolute;left:70px;right:70px;top:300px;z-index:4;display:flex;flex-direction:column;align-items:center;text-align:center;opacity:0;will-change:opacity,transform}
+  .titulo .tx{display:inline-block;background:rgba(23,24,27,.82);border:1px solid rgba(217,183,120,.45);border-radius:18px;padding:22px 36px 18px;font-weight:800;font-size:54px;line-height:1.12;letter-spacing:-.01em;box-shadow:0 12px 34px rgba(0,0,0,.4)}
+  .titulo .tx b{color:var(--gold);font-weight:800}
+  .titulo .ch{margin-top:16px;display:inline-block;background:var(--gold);color:var(--navy);border-radius:999px;padding:10px 26px;font-weight:800;font-size:30px;letter-spacing:.01em}
   .a{opacity:0}
 </style>
 </head>
@@ -128,6 +133,7 @@
   <div class="logo" id="tag"><img id="logomono" src="" alt=""><div class="n1" id="brandn1"></div><div class="n2" id="brandn2"></div></div><img class="pmerj" id="pmerj" src="" alt="">
   <div class="prog" id="prog"></div>
 
+  <div class="titulo" id="titulo"><div class="tx" id="titulotx"></div><div class="ch" id="tituloch"></div></div>
   <div id="cards"></div>
   <div class="insert" id="insert"><img src="" alt=""></div>
   <div class="outro" id="outro"><div class="bg" id="obg"></div><div class="tint"></div><div class="grain"></div>
@@ -144,6 +150,7 @@ const TL=__TIMELINE__; const FPS=TL.fps;
   if(TL.pivot){ document.getElementById('vid').style.transformOrigin=TL.pivot[0]+'% '+TL.pivot[1]+'%'; }
 // brand + assets from the timeline (set by build_timeline.py from config.json)
 (function(){ const b=TL.brand||{}; document.getElementById('logomono').src=b.mono||''; document.getElementById('ologo').src=b.mono||''; document.getElementById('brandn1').textContent=b.name||''; document.getElementById('brandn2').textContent=b.sub||''; document.getElementById('owa').textContent=b.whatsapp||''; document.getElementById('obrand').textContent=b.outroLine||''; const pm=document.getElementById('pmerj'); if(TL.badge){ pm.src=TL.badge; if(TL.badgeWidth) pm.style.width=TL.badgeWidth+'px'; } else { pm.style.display='none'; } const ins=(TL.inserts||[])[0]; document.querySelector('#insert img').src=ins?ins.img:''; })();
+(function(){ const tt=TL.titulo, el=document.getElementById('titulo'); if(!tt){ el.style.display='none'; return; } document.getElementById('titulotx').innerHTML=tt.texto; const ch=document.getElementById('tituloch'); if(tt.chamada) ch.textContent=tt.chamada; else ch.style.display='none'; })();
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const eo=p=>1-Math.pow(1-p,3), eio=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2, eb=p=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2);}, eq=p=>1-Math.pow(1-p,5);
 const prog=(t,s,d)=>clamp((t-s)/d,0,1);
@@ -205,6 +212,7 @@ window.seek=async function(t){
   const cap=document.getElementById('cap'); const ch=TL.chunks.find(c=>t>=c.s&&t<c.e+0.1);
   if(ch&&cardOp<0.35&&t<TL.outroAt){ cap.style.opacity=1; const q=prog(t,ch.s,0.16); cap.style.transform=`scale(${0.92+0.08*eb(q)}) translateY(${(1-eo(q))*16}px)`;
     cap.innerHTML='<span class="capin">'+ch.words.map(w=>`<span class="${t>=w.e?'done':(t>=w.s?'cur':'todo')}">${w.w}</span>`).join(' ')+'</span>'; } else cap.style.opacity=0;
+  if(TL.titulo){ const tt=document.getElementById('titulo'); const q=prog(t,TL.titulo.t,0.4); const vis=(t<TL.outroAt)?Math.max(0,1-cardOp*1.6):0; tt.style.opacity=eo(q)*vis; tt.style.transform=`translateY(${(1-eo(q))*-24}px)`; }
   document.getElementById('tag').style.opacity=(t>=TL.outroAt)?0:1; document.getElementById('pmerj').style.opacity=(t>=TL.outroAt)?0:1;
 
   // panel scenes
