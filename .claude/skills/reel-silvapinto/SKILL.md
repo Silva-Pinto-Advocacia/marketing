@@ -17,7 +17,7 @@ Leia antes de começar:
   zoom contínuo, abertura desfocada, emenda de cabeça e tronco).
 - `references/pipeline.md`: comandos, estrutura do projeto e o esquema do `config.json`.
 - `references/roteiro.md`: a pauta, a estrutura de 30 a 60 s, a gravação e a publicação, com os
-  números da comparação com 11 concorrentes (setembro de 2026). É o guia do Casil para gravar; use
+  números da comparação com 14 concorrentes (setembro de 2026). É o guia do Casil para gravar; use
   para conferir a pauta antes de editar e para responder pedidos de roteiro.
 
 ## Regras de pauta (valem para toda edição)

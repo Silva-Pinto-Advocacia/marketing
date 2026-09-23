@@ -2,7 +2,7 @@
 
 Guia para escolher a pauta, gravar, editar e publicar os reels do @silvapinto.adv. Vale para o Casil
 na hora de gravar e para quem edita. Tudo aqui saiu da medição de setembro de 2026: 50 posts do
-escritório, 600 posts e 79 reels de 11 concorrentes, lidos pela API da Meta (Business Discovery) e
+escritório, 750 posts e 99 reels de 14 concorrentes, lidos pela API da Meta (Business Discovery) e
 medidos quadro a quadro. Os números estão no fim.
 
 **Em uma frase:** a nossa edição já é a melhor do nicho; o que falta é publicar mais vídeo e escolher
@@ -79,7 +79,9 @@ Uma ideia por vídeo. Se a pauta tem três pontos, são três vídeos.
 ## 4. Na edição (a skill cuida disto)
 
 **O que manter, porque já é o nosso diferencial:**
-- Edição rápida: a versão editada do IASES tem 18 cortes por minuto; o concorrente mais rápido tem 9,4.
+- Edição rápida: a versão editada do IASES tem 18 cortes por minuto; a mediana dos concorrentes é 4. Só
+  um reel da JS Advocacia foi mais rápido (47 por minuto): a posse de clientes na Polícia Penal, com
+  cenas reais da cerimônia. Ritmo assim pede material de verdade para cortar, não só a fala.
 - Legenda palavra a palavra, zoom na palavra forte, textos grandes dourados, infográficos na base.
 - Logo do órgão sempre (canto e inserção na primeira menção).
 - Degradê grafite e dourado: nenhum concorrente tem assinatura visual tão consistente.
@@ -130,8 +132,16 @@ Uma ideia por vídeo. Se a pauta tem três pontos, são três vídeos.
 | marcuspeterson.concursos | 11.310 | 2,9 | 8,2 | 181 s |
 | fernandesadvogados | 7.308 | 1,4 | 5,0 | 157 s |
 | luandanaiaraadv | 8.530 | 8,3 | 0,7 | 82 s |
+| queromeuconcurso (Mariana Migliorini) | 25.858 | 3,8 | 0 (uma tomada só) | 83 s |
+| _jsadvocacia (Janquiel dos Santos) | 19.135 | 3,4 | 47 (1 reel medido) | 70 s |
+| anamirandaadvogados | 275 | 12,2 | 10,1 | 40 s |
 
-- Mediana dos concorrentes: 79 s de duração, 4,2 cortes por minuto, cenas de 11 s.
+- Mediana dos concorrentes: 72 s de duração, 4 cortes por minuto, cenas de 12 s.
+- **Concorrência direta no PMERJ:** a Mariana Migliorini tem o PMERJ 2014 entre as pautas de maior
+  engajamento (#pmerj2014aindanaoacabou, live de dúvidas com 15 comentários), e a Ana Miranda também
+  grava sobre a PMERJ. Nas nossas pautas PMERJ, o gancho precisa ser mais específico que o deles.
+- **Maior post do estudo:** um reel de humor da JS Advocacia sobre a vida depois da aprovação, com
+  6.894 interações. Humor sobre a vida do concurseiro alcança fora da base; caso sério converte.
 - Engajamento em % dos seguidores: 0,01% a 0,23% no nicho inteiro; o escritório está em 0,06%.
 - Nenhum concorrente usa abertura 3D gerada por IA.
 - Limites: a API não informa visualizações, só curtidas e comentários; o escritório tinha só 2 reels
