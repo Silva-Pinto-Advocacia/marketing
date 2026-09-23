@@ -1,6 +1,6 @@
 ---
 name: reel-silvapinto
-description: Edita vídeos curtos verticais (reels, shorts, stories) do Dr. Casil / Silva Pinto Advocacia a partir de uma gravação dele falando para a câmera, no estilo aprovado pelo escritório - legendas palavra a palavra, cortes de pausa, jump cuts com troca de enquadramento, zoom-hits, textos cinéticos dourados, infográficos na base e encerramento com WhatsApp. Use SEMPRE que o usuário pedir para editar, cortar, montar, legendar, "dar um trato", deixar dinâmico ou publicar um vídeo, reel, short, story ou "esse vídeo" (link do Drive, Google Photos, YouTube ou arquivo), mesmo sem dizer a palavra "reel", e também quando pedir para analisar o estilo de um vídeo de referência ou ajustar um reel já feito.
+description: Edita vídeos curtos verticais (reels, shorts, stories) do Dr. Casil / Silva Pinto Advocacia a partir de uma gravação dele falando para a câmera, no estilo aprovado pelo escritório - legendas palavra a palavra, cortes de pausa, jump cuts com troca de enquadramento, zoom-hits, textos cinéticos dourados, infográficos na base e encerramento com WhatsApp. Use SEMPRE que o usuário pedir para editar, cortar, montar, legendar, "dar um trato", deixar dinâmico ou publicar um vídeo, reel, short, story ou "esse vídeo" (link do Drive, Google Photos, YouTube ou arquivo), mesmo sem dizer a palavra "reel", e também quando pedir para analisar o estilo de um vídeo de referência ou ajustar um reel já feito. Use também quando ele pedir pauta, roteiro, gancho ou ideia de vídeo, ou perguntar o que gravar, como gravar ou como publicar um reel.
 ---
 
 # Reels Silva Pinto
@@ -16,6 +16,28 @@ Leia antes de começar:
   reintroduzir nada da lista de rejeitados (barras opacas, fundo azul, rodapé, corte a cada frase,
   zoom contínuo, abertura desfocada, emenda de cabeça e tronco).
 - `references/pipeline.md`: comandos, estrutura do projeto e o esquema do `config.json`.
+- `references/roteiro.md`: a pauta, a estrutura de 30 a 60 s, a gravação e a publicação, com os
+  números da comparação com 11 concorrentes (setembro de 2026). É o guia do Casil para gravar; use
+  para conferir a pauta antes de editar e para responder pedidos de roteiro.
+
+## Regras de pauta (valem para toda edição)
+
+Saíram da medição dos posts do escritório e dos concorrentes; o porquê está em `roteiro.md`.
+
+- **Até 60 segundos.** Se a gravação passar disso, editar a versão pedida e oferecer também um corte
+  de até 60 s (os reels curtos renderam mais em 5 de 7 perfis). Não cortar sem avisar: o PMERJ de
+  93 s foi aprovado assim.
+- **Gancho nos 3 primeiros segundos com número, órgão ou pessoa afetada.** Se a fala não abre assim,
+  o primeiro texto grande dourado faz esse papel ("9 QUESTÕES / ILEGAIS"), tirado do que ele diz
+  mais adiante.
+- **Aviso de data não é pauta.** Se o vídeo só anuncia um prazo ou resultado ("amanhã sai…"), sugerir
+  reescrever o gancho para o que o candidato perde ou pode recuperar (exemplos em `roteiro.md`); os
+  posts assim tiveram zero interações.
+- **Prova na tela.** Decisão, edital, gabarito ou trecho de sentença entram como `insert`. Se ele
+  citar um documento que não veio junto, pedir o arquivo.
+- **Chamada que pede comentário** ("comente o seu cargo") no `cta`, além do WhatsApp.
+- **Entregar pronto para publicar**: o reel do IASES foi ao ar sem a edição. Na entrega, lembrar que
+  é o `reel_web.mp4` que deve subir, com a primeira linha da legenda igual ao gancho.
 
 ## Fluxo
 
@@ -55,6 +77,10 @@ Dados fixos: WhatsApp `wa.me/5521993996262`, OAB/RJ 189.781, aviso do Provimento
 encerramento (já embutido em `comp_reel.html`).
 
 ## Quando o pedido é outro
+
+- "Me dá uma pauta / um roteiro / o que eu gravo": responder com a estrutura de `roteiro.md`
+  (gancho, quem é afetado, prova, o que fazer, chamada), com as falas prontas e o tempo de cada
+  bloco, a partir da notícia ou do caso que ele trouxer.
 
 - "Analisa o estilo desse vídeo": `scripts/analyze_ref.py` (ver pipeline.md) e atualizar
   `references/estilo.md` com os números medidos.
