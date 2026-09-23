@@ -16,6 +16,8 @@ Leia antes de começar:
   reintroduzir nada da lista de rejeitados (barras opacas, fundo azul, rodapé, corte a cada frase,
   zoom contínuo, abertura desfocada, emenda de cabeça e tronco).
 - `references/pipeline.md`: comandos, estrutura do projeto e o esquema do `config.json`.
+- `references/formatos.md`: os formatos, cortes, transições e elementos gráficos dos reels que mais
+  engajaram nos concorrentes. Ler antes de propor o formato de um vídeo novo.
 - `references/roteiro.md`: a pauta, a estrutura de 30 a 60 s, a gravação e a publicação, com os
   números da comparação com 14 concorrentes (setembro de 2026). É o guia do Casil para gravar; use
   para conferir a pauta antes de editar e para responder pedidos de roteiro.
@@ -35,7 +37,14 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   posts assim tiveram zero interações.
 - **Prova na tela.** Decisão, edital, gabarito ou trecho de sentença entram como `insert`. Se ele
   citar um documento que não veio junto, pedir o arquivo.
-- **Chamada que pede comentário** ("comente o seu cargo") no `cta`, além do WhatsApp.
+- **Título fixo em todo reel** (`titulo` no `config.json`): o assunto ou o grupo afetado, visível do
+  início ao encerramento. Com ele, um texto grande de gancho basta na abertura.
+- **Copy primeiro.** Se ele mandar a legenda do post, o roteiro do vídeo sai dela (título com virada vira
+  o `titulo`, os números viram textos e infográficos). Se o assunto for técnico demais para 60 s,
+  propor o formato "Explico na legenda": vídeo de 15 a 30 s com `titulo.chamada` e a copy inteira na
+  legenda. Ver `roteiro.md`, seção 0, e `formatos.md`.
+- **Chamada com palavra-chave e material** ("comente CBMMG que eu te envio a análise") no `cta`, além
+  do WhatsApp.
 - **Entregar pronto para publicar**: o reel do IASES foi ao ar sem a edição. Na entrega, lembrar que
   é o `reel_web.mp4` que deve subir, com a primeira linha da legenda igual ao gancho.
 
