@@ -27,12 +27,23 @@ mediana de 3 interações. A copy boa fica escondida embaixo de um formato que o
 **O fluxo passa a ser: copy primeiro, vídeo depois.**
 1. Escreva a legenda completa como hoje: título com virada ("X — mas Y"), quem é afetado, os fatos com
    número, o fundamento, o que fazer.
-2. O vídeo sai da copy: o título vira o `titulo` fixo; a pergunta "ficou eliminado…?" vira o gancho
-   falado; os números viram os textos grandes e os infográficos; o fecho vira a chamada.
+2. O vídeo sai da copy: o título vira o `titulo` fixo; o momento e a pergunta ("saiu o resultado…
+   ficou eliminado…?") viram o gancho falado; os números viram os textos grandes e os infográficos; o fecho vira a chamada.
 3. Quando o assunto for técnico demais para 60 segundos, use o formato **"Explico na legenda"**:
    vídeo curto (15 a 30 s) com a sigla grande, uma frase e a chamada "Explico na legenda ↓", e a copy
    inteira na legenda. Foi assim que o Daniel Assunção levou o público para o texto (CBMDF, 7 vezes a
    mediana dele).
+
+**A abertura: o momento do concurso, depois a dor.** Ideia do Casil (24/09), confirmada pelos
+nossos posts: o que abriu com o contexto e a virada ("CBMMG divulgou o resultado — mas manteve 9
+questões ilegais. Ficou eliminado ou mal classificado?") teve 53 interações; os que abriram só com a
+dor ("Eliminado na heteroidentificação?") ou só com a data ("Amanhã o CBMMG define…") tiveram zero.
+Contexto sozinho vira aviso de data; dor sozinha não diz de que concurso se fala. A ordem é:
+1. **O momento**: o que acabou de sair. "Saiu o gabarito definitivo do CBMMG."
+2. **O número ou a virada**: o problema concreto. "E a banca manteve 9 questões ilegais."
+3. **A dor**, falando com ele. "Ficou fora por uma questão?"
+A mesma ordem vale para a legenda, para a arte e para o sistema comercial, que escreve as pautas com
+a regra de `copy_redes.md`.
 
 **O que ajustar na copy (dados de 750 posts):**
 - **Número na primeira linha**: posts assim renderam 1,13 vez a mediana. Já é o nosso padrão; manter.
@@ -66,12 +77,12 @@ não sai.
 
 **Pauta que não funciona: aviso de data.** "Amanhã o CBMMG define…", "Resultado do psicotécnico sai
 sexta" e "Mudança no concurso de Oficial da PMERJ" tiveram **zero** interações. A notícia pode até ser
-a mesma; o que muda é dizer o que a pessoa perde ou pode recuperar:
+a mesma; o que muda é manter o momento e acrescentar o que a pessoa perde ou pode recuperar:
 
 | Em vez de | Diga |
 |---|---|
-| "Amanhã o CBMMG define quem segue para a 2ª fase" | "Ficou fora do CBMMG por poucos pontos? Veja isto antes do resultado." |
-| "PCES: resultado do psicotécnico sai nesta sexta" | "Inapto no psicotécnico da PCES? Isso não precisa ser o fim." |
+| "Amanhã o CBMMG define quem segue para a 2ª fase" | "Amanhã o CBMMG define quem segue para a 2ª fase. Ficou fora por poucos pontos? Veja isto antes." |
+| "PCES: resultado do psicotécnico sai nesta sexta" | "O resultado do psicotécnico da PCES sai na sexta. Se vier inapto, isso não precisa ser o fim." |
 | "Mudança importante no concurso de Oficial da PMERJ" | "A banca do concurso de Oficial da PMERJ mudou. Quem já estudava precisa saber disto." |
 
 **Publique a versão editada.** O reel do IASES que foi ao ar (28,2 s, 4,2 cortes por minuto) é a
@@ -92,7 +103,7 @@ corte ou divida em dois.
 
 | Tempo | Bloco | O que dizer | O que aparece na tela |
 |---|---|---|---|
-| 0 a 3 s | **Gancho** | O número, o órgão ou a pessoa, direto: "O CBMMG manteve 9 questões ilegais." | Texto grande dourado com o número; logo do órgão |
+| 0 a 3 s | **Gancho** | O momento e a dor, nessa ordem: "Saiu o gabarito definitivo do CBMMG. Ficou fora por uma questão?" | Texto grande dourado com o número; logo do órgão |
 | 3 a 10 s | **Quem é afetado** | "Se você ficou fora por poucos pontos, isso é com você." | Legenda palavra a palavra; zoom na palavra forte |
 | 10 a 40 s | **A prova** | O que a banca fez, o que diz a lei ou a decisão, em frases curtas | Documento, decisão ou edital na tela; contador ou lista na base |
 | 40 a 50 s | **O que fazer** | "Em muitos casos, pode ser possível…"; nunca prometer resultado | Texto dourado com o passo principal |
@@ -140,7 +151,7 @@ mais engajaram nos concorrentes têm mediana de 0,9 transição por minuto (ver 
 
 **O que conferir antes de renderizar:**
 - Duração até 60 segundos. Se a gravação passar disso, entregar também uma versão curta.
-- Os 3 primeiros segundos têm número, órgão ou pessoa, na fala ou em texto grande.
+- Os 3 primeiros segundos dizem o momento do concurso e a dor, nessa ordem, na fala ou em texto grande.
 - O documento de prova aparece na tela.
 
 ---
@@ -148,7 +159,7 @@ mais engajaram nos concorrentes têm mediana de 0,9 transição por minuto (ver 
 ## 5. Na publicação
 
 - **Frequência:** 3 reels por semana. Hoje é cerca de 1 por mês.
-- **Primeira linha da legenda = o gancho do vídeo**, com o número ou o órgão.
+- **Primeira linha da legenda = o gancho do vídeo**: o momento do concurso e a dor, com o número.
 - **Peça o comentário com palavra-chave e material:** "comente CBMMG que eu te envio a análise".
   Comentário faz o Instagram mostrar o vídeo a mais gente e abre conversa no direct.
 - **Primeira linha da legenda em texto normal**, não em caixa alta.

@@ -29,9 +29,11 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
 - **Até 60 segundos.** Se a gravação passar disso, editar a versão pedida e oferecer também um corte
   de até 60 s (os reels curtos renderam mais em 5 de 7 perfis). Não cortar sem avisar: o PMERJ de
   93 s foi aprovado assim.
-- **Gancho nos 3 primeiros segundos com número, órgão ou pessoa afetada.** Se a fala não abre assim,
-  o primeiro texto grande dourado faz esse papel ("9 QUESTÕES / ILEGAIS"), tirado do que ele diz
-  mais adiante.
+- **Gancho nos 3 primeiros segundos: o momento do concurso, depois a dor** ("Saiu o gabarito
+  definitivo do CBMMG. Ficou fora por uma questão?"). Contexto sozinho vira aviso de data; dor
+  sozinha não diz de que concurso se fala (ver `roteiro.md`, "A abertura"). Se a fala não abre
+  assim, o primeiro texto grande dourado faz esse papel, com o momento no kicker ("saiu o
+  gabarito") e a dor ou o número no título ("9 QUESTÕES / ILEGAIS").
 - **Aviso de data não é pauta.** Se o vídeo só anuncia um prazo ou resultado ("amanhã sai…"), sugerir
   reescrever o gancho para o que o candidato perde ou pode recuperar (exemplos em `roteiro.md`); os
   posts assim tiveram zero interações.
