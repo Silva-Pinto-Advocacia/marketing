@@ -1,0 +1,14 @@
+{
+  "status": "not_started",
+  "error": "Variável de ambiente HEYGEN_API_KEY não existe nesta sessão; nenhuma chamada à API do HeyGen foi feita e nenhum vídeo foi gerado.",
+  "video_id": null,
+  "video_url": null,
+  "thumbnail_url": null,
+  "duration": null,
+  "avatar_id": null,
+  "avatar_name": null,
+  "voice_id": null,
+  "voice_name": null,
+  "title": "TRF6 heteroidentificacao - reel",
+  "checked_at": "2026-09-25"
+}
