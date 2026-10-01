@@ -10,8 +10,10 @@ pip install -q imageio-ffmpeg faster-whisper pillow "opencv-python-headless==4.1
 npm i -q playwright@1.56.1 --no-audit --no-fund      # o Chromium já está em /opt/pw-browsers
 ```
 
-`render_reel.js` usa `executablePath: /opt/pw-browsers/chromium-1194/chrome-linux/chrome`. Se a versão do
-diretório mudar, ajustar. O módulo `playwright` é procurado no diretório atual (`cwd/node_modules`) e nos
+`render_reel.js` usa o Chrome de `CHROMIUM_PATH`, quando definida, e senão
+`/opt/pw-browsers/chromium-1194/chrome-linux/chrome`; sem nenhum dos dois, o que o Playwright baixou. Se a
+versão do diretório mudar, ajustar. O botão "Editar com a identidade do escritório" do Redes roda esta skill
+no GitHub Actions do motor-conteudo (cópia em `reel/skill` de lá, ver `reel/ORIGEM.md`): mudou aqui, copie para lá. O módulo `playwright` é procurado no diretório atual (`cwd/node_modules`) e nos
 módulos globais do Node; rodar o `npm i` na pasta de trabalho, não na skill.
 
 Obter o vídeo:
