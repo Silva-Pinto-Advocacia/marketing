@@ -71,6 +71,9 @@ transcrição retimada, ou `{"src": 5.65}` para um instante do vídeo original.
 | `crop`, `delogo`, `blur_patches`, `bottom_blur`, `sharpen`, `frame_replace` | limpeza e reenquadramento; ver abaixo |
 | `titulo` | título fixo no alto, do início ao encerramento: `{"texto": "IASES: candidato <b>volta ao concurso</b>", "chamada": "Explico na legenda ↓", "de": 0.6}` (ou só a string). `<b>` pinta de dourado; `chamada` é a etiqueta dourada embaixo (opcional); `de` é a âncora de entrada (padrão: fim dos textos de abertura). Some sozinho enquanto há texto grande na tela e no encerramento. Até ~40 caracteres em 2 linhas. Use seta "↓" e não emoji: o Chromium do render não tem fonte de emoji |
 | `badge`, `badge_width` | PNG da logo/brasão do órgão do concurso, canto superior direito, OBRIGATÓRIO (o Casil pediu sempre a logo da instituição); largura em px, padrão 200, usar 160-180 quando o rosto chega perto do canto |
+| `abertura_brasao` | abertura opcional: o brasão do órgão entra grande no centro da metade inferior, com `kicker` e `titulo` em dourado embaixo, e aos `dur` segundos (padrão 2,4) voa para o canto superior direito, onde vira a logo fixa (`badge`). `{"kicker": "decisão favorável", "titulo": "CANDIDATO PcD"}`; opcionais `img` (padrão: o `badge`), `de`, `dur`, `largura` (220) e `y` (1420). Substitui o texto grande de abertura: não comece texto grande antes do pouso (o build avisa) |
+| `legenda` | `"dourada"` (padrão: palavra falada em dourado) ou `"caixa"` (caixa dourada que desliza de palavra em palavra, com a palavra falada em grafite) |
+| `max_vazio` | segundos que a metade inferior pode ficar vazia antes de o build avisar (padrão 2) |
 | `brand` | `mono`, `name`, `sub`, `whatsapp`, `outroLine` |
 | `intro_end` | instante em que os textos de abertura terminam |
 | `cards` | textos grandes: `at`, `dur`, `kicker`, `title` (com `<br>`), `size` ("small" ou ""), `white`, `sub` |
@@ -84,7 +87,8 @@ transcrição retimada, ou `{"src": 5.65}` para um instante do vídeo original.
 
 Campos por tipo de cena: `counter` (`prefix`, `value`, `unit`, `sub`), `list` (`items`, `stagger`),
 `timeline` (`nodes` [{b,l}], `sub`), `sum` (`terms`, `value`, `unit`), `text` (`head`, `text`),
-`cta` (`head`, `text`, `pill`). Todos aceitam `kicker`. As cenas nunca se sobrepõem a um texto grande:
+`cta` (`head`, `text`, `pill`), `faixa` (`head`: a manchete da decisão, até ~60 caracteres; caixa grafite com fio
+dourado que se desenha, kicker e manchete entrando palavra a palavra). Todos aceitam `kicker`. As cenas nunca se sobrepõem a um texto grande:
 `build_timeline.py` apara automaticamente.
 
 Exemplos: `examples/pmerj/config.json` (vídeo já editado, com limpeza de elementos gravados) e
