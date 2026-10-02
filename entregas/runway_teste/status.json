@@ -1,0 +1,62 @@
+{
+  "data": "2026-10-02",
+  "resultado": "NAO_GERADO",
+  "motivo": "Conta Runway sem creditos: GET /v1/organization retornou creditBalance=0. Upload efemero e geracao recusados pela API.",
+  "chave": {
+    "variavel": "RUNWAYML_API_SECRET",
+    "presente": true,
+    "tamanho": 132
+  },
+  "documentacao": {
+    "fonte": "https://docs.dev.runwayml.com/api (OpenAPI versao 2024-11-06)",
+    "modelo": "'gen4_aleph' nao consta mais em POST /v1/video_to_video; o modelo Aleph atual e 'aleph2'. Usado 'aleph2'.",
+    "ratio": "Campo 'ratio' marcado como deprecated para aleph2 (saida segue o formato da entrada); nao enviado.",
+    "entrada": "videoUri: HTTPS, runway:// (POST /v1/uploads) ou data URI ate 5MB; video de ate 30 s, sem corte necessario.",
+    "custo": "Preco de API: US$0,01 por credito; estimatedCost vem na resposta da criacao da tarefa (nao chegou a ser retornado)."
+  },
+  "tentativas": [
+    {
+      "n": 1,
+      "video": "pmes",
+      "acao": "POST /v1/uploads (pmes 4,5MB, grande demais para data URI)",
+      "http": 403,
+      "erro": "At least one credit purchase is required for this account to use ephemeral uploads"
+    },
+    {
+      "n": 2,
+      "video": "iases",
+      "acao": "POST /v1/uploads",
+      "http": 403,
+      "erro": "At least one credit purchase is required for this account to use ephemeral uploads"
+    },
+    {
+      "n": 3,
+      "video": "iases",
+      "acao": "Correcao obvia: POST /v1/video_to_video model=aleph2 com videoUri em data URI (3,1MB), prompt curto",
+      "http": 400,
+      "erro": "You do not have enough credits to run this task."
+    }
+  ],
+  "creditos_gastos": 0,
+  "videos": {
+    "pmes": {
+      "entrada": "pmes_trecho_16x9.mp4",
+      "duracao_s": 5.667,
+      "dimensoes": "1280x720",
+      "task_id": null,
+      "saida": null,
+      "avaliacao": null
+    },
+    "iases": {
+      "entrada": "iases_trecho_9x16.mp4",
+      "duracao_s": 5.5,
+      "dimensoes": "720x1280",
+      "task_id": null,
+      "saida": null,
+      "avaliacao": null
+    }
+  },
+  "proximo_passo": "Comprar creditos em dev.runwayml.com (Billing). O custo aparece em estimatedCost ao criar a tarefa. Depois rodar novamente com o prompt completo do pedido com entregas/runway_teste/runway_aleph.py (usa aleph2 + upload): python3 runway_aleph.py log.json.",
+  "prompt_planejado_pmes": "prompt base do pedido + '(horizontal close-up, head and shoulders).'",
+  "prompt_planejado_iases": "prompt base do pedido + '(vertical selfie framing, arm-length close-up). Keep his sunglasses.'"
+}
