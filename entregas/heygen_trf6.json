@@ -1,14 +1,19 @@
 {
-  "status": "not_started",
-  "error": "Variável de ambiente HEYGEN_API_KEY não existe nesta sessão; nenhuma chamada à API do HeyGen foi feita e nenhum vídeo foi gerado.",
-  "video_id": null,
-  "video_url": null,
-  "thumbnail_url": null,
-  "duration": null,
-  "avatar_id": null,
-  "avatar_name": null,
-  "voice_id": null,
-  "voice_name": null,
-  "title": "TRF6 heteroidentificacao - reel",
-  "checked_at": "2026-09-25"
+  "tarefa": "Reel vertical HeyGen com o clone (avatar + voz) do Dr. Casil - IF Sudeste MG / TRF6 heteroidentificacao",
+  "titulo_previsto": "IF Sudeste MG / TRF6 heteroidentificacao - reel",
+  "status": "nao_gerado",
+  "motivo": "A variavel de ambiente HEYGEN_API_KEY nao existe nesta sessao (tamanho 0). Nenhuma chamada a API do HeyGen foi feita; avatares e vozes da conta nao foram listados e nenhum video foi gerado.",
+  "o_que_falta": [
+    "Cadastrar a chave da API do HeyGen no ambiente de nuvem do Claude Code (menu do ambiente na barra de titulo da sessao > Editar), como variavel de ambiente HEYGEN_API_KEY.",
+    "Abrir uma nova sessao, para que a variavel seja carregada, e rodar a tarefa de novo.",
+    "Conferir se a conta HeyGen tem o avatar pessoal do Dr. Casil (digital twin com video de treino e consentimento) e a voz clonada; sem avatar pessoal o video nao sera gerado com avatar de estoque."
+  ],
+  "parametros_previstos": {
+    "endpoint": "POST https://api.heygen.com/v2/video/generate",
+    "dimension": {"width": 1080, "height": 1920},
+    "fundo": "do proprio avatar ou cor #17181B",
+    "velocidade_voz": 1.0
+  },
+  "roteiro": "IF Sudeste MG: o TRF6 mandou refazer a heteroidentificação de uma candidata.\n\nA comissão disse que analisou cor da pele, textura do cabelo e traços faciais, e concluiu que ela não era público-alvo das cotas. Mas não explicou por quê.\n\nEm primeiro grau, a liminar foi negada. Nós recorremos ao TRF6.\n\nE o Tribunal, em tutela recursal, foi claro: indicar o método não é o mesmo que motivar a decisão.\n\nResultado: o ato foi suspenso, e uma comissão diversa vai fazer uma nova avaliação, com decisão individualizada e motivada, em até quarenta e cinco dias. Se esse prazo não for cumprido, fica assegurada a matrícula provisória.\n\nA heteroidentificação é legítima. Mas a decisão precisa ser motivada.\n\nCada caso é analisado individualmente. Se você passou por isso, fale com a gente.",
+  "data": "2026-10-02"
 }
