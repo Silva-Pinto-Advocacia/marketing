@@ -79,6 +79,7 @@ transcrição retimada, ou `{"src": 5.65}` para um instante do vídeo original.
 | `legenda` | campo antigo, equivale a `estilo.legenda` fixo |
 | `estilo.visual` | `"formal"` (padrão) ou `"dinamico"` (estilo.md §11): texto por trás da pessoa e selo na abertura, legenda que pula com marca-texto, um plano por frase com chicote, corte seco e soco de zoom, adesivos, palavras que caem, clarões e efeitos sonoros. Só em pé. Rodar o `recortar.py` antes do build para ter o texto por trás |
 | `abertura_atras` | dinâmico: as 1 ou 2 palavras gigantes da abertura (padrão: as duas primeiras do texto grande de abertura) |
+| `dinamico_var` | dinâmico: fixa variações que o build sorteia por vídeo: `marca` (caixa, sublinhado, cor), `atras` (sobe, zoom, letra), `tema` (branco, grafite, dourado), `numero` (circulo, sublinhado, raios), `queda` (queda, sobe, giro) |
 | `palavras_chave` | dinâmico: as palavras com marca-texto na legenda (padrão: números e palavras dos textos grandes, das cenas e do título) |
 | `legenda_gratuidade` | `true` deixa a legenda escrever gratuidade. Padrão: "gratuito(a)", "de graça" e "sem custo" saem da legenda (Provimento 205/2021); o áudio continua como foi falado |
 | (legenda) | também automática: se o queixo desce abaixo de ~1220 px, a legenda desce junto (até 1200 px, logo acima dos infográficos, que começam em 1440) |

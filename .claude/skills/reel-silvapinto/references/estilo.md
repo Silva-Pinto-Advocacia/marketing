@@ -190,6 +190,16 @@ continua o padrão da skill. Mesmos dados (cenas, textos grandes, título), outr
 - **Clarões de luz quente** nas trocas em chicote e na entrada das cenas; tremor nos zoom-hits.
 - **Efeitos sonoros por evento:** estalo nas entradas, chicote nas transições, tique nos cortes secos, impacto
   grave no número e na última palavra que cai.
+- **Varia a cada vídeo** ("varie os motion graphs sempre pra não ficar tudo igual", 02/10/2026). O build sorteia,
+  com a semente da fala (o mesmo vídeo sai sempre igual):
+  - marca-texto da legenda: caixa dourada, sublinhado desenhado ou a palavra em dourado;
+  - entrada do texto por trás: subindo, em zoom com desfoque ou letra a letra;
+  - adesivos: brancos, grafite ou dourados;
+  - o número: círculo desenhado, sublinhado ou raios;
+  - os textos grandes: caem, sobem com desfoque ou giram;
+  - cada adesivo entra de um jeito (mola, queda, lateral ou carimbo), nunca igual ao anterior, com a inclinação
+    alternando de lado; a sequência de transições é embaralhada, sem repetir a anterior.
+  Para fixar algo, `dinamico_var` no config (ex. `{"tema": "grafite", "marca": "cor"}`).
 
 ## 12. Cenas de tela cheia: `prova` e `ranking` (valem nos dois visuais)
 

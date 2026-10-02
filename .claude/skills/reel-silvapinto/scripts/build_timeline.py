@@ -183,10 +183,15 @@ if estilo["abertura"] == "brasao":
 # ---------- visual dinamico, abertura: o selo do brasao salta na metade inferior e o assunto aparece em letras
 # gigantes POR TRAS da pessoa (precisa do recorte do recortar.py; sem ele, so o selo) ----------
 dinamico = None
+# o dinamico varia a cada video (pedido do Casil, 02/10/2026: "varie os motion graphs sempre pra nao ficar tudo
+# igual"): o sorteio usa a semente da fala, entao o mesmo video sai sempre igual ao ser renderizado de novo
+rv = random.Random(semente + 7)
 if VISUAL == "dinamico":
     first = cards[0] if cards and cards[0]["t"] < 0.3 else None
     plain = lambda x: re.sub(r"<[^>]+>", " ", x or "").split()
-    atras = cfg.get("abertura_atras") or [w.upper() for w in plain(first["title"] if first else "") if len(w) > 1][:2]
+    sem_peso = {"QUE", "DOS", "DAS", "COM", "SEM", "POR", "UMA", "PARA", "NOS", "NAS", "SUA", "SEU"}
+    atras = cfg.get("abertura_atras") or [w.upper() for w in plain(first["title"] if first else "")
+                                          if len(w) > 2 and w.upper() not in sem_peso][:2]
     # o recorte cobre o comeco do primeiro trecho da EDL
     i0 = int(edl[0]["src"] * FPS) + 1; n_cut = 0
     while os.path.exists(os.path.join(proj, "cut_frames", f"c{i0 + n_cut:05d}.png")): n_cut += 1
@@ -199,7 +204,12 @@ if VISUAL == "dinamico":
         kick = (first["kicker"] if first else "") if atras else " ".join(plain(first["title"] if first else ""))
         selo = {"img": cfg["badge"], "t": 0.35, "fim": round(max(2.4, cut_until - 0.25) if atras else 2.75, 2), "texto": kick}
     if first and (atras or selo): cards.remove(first)
-    dinamico = {"atras": atras, "cutPrefix": "cut_frames/c", "cutUntil": cut_until if atras else 0.0, "selo": selo}
+    VAR = {"marca": ["caixa", "sublinhado", "cor"], "atras": ["sobe", "zoom", "letra"], "tema": ["branco", "grafite", "dourado"],
+           "numero": ["circulo", "sublinhado", "raios"], "queda": ["queda", "sobe", "giro"]}
+    var = {k: rv.choice(ops) for k, ops in VAR.items()}
+    var.update({k: v for k, v in (cfg.get("dinamico_var") or {}).items() if v in VAR.get(k, [])})
+    dinamico = {"atras": atras, "cutPrefix": "cut_frames/c", "cutUntil": cut_until if atras else 0.0, "selo": selo, "var": var}
+    print("dinamico: variacao", ", ".join(f"{k}={v}" for k, v in var.items()))
     intro_end = max(intro_end, (selo["fim"] + 0.4) if selo else 0.0, cut_until)
     print(f"dinamico: texto por tras {atras or 'nao'} ate {cut_until}s, selo {'sim' if selo else 'nao'}")
 
@@ -311,13 +321,21 @@ if VISUAL == "dinamico":
     for c in cand:
         if c < ini0 or c >= outro_at - 0.5: continue
         if c - ult >= 2.2 or (c in inicios and c - ult >= 1.2): cortes.append(c); ult = c
-    shots, a, lado = [], 0.0, 1
+    shots, a, lado, ant = [], 0.0, 1, None
     for i, c in enumerate(cortes + [round(out_total, 3)]):
         tr = None
         if i > 0:
-            if a in inicios or i == 1: tr = "whip"; lado = -lado
-            else: tr = "corte" if i % 2 else "punch"
+            # entrada de cena: chicote; no resto, a sequencia sorteada, sem repetir a troca anterior
+            tr = "whip" if (a in inicios or i == 1) else rv.choice([x for x in ("corte", "punch", "whip") if x != ant])
+            if tr == "whip": lado = rv.choice([-1, 1])
+            ant = tr
         shots.append({"t": a, "end": c, "scale": lv[i % len(lv)], "drift": 0.04, "tr": tr, "dir": lado}); a = c
+    # cada adesivo entra de um jeito, nunca igual ao anterior, e a inclinacao alterna de lado
+    ult, lado_t = None, rv.choice([-1, 1])
+    for sc in scenes:
+        if sc.get("type") == "prova": continue
+        sc["anim"] = rv.choice([x for x in ("mola", "queda", "lateral", "carimbo") if x != ult]); ult = sc["anim"]
+        sc["tilt"] = round(rv.uniform(1.5, 3.2) * lado_t, 1); lado_t = -lado_t
 hits = []
 for h in cfg.get("hits", []):
     try: t = T(h)
