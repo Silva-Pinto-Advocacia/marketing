@@ -285,7 +285,9 @@ tl = {"fps": FPS, "frameCount": frame_count, "framePrefix": cfg.get("frames", "s
       "outFrames": os.path.join(proj, "out_frames"), "brand": brand, "badge": P(cfg.get("badge")), "badgeWidth": cfg.get("badge_width"),
       "source": os.path.join(proj, cfg["video"]), "pivot": cfg.get("pivot"), "titulo": titulo,
       "abertura": abertura, "legenda": estilo["legenda"], "estilo": estilo,
-      "formato": "deitado" if DEITADO else "em_pe", "W": VW, "H": VH, "rosto": rosto, "capTop": cap_top}
+      "formato": "deitado" if DEITADO else "em_pe", "W": VW, "H": VH, "rosto": rosto, "capTop": cap_top,
+      # do reel na rua que o Casil aprovou (out/2026): zoom de entrada e transicao em zoom entre os planos
+      "transicao": cfg.get("transicao", "corte"), "entradaZoom": cfg.get("entrada_zoom")}
 json.dump(tl, open(os.path.join(proj, "timeline.json"), "w"), ensure_ascii=False, indent=1)
 print("cards", [(round(c["t"], 2), c["title"].replace("<br>", " ")) for c in cards])
 print("scenes", [(round(s["t"], 2), round(s["dur"], 2), s["type"]) for s in scenes])

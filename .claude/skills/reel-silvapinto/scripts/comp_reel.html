@@ -281,6 +281,11 @@ window.seek=async function(t){
   // shot framing (hard cut) + slow handheld-like drift inside the shot
   const sh=TL.shots.find(x=>t>=x.t&&t<x.end)||TL.shots[TL.shots.length-1];
   if(sh){ const L=Math.max(1,sh.end-sh.t); const p=(t-sh.t)/L; scale=sh.scale*(1+sh.drift*Math.sin(p*Math.PI)); dx=Math.sin(p*Math.PI*1.3)*6*(sh.scale-0.9); }
+  // transicao "zoom" (referencia PMERJ na rua, out/2026): em vez do corte seco entre enquadramentos, um zoom
+  // rapido de 0,2 s de um plano para o outro, com desfoque de movimento no meio
+  if(TL.transicao==='zoom'){ for(let i=1;i<TL.shots.length;i++){ const b=TL.shots[i].t, a=b-0.14, z=b+0.06; if(t>=a&&t<z){ const q=(t-a)/(z-a), s0=TL.shots[i-1].scale, s1=TL.shots[i].scale; scale=s0+(s1-s0)*eio(q); if(Math.abs(s1-s0)<0.05) scale*=1+0.18*Math.sin(Math.PI*q); blur=Math.max(blur,16*Math.sin(Math.PI*q)); } } }
+  // zoom de entrada: o video abre perto e recua para o enquadramento em ~0,5 s
+  if(TL.entradaZoom&&t<0.55){ const q=eo(t/0.55); scale*=1+(TL.entradaZoom-1)*(1-q); blur=Math.max(blur,10*(1-q)); }
   // zoom hits: fast in, ease out, no cut
   for(const h of TL.hits){ if(t>=h.t&&t<h.t+h.dur){ const q=prog(t,h.t,h.dur); const env=q<0.18?eo(q/0.18):1-eio((q-0.18)/0.82); scale*=1+(h.scale-1)*env; } }
   // silence cuts fall on shot boundaries; add a tiny 2-frame blur to soften the frame jump
