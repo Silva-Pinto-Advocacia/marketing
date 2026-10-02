@@ -50,6 +50,11 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   caixa dourada) são sorteadas a cada vídeo; o build imprime o que saiu. Se o Casil pedir uma variante
   ("abre com o brasão", "legenda com caixa"), fixar em `estilo` no `config.json` (ver `pipeline.md`). A
   faixa de decisão não é sorteada: entra sempre que o vídeo anuncia uma decisão.
+- **Nada sobre o rosto.** O build acha o rosto e tira o título de cima da cabeça e a legenda de cima do
+  queixo (imprime o que mudou). Conferir na prévia: a etiqueta "Explico na legenda" na testa foi
+  reclamação do Casil (02/10/2026).
+- **Logo grande no primeiro segundo** quando a abertura é com brasão: ele entra grande no centro da
+  metade inferior e só depois voa para o canto.
 - **A metade inferior sempre ocupada.** Os infográficos sincronizados com a fala são o diferencial do
   escritório (nenhum concorrente usa). Planejar uma cena para cada trecho de argumento, inclusive a
   `faixa` de decisão quando houver decisão, e não deixar a parte de baixo vazia por mais de 2 s fora da

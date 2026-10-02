@@ -134,10 +134,16 @@ if estilo["abertura"] == "brasao":
     except Exception:
         iw, ih = 1, 1
     linhas = (ab.get("titulo") or "").count("<br>") + 1 if ab.get("titulo") else 0
-    w0 = ab.get("largura", 220 if linhas <= 1 else 180); h0 = round(w0 * ih / iw)
+    # grande: e a logo do orgao ocupando a tela no primeiro segundo (pedido do Casil, 02/10/2026)
     bloco = (28 + linhas * 94 + 20) if (ab.get("titulo") or ab.get("kicker")) else 0
-    # em pe: no pe da metade inferior; deitado: centralizado na altura do painel da direita
-    y0 = ab.get("y", max(170, round((VH - h0 - 20 - bloco) / 2)) if DEITADO else min(1420, 1880 - bloco - 20 - h0))
+    w0 = ab.get("largura", (380 if linhas <= 1 else 330) if not DEITADO else (220 if linhas <= 1 else 180))
+    h0 = round(w0 * ih / iw)
+    lim = 760 - 40 - bloco if not DEITADO else 9999   # cabe na metade inferior com o nome embaixo
+    if h0 > lim: w0 = round(w0 * lim / h0); h0 = lim   # brasao alto e estreito
+    # em pe: centralizado na metade inferior (de 1120 a 1880; a legenda some enquanto ele esta la);
+    # deitado: centralizado na altura do painel da direita
+    y0 = ab.get("y", max(170, round((VH - h0 - 20 - bloco) / 2)) if DEITADO
+                else max(1100, round(1120 + (760 - h0 - 20 - bloco) / 2)))
     abertura = {"img": img, "kicker": ab.get("kicker", ""), "titulo": ab.get("titulo", ""), "t": T(ab.get("de"), 0.15),
                 "dur": ab.get("dur", 2.4), "w": w0, "h": h0, "y": y0, "cx": 1510 if DEITADO else 540,
                 "w1": cfg.get("badge_width", 200)}
@@ -221,17 +227,65 @@ for ins in inserts: ins["img"] = P(ins["img"])
 if abertura: abertura["img"] = P(abertura["img"])
 # titulo fixo no alto: o assunto do video visivel do inicio ao encerramento (padrao dos reels que mais
 # engajaram nos concorrentes); "chamada" e a linha menor embaixo, ex. "Explico na legenda"
+# ---------- rosto: onde fica a cabeca (com o zoom maximo dos planos), para o titulo e a legenda nao
+# cobrirem o rosto. Reel do PMES com avatar (02/10/2026): o titulo e o "Explico na legenda" caiam na testa.
+# Deteccao opcional: sem OpenCV, segue o layout padrao ----------
+rosto = None
+try:
+    import cv2
+    casc = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+    tops, bots = [], []
+    for i in range(1, frame_count + 1, max(1, frame_count // 16)):
+        g = cv2.imread(os.path.join(frames_dir, f"f{i:05d}.jpg"), cv2.IMREAD_GRAYSCALE)
+        if g is None: continue
+        fs = casc.detectMultiScale(g, 1.1, 6, minSize=(VW // 9, VW // 9))
+        if len(fs):
+            x, y, w, h = max(fs, key=lambda f: f[2] * f[3])
+            tops.append(y - 0.3 * h); bots.append(y + 1.15 * h)   # cabelo em cima, queixo e barba embaixo
+    if len(tops) >= 3:
+        tops.sort(); bots.sort()
+        smax = max([x["scale"] for x in shots] + [h["scale"] for h in hits] + [1.0])
+        py = VH * (cfg.get("pivot") or [50, 38])[1] / 100
+        top, bot = tops[len(tops) // 10], bots[-1 - len(bots) // 10]
+        rosto = {"topo": int(py + (top - py) * smax), "base": int(py + (bot - py) * smax)}
+        print(f"rosto: de {rosto['topo']} a {rosto['base']} px (com zoom {smax:.2f})")
+except Exception as e:
+    print("rosto: deteccao indisponivel,", type(e).__name__)
+
 titulo = None
 if cfg.get("titulo"):
     tc = cfg["titulo"] if isinstance(cfg["titulo"], dict) else {"texto": cfg["titulo"]}
     titulo = {"texto": tc["texto"], "chamada": tc.get("chamada"), "t": T(tc.get("de"), intro_end)}
+    if tc.get("topo") is not None: titulo["topo"] = tc["topo"]
+    if tc.get("alinhar"): titulo["alinhar"] = tc["alinhar"]
+    # em pe, o titulo fica em 300 px, centralizado. Se ali ele cobre a cabeca, sobe para a barra do alto,
+    # entre a logo do escritorio e a do orgao, compacto; se ainda assim nao couber, a chamada sai
+    if rosto and not DEITADO and "topo" not in titulo:
+        n = len(re.sub(r"<[^>]+>", "", tc["texto"]))
+        alt = 40 + 61 * (1 if n <= 30 else 2) + (60 if titulo["chamada"] else 0)
+        if 300 + alt > rosto["topo"] - 10:
+            larg = VW - 380 - (52 + (cfg.get("badge_width") or 200) + 24) - 52
+            linhas_t = -(-n * 22 // max(200, larg))   # ~22 px por caractere em 38 px
+            alt_c = 29 + 43 * linhas_t + (44 if titulo["chamada"] else 0)
+            titulo.update({"topo": 56, "alinhar": "barra", "compacto": True})
+            if 56 + alt_c > rosto["topo"] - 6 and titulo["chamada"]:
+                titulo["chamada"] = None
+                print("titulo: a chamada saiu para nao cobrir a cabeca")
+            print(f"titulo: subiu para a barra do alto (a cabeca comeca em {rosto['topo']} px)")
+# legenda: abaixo do queixo. A caixa tem 230 px e o texto encosta embaixo; em duas linhas ele comeca
+# ~60 px abaixo do topo da caixa. Desce no maximo ate 1200 (a base da caixa encosta nos infograficos, em 1440)
+cap_top = 1160
+if rosto and not DEITADO and rosto["base"] + 20 > cap_top + 60:
+    cap_top = min(1200, rosto["base"] - 40)
+    print(f"legenda: desceu para {cap_top} px (o queixo vai ate {rosto['base']} px)")
+    if rosto["base"] + 20 > cap_top + 60: print("aviso: o rosto desce ate a legenda; baixe os framings ou o pivot")
 tl = {"fps": FPS, "frameCount": frame_count, "framePrefix": cfg.get("frames", "src_frames") + "/f", "total": round(out_total, 2),
       "edl": edl, "chunks": chunks, "cards": cards, "scenes": scenes, "shots": shots, "hits": hits, "inserts": inserts,
       "cuts": edl_cuts, "introEnd": round(intro_end, 2), "outroAt": round(outro_at, 2),
       "outFrames": os.path.join(proj, "out_frames"), "brand": brand, "badge": P(cfg.get("badge")), "badgeWidth": cfg.get("badge_width"),
       "source": os.path.join(proj, cfg["video"]), "pivot": cfg.get("pivot"), "titulo": titulo,
       "abertura": abertura, "legenda": estilo["legenda"], "estilo": estilo,
-      "formato": "deitado" if DEITADO else "em_pe", "W": VW, "H": VH}
+      "formato": "deitado" if DEITADO else "em_pe", "W": VW, "H": VH, "rosto": rosto, "capTop": cap_top}
 json.dump(tl, open(os.path.join(proj, "timeline.json"), "w"), ensure_ascii=False, indent=1)
 print("cards", [(round(c["t"], 2), c["title"].replace("<br>", " ")) for c in cards])
 print("scenes", [(round(s["t"], 2), round(s["dur"], 2), s["type"]) for s in scenes])
