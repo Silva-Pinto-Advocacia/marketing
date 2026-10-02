@@ -214,6 +214,11 @@ a prova é o documento.
   A legenda desce para 1580 px e o título some enquanto ela está na tela.
   **Nunca uma questão inventada num vídeo publicado.** A folha-modelo (`"simulacao": true`, marca d'água
   SIMULAÇÃO) é só para teste.
+- **`documento`** (mesma cena, para decisão judicial, edital, gabarito): o dono anexa o arquivo no Redes com uma
+  descrição ("decisão judicial favorável"). A câmera vai até o trecho (`alvo`), até ele ocupar a largura da tela;
+  `tarjas` cobre de preto nomes, CPF, número de processo e o que mais identificar alguém, do primeiro ao último
+  quadro; o carimbo tem a cor do tom (`carimbo_cor`: `verde` para decisão favorável, `vermelho` padrão para erro
+  da banca, `dourado` neutro). Uma faixa escura embaixo mantém a legenda legível sobre a folha branca.
 - **`ranking`:** adesivo branco com uma lista de candidatos sem nomes nem números; o "VOCÊ" dourado sobe da última
   posição para o topo na palavra `sobe` (ex. "classificação"), com uma seta verde desenhando. Sem número de
   posição: ele não foi dito.

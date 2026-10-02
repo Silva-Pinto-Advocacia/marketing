@@ -101,7 +101,9 @@ Campos por tipo de cena: `counter` (`prefix`, `value`, `unit`, `sub`), `list` (`
 `cta` (`head`, `text`, `pill`), `prova` (tela cheia, ver estilo.md §12: `img` = print real da questão, `alvo` e
 `destaque` = [x, y, largura, altura] em pixels do print, âncoras `marca` (marca-texto e etiqueta), `circulo` (círculo e
 seta) e `carimbo`, `carimbo_texto`, `etiqueta` (HTML curto, ex. `"11<small>QUESTÕES</small>"`); sem `img` só com
-`"simulacao": true`, para teste), `ranking` (`head`, `sobe` = âncora da subida do VOCÊ), `faixa` (`head`: a manchete da decisão, até ~60 caracteres; caixa grafite com fio
+`"simulacao": true`, para teste), `documento` (a mesma cena para decisão, edital, gabarito: `img`, `alvo`, `destaque`,
+`tarjas` = lista de [x, y, largura, altura] cobertas de preto (dados pessoais), `carimbo_cor` = `verde`, `vermelho` ou
+`dourado`; o motor preenche tudo a partir do anexo do Redes), `ranking` (`head`, `sobe` = âncora da subida do VOCÊ), `faixa` (`head`: a manchete da decisão, até ~60 caracteres; caixa grafite com fio
 dourado que se desenha, kicker e manchete entrando palavra a palavra). Todos aceitam `kicker`. As cenas nunca se sobrepõem a um texto grande:
 `build_timeline.py` apara automaticamente.
 
