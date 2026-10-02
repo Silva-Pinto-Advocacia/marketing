@@ -45,6 +45,10 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   o `titulo`, os números viram textos e infográficos). Se o assunto for técnico demais para 60 s,
   propor o formato "Explico na legenda": vídeo de 15 a 30 s com `titulo.chamada` e a copy inteira na
   legenda. Ver `roteiro.md`, seção 0, e `formatos.md`.
+- **A metade inferior sempre ocupada.** Os infográficos sincronizados com a fala são o diferencial do
+  escritório (nenhum concorrente usa). Planejar uma cena para cada trecho de argumento, inclusive a
+  `faixa` de decisão quando houver decisão, e não deixar a parte de baixo vazia por mais de 2 s fora da
+  abertura, dos textos grandes e do encerramento (o build avisa).
 - **Chamada com palavra-chave e material** ("comente CBMMG que eu te envio a análise") no `cta`, além
   do WhatsApp.
 - **Entregar pronto para publicar**: o reel do IASES foi ao ar sem a edição. Na entrega, lembrar que

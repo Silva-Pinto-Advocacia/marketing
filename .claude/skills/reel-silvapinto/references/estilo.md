@@ -28,6 +28,10 @@ aprovado explicitamente por ele; a seção "O que foi rejeitado" é tão importa
   quando estava com 435 px e pediu que a logo do órgão esteja SEMPRE presente (IASES, set/2026). A mesma
   imagem entra como insert de ~1,3 s sobre o vídeo desfocado na primeira menção ao órgão.
 - Barra de progresso dourada de 6 px no topo.
+- Abertura opcional com brasão central (`abertura_brasao`, out/2026): o brasão entra grande na metade
+  inferior, com halo dourado suave, kicker e título em dourado e dois fios que se abrem; aos 2,4 s voa para o
+  canto e vira a logo fixa do órgão. Diz o concurso no primeiro segundo sem tirar o rosto de cena. Veio da
+  análise do Pedro Auar (brasão grande com pílula azul e setas), refeita na nossa identidade.
 - Encerramento: fundo do vídeo desfocado e escurecido, monograma, "FALE COM A GENTE PELO WHATSAPP." em
   Bebas Neue 190 px com "WhatsApp" em dourado, pílula verde #25D366 com o link, linha de marca em mono e o
   aviso do Provimento 205/2021 da OAB em 22 px. Dura ~3,6 s, com whoosh na entrada.
@@ -68,8 +72,16 @@ Armadilhas de renderização que já custaram versões:
   `padding:22px 54px`). Ele rejeitou o halo de largura fixa: "passa muito do texto, fica um espaço em branco".
 - Cada grupo entra com um pop de escala 0,92 → 1 em 0,16 s.
 - Ficam ocultas durante os textos grandes e o encerramento.
+- Variante `legenda: "caixa"` (out/2026): caixa em degradê dourado atrás da palavra falada, deslizando de
+  uma palavra para a outra em 0,14 s; a palavra fica em grafite e o resto segue as regras acima.
 
 ## 5. Infográficos (cena inferior, y 1500-1880, largura total)
+
+**A metade inferior é o nosso diferencial.** Nenhum dos 14 concorrentes analisados usa infográfico
+sincronizado com a fala; o Casil pediu (out/2026) que ela trabalhe o vídeo inteiro, como no modelo PMERJ.
+Fora da abertura, dos textos grandes e do encerramento, sempre há uma cena embaixo; o `build_timeline.py`
+avisa quando passa de 2 s vazia. Uma versão que concentrou os elementos no alto foi recusada: "está
+faltando explorar a metade inferior".
 
 Um por trecho de fala, sincronizado com a palavra exata (âncoras no config). Entram deslizando da direita
 (120 px, 0,45 s) e saem pela esquerda. Tipos disponíveis em `comp_reel.html`:
@@ -81,6 +93,10 @@ Um por trecho de fala, sincronizado com a palavra exata (âncoras no config). En
 - `text`: manchete Bebas dourada 104 px em até 2 linhas + frase de apoio 34 px. Ele pediu "mais destaque"
   para frases como "Direito subjetivo à nomeação"; foi assim que ficou.
 - `cta`: manchete + frase + pílula verde do WhatsApp.
+- `faixa`: a faixa de decisão, com cara de notícia mas na nossa identidade: caixa grafite, fio dourado
+  vertical que se desenha, kicker mono ("DECISÃO FAVORÁVEL · IASES") e manchete Manrope 800 56 px entrando
+  palavra a palavra. Usar no trecho em que ele anuncia a decisão. Não é a faixa branca com etiqueta azul do
+  concorrente, que ele pediu para não copiar.
 
 Kicker sempre presente: mono 20 px, caixa alta, com traço dourado à esquerda.
 

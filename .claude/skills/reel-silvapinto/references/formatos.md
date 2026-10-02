@@ -45,6 +45,15 @@ forte com edição simples bate pauta fraca com edição caprichada.
 4. **Logo do escritório discreto** embaixo ou no canto: o nosso já está no canto.
 5. **Tela dividida** para reagir a um caso: ainda não existe na skill; se entrar, é um campo novo.
 
+## Pedro Auar, sentença da PMERJ (outubro de 2026)
+
+Reel de 2 min 10 s com o cliente ao lado e a sentença na mão: 3 cortes, 0,9 transição por minuto, logo do
+escritório só no cartão final. O que funciona ali é o cliente em cena e a prova física, não a montagem. Três
+elementos gráficos viraram opções nossas, refeitos na nossa identidade (ver `estilo.md`): o brasão grande do
+órgão na abertura (`abertura_brasao`), a faixa com cara de notícia (cena `faixa`) e o destaque em caixa da
+palavra falada (`legenda: "caixa"`). O que não copiar: 2 minutos de duração, rostos pequenos contra a luz,
+legenda quebrada no meio da frase e nenhuma chamada para contato.
+
 ## O que isso muda no nosso estilo
 
 - **Manter** a edição rápida, a legenda palavra a palavra, a logo do órgão e o grafite e dourado. É o
