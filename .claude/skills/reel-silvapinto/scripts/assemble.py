@@ -27,11 +27,28 @@ for i, e in enumerate(tl["edl"]):
     parts.append(f"[1:a]atrim=start={e['src']}:end={e['src'] + e['dur']},asetpts=PTS-STARTPTS,afade=t=in:d=0.012,afade=t=out:st={max(0, e['dur'] - 0.012)}:d=0.012[s{i}]")
 n = len(tl["edl"])
 parts.append("".join(f"[s{i}]" for i in range(n)) + f"concat=n={n}:v=0:a=1,aresample=48000,aformat=channel_layouts=stereo,loudnorm=I=-15:TP=-1.5:LRA=11,aresample=48000[voice]")
-times = [c["t"] - 0.25 for c in tl["cards"] if c["t"] > 0.5] + [tl["outroAt"] - 0.2] + [x["t"] - 0.15 for x in tl.get("inserts", [])]
+# efeitos: no formal, o whoosh antes de cada texto grande, do insert e do encerramento; os eventos de
+# timeline["sfx"] (cenas prova e ranking; no dinamico, tudo) vem com o tipo de som de cada um
+SFX = {
+    "pop": "sine=f=520:d=0.12:r=48000,afade=t=out:st=0.02:d=0.1,asetrate=48000*1.6,aresample=48000,volume=0.8",
+    "tick": "anoisesrc=d=0.05:c=white:a=0.9:r=48000,highpass=f=2500,afade=t=out:st=0.005:d=0.045,volume=0.7",
+    "boom": "sine=f=58:d=0.7:r=48000,afade=t=out:st=0.03:d=0.65,volume=2.2",
+    "scratch": "anoisesrc=d=0.45:c=brown:a=0.9:r=48000,highpass=f=900,lowpass=f=5000,tremolo=f=18:d=0.8,afade=t=in:d=0.04,afade=t=out:st=0.3:d=0.15,volume=1.4",
+}
+VOL = {"whoosh": 0.35, "pop": 0.3, "tick": 0.25, "boom": 0.45, "scratch": 0.35}
+arq = {"whoosh": wh}
+for k, f in SFX.items():
+    arq[k] = os.path.join(proj, f"sfx_{k}.wav")
+    subprocess.run([FF, "-y", "-hide_banner", "-loglevel", "error", "-f", "lavfi", "-i", f, "-ac", "2", arq[k]], check=True)
+eventos = [] if tl.get("visual") == "dinamico" else (
+    [("whoosh", c["t"] - 0.25) for c in tl["cards"] if c["t"] > 0.5] + [("whoosh", tl["outroAt"] - 0.2)]
+    + [("whoosh", x["t"] - 0.15) for x in tl.get("inserts", [])])
+eventos += [(e["k"], e["t"]) for e in tl.get("sfx", []) if e["k"] in arq]
+times = [t for _, t in eventos]
 inputs = ["-i", src]
-for i, t in enumerate(times):
-    inputs += ["-i", wh]; ms = int(max(t, 0) * 1000)
-    parts.append(f"[{i + 2}]adelay={ms}|{ms},volume=0.35[w{i}]")
+for i, (k, t) in enumerate(eventos):
+    inputs += ["-i", arq[k]]; ms = int(max(t, 0) * 1000)
+    parts.append(f"[{i + 2}]adelay={ms}|{ms},volume={VOL[k]}[w{i}]")
 parts.append("[voice]" + "".join(f"[w{i}]" for i in range(len(times))) + f"amix=inputs={len(times) + 1}:normalize=0:duration=first,alimiter=limit=0.95,aresample=48000,apad[out]")
 fc = ";".join(parts)
 subprocess.run([FF, "-y", "-hide_banner", "-loglevel", "error",

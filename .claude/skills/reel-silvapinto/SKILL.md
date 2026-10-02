@@ -38,8 +38,10 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
 - **Aviso de data não é pauta.** Se o vídeo só anuncia um prazo ou resultado ("amanhã sai…"), sugerir
   reescrever o gancho para o que o candidato perde ou pode recuperar (exemplos em `roteiro.md`); os
   posts assim tiveram zero interações.
-- **Prova na tela.** Decisão, edital, gabarito ou trecho de sentença entram como `insert`. Se ele
-  citar um documento que não veio junto, pedir o arquivo.
+- **Prova na tela.** Decisão, edital, gabarito ou trecho de sentença entram como `insert`; a questão do
+  caderno entra como cena `prova` em tela cheia (marca-texto, círculo, seta e carimbo na palavra dita, ver
+  estilo.md §12). Se ele citar um documento que não veio junto, pedir o arquivo. Nunca questão inventada
+  num vídeo publicado: a folha-modelo é só para teste.
 - **Título fixo em todo reel** (`titulo` no `config.json`): o assunto ou o grupo afetado, visível do
   início ao encerramento. Com ele, um texto grande de gancho basta na abertura.
 - **Copy primeiro.** Se ele mandar a legenda do post, o roteiro do vídeo sai dela (título com virada vira
@@ -50,6 +52,10 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   caixa dourada) são sorteadas a cada vídeo; o build imprime o que saiu. Se o Casil pedir uma variante
   ("abre com o brasão", "legenda com caixa"), fixar em `estilo` no `config.json` (ver `pipeline.md`). A
   faixa de decisão não é sorteada: entra sempre que o vídeo anuncia uma decisão.
+- **Dois visuais: formal (padrão) e dinâmico** (`estilo.visual`, estilo.md §11): o dinâmico tem texto
+  por trás da pessoa na abertura, legenda que pula com marca-texto, um plano por frase com chicote, adesivos,
+  palavras que caem, clarões e efeitos sonoros. Usar quando o Casil pedir ("mais dinâmico", "menos formal")
+  ou quando o Redes mandar; rodar o `recortar.py` antes do build.
 - **Nada sobre o rosto.** O build acha o rosto e tira o título de cima da cabeça e a legenda de cima do
   queixo (imprime o que mudou). Conferir na prévia: a etiqueta "Explico na legenda" na testa foi
   reclamação do Casil (02/10/2026).

@@ -164,3 +164,57 @@ Seguir o eixo comercial da skill `post-blog-silvapinto`: o recurso administrativ
 judicial continua aberta, isso não se faz sozinho. Usar "pode ser possível", "em muitos casos". Nunca
 prometer resultado. Aviso do Provimento 205/2021 no encerramento. Dados fixos: Dr. Casil da Silva Pinto,
 OAB/RJ 189.781, WhatsApp wa.me/5521993996262, @silvapinto.adv.
+
+## 11. Visual dinâmico (`estilo.visual: "dinamico"`, aprovado em 02/10/2026)
+
+O Casil pediu algo menos formal ("me agrada muito, porém eu gostaria de tentar algo diferente") e aprovou o
+teste no vídeo da Polícia Penal RS ("ficou muito bom"). É um segundo visual, escolhido, nunca sorteado; o formal
+continua o padrão da skill. Mesmos dados (cenas, textos grandes, título), outra encenação:
+
+- **Abertura com texto por trás da pessoa.** O assunto em letras gigantes douradas (Bebas, até 350 px, encolhe
+  para caber), uma palavra de cada vez, nos primeiros 3 s, passando POR TRÁS da cabeça. O `recortar.py` recorta a
+  pessoa do fundo (rembg) e a composição a põe por cima do texto. Sem o recorte, a abertura fica só com o selo.
+- **Selo do brasão:** disco branco com fio dourado e o brasão do órgão, que salta com mola na metade inferior,
+  com o kicker numa etiqueta grafite inclinada; some aos ~2,7 s e o brasão aparece no canto com mola.
+- **Legenda que pula:** caixa alta, 94 px, entra com mola e um leve giro; cada palavra aparece quando é falada;
+  as palavras-chave (números e palavras dos textos grandes, das cenas e do título, ou `palavras_chave`) ganham
+  marca-texto dourado inclinado.
+- **Um plano por frase (2,2 s no mínimo), com transição:** chicote lateral com borrão de movimento (na entrada de
+  cada cena), corte seco com tremor de câmera e soco de zoom, alternados. Diferente do v4 recusado ("corte a cada
+  frase com enquadramento aleatório"): lá o corte era seco e sem motivo; aqui cada troca tem movimento e som, e os
+  enquadramentos seguem o rosto medido.
+- **Adesivos:** os infográficos `text` e `cta` viram cartões brancos inclinados com contorno dourado e etiqueta
+  grafite, que entram com mola e giro e saem encolhendo. No `counter`, o número ganha um círculo dourado
+  desenhado à mão e uma explosão de raios.
+- **Textos grandes caem:** cada palavra cai de cima (escala 2,6 → 1) com tremor.
+- **Clarões de luz quente** nas trocas em chicote e na entrada das cenas; tremor nos zoom-hits.
+- **Efeitos sonoros por evento:** estalo nas entradas, chicote nas transições, tique nos cortes secos, impacto
+  grave no número e na última palavra que cai.
+- **Varia a cada vídeo** ("varie os motion graphs sempre pra não ficar tudo igual", 02/10/2026). O build sorteia,
+  com a semente da fala (o mesmo vídeo sai sempre igual):
+  - marca-texto da legenda: caixa dourada, sublinhado desenhado ou a palavra em dourado;
+  - entrada do texto por trás: subindo, em zoom com desfoque ou letra a letra;
+  - adesivos: brancos, grafite ou dourados;
+  - o número: círculo desenhado, sublinhado ou raios;
+  - os textos grandes: caem, sobem com desfoque ou giram;
+  - cada adesivo entra de um jeito (mola, queda, lateral ou carimbo), nunca igual ao anterior, com a inclinação
+    alternando de lado; a sequência de transições é embaralhada, sem repetir a anterior.
+  Para fixar algo, `dinamico_var` no config (ex. `{"tema": "grafite", "marca": "cor"}`).
+
+## 12. Cenas de tela cheia: `prova` e `ranking` (valem nos dois visuais)
+
+Do estudo do plugin edit-labs-ai (out/2026): "mostrar uma prova, apontar o detalhe, concluir". Para o escritório,
+a prova é o documento.
+
+- **`prova`:** a folha da questão (print REAL do caderno, `img`) entra girando em tela cheia sobre o vídeo
+  desfocado, com um clarão; a câmera se aproxima; o marca-texto passa no trecho `destaque`; um círculo vermelho e
+  uma seta se desenham em volta do `alvo` (a alternativa ou o trecho em discussão); o carimbo
+  (`carimbo_texto`, padrão "PASSÍVEL DE ANULAÇÃO") cai com impacto e tremor; uma etiqueta (`etiqueta`, ex.
+  "11 questões") salta no canto; um clarão branco devolve para o rosto. Cada ação na palavra dita. Dura 3 a 4,5 s.
+  A legenda desce para 1580 px e o título some enquanto ela está na tela.
+  **Nunca uma questão inventada num vídeo publicado.** A folha-modelo (`"simulacao": true`, marca d'água
+  SIMULAÇÃO) é só para teste.
+- **`ranking`:** adesivo branco com uma lista de candidatos sem nomes nem números; o "VOCÊ" dourado sobe da última
+  posição para o topo na palavra `sobe` (ex. "classificação"), com uma seta verde desenhando. Sem número de
+  posição: ele não foi dito.
+

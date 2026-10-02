@@ -7,6 +7,7 @@ Chromium (Playwright) para renderizar a composição HTML quadro a quadro. Um v�
 
 ```bash
 pip install -q imageio-ffmpeg faster-whisper pillow "opencv-python-headless==4.10.0.84"
+pip install -q rembg onnxruntime                     # só para o visual dinâmico (texto por trás da pessoa)
 npm i -q playwright@1.56.1 --no-audit --no-fund      # o Chromium já está em /opt/pw-browsers
 ```
 
@@ -44,6 +45,7 @@ projeto/
 SK=<caminho da skill>/scripts
 python3 $SK/transcribe.py projeto            # words.json + sents.json (modelo medium, ~1 min por min de áudio)
 python3 $SK/extract_frames.py projeto        # 24 fps, 1080x1920 (1920x1080 deitado), limpeza e reenquadramento conforme config
+python3 $SK/recortar.py projeto              # só no visual dinâmico: recorta a pessoa nos 3 s da abertura (~1 min; pip install rembg onnxruntime)
 python3 $SK/build_timeline.py projeto        # timeline.json (EDL, legendas, planos, cenas, hits)
 node $SK/render_reel.js projeto/timeline.json preview "1.5,14,30,66,84"   # PNGs em projeto/preview
 node $SK/render_reel.js projeto/timeline.json frames                       # todos os quadros (~8 min)
@@ -75,6 +77,10 @@ transcrição retimada, ou `{"src": 5.65}` para um instante do vídeo original.
 | `estilo` | as variantes visuais, **sorteadas por padrão**: `{"abertura": "sorteio" \| "texto" \| "brasao", "legenda": "sorteio" \| "dourada" \| "caixa"}`. Omitido ou `"sorteio"`, o build sorteia e imprime o resultado (`estilo: abertura=brasao (sorteio), legenda=dourada (escolhido)`), que também fica em `timeline.json`. A semente sai da própria fala: o mesmo vídeo sai sempre igual ao renderizar de novo; `semente` (número) força outro sorteio. Quando o Casil pedir uma variante, fixe-a aqui. `abertura: brasao` sem `badge` volta para texto |
 | `abertura_brasao` | textos e ajustes da abertura com brasão (quando ela sai, sorteada ou escolhida): o brasão entra grande no centro da metade inferior, com `kicker` e `titulo` em dourado embaixo, e aos `dur` segundos (padrão 2,4) voa para o canto, onde vira a logo fixa (`badge`). Sem este campo, usa o kicker e o título do texto grande de abertura, que ele substitui. Opcionais: `img` (padrão: o `badge`), `de`, `dur`, `largura` (em pé, 380; 330 com título em duas linhas, reduzida se o brasão for alto demais para a metade inferior; deitado, 220/180) e `y`. Em pé, a legenda some enquanto o brasão está no centro, como acontece com os textos grandes. O texto grande seguinte é empurrado para depois do pouso |
 | `legenda` | campo antigo, equivale a `estilo.legenda` fixo |
+| `estilo.visual` | `"formal"` (padrão) ou `"dinamico"` (estilo.md §11): texto por trás da pessoa e selo na abertura, legenda que pula com marca-texto, um plano por frase com chicote, corte seco e soco de zoom, adesivos, palavras que caem, clarões e efeitos sonoros. Só em pé. Rodar o `recortar.py` antes do build para ter o texto por trás |
+| `abertura_atras` | dinâmico: as 1 ou 2 palavras gigantes da abertura (padrão: as duas primeiras do texto grande de abertura) |
+| `dinamico_var` | dinâmico: fixa variações que o build sorteia por vídeo: `marca` (caixa, sublinhado, cor), `atras` (sobe, zoom, letra), `tema` (branco, grafite, dourado), `numero` (circulo, sublinhado, raios), `queda` (queda, sobe, giro) |
+| `palavras_chave` | dinâmico: as palavras com marca-texto na legenda (padrão: números e palavras dos textos grandes, das cenas e do título) |
 | `legenda_gratuidade` | `true` deixa a legenda escrever gratuidade. Padrão: "gratuito(a)", "de graça" e "sem custo" saem da legenda (Provimento 205/2021); o áudio continua como foi falado |
 | (legenda) | também automática: se o queixo desce abaixo de ~1220 px, a legenda desce junto (até 1200 px, logo acima dos infográficos, que começam em 1440) |
 | `max_vazio` | segundos que a metade inferior (deitado, o painel da direita) pode ficar vazia antes de o build avisar (padrão 2) |
@@ -92,7 +98,10 @@ transcrição retimada, ou `{"src": 5.65}` para um instante do vídeo original.
 
 Campos por tipo de cena: `counter` (`prefix`, `value`, `unit`, `sub`), `list` (`items`, `stagger`),
 `timeline` (`nodes` [{b,l}], `sub`), `sum` (`terms`, `value`, `unit`), `text` (`head`, `text`),
-`cta` (`head`, `text`, `pill`), `faixa` (`head`: a manchete da decisão, até ~60 caracteres; caixa grafite com fio
+`cta` (`head`, `text`, `pill`), `prova` (tela cheia, ver estilo.md §12: `img` = print real da questão, `alvo` e
+`destaque` = [x, y, largura, altura] em pixels do print, âncoras `marca` (marca-texto e etiqueta), `circulo` (círculo e
+seta) e `carimbo`, `carimbo_texto`, `etiqueta` (HTML curto, ex. `"11<small>QUESTÕES</small>"`); sem `img` só com
+`"simulacao": true`, para teste), `ranking` (`head`, `sobe` = âncora da subida do VOCÊ), `faixa` (`head`: a manchete da decisão, até ~60 caracteres; caixa grafite com fio
 dourado que se desenha, kicker e manchete entrando palavra a palavra). Todos aceitam `kicker`. As cenas nunca se sobrepõem a um texto grande:
 `build_timeline.py` apara automaticamente.
 
