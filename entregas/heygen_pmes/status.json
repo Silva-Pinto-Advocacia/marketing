@@ -1,0 +1,14 @@
+{
+  "status": "concluido",
+  "data": "2026-10-02",
+  "video_id": "c897063bf1fe4982b284bcfc7ad4f5dc",
+  "titulo": "PMES Soldado 2026 - Terno Bege",
+  "avatar": {"nome": "Terno Bege", "id": "5938d6e63b6d487b842d3832a5bf5eed", "tipo": "avatar (video)", "grupo_id": "ed083304752f4ed299a217f32c395799"},
+  "audio_asset_id": "1bccb97c44824cb981a040b335875a01",
+  "arquivo": "pmes_terno_bege.mp4",
+  "duracao_s": 29.77,
+  "dimensoes": "1080x1920",
+  "codecs": {"video": "h264", "audio": "aac"},
+  "avaliacao_visual": "6 quadros (1, 6, 11, 16, 21 e 27 s): enquadramento vertical nativo (meio corpo, fundo de marmore claro, terno bege e gravata preta), sem tarjas. A boca muda de forma entre os quadros e acompanha a fala, e o rosto nao deforma. Ha gestos naturais de maos e uma aproximacao a camera aos 11 s. Falta conferir a sincronia exata assistindo com som.",
+  "observacao": "O endpoint /v2/video/generate esta marcado como legado e sera removido em 2026-10-31; as proximas geracoes devem usar POST /v3/videos."
+}
