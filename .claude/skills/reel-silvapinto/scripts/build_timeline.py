@@ -18,6 +18,11 @@ import json, os, re, sys
 FPS = 24
 proj = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else ".")
 cfg = json.load(open(os.path.join(proj, "config.json")))
+# formato: "em_pe" (padrao, 1080x1920, Reels e Stories) ou "deitado" (1920x1080). Deitado, o rosto fica no
+# centro e os textos grandes, os infograficos e o brasao da abertura vao para o painel da direita.
+DEITADO = cfg.get("formato") == "deitado"
+VW, VH = (1920, 1080) if DEITADO else (1080, 1920)
+AREA = "painel da direita vazio" if DEITADO else "metade inferior vazia"
 words = json.load(open(os.path.join(proj, cfg.get("words", "words.json"))))
 sents = json.load(open(os.path.join(proj, cfg.get("sents", "sents.json"))))
 frames_dir = os.path.join(proj, cfg.get("frames", "src_frames"))
@@ -129,11 +134,19 @@ if estilo["abertura"] == "brasao":
     except Exception:
         iw, ih = 1, 1
     linhas = (ab.get("titulo") or "").count("<br>") + 1 if ab.get("titulo") else 0
-    w0 = ab.get("largura", 220 if linhas <= 1 else 180); h0 = round(w0 * ih / iw)
+    # grande: e a logo do orgao ocupando a tela no primeiro segundo (pedido do Casil, 02/10/2026)
     bloco = (28 + linhas * 94 + 20) if (ab.get("titulo") or ab.get("kicker")) else 0
-    y0 = ab.get("y", min(1420, 1880 - bloco - 20 - h0))
+    w0 = ab.get("largura", (380 if linhas <= 1 else 330) if not DEITADO else (220 if linhas <= 1 else 180))
+    h0 = round(w0 * ih / iw)
+    lim = 760 - 40 - bloco if not DEITADO else 9999   # cabe na metade inferior com o nome embaixo
+    if h0 > lim: w0 = round(w0 * lim / h0); h0 = lim   # brasao alto e estreito
+    # em pe: centralizado na metade inferior (de 1120 a 1880; a legenda some enquanto ele esta la);
+    # deitado: centralizado na altura do painel da direita
+    y0 = ab.get("y", max(170, round((VH - h0 - 20 - bloco) / 2)) if DEITADO
+                else max(1100, round(1120 + (760 - h0 - 20 - bloco) / 2)))
     abertura = {"img": img, "kicker": ab.get("kicker", ""), "titulo": ab.get("titulo", ""), "t": T(ab.get("de"), 0.15),
-                "dur": ab.get("dur", 2.4), "w": w0, "h": h0, "y": y0, "w1": cfg.get("badge_width", 200)}
+                "dur": ab.get("dur", 2.4), "w": w0, "h": h0, "y": y0, "cx": 1510 if DEITADO else 540,
+                "w1": cfg.get("badge_width", 200)}
     ab_end = abertura["t"] + abertura["dur"] + 0.75
     # o texto grande seguinte espera o brasao pousar no canto
     for c in cards:
@@ -153,23 +166,24 @@ for i, sc in enumerate(raw):
     for c in cards:
         if c["t"] > 0 and t0 < c["t"] < t1: t1 = min(t1, c["t"])
         if c["t"] <= t0 < c["t"] + c["dur"]: t0 = c["t"] + c["dur"]
-    # nem o brasao central da abertura, que ocupa a mesma metade inferior
+    # nem o brasao central da abertura, que ocupa a mesma area
     if abertura and t0 < abertura["t"] + abertura["dur"] + 0.1: t0 = abertura["t"] + abertura["dur"] + 0.1
     d = dict(sc); d.pop("from", None); d.pop("to", None)
     if "stagger" in d: d["stagger"] = [T(x) - t0 if isinstance(x, dict) else x for x in d["stagger"]]
     d.update({"t": round(t0, 3), "dur": round(t1 - t0, 3)})
     if d["dur"] > 0.4: scenes.append(d)
 
-# ---------- a metade inferior e o nosso diferencial (nenhum concorrente usa infografico): avisar buracos ----------
+# ---------- a area dos infograficos (metade inferior; deitado, o painel da direita) e o nosso diferencial
+# (nenhum concorrente usa infografico): avisar buracos ----------
 occ = sorted([(s["t"], s["t"] + s["dur"]) for s in scenes] + [(c["t"], c["t"] + c["dur"]) for c in cards]
              + ([(abertura["t"], abertura["t"] + abertura["dur"] + 0.75)] if abertura else []))
 gap_from = intro_end
 for a, b in occ:
     if a - gap_from > cfg.get("max_vazio", 2.0) and gap_from < outro_at:
-        print(f"aviso: metade inferior vazia de {gap_from:.1f}s a {min(a, outro_at):.1f}s; acrescente uma cena")
+        print(f"aviso: {AREA} de {gap_from:.1f}s a {min(a, outro_at):.1f}s; acrescente uma cena")
     gap_from = max(gap_from, b)
 if outro_at - gap_from > cfg.get("max_vazio", 2.0):
-    print(f"aviso: metade inferior vazia de {gap_from:.1f}s a {outro_at:.1f}s; acrescente uma cena")
+    print(f"aviso: {AREA} de {gap_from:.1f}s a {outro_at:.1f}s; acrescente uma cena")
 
 # ---------- camera, modeled on the reference edits (see references/estilo.md) ----------
 sent_starts = [round(x["s"], 3) for x in S]
@@ -213,16 +227,67 @@ for ins in inserts: ins["img"] = P(ins["img"])
 if abertura: abertura["img"] = P(abertura["img"])
 # titulo fixo no alto: o assunto do video visivel do inicio ao encerramento (padrao dos reels que mais
 # engajaram nos concorrentes); "chamada" e a linha menor embaixo, ex. "Explico na legenda"
+# ---------- rosto: onde fica a cabeca (com o zoom maximo dos planos), para o titulo e a legenda nao
+# cobrirem o rosto. Reel do PMES com avatar (02/10/2026): o titulo e o "Explico na legenda" caiam na testa.
+# Deteccao opcional: sem OpenCV, segue o layout padrao ----------
+rosto = None
+try:
+    import cv2
+    casc = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+    tops, bots = [], []
+    for i in range(1, frame_count + 1, max(1, frame_count // 16)):
+        g = cv2.imread(os.path.join(frames_dir, f"f{i:05d}.jpg"), cv2.IMREAD_GRAYSCALE)
+        if g is None: continue
+        fs = casc.detectMultiScale(g, 1.1, 6, minSize=(VW // 9, VW // 9))
+        if len(fs):
+            x, y, w, h = max(fs, key=lambda f: f[2] * f[3])
+            tops.append(y - 0.3 * h); bots.append(y + 1.15 * h)   # cabelo em cima, queixo e barba embaixo
+    if len(tops) >= 3:
+        tops.sort(); bots.sort()
+        smax = max([x["scale"] for x in shots] + [h["scale"] for h in hits] + [1.0])
+        py = VH * (cfg.get("pivot") or [50, 38])[1] / 100
+        top, bot = tops[len(tops) // 10], bots[-1 - len(bots) // 10]
+        rosto = {"topo": int(py + (top - py) * smax), "base": int(py + (bot - py) * smax)}
+        print(f"rosto: de {rosto['topo']} a {rosto['base']} px (com zoom {smax:.2f})")
+except Exception as e:
+    print("rosto: deteccao indisponivel,", type(e).__name__)
+
 titulo = None
 if cfg.get("titulo"):
     tc = cfg["titulo"] if isinstance(cfg["titulo"], dict) else {"texto": cfg["titulo"]}
     titulo = {"texto": tc["texto"], "chamada": tc.get("chamada"), "t": T(tc.get("de"), intro_end)}
+    if tc.get("topo") is not None: titulo["topo"] = tc["topo"]
+    if tc.get("alinhar"): titulo["alinhar"] = tc["alinhar"]
+    # em pe, o titulo fica em 300 px, centralizado. Se ali ele cobre a cabeca, sobe para a barra do alto,
+    # entre a logo do escritorio e a do orgao, compacto; se ainda assim nao couber, a chamada sai
+    if rosto and not DEITADO and "topo" not in titulo:
+        n = len(re.sub(r"<[^>]+>", "", tc["texto"]))
+        alt = 40 + 61 * (1 if n <= 30 else 2) + (60 if titulo["chamada"] else 0)
+        if 300 + alt > rosto["topo"] - 10:
+            larg = VW - 380 - (52 + (cfg.get("badge_width") or 200) + 24) - 52
+            linhas_t = -(-n * 22 // max(200, larg))   # ~22 px por caractere em 38 px
+            alt_c = 29 + 43 * linhas_t + (44 if titulo["chamada"] else 0)
+            titulo.update({"topo": 56, "alinhar": "barra", "compacto": True})
+            if 56 + alt_c > rosto["topo"] - 6 and titulo["chamada"]:
+                titulo["chamada"] = None
+                print("titulo: a chamada saiu para nao cobrir a cabeca")
+            print(f"titulo: subiu para a barra do alto (a cabeca comeca em {rosto['topo']} px)")
+# legenda: abaixo do queixo. A caixa tem 230 px e o texto encosta embaixo; em duas linhas ele comeca
+# ~60 px abaixo do topo da caixa. Desce no maximo ate 1200 (a base da caixa encosta nos infograficos, em 1440)
+cap_top = 1160
+if rosto and not DEITADO and rosto["base"] + 20 > cap_top + 60:
+    cap_top = min(1200, rosto["base"] - 40)
+    print(f"legenda: desceu para {cap_top} px (o queixo vai ate {rosto['base']} px)")
+    if rosto["base"] + 20 > cap_top + 60: print("aviso: o rosto desce ate a legenda; baixe os framings ou o pivot")
 tl = {"fps": FPS, "frameCount": frame_count, "framePrefix": cfg.get("frames", "src_frames") + "/f", "total": round(out_total, 2),
       "edl": edl, "chunks": chunks, "cards": cards, "scenes": scenes, "shots": shots, "hits": hits, "inserts": inserts,
       "cuts": edl_cuts, "introEnd": round(intro_end, 2), "outroAt": round(outro_at, 2),
       "outFrames": os.path.join(proj, "out_frames"), "brand": brand, "badge": P(cfg.get("badge")), "badgeWidth": cfg.get("badge_width"),
       "source": os.path.join(proj, cfg["video"]), "pivot": cfg.get("pivot"), "titulo": titulo,
-      "abertura": abertura, "legenda": estilo["legenda"], "estilo": estilo}
+      "abertura": abertura, "legenda": estilo["legenda"], "estilo": estilo,
+      "formato": "deitado" if DEITADO else "em_pe", "W": VW, "H": VH, "rosto": rosto, "capTop": cap_top,
+      # do reel na rua que o Casil aprovou (out/2026): zoom de entrada e transicao em zoom entre os planos
+      "transicao": cfg.get("transicao", "corte"), "entradaZoom": cfg.get("entrada_zoom")}
 json.dump(tl, open(os.path.join(proj, "timeline.json"), "w"), ensure_ascii=False, indent=1)
 print("cards", [(round(c["t"], 2), c["title"].replace("<br>", " ")) for c in cards])
 print("scenes", [(round(s["t"], 2), round(s["dur"], 2), s["type"]) for s in scenes])
