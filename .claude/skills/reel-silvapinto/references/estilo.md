@@ -31,7 +31,9 @@ aprovado explicitamente por ele; a seção "O que foi rejeitado" é tão importa
 - Abertura opcional com brasão central (`abertura_brasao`, out/2026): o brasão entra grande na metade
   inferior, com halo dourado suave, kicker e título em dourado e dois fios que se abrem; aos 2,4 s voa para o
   canto e vira a logo fixa do órgão. Diz o concurso no primeiro segundo sem tirar o rosto de cena. Veio da
-  análise do Pedro Auar (brasão grande com pílula azul e setas), refeita na nossa identidade.
+  análise do Pedro Auar (brasão grande com pílula azul e setas), refeita na nossa identidade. Abertura e
+  legenda são sorteadas por padrão entre as variantes aprovadas (out/2026, pedido do Casil); ele fixa a
+  que quiser.
 - Encerramento: fundo do vídeo desfocado e escurecido, monograma, "FALE COM A GENTE PELO WHATSAPP." em
   Bebas Neue 190 px com "WhatsApp" em dourado, pílula verde #25D366 com o link, linha de marca em mono e o
   aviso do Provimento 205/2021 da OAB em 22 px. Dura ~3,6 s, com whoosh na entrada.

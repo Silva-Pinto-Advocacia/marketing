@@ -45,6 +45,10 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   o `titulo`, os números viram textos e infográficos). Se o assunto for técnico demais para 60 s,
   propor o formato "Explico na legenda": vídeo de 15 a 30 s com `titulo.chamada` e a copy inteira na
   legenda. Ver `roteiro.md`, seção 0, e `formatos.md`.
+- **Estilo sorteado por padrão.** A abertura (texto grande ou brasão central) e a legenda (dourada ou
+  caixa dourada) são sorteadas a cada vídeo; o build imprime o que saiu. Se o Casil pedir uma variante
+  ("abre com o brasão", "legenda com caixa"), fixar em `estilo` no `config.json` (ver `pipeline.md`). A
+  faixa de decisão não é sorteada: entra sempre que o vídeo anuncia uma decisão.
 - **A metade inferior sempre ocupada.** Os infográficos sincronizados com a fala são o diferencial do
   escritório (nenhum concorrente usa). Planejar uma cena para cada trecho de argumento, inclusive a
   `faixa` de decisão quando houver decisão, e não deixar a parte de baixo vazia por mais de 2 s fora da

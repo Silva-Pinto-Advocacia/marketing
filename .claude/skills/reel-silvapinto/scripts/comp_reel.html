@@ -180,7 +180,7 @@ if(TL.legenda==='caixa') document.body.classList.add('cap-caixa');
 const AB=TL.abertura||null;
 (function(){ if(!AB){ ['bhalo','bimg','bname'].forEach(id=>document.getElementById(id).style.display='none'); return; }
   const im=document.getElementById('bimg'); im.src=AB.img; im.style.width=AB.w+'px';
-  document.getElementById('bk').textContent=AB.kicker||''; document.getElementById('bn').textContent=AB.titulo||'';
+  document.getElementById('bk').textContent=AB.kicker||''; document.getElementById('bn').innerHTML=AB.titulo||'';
   if(!AB.titulo&&!AB.kicker) document.getElementById('bname').style.display='none';
   document.getElementById('bhalo').style.top=(AB.y+AB.h/2)+'px'; document.getElementById('bname').style.top=(AB.y+AB.h+20)+'px'; })();
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));

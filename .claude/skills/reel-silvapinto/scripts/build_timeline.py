@@ -91,25 +91,55 @@ outro_at = min(T(cfg["outro"]["at"]), out_total - 3.6)
 intro_end = cfg.get("intro_end")
 intro_end = T(intro_end) if intro_end is not None else (cards[1]["t"] + cards[1]["dur"] if len(cards) > 1 and cards[0]["t"] == 0 else 0.0)
 
-# ---------- abertura com brasao central (opcional): o brasao do orgao entra grande na metade inferior e
-# voa para o canto superior direito, onde vira a logo fixa do orgao ----------
+# ---------- estilo: cada variante e sorteada por padrao; o Casil fixa a que quiser em "estilo" ----------
+# {"abertura": "sorteio" | "texto" | "brasao", "legenda": "sorteio" | "dourada" | "caixa"}. O sorteio usa uma
+# semente tirada da propria fala, entao o mesmo video sai sempre igual ao ser renderizado de novo.
+import hashlib, random
+VARIANTES = {"abertura": ["texto", "brasao"], "legenda": ["dourada", "caixa"]}
+est = dict(cfg.get("estilo") or {})
+if "legenda" in cfg and "legenda" not in est: est["legenda"] = cfg["legenda"]   # campo antigo, fixa a legenda
+semente = cfg.get("semente", int(hashlib.sha256(" ".join(w["w"] for w in words).encode()).hexdigest()[:12], 16))
+rng = random.Random(semente)
+estilo = {}; sorteados = []
+for k, ops in VARIANTES.items():
+    v = est.get(k, "sorteio")
+    if v == "sorteio" or v not in ops:
+        if v not in ("sorteio",): print(f"aviso: estilo.{k} = {v!r} nao existe; sorteando entre {ops}")
+        v = rng.choice(ops); sorteados.append(k)
+    estilo[k] = v
+_ab = cfg["abertura_brasao"] if isinstance(cfg.get("abertura_brasao"), dict) else {}
+if estilo["abertura"] == "brasao" and not _ab.get("img", cfg.get("badge")):
+    print("abertura com brasao sem 'badge' no config: fica a abertura de texto"); estilo["abertura"] = "texto"
+print("estilo:", ", ".join(f"{k}={v} ({'sorteio' if k in sorteados else 'escolhido'})" for k, v in estilo.items()))
+
+# ---------- abertura com brasao central: o brasao do orgao entra grande na metade inferior e voa para o
+# canto superior direito, onde vira a logo fixa do orgao. O texto vem de "abertura_brasao" ou, na falta,
+# do texto grande de abertura, que ele substitui (o gancho continua na tela, embaixo do brasao) ----------
 abertura = None
-if cfg.get("abertura_brasao"):
-    ab = cfg["abertura_brasao"] if isinstance(cfg["abertura_brasao"], dict) else {}
+if estilo["abertura"] == "brasao":
+    ab = dict(cfg["abertura_brasao"]) if isinstance(cfg.get("abertura_brasao"), dict) else {}
     img = ab.get("img", cfg.get("badge"))
-    if not img: raise SystemExit("abertura_brasao precisa de 'img' ou de 'badge' no config")
+    first = cards[0] if cards and cards[0]["t"] < 0.3 else None
+    if first and not (ab.get("kicker") or ab.get("titulo")):
+        ab.setdefault("kicker", first["kicker"]); ab.setdefault("titulo", first["title"])
+        ab.setdefault("dur", max(2.2, min(3.0, first["dur"]))); cards.remove(first)
     try:
         from PIL import Image
         iw, ih = Image.open(img if os.path.isabs(img) else os.path.join(proj, img)).size
     except Exception:
         iw, ih = 1, 1
-    w0 = ab.get("largura", 220); h0 = round(w0 * ih / iw)
+    linhas = (ab.get("titulo") or "").count("<br>") + 1 if ab.get("titulo") else 0
+    w0 = ab.get("largura", 220 if linhas <= 1 else 180); h0 = round(w0 * ih / iw)
+    bloco = (28 + linhas * 94 + 20) if (ab.get("titulo") or ab.get("kicker")) else 0
+    y0 = ab.get("y", min(1420, 1880 - bloco - 20 - h0))
     abertura = {"img": img, "kicker": ab.get("kicker", ""), "titulo": ab.get("titulo", ""), "t": T(ab.get("de"), 0.15),
-                "dur": ab.get("dur", 2.4), "w": w0, "h": h0, "y": ab.get("y", 1420), "w1": cfg.get("badge_width", 200)}
+                "dur": ab.get("dur", 2.4), "w": w0, "h": h0, "y": y0, "w1": cfg.get("badge_width", 200)}
     ab_end = abertura["t"] + abertura["dur"] + 0.75
+    # o texto grande seguinte espera o brasao pousar no canto
     for c in cards:
         if c["t"] < ab_end and c["t"] + c["dur"] > abertura["t"]:
-            print(f"aviso: o texto grande '{c['title']}' cruza a abertura com brasao ({abertura['t']:.2f}-{ab_end:.2f}s); comece-o depois")
+            fim = c["t"] + c["dur"]; c["t"] = round(ab_end, 3); c["dur"] = round(max(1.2, fim - ab_end), 3)
+    intro_end = max(intro_end, ab_end)
 
 # ---------- infographic scenes: each has "from" and "to"; "to" may be "next" or "outro" ----------
 raw = cfg.get("scenes", [])
@@ -133,7 +163,7 @@ for i, sc in enumerate(raw):
 # ---------- a metade inferior e o nosso diferencial (nenhum concorrente usa infografico): avisar buracos ----------
 occ = sorted([(s["t"], s["t"] + s["dur"]) for s in scenes] + [(c["t"], c["t"] + c["dur"]) for c in cards]
              + ([(abertura["t"], abertura["t"] + abertura["dur"] + 0.75)] if abertura else []))
-gap_from = intro_end if not abertura else min(intro_end, abertura["t"])
+gap_from = intro_end
 for a, b in occ:
     if a - gap_from > cfg.get("max_vazio", 2.0) and gap_from < outro_at:
         print(f"aviso: metade inferior vazia de {gap_from:.1f}s a {min(a, outro_at):.1f}s; acrescente uma cena")
@@ -192,7 +222,7 @@ tl = {"fps": FPS, "frameCount": frame_count, "framePrefix": cfg.get("frames", "s
       "cuts": edl_cuts, "introEnd": round(intro_end, 2), "outroAt": round(outro_at, 2),
       "outFrames": os.path.join(proj, "out_frames"), "brand": brand, "badge": P(cfg.get("badge")), "badgeWidth": cfg.get("badge_width"),
       "source": os.path.join(proj, cfg["video"]), "pivot": cfg.get("pivot"), "titulo": titulo,
-      "abertura": abertura, "legenda": cfg.get("legenda", "dourada")}
+      "abertura": abertura, "legenda": estilo["legenda"], "estilo": estilo}
 json.dump(tl, open(os.path.join(proj, "timeline.json"), "w"), ensure_ascii=False, indent=1)
 print("cards", [(round(c["t"], 2), c["title"].replace("<br>", " ")) for c in cards])
 print("scenes", [(round(s["t"], 2), round(s["dur"], 2), s["type"]) for s in scenes])
