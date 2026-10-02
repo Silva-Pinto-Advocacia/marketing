@@ -75,6 +75,7 @@ transcrição retimada, ou `{"src": 5.65}` para um instante do vídeo original.
 | `estilo` | as variantes visuais, **sorteadas por padrão**: `{"abertura": "sorteio" \| "texto" \| "brasao", "legenda": "sorteio" \| "dourada" \| "caixa"}`. Omitido ou `"sorteio"`, o build sorteia e imprime o resultado (`estilo: abertura=brasao (sorteio), legenda=dourada (escolhido)`), que também fica em `timeline.json`. A semente sai da própria fala: o mesmo vídeo sai sempre igual ao renderizar de novo; `semente` (número) força outro sorteio. Quando o Casil pedir uma variante, fixe-a aqui. `abertura: brasao` sem `badge` volta para texto |
 | `abertura_brasao` | textos e ajustes da abertura com brasão (quando ela sai, sorteada ou escolhida): o brasão entra grande no centro da metade inferior, com `kicker` e `titulo` em dourado embaixo, e aos `dur` segundos (padrão 2,4) voa para o canto, onde vira a logo fixa (`badge`). Sem este campo, usa o kicker e o título do texto grande de abertura, que ele substitui. Opcionais: `img` (padrão: o `badge`), `de`, `dur`, `largura` (em pé, 380; 330 com título em duas linhas, reduzida se o brasão for alto demais para a metade inferior; deitado, 220/180) e `y`. Em pé, a legenda some enquanto o brasão está no centro, como acontece com os textos grandes. O texto grande seguinte é empurrado para depois do pouso |
 | `legenda` | campo antigo, equivale a `estilo.legenda` fixo |
+| `legenda_gratuidade` | `true` deixa a legenda escrever gratuidade. Padrão: "gratuito(a)", "de graça" e "sem custo" saem da legenda (Provimento 205/2021); o áudio continua como foi falado |
 | (legenda) | também automática: se o queixo desce abaixo de ~1220 px, a legenda desce junto (até 1200 px, logo acima dos infográficos, que começam em 1440) |
 | `max_vazio` | segundos que a metade inferior (deitado, o painel da direita) pode ficar vazia antes de o build avisar (padrão 2) |
 | `brand` | `mono`, `name`, `sub`, `whatsapp`, `outroLine` |
@@ -83,10 +84,11 @@ transcrição retimada, ou `{"src": 5.65}` para um instante do vídeo original.
 | `scenes` | infográficos: `from`, `to` ("next", "outro" ou âncora), `type` e campos do tipo |
 | `hits` | âncoras dos zoom-hits |
 | `inserts` | `{at, img, dur}` |
-| `outro` | `{at}`; o encerramento dura 3,6 s e pode cobrir a última frase falada |
+| `outro` | `{at}`; nas edições aprovadas entra logo depois da última palavra (`{"word": <última>, "after": ..., "offset": 0.3}`), com `tail` 3 a 4; pode cobrir a última frase, mas ela some atrás do WhatsApp |
 | `tail` | segundos mantidos depois da última palavra (padrão 1,2; usar 3 a 4 quando o encerramento entra sobre o fim da fala: o último quadro congela e o áudio é preenchido) |
-| `silence_gap`, `min_shot`, `framings` | ajustes finos do ritmo (padrões 0.55 s, 6.5 s, [1,1.13,1,1.26,...]) |
-| `pivot`, `hit_scale`, `hit_dur` | centro do zoom em % da tela (padrão [50, 38]; subir para ~[50, 24] quando o rosto já ocupa o alto do quadro, senão o zoom corta a cabeça), escala e duração do zoom-hit (padrões 1.2 e 1.1 s) |
+| `silence_gap`, `min_shot`, `framings` | ajustes finos do ritmo (padrões 0.55 s, 6.5 s, [1,1.13,1,1.26,...]). Sem `framings`, o build mede o rosto: se ele ocupa mais de 32% da altura, usa [1, 1.12, 1, 1.22] e zoom-hit 1.12; acima de 42%, [1, 1.08, 1, 1.15] e 1.1 (os valores das edições manuais de out/2026; rosto grande com zoom forte vira "só a cabeça") |
+| `transicao`, `entrada_zoom` | `"zoom"` troca o corte seco entre planos por um zoom rápido de 0,2 s com desfoque; `entrada_zoom` (ex.: 1.5) abre o vídeo perto e recua em 0,5 s. Do reel na frente da PMERJ que o Casil aprovou; o motor liga os dois por padrão |
+| `pivot`, `hit_scale`, `hit_dur` | centro do zoom em % da tela (sem `pivot`, a altura do rosto medida; sem rosto, [50, 38]; subir para ~[50, 24] quando o rosto já ocupa o alto do quadro, senão o zoom corta a cabeça), escala e duração do zoom-hit (padrões 1.2 e 1.1 s) |
 
 Campos por tipo de cena: `counter` (`prefix`, `value`, `unit`, `sub`), `list` (`items`, `stagger`),
 `timeline` (`nodes` [{b,l}], `sub`), `sum` (`terms`, `value`, `unit`), `text` (`head`, `text`),
