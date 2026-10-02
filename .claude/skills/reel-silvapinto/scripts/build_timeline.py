@@ -185,6 +185,38 @@ for a, b in occ:
 if outro_at - gap_from > cfg.get("max_vazio", 2.0):
     print(f"aviso: {AREA} de {gap_from:.1f}s a {outro_at:.1f}s; acrescente uma cena")
 
+# ---------- rosto bruto (sem zoom): mede onde fica a cabeca para a camera e o layout se ajustarem a
+# ele. Sem OpenCV, tudo segue o padrao ----------
+face_tops, face_bots, face_cy = [], [], []
+try:
+    import cv2
+    casc = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+    for i in range(1, frame_count + 1, max(1, frame_count // 16)):
+        g = cv2.imread(os.path.join(frames_dir, f"f{i:05d}.jpg"), cv2.IMREAD_GRAYSCALE)
+        if g is None: continue
+        fs = casc.detectMultiScale(g, 1.1, 6, minSize=(VW // 9, VW // 9))
+        if len(fs):
+            x, y, w, h = max(fs, key=lambda f: f[2] * f[3])
+            face_tops.append(y - 0.3 * h); face_bots.append(y + 1.15 * h)   # cabelo em cima, queixo e barba embaixo
+            face_cy.append(y + 0.5 * h)
+except Exception as e:
+    print("rosto: deteccao indisponivel,", type(e).__name__)
+face_tops.sort(); face_bots.sort(); face_cy.sort()
+tem_rosto = len(face_tops) >= 3
+# camera ajustada ao rosto, como nas edicoes manuais de out/2026: rosto grande no quadro pede zooms menores
+# (senao cai no "so a cabeca", recusado) e o centro do zoom na altura do rosto (senao o zoom corta a testa).
+# Valores do config.json valem sempre; isto so preenche o que faltar.
+pivot = cfg.get("pivot")
+nivel_auto = None
+if tem_rosto and not DEITADO:
+    alt_rosto = (face_bots[-1 - len(face_bots) // 10] - face_tops[len(face_tops) // 10]) / VH
+    if pivot is None:
+        pivot = [50, round(max(18, min(42, face_cy[len(face_cy) // 2] / VH * 100)))]
+    if alt_rosto > 0.42: nivel_auto = ([1.0, 1.08, 1.0, 1.15, 1.08, 1.0], 1.1)
+    elif alt_rosto > 0.32: nivel_auto = ([1.0, 1.12, 1.0, 1.22, 1.12, 1.0], 1.12)
+    print(f"camera: rosto ocupa {alt_rosto:.0%} da altura, pivo {pivot}"
+          + (f", enquadramentos {nivel_auto[0][:4]} e zoom-hit {nivel_auto[1]}" if nivel_auto and "framings" not in cfg else ""))
+
 # ---------- camera, modeled on the reference edits (see references/estilo.md) ----------
 sent_starts = [round(x["s"], 3) for x in S]
 edl_cuts = [round(e["out"], 3) for e in edl[1:]]
@@ -204,7 +236,7 @@ for t in bounds[1:]:
         continue
     clean.append(t)
 bounds = clean
-levels = cfg.get("framings", [1.0, 1.13, 1.0, 1.26, 1.13, 1.0, 1.26, 1.0, 1.13, 1.26, 1.0, 1.13])
+levels = cfg.get("framings", nivel_auto[0] if nivel_auto else [1.0, 1.13, 1.0, 1.26, 1.13, 1.0, 1.26, 1.0, 1.13, 1.26, 1.0, 1.13])
 shots = [{"t": bounds[i], "end": bounds[i + 1], "scale": levels[i % len(levels)],
           "drift": 0.06 if levels[i % len(levels)] > 1.0 else 0.035} for i in range(len(bounds) - 1)]
 hits = []
@@ -212,7 +244,7 @@ for h in cfg.get("hits", []):
     try: t = T(h)
     except SystemExit as e: print("skip hit:", e); continue
     if any(k["t"] - 0.3 <= t <= k["t"] + k["dur"] + 0.3 for k in cards): continue
-    hits.append({"t": round(t - 0.05, 3), "dur": cfg.get("hit_dur", 1.1), "scale": cfg.get("hit_scale", 1.2)})
+    hits.append({"t": round(t - 0.05, 3), "dur": cfg.get("hit_dur", 1.1), "scale": cfg.get("hit_scale", nivel_auto[1] if nivel_auto else 1.2)})
 inserts = []
 for ins in cfg.get("inserts", []):
     inserts.append({"t": round(T(ins["at"]) - 0.1, 3), "dur": ins.get("dur", 1.3), "img": ins["img"]})
@@ -231,26 +263,12 @@ if abertura: abertura["img"] = P(abertura["img"])
 # cobrirem o rosto. Reel do PMES com avatar (02/10/2026): o titulo e o "Explico na legenda" caiam na testa.
 # Deteccao opcional: sem OpenCV, segue o layout padrao ----------
 rosto = None
-try:
-    import cv2
-    casc = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
-    tops, bots = [], []
-    for i in range(1, frame_count + 1, max(1, frame_count // 16)):
-        g = cv2.imread(os.path.join(frames_dir, f"f{i:05d}.jpg"), cv2.IMREAD_GRAYSCALE)
-        if g is None: continue
-        fs = casc.detectMultiScale(g, 1.1, 6, minSize=(VW // 9, VW // 9))
-        if len(fs):
-            x, y, w, h = max(fs, key=lambda f: f[2] * f[3])
-            tops.append(y - 0.3 * h); bots.append(y + 1.15 * h)   # cabelo em cima, queixo e barba embaixo
-    if len(tops) >= 3:
-        tops.sort(); bots.sort()
-        smax = max([x["scale"] for x in shots] + [h["scale"] for h in hits] + [1.0])
-        py = VH * (cfg.get("pivot") or [50, 38])[1] / 100
-        top, bot = tops[len(tops) // 10], bots[-1 - len(bots) // 10]
-        rosto = {"topo": int(py + (top - py) * smax), "base": int(py + (bot - py) * smax)}
-        print(f"rosto: de {rosto['topo']} a {rosto['base']} px (com zoom {smax:.2f})")
-except Exception as e:
-    print("rosto: deteccao indisponivel,", type(e).__name__)
+if tem_rosto:
+    smax = max([x["scale"] for x in shots] + [h["scale"] for h in hits] + [1.0])
+    py = VH * (pivot or [50, 38])[1] / 100
+    top, bot = face_tops[len(face_tops) // 10], face_bots[-1 - len(face_bots) // 10]
+    rosto = {"topo": int(py + (top - py) * smax), "base": int(py + (bot - py) * smax)}
+    print(f"rosto: de {rosto['topo']} a {rosto['base']} px (com zoom {smax:.2f})")
 
 titulo = None
 if cfg.get("titulo"):
@@ -283,7 +301,7 @@ tl = {"fps": FPS, "frameCount": frame_count, "framePrefix": cfg.get("frames", "s
       "edl": edl, "chunks": chunks, "cards": cards, "scenes": scenes, "shots": shots, "hits": hits, "inserts": inserts,
       "cuts": edl_cuts, "introEnd": round(intro_end, 2), "outroAt": round(outro_at, 2),
       "outFrames": os.path.join(proj, "out_frames"), "brand": brand, "badge": P(cfg.get("badge")), "badgeWidth": cfg.get("badge_width"),
-      "source": os.path.join(proj, cfg["video"]), "pivot": cfg.get("pivot"), "titulo": titulo,
+      "source": os.path.join(proj, cfg["video"]), "pivot": pivot, "titulo": titulo,
       "abertura": abertura, "legenda": estilo["legenda"], "estilo": estilo,
       "formato": "deitado" if DEITADO else "em_pe", "W": VW, "H": VH, "rosto": rosto, "capTop": cap_top,
       # do reel na rua que o Casil aprovou (out/2026): zoom de entrada e transicao em zoom entre os planos
