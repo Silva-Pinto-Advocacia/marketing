@@ -18,6 +18,11 @@ import json, os, re, sys
 FPS = 24
 proj = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else ".")
 cfg = json.load(open(os.path.join(proj, "config.json")))
+# formato: "em_pe" (padrao, 1080x1920, Reels e Stories) ou "deitado" (1920x1080). Deitado, o rosto fica no
+# centro e os textos grandes, os infograficos e o brasao da abertura vao para o painel da direita.
+DEITADO = cfg.get("formato") == "deitado"
+VW, VH = (1920, 1080) if DEITADO else (1080, 1920)
+AREA = "painel da direita vazio" if DEITADO else "metade inferior vazia"
 words = json.load(open(os.path.join(proj, cfg.get("words", "words.json"))))
 sents = json.load(open(os.path.join(proj, cfg.get("sents", "sents.json"))))
 frames_dir = os.path.join(proj, cfg.get("frames", "src_frames"))
@@ -131,9 +136,11 @@ if estilo["abertura"] == "brasao":
     linhas = (ab.get("titulo") or "").count("<br>") + 1 if ab.get("titulo") else 0
     w0 = ab.get("largura", 220 if linhas <= 1 else 180); h0 = round(w0 * ih / iw)
     bloco = (28 + linhas * 94 + 20) if (ab.get("titulo") or ab.get("kicker")) else 0
-    y0 = ab.get("y", min(1420, 1880 - bloco - 20 - h0))
+    # em pe: no pe da metade inferior; deitado: centralizado na altura do painel da direita
+    y0 = ab.get("y", max(170, round((VH - h0 - 20 - bloco) / 2)) if DEITADO else min(1420, 1880 - bloco - 20 - h0))
     abertura = {"img": img, "kicker": ab.get("kicker", ""), "titulo": ab.get("titulo", ""), "t": T(ab.get("de"), 0.15),
-                "dur": ab.get("dur", 2.4), "w": w0, "h": h0, "y": y0, "w1": cfg.get("badge_width", 200)}
+                "dur": ab.get("dur", 2.4), "w": w0, "h": h0, "y": y0, "cx": 1510 if DEITADO else 540,
+                "w1": cfg.get("badge_width", 200)}
     ab_end = abertura["t"] + abertura["dur"] + 0.75
     # o texto grande seguinte espera o brasao pousar no canto
     for c in cards:
@@ -153,23 +160,24 @@ for i, sc in enumerate(raw):
     for c in cards:
         if c["t"] > 0 and t0 < c["t"] < t1: t1 = min(t1, c["t"])
         if c["t"] <= t0 < c["t"] + c["dur"]: t0 = c["t"] + c["dur"]
-    # nem o brasao central da abertura, que ocupa a mesma metade inferior
+    # nem o brasao central da abertura, que ocupa a mesma area
     if abertura and t0 < abertura["t"] + abertura["dur"] + 0.1: t0 = abertura["t"] + abertura["dur"] + 0.1
     d = dict(sc); d.pop("from", None); d.pop("to", None)
     if "stagger" in d: d["stagger"] = [T(x) - t0 if isinstance(x, dict) else x for x in d["stagger"]]
     d.update({"t": round(t0, 3), "dur": round(t1 - t0, 3)})
     if d["dur"] > 0.4: scenes.append(d)
 
-# ---------- a metade inferior e o nosso diferencial (nenhum concorrente usa infografico): avisar buracos ----------
+# ---------- a area dos infograficos (metade inferior; deitado, o painel da direita) e o nosso diferencial
+# (nenhum concorrente usa infografico): avisar buracos ----------
 occ = sorted([(s["t"], s["t"] + s["dur"]) for s in scenes] + [(c["t"], c["t"] + c["dur"]) for c in cards]
              + ([(abertura["t"], abertura["t"] + abertura["dur"] + 0.75)] if abertura else []))
 gap_from = intro_end
 for a, b in occ:
     if a - gap_from > cfg.get("max_vazio", 2.0) and gap_from < outro_at:
-        print(f"aviso: metade inferior vazia de {gap_from:.1f}s a {min(a, outro_at):.1f}s; acrescente uma cena")
+        print(f"aviso: {AREA} de {gap_from:.1f}s a {min(a, outro_at):.1f}s; acrescente uma cena")
     gap_from = max(gap_from, b)
 if outro_at - gap_from > cfg.get("max_vazio", 2.0):
-    print(f"aviso: metade inferior vazia de {gap_from:.1f}s a {outro_at:.1f}s; acrescente uma cena")
+    print(f"aviso: {AREA} de {gap_from:.1f}s a {outro_at:.1f}s; acrescente uma cena")
 
 # ---------- camera, modeled on the reference edits (see references/estilo.md) ----------
 sent_starts = [round(x["s"], 3) for x in S]
@@ -222,7 +230,8 @@ tl = {"fps": FPS, "frameCount": frame_count, "framePrefix": cfg.get("frames", "s
       "cuts": edl_cuts, "introEnd": round(intro_end, 2), "outroAt": round(outro_at, 2),
       "outFrames": os.path.join(proj, "out_frames"), "brand": brand, "badge": P(cfg.get("badge")), "badgeWidth": cfg.get("badge_width"),
       "source": os.path.join(proj, cfg["video"]), "pivot": cfg.get("pivot"), "titulo": titulo,
-      "abertura": abertura, "legenda": estilo["legenda"], "estilo": estilo}
+      "abertura": abertura, "legenda": estilo["legenda"], "estilo": estilo,
+      "formato": "deitado" if DEITADO else "em_pe", "W": VW, "H": VH}
 json.dump(tl, open(os.path.join(proj, "timeline.json"), "w"), ensure_ascii=False, indent=1)
 print("cards", [(round(c["t"], 2), c["title"].replace("<br>", " ")) for c in cards])
 print("scenes", [(round(s["t"], 2), round(s["dur"], 2), s["type"]) for s in scenes])

@@ -141,11 +141,63 @@
   .cap-caixa .cap span.cur{color:var(--navy);transform:none;text-shadow:none}
   .cap .hl{position:absolute;z-index:0;border-radius:14px;background:linear-gradient(180deg,#FFF3D6 0%,#F4D692 55%,#EBC776 100%);box-shadow:0 8px 24px rgba(0,0,0,.35)}
   .a{opacity:0}
+
+  /* ===== formato deitado (1920x1080): o rosto fica no centro do quadro; legenda embaixo, no centro;
+     textos grandes, infograficos e o brasao da abertura no painel da direita, sobre uma sombra lateral
+     que so aparece com eles. Mesmos elementos e animacoes do formato em pe, outra geometria ===== */
+  html.deitado,html.deitado body{width:1920px;height:1080px}
+  .vwin .lado{display:none}
+  .deitado .vwin,.deitado #vid,.deitado .panel{width:1920px;height:1080px}
+  .deitado .vwin .fade{height:380px}
+  .deitado .vwin .lado{display:block;position:absolute;top:0;bottom:0;right:0;width:1000px;opacity:0;background:linear-gradient(to left, rgba(23,24,27,.86) 0%, rgba(23,24,27,.72) 42%, rgba(23,24,27,0) 100%)}
+  .deitado .pmerj{width:160px}
+  .deitado .cap{top:800px;height:180px;padding:0 330px;font-size:60px}
+  .deitado .cap span{margin:0 8px 6px}
+  .deitado .cap .capin{padding:16px 40px 10px}
+  .deitado .titulo{left:420px;right:420px;top:54px}
+  .deitado .titulo .tx{font-size:40px;padding:16px 28px 13px;border-radius:14px}
+  .deitado .titulo .ch{font-size:24px;margin-top:12px;padding:8px 20px}
+  .deitado .card .in{left:1160px;right:0;top:200px;height:600px;padding:0 70px 0 30px;background:none}
+  .deitado .card .k{font-size:22px;margin-bottom:26px}
+  .deitado .card .t{font-size:128px}
+  .deitado .card .t.small{font-size:106px}
+  .deitado .card .s{font-size:34px;margin-top:28px;max-width:660px}
+  .deitado .ps{left:1160px;width:700px;top:290px;height:490px}
+  .deitado .ps .k{font-size:18px}
+  .deitado .ps .big{font-size:150px;margin-top:16px}
+  .deitado .ps .big small{font-size:64px}
+  .deitado .ps .sub{font-size:28px;max-width:680px}
+  .deitado .ps .head{font-size:80px !important}
+  .deitado .ps .list{gap:14px;margin-top:20px}
+  .deitado .ps .li{font-size:30px;gap:18px}
+  .deitado .ps .li i{width:42px;height:42px;font-size:16px}
+  .deitado .ps .tl{margin:50px 40px 0}
+  .deitado .ps .tl .lab{font-size:15px}
+  .deitado .ps .tl .lab b{font-size:24px}
+  .deitado .ps .sum .term{font-size:80px}
+  .deitado .ps .sum .op{font-size:60px}
+  .deitado .ps .sum .res{font-size:140px}
+  .deitado .ps .sum .res small{font-size:60px}
+  .deitado .ps .pill{font-size:30px;padding:18px 32px}
+  .deitado .ps.faixa{top:330px}
+  .deitado .ps .fx{padding:26px 34px 30px 52px}
+  .deitado .ps .fx .k{font-size:20px}
+  .deitado .ps .fx .h{font-size:46px}
+  .deitado #bhalo{width:620px;height:620px;margin:-310px 0 0 -310px}
+  .deitado #bname .n{font-size:84px}
+  .deitado #bname .fios{width:640px}
+  .deitado .outro .in{left:140px;right:140px}
+  .deitado .outro .ologo{width:130px;margin-bottom:30px}
+  .deitado .outro .h{font-size:132px}
+  .deitado .outro .pill{margin-top:36px;font-size:36px;padding:24px 40px}
+  .deitado .outro .brand{margin-top:34px;font-size:20px}
+  .deitado .outro .disc{left:140px;right:140px;bottom:46px;font-size:18px}
+  .deitado .insert img{width:360px}
 </style>
 </head>
 <body>
 <div class="stage">
-  <div class="vwin"><img id="vid" alt=""><div class="vig"></div><div class="fade"></div></div>
+  <div class="vwin"><img id="vid" alt=""><div class="vig"></div><div class="fade"></div><div class="lado" id="lado"></div></div>
   <div class="cap" id="cap"></div>
 
   <div class="panel">
@@ -170,7 +222,8 @@
 </div>
 
 <script>
-const TL=__TIMELINE__; const FPS=TL.fps;
+const TL=__TIMELINE__; const FPS=TL.fps; const VW=TL.W||1080;
+if(TL.formato==='deitado') document.documentElement.classList.add('deitado');
   if(TL.pivot){ document.getElementById('vid').style.transformOrigin=TL.pivot[0]+'% '+TL.pivot[1]+'%'; }
 // brand + assets from the timeline (set by build_timeline.py from config.json)
 (function(){ const b=TL.brand||{}; document.getElementById('logomono').src=b.mono||''; document.getElementById('ologo').src=b.mono||''; document.getElementById('brandn1').textContent=b.name||''; document.getElementById('brandn2').textContent=b.sub||''; document.getElementById('owa').textContent=b.whatsapp||''; document.getElementById('obrand').textContent=b.outroLine||''; const pm=document.getElementById('pmerj'); if(TL.badge){ pm.src=TL.badge; if(TL.badgeWidth) pm.style.width=TL.badgeWidth+'px'; } else { pm.style.display='none'; } const ins=(TL.inserts||[])[0]; document.querySelector('#insert img').src=ins?ins.img:''; })();
@@ -182,7 +235,8 @@ const AB=TL.abertura||null;
   const im=document.getElementById('bimg'); im.src=AB.img; im.style.width=AB.w+'px';
   document.getElementById('bk').textContent=AB.kicker||''; document.getElementById('bn').innerHTML=AB.titulo||'';
   if(!AB.titulo&&!AB.kicker) document.getElementById('bname').style.display='none';
-  document.getElementById('bhalo').style.top=(AB.y+AB.h/2)+'px'; document.getElementById('bname').style.top=(AB.y+AB.h+20)+'px'; })();
+  const cx=AB.cx||540; document.getElementById('bhalo').style.left=cx+'px'; document.getElementById('bhalo').style.top=(AB.y+AB.h/2)+'px';
+  const nm=document.getElementById('bname'); nm.style.top=(AB.y+AB.h+20)+'px'; nm.style.right='auto'; nm.style.width='900px'; nm.style.left=(cx-450)+'px'; })();
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const eo=p=>1-Math.pow(1-p,3), eio=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2, eb=p=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2);}, eq=p=>1-Math.pow(1-p,5);
 const prog=(t,s,d)=>clamp((t-s)/d,0,1);
@@ -215,7 +269,7 @@ function setFrame(t){ const src=frameSrc(t); if(vid.getAttribute('src')!==src){ 
 
 window.seek=async function(t){
   await setFrame(t);
-  document.getElementById('prog').style.width=(clamp(t/TL.total,0,1)*1080)+'px';
+  document.getElementById('prog').style.width=(clamp(t/TL.total,0,1)*VW)+'px';
   // video motion: punches + slow drift
   let scale=1.0, blur=0, dx=0, dy=0;
   // shot framing (hard cut) + slow handheld-like drift inside the shot
@@ -253,7 +307,7 @@ window.seek=async function(t){
   document.getElementById('tag').style.opacity=(t>=TL.outroAt)?0:1;
   let landed=1;
   if(AB){ const lt=t-AB.t, pin=eo(prog(lt,0,0.55)), fly=AB.dur, px=eo(prog(lt,fly,0.55)), py=eio(prog(lt,fly+0.12,0.62)), pf=Math.max(px,py);
-    const w0=AB.w, w1=AB.w1, s=(1-pf)*(0.86+0.14*pin)+pf*(w1/w0), x0=540-w0/2+w0*(1-s)/2*(1-pf), y0=AB.y+AB.h*(1-s)/2*(1-pf), x1=1080-52-w1, y1=52;
+    const w0=AB.w, w1=AB.w1, s=(1-pf)*(0.86+0.14*pin)+pf*(w1/w0), x0=(AB.cx||540)-w0/2+w0*(1-s)/2*(1-pf), y0=AB.y+AB.h*(1-s)/2*(1-pf), x1=VW-52-w1, y1=52;
     landed=lt>=fly+0.74?1:0; const im=document.getElementById('bimg');
     im.style.opacity=(lt<0||landed)?0:pin; im.style.transform=`translate(${x0+(x1-x0)*px}px,${y0+(y1-y0)*py}px) scale(${s})`;
     document.getElementById('bhalo').style.opacity=lt<0?0:pin*(1-prog(lt,fly-0.1,0.4));
@@ -272,6 +326,9 @@ window.seek=async function(t){
     if(s.type==='cta'){ const p=el.querySelector('.pill'); const q=prog(lt,0.6,0.5); p.style.opacity=q; p.style.transform=`translateY(${(1-eb(q))*30}px)`; }
   });
 
+  // deitado: a sombra lateral acompanha o que estiver no painel da direita
+  if(TL.formato==='deitado'){ let lo=cardOp; TL.scenes.forEach((s,i)=>{ lo=Math.max(lo,parseFloat(document.getElementById('ps'+i).style.opacity)||0); });
+    if(AB&&t<TL.outroAt) lo=Math.max(lo,parseFloat(document.getElementById('bhalo').style.opacity)||0); document.getElementById('lado').style.opacity=t>=TL.outroAt?0:lo; }
   // inserts (B-roll style): video blurred + darkened, shield scales slowly, flash on entry
   const ins=document.getElementById('insert'); let insOn=false;
   for(const x of TL.inserts){ if(t>=x.t&&t<x.t+x.dur){ insOn=true; const q=prog(t,x.t,x.dur); const qi=prog(t,x.t,0.18), qo=(x.t+x.dur-t)<0.18?(x.t+x.dur-t)/0.18:1; ins.style.opacity=qi*qo; ins.querySelector('img').style.transform=`scale(${1.0+0.08*q})`; blur=Math.max(blur,18*Math.min(qi,qo)+4); } }

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Extract the source video as a 24 fps JPEG sequence (1080x1920), optionally cleaning burned-in
+"""Extract the source video as a 24 fps JPEG sequence (1080x1920, or 1920x1080 with "formato": "deitado"),
+optionally cleaning burned-in
 elements and reframing. Everything downstream (render, timeline) works on this sequence.
 
 Usage: python3 extract_frames.py <project_dir>
 
 config.json keys used:
   video            source file
+  formato          "em_pe" (default, 1080x1920, Reels/Stories) or "deitado" (1920x1080)
   crop             optional {"w":939,"h":1670,"x":70,"y":0} in source pixels, scaled to 1080x1920 (open reframe = ~1.15x)
   delogo           optional list of {"x","y","w","h"} boxes to interpolate away (burned-in logos, captions)
   blur_patches     optional list of {"x","y","w","h","sigma"} boxes blurred after delogo (hides interpolation streaks on flat walls)
@@ -24,6 +26,7 @@ if not ff:
     import imageio_ffmpeg; ff = imageio_ffmpeg.get_ffmpeg_exe()
 video = os.path.join(proj, cfg["video"])
 out_dir = os.path.join(proj, cfg.get("frames", "src_frames"))
+W, H = (1920, 1080) if cfg.get("formato") == "deitado" else (1080, 1920)
 if os.path.isdir(out_dir): shutil.rmtree(out_dir)
 os.makedirs(out_dir)
 
@@ -37,13 +40,13 @@ for b in cfg.get("blur_patches", []):
     k += 1
 bb = cfg.get("bottom_blur")
 if bb:
-    vf += (f",split[g][h];[h]crop=1080:{bb['h']}:0:{bb['y']},gblur=sigma={bb.get('sigma', 20)},format=rgba,"
+    vf += (f",split[g][h];[h]crop=iw:{bb['h']}:0:{bb['y']},gblur=sigma={bb.get('sigma', 20)},format=rgba,"
            f"geq=r='r(X,Y)':g='g(X,Y)':b='b(X,Y)':a='clip(Y*255/{bb.get('feather', 110)},0,255)'[i];[g][i]overlay=0:{bb['y']}")
 crop = cfg.get("crop")
 if crop:
-    vf += f",crop={crop['w']}:{crop['h']}:{crop['x']}:{crop['y']},scale=1080:1920:flags=lanczos,unsharp=5:5:{cfg.get('sharpen', 0.6)}:5:5:0.0"
+    vf += f",crop={crop['w']}:{crop['h']}:{crop['x']}:{crop['y']},scale={W}:{H}:flags=lanczos,unsharp=5:5:{cfg.get('sharpen', 0.6)}:5:5:0.0"
 else:
-    vf += ",scale=1080:1920:flags=lanczos"
+    vf += f",scale={W}:{H}:flags=lanczos"
 cmd = [ff, "-y", "-hide_banner", "-loglevel", "error", "-i", video, "-vf", vf, "-q:v", "3", os.path.join(out_dir, "f%05d.jpg")]
 print("filter:", vf)
 subprocess.run(cmd, check=True)

@@ -43,7 +43,7 @@ projeto/
 ```bash
 SK=<caminho da skill>/scripts
 python3 $SK/transcribe.py projeto            # words.json + sents.json (modelo medium, ~1 min por min de áudio)
-python3 $SK/extract_frames.py projeto        # 24 fps, 1080x1920, limpeza e reenquadramento conforme config
+python3 $SK/extract_frames.py projeto        # 24 fps, 1080x1920 (1920x1080 deitado), limpeza e reenquadramento conforme config
 python3 $SK/build_timeline.py projeto        # timeline.json (EDL, legendas, planos, cenas, hits)
 node $SK/render_reel.js projeto/timeline.json preview "1.5,14,30,66,84"   # PNGs em projeto/preview
 node $SK/render_reel.js projeto/timeline.json frames                       # todos os quadros (~8 min)
@@ -68,13 +68,14 @@ transcrição retimada, ou `{"src": 5.65}` para um instante do vídeo original.
 | campo | uso |
 |---|---|
 | `video` | arquivo fonte |
+| `formato` | `"em_pe"` (padrão, 1080x1920, Reels e Stories) ou `"deitado"` (1920x1080). Deitado, a fonte já deve vir em 16:9 (o motor recorta o centro); `bottom_blur` em `{"y": 700, "h": 380}`. O que este guia chama de metade inferior vira o painel da direita |
 | `crop`, `delogo`, `blur_patches`, `bottom_blur`, `sharpen`, `frame_replace` | limpeza e reenquadramento; ver abaixo |
 | `titulo` | título fixo no alto, do início ao encerramento: `{"texto": "IASES: candidato <b>volta ao concurso</b>", "chamada": "Explico na legenda ↓", "de": 0.6}` (ou só a string). `<b>` pinta de dourado; `chamada` é a etiqueta dourada embaixo (opcional); `de` é a âncora de entrada (padrão: fim dos textos de abertura). Some sozinho enquanto há texto grande na tela e no encerramento. Até ~40 caracteres em 2 linhas. Use seta "↓" e não emoji: o Chromium do render não tem fonte de emoji |
 | `badge`, `badge_width` | PNG da logo/brasão do órgão do concurso, canto superior direito, OBRIGATÓRIO (o Casil pediu sempre a logo da instituição); largura em px, padrão 200, usar 160-180 quando o rosto chega perto do canto |
 | `estilo` | as variantes visuais, **sorteadas por padrão**: `{"abertura": "sorteio" \| "texto" \| "brasao", "legenda": "sorteio" \| "dourada" \| "caixa"}`. Omitido ou `"sorteio"`, o build sorteia e imprime o resultado (`estilo: abertura=brasao (sorteio), legenda=dourada (escolhido)`), que também fica em `timeline.json`. A semente sai da própria fala: o mesmo vídeo sai sempre igual ao renderizar de novo; `semente` (número) força outro sorteio. Quando o Casil pedir uma variante, fixe-a aqui. `abertura: brasao` sem `badge` volta para texto |
 | `abertura_brasao` | textos e ajustes da abertura com brasão (quando ela sai, sorteada ou escolhida): o brasão entra grande no centro da metade inferior, com `kicker` e `titulo` em dourado embaixo, e aos `dur` segundos (padrão 2,4) voa para o canto, onde vira a logo fixa (`badge`). Sem este campo, usa o kicker e o título do texto grande de abertura, que ele substitui. Opcionais: `img` (padrão: o `badge`), `de`, `dur`, `largura` (220; 180 com título em duas linhas) e `y`. O texto grande seguinte é empurrado para depois do pouso |
 | `legenda` | campo antigo, equivale a `estilo.legenda` fixo |
-| `max_vazio` | segundos que a metade inferior pode ficar vazia antes de o build avisar (padrão 2) |
+| `max_vazio` | segundos que a metade inferior (deitado, o painel da direita) pode ficar vazia antes de o build avisar (padrão 2) |
 | `brand` | `mono`, `name`, `sub`, `whatsapp`, `outroLine` |
 | `intro_end` | instante em que os textos de abertura terminam |
 | `cards` | textos grandes: `at`, `dur`, `kicker`, `title` (com `<br>`), `size` ("small" ou ""), `white`, `sub` |

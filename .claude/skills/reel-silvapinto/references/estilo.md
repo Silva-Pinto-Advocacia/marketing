@@ -7,6 +7,9 @@ aprovado explicitamente por ele; a seção "O que foi rejeitado" é tão importa
 ## 1. Formato e base
 
 - 1080x1920, 24 fps, H.264 CRF 18 (master) e CRF 24 (versão para o chat, abaixo de 30 MB).
+- Deitado (`"formato": "deitado"`, a pedido): 1920x1080. A "metade inferior" deste guia vira o painel da direita
+  (x de 1160 a 1860): textos grandes, infográficos, faixa e brasão da abertura ficam ali, sobre uma sombra lateral que
+  só aparece com eles; a legenda fica embaixo, no centro, e o rosto no meio do quadro.
 - O vídeo do Casil ocupa a tela inteira, sempre. Sem painéis, sem barras, sem rodapé, sem caixas opacas.
 - Enquadramento aberto: cabeça, ombros e tronco. Ele rejeitou enquadramento fechado ("só a cabeça, metade
   do frame vazio"). Zoom de reenquadramento máximo 1,15x sobre a filmagem original.

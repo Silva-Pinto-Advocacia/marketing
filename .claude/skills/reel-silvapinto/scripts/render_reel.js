@@ -16,7 +16,7 @@ const built = path.join(projectDir, 'comp_reel.built.html'); fs.writeFileSync(bu
   // se nenhum existir, o que o próprio Playwright baixou.
   const exe = [process.env.CHROMIUM_PATH, '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'].find(p => p && fs.existsSync(p));
   const b = await chromium.launch({ headless: true, executablePath: exe, args: ['--no-sandbox', '--font-render-hinting=none'] });
-  const page = await b.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
+  const page = await b.newPage({ viewport: { width: tl.W || 1080, height: tl.H || 1920 }, deviceScaleFactor: 1 });
   await page.goto('file://' + built); await page.evaluate(() => document.fonts.ready); await page.waitForTimeout(300);
   if (mode === 'preview') {
     const dir = path.join(projectDir, 'preview'); fs.mkdirSync(dir, { recursive: true });

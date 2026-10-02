@@ -7,6 +7,7 @@ description: Edita vídeos curtos verticais (reels, shorts, stories) do Dr. Casi
 
 Skill que reproduz o estilo de edição desenvolvido com o Casil (13 versões do reel PMERJ, setembro de
 2026) para qualquer vídeo novo em que ele fala para a câmera. O resultado é um MP4 1080x1920 a 24 fps
+(em pé, o padrão: Reels e Stories; com `"formato": "deitado"`, 1920x1080, ver `references/estilo.md`, seção 1)
 com o vídeo dele em tela cheia, sem painéis nem caixas, legendas dinâmicas, cortes e zooms medidos nos
 vídeos de referência que ele gosta, textos grandes dourados nos momentos-chave, infográficos
 sincronizados com a fala e encerramento com o WhatsApp do escritório.
@@ -53,6 +54,9 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   escritório (nenhum concorrente usa). Planejar uma cena para cada trecho de argumento, inclusive a
   `faixa` de decisão quando houver decisão, e não deixar a parte de baixo vazia por mais de 2 s fora da
   abertura, dos textos grandes e do encerramento (o build avisa).
+- **Em pé por padrão.** Deitado só quando o Casil pedir (o teleprompter do Redes tem a opção): mesmos
+  elementos, com o rosto no centro, a legenda embaixo e textos grandes, infográficos e o brasão da
+  abertura no painel da direita.
 - **Chamada com palavra-chave e material** ("comente CBMMG que eu te envio a análise") no `cta`, além
   do WhatsApp.
 - **Entregar pronto para publicar**: o reel do IASES foi ao ar sem a edição. Na entrega, lembrar que
