@@ -270,6 +270,10 @@
   .prova .pstk{position:absolute;right:70px;top:250px;background:#17181B;color:var(--gold);border-radius:20px;padding:14px 26px 10px;font-family:"Bebas Neue",Impact;font-size:84px;line-height:.9;box-shadow:0 0 0 5px #F4D692,0 16px 40px rgba(0,0,0,.5);opacity:0;text-align:center}
   .prova .pstk small{display:block;font-family:"JetBrains Mono";font-size:20px;letter-spacing:.2em;color:#fff;margin-top:4px}
     .prova .pg.real{padding:0;background:#fff;overflow:hidden}
+  .prova .tarja{position:absolute;background:#141416;border-radius:3px}
+  .prova .rodape{position:absolute;left:0;right:0;bottom:0;height:520px;z-index:3;pointer-events:none;background:linear-gradient(to bottom,rgba(23,24,27,0) 0%,rgba(23,24,27,.82) 38%,rgba(23,24,27,.94) 100%)}
+  .prova .stamp.verde{color:#1E7B3A;border-color:#1E7B3A;background:rgba(30,123,58,.06)}
+  .prova .stamp.dourado{color:#A87A24;border-color:#C9962F;background:rgba(240,207,134,.12)}
   .prova .pg.real img.real{display:block;width:100%;height:100%}
   .prova .hlr{position:absolute;background:rgba(244,214,146,.6);mix-blend-mode:multiply;transform-origin:0 50%;border-radius:4px}
   /* cena "ranking": VOCE sobe na classificacao */
@@ -373,8 +377,13 @@ TL.scenes.forEach((s,i)=>{
     const d=document.createElement('div'); d.className='prova'; d.id='pv'+i; let pw=900, ph=1180, k=1;
     if(s.img&&s.iw){ pw=900; ph=Math.round(900*s.ih/s.iw); if(ph>1180){ ph=1180; pw=Math.round(1180*s.iw/s.ih); } k=pw/s.iw; }
     const hl=(s.img&&s.destaque)?`<div class="hlr" style="left:${s.destaque[0]*k}px;top:${s.destaque[1]*k}px;width:${s.destaque[2]*k}px;height:${s.destaque[3]*k}px"></div>`:'';
-    d.innerHTML=`<div class="pbg"></div><div class="glow"></div><div class="pg${s.img?' real':''}" style="width:${pw}px;height:${ph}px;left:${(1080-pw)/2}px;top:${Math.round(340+(1180-ph)/2)}px">${s.img?`<img class="real" src="${s.img}">`+hl:MODELO}<svg class="anot" style="width:${pw}px;height:${ph}px"><path class="pcirc"/><path class="pseta"/></svg>${s.carimbo!=null?`<div class="stamp">${s.carimbo_texto||'PASSÍVEL DE<br>ANULAÇÃO'}</div>`:''}</div>${s.etiqueta?`<div class="pstk">${s.etiqueta}</div>`:''}`;
-    if(s.img&&s.alvo) d.dataset.alvo=JSON.stringify(s.alvo.map(v=>v*k));
+    // dados pessoais (nomes, CPF, numero do processo) sempre tarjados, do primeiro ao ultimo quadro
+    const tj=(s.img&&s.tarjas||[]).map(b=>`<div class="tarja" style="left:${b[0]*k-3}px;top:${b[1]*k-2}px;width:${b[2]*k+6}px;height:${b[3]*k+4}px"></div>`).join('');
+    d.innerHTML=`<div class="pbg"></div><div class="glow"></div><div class="pg${s.img?' real':''}" style="width:${pw}px;height:${ph}px;left:${(1080-pw)/2}px;top:${Math.round(340+(1180-ph)/2)}px">${s.img?`<img class="real" src="${s.img}">`+hl+tj:MODELO}<svg class="anot" style="width:${pw}px;height:${ph}px"><path class="pcirc"/><path class="pseta"/></svg>${s.carimbo!=null?`<div class="stamp ${s.carimbo_cor||''}">${s.carimbo_texto||'PASSÍVEL DE<br>ANULAÇÃO'}</div>`:''}</div>${s.etiqueta?`<div class="pstk">${s.etiqueta}</div>`:''}<div class="rodape"></div>`;
+    if(s.img&&s.alvo){ const A=s.alvo.map(v=>v*k); d.dataset.alvo=JSON.stringify(A);
+      // documento real: a camera vai ate o trecho, ate ele ficar legivel no celular (~820 px de largura)
+      const Z=Math.max(1.1,Math.min(3.2,1000/Math.max(60,A[2]))); d.dataset.zoom=Z;
+      const st=d.querySelector('.stamp'); if(st){ st.style.fontSize=Math.round(96/Math.min(Z,1.8))+'px'; st.style.left=Math.max(10,Math.min(pw-420,A[0]+A[2]/2-200))+'px'; st.style.top=Math.min(ph-160,A[1]+A[3]+24)+'px'; } }
     document.getElementById('provas').appendChild(d); }
   if(s.type==='ranking'){ const el=document.getElementById('ps'+i);
     el.innerHTML=`<div class="tag">${s.kicker||''}</div><div class="stk" style="width:760px"><div class="head" style="font-size:64px">${s.head||''}</div><div class="rk">${[0,1,2,3].map(j=>`<div class="row o"><i>•</i><b style="max-width:${60+((j*37)%35)}%"></b></div>`).join('')}<div class="row voce"><i>★</i><span>VOCÊ</span></div><svg class="seta"><path/></svg></div></div>`; }
@@ -543,8 +552,12 @@ window.seek=async function(t){
     const pg=pv.querySelector('.pg');
     const push=eio(prog(t,MA-0.25,0.55)), push2=eio(prog(t,CA-0.15,0.3))*0.08;
     const fr=Math.floor(t*FPS); let sx=0, sy=0; const sk=t>=CA&&t<CA+0.3?1-(t-CA)/0.3:0; if(sk>0){ sx=(hash(fr)-0.5)*40*sk; sy=(hash(fr+5)-0.5)*40*sk; }
-    pg.style.transformOrigin='45% 62%';
-    pg.style.transform=`translate(${sx}px,${(1-eb(qin))*1300+sy - push*30}px) rotate(${-9*(1-eo(qin))-1.5+push*1.5}deg) scale(${(1+0.12*(1-eo(qin)))*(1+0.1*push+push2)*(1+0.9*eio(qout))})`;
+    if(pv.dataset.zoom){ const A=JSON.parse(pv.dataset.alvo), Z=+pv.dataset.zoom, cx=A[0]+A[2]/2, cy=A[1]+A[3]/2;
+      pg.style.transformOrigin=`${cx}px ${cy}px`;
+      const tx=(540-(pg.offsetLeft+cx))*push, ty=(880-(pg.offsetTop+cy))*push;
+      pg.style.transform=`translate(${sx+tx}px,${(1-eb(qin))*1300+sy+ty}px) rotate(${(-9*(1-eo(qin))-1.5)*(1-push)}deg) scale(${(1+0.12*(1-eo(qin)))*(1+(Z-1)*push+push2)*(1+0.9*eio(qout))})`; }
+    else { pg.style.transformOrigin='45% 62%';
+      pg.style.transform=`translate(${sx}px,${(1-eb(qin))*1300+sy - push*30}px) rotate(${-9*(1-eo(qin))-1.5+push*1.5}deg) scale(${(1+0.12*(1-eo(qin)))*(1+0.1*push+push2)*(1+0.9*eio(qout))})`; }
     pv.style.opacity=1-eio(qout)*0.9;
     pv.querySelectorAll('.m1').forEach(e=>e.style.setProperty('--m',eo(prog(t,MA,0.22))));
     pv.querySelectorAll('.m2').forEach(e=>e.style.setProperty('--m',eio(prog(t,MA+0.12,0.5))));
@@ -557,8 +570,11 @@ window.seek=async function(t){
     if(box&&CI<1e9){ const [x0,y0,w,h]=box, cx=x0+w/2, cy=y0+h/2;
       circ.setAttribute('d',`M${cx+w*0.1},${y0-6} C${x0-30},${y0-14} ${x0-34},${y0+h+10} ${cx},${y0+h+8} C${x0+w+40},${y0+h+6} ${x0+w+36},${y0-10} ${cx-w*0.18},${y0-2}`);
       const L=circ.getTotalLength(); circ.style.strokeDasharray=L; circ.style.strokeDashoffset=L*(1-eio(prog(t,CI,0.45)));
-      const ax=Math.min(pg.offsetWidth-20, x0+w+190), ay=y0-120, ex=Math.min(pg.offsetWidth-30, x0+w+18);
-      seta.setAttribute('d',`M${ax},${ay} Q${ax-40},${cy-10} ${ex},${cy} M${ex},${cy} l30,-30 M${ex},${cy} l42,8`);
+      if(w>pg.offsetWidth*0.5){ // trecho largo: a seta desce de cima, na diagonal, ate a borda do circulo
+        const ex=x0+w*0.72, ey=y0-10, ax=ex+70, ay=ey-150;
+        seta.setAttribute('d',`M${ax},${ay} Q${ax+10},${ey-50} ${ex},${ey} M${ex},${ey} l-6,-34 M${ex},${ey} l30,-18`); }
+      else { const ax=Math.min(pg.offsetWidth-20, x0+w+190), ay=y0-120, ex=Math.min(pg.offsetWidth-30, x0+w+18);
+        seta.setAttribute('d',`M${ax},${ay} Q${ax-40},${cy-10} ${ex},${cy} M${ex},${cy} l30,-30 M${ex},${cy} l42,8`); }
       const SL=seta.getTotalLength(); seta.style.strokeDasharray=SL; seta.style.strokeDashoffset=SL*(1-eio(prog(t,CI+0.35,0.35))); }
     const st=pv.querySelector('.stamp'); if(st){ const qs=prog(t,CA,0.16); st.style.opacity=qs>0?Math.min(1,qs*3):0; st.style.transform=`rotate(-11deg) scale(${3-2*eo(qs)})`; }
     const ps=pv.querySelector('.pstk'); if(ps){ const qp=prog(t,MA+0.05,0.35); ps.style.opacity=Math.min(1,qp*3); ps.style.transform=`rotate(${(1-eo(qp))*20+6}deg) scale(${Math.max(0,eb(qp))})`; }

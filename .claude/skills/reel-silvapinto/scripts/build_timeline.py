@@ -229,6 +229,7 @@ for i, sc in enumerate(raw):
     if abertura and t0 < abertura["t"] + abertura["dur"] + 0.1: t0 = abertura["t"] + abertura["dur"] + 0.1
     if dinamico and dinamico["selo"] and t0 < dinamico["selo"]["fim"] + 0.2: t0 = dinamico["selo"]["fim"] + 0.2
     d = dict(sc); d.pop("from", None); d.pop("to", None)
+    if d.get("type") == "documento": d["type"] = "prova"   # decisao, edital, gabarito: a mesma cena da folha
     # cena "prova": a folha da questao em tela cheia, com marca-texto, circulo, seta e carimbo ancorados na fala.
     # So com o print REAL da questao ("img"); a folha-modelo e so para teste e sai com a marca SIMULACAO
     if d.get("type") in ("prova", "ranking") and DEITADO:
