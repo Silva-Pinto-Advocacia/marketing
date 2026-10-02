@@ -88,7 +88,7 @@ for i in range(len(chunks) - 1):
 
 # ---------- anchors ----------
 def t_of(word, after=0.0, nth=0):
-    hits = [w["s"] for w in W if w["s"] >= after and w["w"].lower().strip(".,!?;:") == word.lower()]
+    hits = [w["s"] for w in W if w["s"] >= after and w["w"].lower().strip(".,!?;:") == word.lower().strip(".,!?;:")]
     if len(hits) <= nth: raise SystemExit(f"anchor not found: '{word}' after {after}s")
     return hits[nth]
 
@@ -126,6 +126,18 @@ for k, ops in VARIANTES.items():
         if v not in ("sorteio",): print(f"aviso: estilo.{k} = {v!r} nao existe; sorteando entre {ops}")
         v = rng.choice(ops); sorteados.append(k)
     estilo[k] = v
+# visual: "formal" (padrao, o estilo de sempre) ou "dinamico" (teste aprovado em 02/10/2026: texto por tras da
+# pessoa na abertura, selo do brasao, legenda que pula com marca-texto, corte a cada frase com chicote, corte
+# seco e soco de zoom, adesivos, palavras que caem, claroes e efeitos sonoros). Nao e sorteado
+VISUAL = est.get("visual", cfg.get("visual", "formal"))
+if VISUAL not in ("formal", "dinamico"):
+    print(f"aviso: estilo.visual = {VISUAL!r} nao existe; fica o formal"); VISUAL = "formal"
+if VISUAL == "dinamico" and DEITADO:
+    print("visual dinamico ainda so em pe: fica o formal"); VISUAL = "formal"
+estilo["visual"] = VISUAL
+if VISUAL == "dinamico":   # a abertura do dinamico e o selo (com o texto por tras); o brasao central nao entra
+    estilo["abertura"] = "selo" if cfg.get("badge") else "texto"
+    if "abertura" in sorteados: sorteados.remove("abertura")
 _ab = cfg["abertura_brasao"] if isinstance(cfg.get("abertura_brasao"), dict) else {}
 if estilo["abertura"] == "brasao" and not _ab.get("img", cfg.get("badge")):
     print("abertura com brasao sem 'badge' no config: fica a abertura de texto"); estilo["abertura"] = "texto"
@@ -168,6 +180,29 @@ if estilo["abertura"] == "brasao":
             fim = c["t"] + c["dur"]; c["t"] = round(ab_end, 3); c["dur"] = round(max(1.2, fim - ab_end), 3)
     intro_end = max(intro_end, ab_end)
 
+# ---------- visual dinamico, abertura: o selo do brasao salta na metade inferior e o assunto aparece em letras
+# gigantes POR TRAS da pessoa (precisa do recorte do recortar.py; sem ele, so o selo) ----------
+dinamico = None
+if VISUAL == "dinamico":
+    first = cards[0] if cards and cards[0]["t"] < 0.3 else None
+    plain = lambda x: re.sub(r"<[^>]+>", " ", x or "").split()
+    atras = cfg.get("abertura_atras") or [w.upper() for w in plain(first["title"] if first else "") if len(w) > 1][:2]
+    # o recorte cobre o comeco do primeiro trecho da EDL
+    i0 = int(edl[0]["src"] * FPS) + 1; n_cut = 0
+    while os.path.exists(os.path.join(proj, "cut_frames", f"c{i0 + n_cut:05d}.png")): n_cut += 1
+    cut_until = round(min(3.0, edl[0]["dur"] - 0.1, n_cut / FPS - 0.1), 2) if n_cut else 0.0
+    if cut_until < 1.5: cut_until = 0.0; atras = []
+    if not atras and cfg.get("abertura_atras") is None and n_cut == 0:
+        print("dinamico: sem cut_frames (rode o recortar.py): a abertura fica sem o texto por tras")
+    selo = None
+    if cfg.get("badge"):
+        kick = (first["kicker"] if first else "") if atras else " ".join(plain(first["title"] if first else ""))
+        selo = {"img": cfg["badge"], "t": 0.35, "fim": round(max(2.4, cut_until - 0.25) if atras else 2.75, 2), "texto": kick}
+    if first and (atras or selo): cards.remove(first)
+    dinamico = {"atras": atras, "cutPrefix": "cut_frames/c", "cutUntil": cut_until if atras else 0.0, "selo": selo}
+    intro_end = max(intro_end, (selo["fim"] + 0.4) if selo else 0.0, cut_until)
+    print(f"dinamico: texto por tras {atras or 'nao'} ate {cut_until}s, selo {'sim' if selo else 'nao'}")
+
 # ---------- infographic scenes: each has "from" and "to"; "to" may be "next" or "outro" ----------
 raw = cfg.get("scenes", [])
 scenes = []
@@ -182,7 +217,19 @@ for i, sc in enumerate(raw):
         if c["t"] <= t0 < c["t"] + c["dur"]: t0 = c["t"] + c["dur"]
     # nem o brasao central da abertura, que ocupa a mesma area
     if abertura and t0 < abertura["t"] + abertura["dur"] + 0.1: t0 = abertura["t"] + abertura["dur"] + 0.1
+    if dinamico and dinamico["selo"] and t0 < dinamico["selo"]["fim"] + 0.2: t0 = dinamico["selo"]["fim"] + 0.2
     d = dict(sc); d.pop("from", None); d.pop("to", None)
+    # cena "prova": a folha da questao em tela cheia, com marca-texto, circulo, seta e carimbo ancorados na fala.
+    # So com o print REAL da questao ("img"); a folha-modelo e so para teste e sai com a marca SIMULACAO
+    if d.get("type") in ("prova", "ranking") and DEITADO:
+        print(f"cena {d['type']} ainda so em pe: fica de fora"); continue
+    if d.get("type") == "prova" and not d.get("img") and not d.get("simulacao"):
+        print("cena prova sem 'img' (o print da questao): fica de fora"); continue
+    for k in ("marca", "circulo", "carimbo", "sobe"):
+        if d.get(k) is not None:
+            try: d[k] = round(T(d[k]), 3)
+            except SystemExit as e: print(f"cena {d.get('type')}: {k} fora,", e); d.pop(k)
+    if d.get("type") == "ranking" and d.get("sobe") is None: d["sobe"] = round(t0 + 1.0, 3)
     if "stagger" in d: d["stagger"] = [T(x) - t0 if isinstance(x, dict) else x for x in d["stagger"]]
     d.update({"t": round(t0, 3), "dur": round(t1 - t0, 3)})
     if d["dur"] > 0.4: scenes.append(d)
@@ -253,6 +300,24 @@ bounds = clean
 levels = cfg.get("framings", nivel_auto[0] if nivel_auto else [1.0, 1.13, 1.0, 1.26, 1.13, 1.0, 1.26, 1.0, 1.13, 1.26, 1.0, 1.13])
 shots = [{"t": bounds[i], "end": bounds[i + 1], "scale": levels[i % len(levels)],
           "drift": 0.06 if levels[i % len(levels)] > 1.0 else 0.035} for i in range(len(bounds) - 1)]
+# visual dinamico: um plano por frase (2,2 s no minimo), trocando o enquadramento com chicote, corte seco com
+# tremor ou soco de zoom; as cenas comecam em plano novo, com chicote
+if VISUAL == "dinamico":
+    lv = cfg.get("framings", nivel_auto[0][:4] if nivel_auto else [1.0, 1.12, 1.04, 1.18])
+    inicios = [round(s["t"], 2) for s in scenes]
+    cand = sorted(set([round(c["s"], 2) for c in chunks] + inicios))
+    ini0 = max(dinamico["cutUntil"] + 0.15, 1.2) if dinamico else 1.2
+    cortes, ult = [], 0.0
+    for c in cand:
+        if c < ini0 or c >= outro_at - 0.5: continue
+        if c - ult >= 2.2 or (c in inicios and c - ult >= 1.2): cortes.append(c); ult = c
+    shots, a, lado = [], 0.0, 1
+    for i, c in enumerate(cortes + [round(out_total, 3)]):
+        tr = None
+        if i > 0:
+            if a in inicios or i == 1: tr = "whip"; lado = -lado
+            else: tr = "corte" if i % 2 else "punch"
+        shots.append({"t": a, "end": c, "scale": lv[i % len(lv)], "drift": 0.04, "tr": tr, "dir": lado}); a = c
 hits = []
 for h in cfg.get("hits", []):
     try: t = T(h)
@@ -271,6 +336,15 @@ def P(x):
 brand = dict(cfg.get("brand", {})); brand["mono"] = P(brand.get("mono", "assets/brand/logo_mono.png"))
 for ins in inserts: ins["img"] = P(ins["img"])
 if abertura: abertura["img"] = P(abertura["img"])
+if dinamico and dinamico["selo"]: dinamico["selo"]["img"] = P(dinamico["selo"]["img"])
+for sc in scenes:
+    if sc.get("type") == "prova" and sc.get("img"):
+        sc["img"] = P(sc["img"])
+        try:
+            from PIL import Image
+            sc["iw"], sc["ih"] = Image.open(sc["img"]).size
+        except Exception as e:
+            print("cena prova: imagem ilegivel,", e)
 # titulo fixo no alto: o assunto do video visivel do inicio ao encerramento (padrao dos reels que mais
 # engajaram nos concorrentes); "chamada" e a linha menor embaixo, ex. "Explico na legenda"
 # ---------- rosto: onde fica a cabeca (com o zoom maximo dos planos), para o titulo e a legenda nao
@@ -311,6 +385,48 @@ if rosto and not DEITADO and rosto["base"] + 20 > cap_top + 60:
     cap_top = min(1200, rosto["base"] - 40)
     print(f"legenda: desceu para {cap_top} px (o queixo vai ate {rosto['base']} px)")
     if rosto["base"] + 20 > cap_top + 60: print("aviso: o rosto desce ate a legenda; baixe os framings ou o pivot")
+# palavras-chave: marca-texto na legenda do dinamico. As do config ou, na falta, os numeros e as palavras
+# dos textos grandes, das cenas e do titulo
+def _n(x):
+    import unicodedata
+    x = unicodedata.normalize("NFD", x.lower())
+    return re.sub(r"[^a-z0-9]", "", "".join(ch for ch in x if unicodedata.category(ch) != "Mn"))
+VAZIAS = {"para", "pela", "pelo", "como", "mais", "isso", "esse", "essa", "este", "esta", "voce", "sua", "seu", "suas",
+          "seus", "que", "dos", "das", "nos", "nas", "com", "sem", "uma", "por", "tem", "temos", "ainda", "pode", "fale"}
+if cfg.get("palavras_chave"):
+    chave = {_n(w) for w in cfg["palavras_chave"]}
+else:
+    fontes_txt = [c["title"] for c in cards] + [str(sc.get(k) or "") for sc in scenes for k in ("head", "value", "unit")]
+    fontes_txt += [titulo["texto"]] if titulo else []
+    fontes_txt += (dinamico or {}).get("atras") or []
+    chave = {_n(w) for t_ in fontes_txt for w in re.sub(r"<[^>]+>", " ", t_).split()}
+    chave = {w for w in chave if (w.isdigit() or len(w) >= 4) and w not in VAZIAS}
+for c in chunks:
+    for w in c["words"]: w["k"] = _n(w["w"]) in chave
+# efeitos sonoros por evento (assemble.py): estalo nas entradas, chicote e tique nas trocas de plano, impacto
+# no numero, no carimbo e nas palavras que caem, risco de caneta no circulo
+sfx = []
+for sc in scenes:
+    if sc.get("type") == "prova":
+        sfx += [{"k": "whoosh", "t": sc["t"] - 0.2}, {"k": "whoosh", "t": sc["t"] + sc["dur"] - 0.2}]
+        if sc.get("marca") is not None: sfx.append({"k": "tick", "t": sc["marca"]})
+        if sc.get("circulo") is not None: sfx.append({"k": "scratch", "t": sc["circulo"]})
+        if sc.get("carimbo") is not None: sfx.append({"k": "boom", "t": sc["carimbo"]})
+    elif sc.get("type") == "ranking":
+        sfx += [{"k": "pop", "t": sc["sobe"]}, {"k": "tick", "t": sc["sobe"] + 0.4}, {"k": "tick", "t": sc["sobe"] + 0.65}]
+    elif VISUAL == "dinamico":
+        sfx.append({"k": "boom" if sc.get("type") == "counter" else "pop", "t": sc["t"] + 0.05})
+if VISUAL == "dinamico":
+    cut_in = lambda x: any(sc.get("type") == "prova" and sc["t"] - 0.3 <= x <= sc["t"] + sc["dur"] for sc in scenes)
+    for s_ in shots[1:]:
+        x = s_["t"] - (0.12 if s_["tr"] == "whip" else 0)
+        if not cut_in(x): sfx.append({"k": {"whip": "whoosh", "corte": "tick"}.get(s_["tr"], "pop"), "t": x})
+    for c in cards:
+        nw = len(re.sub(r"<br>", " ", c["title"]).split())
+        for j in range(nw): sfx.append({"k": "boom" if j == nw - 1 else "tick", "t": c["t"] + 0.1 + j * 0.16})
+    if dinamico and dinamico["selo"]: sfx.append({"k": "pop", "t": dinamico["selo"]["t"]})
+    sfx.append({"k": "whoosh", "t": outro_at - 0.2})
+sfx.sort(key=lambda x: x["t"])
 tl = {"fps": FPS, "frameCount": frame_count, "framePrefix": cfg.get("frames", "src_frames") + "/f", "total": round(out_total, 2),
       "edl": edl, "chunks": chunks, "cards": cards, "scenes": scenes, "shots": shots, "hits": hits, "inserts": inserts,
       "cuts": edl_cuts, "introEnd": round(intro_end, 2), "outroAt": round(outro_at, 2),
@@ -319,7 +435,8 @@ tl = {"fps": FPS, "frameCount": frame_count, "framePrefix": cfg.get("frames", "s
       "abertura": abertura, "legenda": estilo["legenda"], "estilo": estilo,
       "formato": "deitado" if DEITADO else "em_pe", "W": VW, "H": VH, "rosto": rosto, "capTop": cap_top,
       # do reel na rua que o Casil aprovou (out/2026): zoom de entrada e transicao em zoom entre os planos
-      "transicao": cfg.get("transicao", "corte"), "entradaZoom": cfg.get("entrada_zoom")}
+      "transicao": cfg.get("transicao", "corte"), "entradaZoom": cfg.get("entrada_zoom"),
+      "visual": VISUAL, "dinamico": dinamico, "sfx": sfx}
 json.dump(tl, open(os.path.join(proj, "timeline.json"), "w"), ensure_ascii=False, indent=1)
 print("cards", [(round(c["t"], 2), c["title"].replace("<br>", " ")) for c in cards])
 print("scenes", [(round(s["t"], 2), round(s["dur"], 2), s["type"]) for s in scenes])
