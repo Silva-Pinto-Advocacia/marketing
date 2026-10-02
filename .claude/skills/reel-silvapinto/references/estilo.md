@@ -14,8 +14,8 @@ aprovado explicitamente por ele; a seção "O que foi rejeitado" é tão importa
 - Enquadramento aberto: cabeça, ombros e tronco. Ele rejeitou enquadramento fechado ("só a cabeça, metade
   do frame vazio"). Zoom de reenquadramento máximo 1,15x sobre a filmagem original.
 - Leve correção de cor: `contrast(1.07) saturate(1.1) brightness(1.03)` e vinheta radial suave.
-- Degradê de legibilidade no rodapé (grafite, transparente até 35% de altura, chegando a 0,82 de opacidade na
-  base) é o único escurecimento permitido. Nunca azulado: ele pediu tom de cinza. Ele o aceitou porque os números dourados não se leem sobre a camiseta
+- Degradê de legibilidade no rodapé (grafite, 820 px de altura: transparente no topo, 0,5 a 32%, 0,8 a 62% e 0,9 na
+  base; reforçado em 02/10/2026 porque o dourado sumia sobre o terno bege) é o único escurecimento permitido. Nunca azulado: ele pediu tom de cinza. Ele o aceitou porque os números dourados não se leem sobre a camiseta
   branca sem isso. Nada de retângulos.
 - Desfoque progressivo dos 20% inferiores da imagem (sigma 20, pena de 110 px) lê como profundidade de campo
   e é onde os infográficos assentam. Usar mesmo em filmagem bruta: ajuda a legibilidade e ficou aprovado.
@@ -33,7 +33,8 @@ aprovado explicitamente por ele; a seção "O que foi rejeitado" é tão importa
 - Barra de progresso dourada de 6 px no topo.
 - Abertura opcional com brasão central (`abertura_brasao`, out/2026): o brasão entra grande na metade
   inferior, com halo dourado suave, kicker e título em dourado e dois fios que se abrem; aos 2,4 s voa para o
-  canto e vira a logo fixa do órgão. Diz o concurso no primeiro segundo sem tirar o rosto de cena. Veio da
+  canto e vira a logo fixa do órgão. Diz o concurso no primeiro segundo sem tirar o rosto de cena. Em pé, o brasão é grande (380 px; 330 com título em duas
+  linhas), centralizado na metade inferior, e a legenda some enquanto ele está lá (02/10/2026). Veio da
   análise do Pedro Auar (brasão grande com pílula azul e setas), refeita na nossa identidade. Abertura e
   legenda são sorteadas por padrão entre as variantes aprovadas (out/2026, pedido do Casil); ele fixa a
   que quiser.
@@ -72,7 +73,8 @@ Armadilhas de renderização que já custaram versões:
 - Palavra a palavra, grupos de 2 a 3 palavras (até 22 caracteres), quebrando em pontuação, nunca uma palavra
   curta sozinha. Palavra falada em dourado com leve escala 1,07; palavras já ditas em branco; por vir em
   branco a 55%.
-- Manrope 800, 78 px, centralizadas no peito (topo em 1160 px), com sombra forte.
+- Manrope 800, 78 px, centralizadas no peito (topo em 1160 px), com sombra forte. Nunca sobre o rosto: o build acha o
+  rosto e desce a legenda para baixo do queixo quando preciso (até 1200 px).
 - Halo escuro em cápsula que ACOMPANHA a largura do texto (`radial-gradient` num `inline-block` com
   `padding:22px 54px`). Ele rejeitou o halo de largura fixa: "passa muito do texto, fica um espaço em branco".
 - Cada grupo entra com um pop de escala 0,92 → 1 em 0,16 s.
@@ -80,7 +82,7 @@ Armadilhas de renderização que já custaram versões:
 - Variante `legenda: "caixa"` (out/2026): caixa em degradê dourado atrás da palavra falada, deslizando de
   uma palavra para a outra em 0,14 s; a palavra fica em grafite e o resto segue as regras acima.
 
-## 5. Infográficos (cena inferior, y 1500-1880, largura total)
+## 5. Infográficos (cena inferior, y 1440-1880, largura total)
 
 **A metade inferior é o nosso diferencial.** Nenhum dos 14 concorrentes analisados usa infográfico
 sincronizado com a fala; o Casil pediu (out/2026) que ela trabalhe o vídeo inteiro, como no modelo PMERJ.
@@ -91,11 +93,11 @@ faltando explorar a metade inferior".
 Um por trecho de fala, sincronizado com a palavra exata (âncoras no config). Entram deslizando da direita
 (120 px, 0,45 s) e saem pela esquerda. Tipos disponíveis em `comp_reel.html`:
 
-- `counter`: kicker + número Bebas 200 px que conta de zero ao valor em 1 s + unidade + frase de apoio.
+- `counter`: kicker + número Bebas 240 px que conta de zero ao valor em 1 s + unidade + frase de apoio.
 - `list`: até 3 itens com quadradinhos numerados que acendem em dourado, cada um na sua palavra (`stagger`).
 - `timeline`: 4 nós numa linha que se preenche, rótulos em Manrope + mono.
 - `sum`: parcelas em Bebas 100 px que aparecem uma a uma, "=" e resultado em 190 px contando.
-- `text`: manchete Bebas dourada 104 px em até 2 linhas + frase de apoio 34 px. Ele pediu "mais destaque"
+- `text`: manchete Bebas dourada 122 px em até 2 linhas + frase de apoio 38 px. Ele pediu "mais destaque"
   para frases como "Direito subjetivo à nomeação"; foi assim que ficou.
 - `cta`: manchete + frase + pílula verde do WhatsApp.
 - `faixa`: a faixa de decisão, com cara de notícia mas na nossa identidade: caixa grafite, fio dourado
@@ -103,7 +105,7 @@ Um por trecho de fala, sincronizado com a palavra exata (âncoras no config). En
   palavra a palavra. Usar no trecho em que ele anuncia a decisão. Não é a faixa branca com etiqueta azul do
   concorrente, que ele pediu para não copiar.
 
-Kicker sempre presente: mono 20 px, caixa alta, com traço dourado à esquerda.
+Kicker sempre presente: mono 24 px, caixa alta, com traço dourado à esquerda.
 
 ## 6. Textos grandes (antigas "cartelas")
 
