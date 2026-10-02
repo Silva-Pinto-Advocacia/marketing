@@ -69,6 +69,20 @@ for c in chunks:
         merged[-1]["words"] += c["words"]; merged[-1]["e"] = c["e"]
     else: merged.append(c)
 chunks = merged
+# gratuidade nunca escrita na tela (Provimento 205/2021): "gratuita", "de graça", "sem custo" saem da legenda;
+# o audio fica como foi falado. "legenda_gratuidade": true desliga o filtro
+if not cfg.get("legenda_gratuidade"):
+    nrm = lambda x: x.lower().strip(".,!?;:")
+    for c in chunks:
+        ws, fora = c["words"], set()
+        for j, w in enumerate(ws):
+            if nrm(w["w"]).startswith("gratuit") or nrm(w["w"]) in ("graça", "graca") or (nrm(w["w"]) in ("custo", "cobrança") and j and nrm(ws[j - 1]["w"]) == "sem"):
+                fora.add(j)
+                if j and nrm(ws[j - 1]["w"]) in ("de", "sem"): fora.add(j - 1)
+        if fora:
+            c["words"] = [w for j, w in enumerate(ws) if j not in fora]
+            if ws[max(fora)]["w"][-1:] in ".,!?;:" and c["words"]: c["words"][-1] = dict(c["words"][-1], w=c["words"][-1]["w"].rstrip(".,!?;:") + ws[max(fora)]["w"][-1])
+    chunks = [c for c in chunks if c["words"]]
 for i in range(len(chunks) - 1):
     if chunks[i + 1]["s"] - chunks[i]["e"] < 0.6: chunks[i]["e"] = chunks[i + 1]["s"]
 
