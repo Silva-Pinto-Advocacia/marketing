@@ -103,7 +103,7 @@ Campos por tipo de cena: `counter` (`prefix`, `value`, `unit`, `sub`), `list` (`
 seta) e `carimbo`, `carimbo_texto`, `etiqueta` (HTML curto, ex. `"11<small>QUESTÕES</small>"`); sem `img` só com
 `"simulacao": true`, para teste), `documento` (a mesma cena para decisão, edital, gabarito: `img`, `alvo`, `destaque`,
 `tarjas` = lista de [x, y, largura, altura] cobertas de preto (dados pessoais), `carimbo_cor` = `verde`, `vermelho` ou
-`dourado`; o motor preenche tudo a partir do anexo do Redes), `ranking` (`head`, `sobe` = âncora da subida do VOCÊ), `faixa` (`head`: a manchete da decisão, até ~60 caracteres; caixa grafite com fio
+`dourado`; o motor preenche tudo a partir do anexo do Redes; com movimento, aprovado na v3 do CFSd 2014 em 04/10/2026: `paradas` = lista de `{at, alvo, etiqueta?}` em que a câmera para em cada trecho citado, com moldura dourada e número; `chamadas` = lista de `{at, texto, lado?: esq|dir}`, etiquetas grandes que pulam com a fala; `bolha: false` tira a bolha com o rosto dele no canto, que no dinâmico entra sozinha), `ranking` (`head`, `sobe` = âncora da subida do VOCÊ), `faixa` (`head`: a manchete da decisão, até ~60 caracteres; caixa grafite com fio
 dourado que se desenha, kicker e manchete entrando palavra a palavra). Todos aceitam `kicker`. As cenas nunca se sobrepõem a um texto grande:
 `build_timeline.py` apara automaticamente.
 

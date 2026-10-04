@@ -240,6 +240,16 @@ for i, sc in enumerate(raw):
         if d.get(k) is not None:
             try: d[k] = round(T(d[k]), 3)
             except SystemExit as e: print(f"cena {d.get('type')}: {k} fora,", e); d.pop(k)
+    # documento com movimento: a camera para em cada trecho citado ("paradas", com numero opcional) e etiquetas
+    # pulam com a fala ("chamadas"). No dinamico, o rosto dele fica numa bolha no canto (bolha: false tira)
+    for k in ("paradas", "chamadas"):
+        lst = []
+        for x in d.get(k) or []:
+            try: lst.append(dict(x, at=round(T(x["at"]), 3)))
+            except SystemExit as e: print(f"cena {d.get('type')}: {k} fora,", e)
+        if lst: d[k] = sorted(lst, key=lambda x: x["at"])
+        else: d.pop(k, None)
+    if d.get("type") == "prova" and d.get("img") and d.get("bolha") is None: d["bolha"] = VISUAL == "dinamico"
     if d.get("type") == "ranking" and d.get("sobe") is None: d["sobe"] = round(t0 + 1.0, 3)
     if "stagger" in d: d["stagger"] = [T(x) - t0 if isinstance(x, dict) else x for x in d["stagger"]]
     d.update({"t": round(t0, 3), "dur": round(t1 - t0, 3)})

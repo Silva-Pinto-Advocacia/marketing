@@ -174,8 +174,15 @@ continua o padrão da skill. Mesmos dados (cenas, textos grandes, título), outr
 - **Abertura com texto por trás da pessoa.** O assunto em letras gigantes douradas (Bebas, até 350 px, encolhe
   para caber), uma palavra de cada vez, nos primeiros 3 s, passando POR TRÁS da cabeça. O `recortar.py` recorta a
   pessoa do fundo (rembg) e a composição a põe por cima do texto. Sem o recorte, a abertura fica só com o selo.
-- **Selo do brasão:** disco branco com fio dourado e o brasão do órgão, que salta com mola na metade inferior,
-  com o kicker numa etiqueta grafite inclinada; some aos ~2,7 s e o brasão aparece no canto com mola.
+- **Selo do brasão:** o brasão do órgão grande (430 px), solto, sobre um brilho dourado com raios girando, que
+  salta com mola na metade inferior, com o kicker numa etiqueta grafite inclinada; a legenda some enquanto ele
+  está na tela; some aos ~2,7 s e o brasão aparece no canto com mola. Era um disco branco de 300 px com o brasão
+  de 210 px dentro: "a logo da instituição está muito pequena" (Casil, 02/10/2026; aprovado na v3 do CFSd 2014).
+- **Documento com movimento** (v3 do CFSd 2014): a câmera para em cada trecho citado (`paradas`, moldura dourada
+  numerada), etiquetas grandes pulam com a fala (`chamadas`) e o rosto dele fica numa bolha no canto, para a parte
+  "em que aparece só o Diário Oficial" não ficar parada.
+- **Texto letra a letra** (`letra`): cada letra é um span com o mesmo dourado; antes de 03/10/2026 as letras
+  saíam transparentes e o texto por trás nunca aparecia.
 - **Legenda que pula:** caixa alta, 94 px, entra com mola e um leve giro; cada palavra aparece quando é falada;
   as palavras-chave (números e palavras dos textos grandes, das cenas e do título, ou `palavras_chave`) ganham
   marca-texto dourado inclinado.

@@ -19,6 +19,10 @@ Leia antes de começar:
 - `references/pipeline.md`: comandos, estrutura do projeto e o esquema do `config.json`.
 - `references/formatos.md`: os formatos, cortes, transições e elementos gráficos dos reels que mais
   engajaram nos concorrentes. Ler antes de propor o formato de um vídeo novo.
+- `references/youtube.md`: o formato do YouTube (16:9), aprovado em 04/10/2026. **Não é o reel deitado**: o
+  apresentador com o fundo original em faixa ou close, alternando em cortes com imagens do assunto (licença livre,
+  com crédito), documentos e infográficos. Código em `scripts/youtube/`, exemplo completo em
+  `examples/youtube_pmerj2014/`. Use sempre que o pedido for vídeo para o YouTube.
 - `references/roteiro.md`: a pauta, a estrutura de 30 a 60 s, a gravação e a publicação, com os
   números da comparação com 14 concorrentes (setembro de 2026). É o guia do Casil para gravar; use
   para conferir a pauta antes de editar e para responder pedidos de roteiro.
