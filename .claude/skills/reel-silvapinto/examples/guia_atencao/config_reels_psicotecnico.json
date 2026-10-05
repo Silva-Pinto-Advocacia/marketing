@@ -1,0 +1,190 @@
+{
+ "video": "fonte.mp4",
+ "language": "pt",
+ "bottom_blur": {
+  "y": 1280,
+  "h": 400,
+  "sigma": 20,
+  "feather": 110
+ },
+ "min_shot": 5.0,
+ "tail": 3.2,
+ "transicao": "zoom",
+ "entrada_zoom": 1.5,
+ "brand": {
+  "mono": "assets/brand/logo_mono.png",
+  "name": "Silva Pinto",
+  "sub": "Advocacia",
+  "whatsapp": "wa.me/5521993996262",
+  "outroLine": "Silva Pinto Advocacia · concursos públicos"
+ },
+ "estilo": {
+  "visual": "dinamico"
+ },
+ "titulo": {
+  "texto": "PSICOTÉCNICO: <b>INAPTO? CONFIRA 3 PONTOS</b>"
+ },
+ "abertura_atras": [
+  "INAPTO?"
+ ],
+ "intro_end": 2.8,
+ "cards": [
+  {
+   "at": 0.0,
+   "dur": 2.8,
+   "kicker": "foi considerado inapto?",
+   "title": "INAPTO?",
+   "size": "small"
+  },
+  {
+   "at": {
+    "src": 3.1
+   },
+   "dur": 3.0,
+   "kicker": "antes de aceitar o resultado",
+   "title": "3 PONTOS<br>PARA CONFERIR",
+   "size": "small"
+  },
+  {
+   "at": {
+    "src": 50.15
+   },
+   "dur": 2.9,
+   "kicker": "recurso administrativo",
+   "title": "NÃO É A<br>ÚLTIMA PALAVRA",
+   "size": "small"
+  }
+ ],
+ "scenes": [
+  {
+   "from": {
+    "src": 6.9
+   },
+   "to": {
+    "src": 11.2
+   },
+   "type": "text",
+   "kicker": "ponto 1 · lei",
+   "head": "EXISTE LEI?",
+   "text": "autorizando o exame <b>para o seu cargo</b>"
+  },
+  {
+   "from": {
+    "src": 11.25
+   },
+   "to": {
+    "src": 19.9
+   },
+   "type": "text",
+   "kicker": "Supremo Tribunal Federal",
+   "head": "SÚMULA<br>VINCULANTE 44",
+   "text": "só <b>por lei</b> se pode exigir exame psicotécnico"
+  },
+  {
+   "from": {
+    "src": 19.95
+   },
+   "to": {
+    "src": 29.6
+   },
+   "type": "text",
+   "kicker": "ponto 2 · critérios",
+   "head": "OBJETIVOS E<br>CONHECIDOS ANTES?",
+   "text": "o candidato precisa saber <b>o que era exigido</b>"
+  },
+  {
+   "from": {
+    "src": 29.65
+   },
+   "to": {
+    "src": 35.95
+   },
+   "type": "text",
+   "kicker": "ponto 3 · recurso",
+   "head": "FUNDAMENTOS<br>E RECURSO REAL?",
+   "text": "acesso ao <b>porquê do resultado</b>"
+  },
+  {
+   "from": {
+    "src": 36.0
+   },
+   "to": {
+    "src": 45.85
+   },
+   "type": "list",
+   "kicker": "se algum ponto falhou",
+   "items": [
+    "Não é aprovação automática",
+    "A legalidade precisa ser analisada"
+   ],
+   "stagger": [
+    {
+     "src": 38.0
+    },
+    {
+     "src": 41.7
+    }
+   ]
+  },
+  {
+   "from": {
+    "src": 45.9
+   },
+   "to": {
+    "src": 50.1
+   },
+   "type": "text",
+   "kicker": "e se a banca mantiver?",
+   "head": "PROCEDIMENTO<br>ILEGAL",
+   "text": "resultado <b>mantido pela banca</b>"
+  },
+  {
+   "from": {
+    "src": 53.2
+   },
+   "to": {
+    "src": 56.75
+   },
+   "type": "text",
+   "kicker": "esse tipo de ilegalidade",
+   "head": "PODE IR AO<br>JUDICIÁRIO",
+   "text": "cada caso é <b>analisado individualmente</b>"
+  },
+  {
+   "from": {
+    "src": 56.8
+   },
+   "to": "outro",
+   "type": "text",
+   "kicker": "manda este vídeo",
+   "head": "PARA QUEM TAMBÉM<br>RECEBEU INAPTO",
+   "text": "<b>envie</b> pelo direct"
+  }
+ ],
+ "hits": [
+  {
+   "src": 1.2
+  },
+  {
+   "src": 12.4
+  },
+  {
+   "src": 42.7
+  },
+  {
+   "src": 52.6
+  },
+  {
+   "src": 57.9
+  }
+ ],
+ "inserts": [],
+ "outro": {
+  "at": {
+   "src": 60.6
+  }
+ },
+ "dinamico_var": {
+  "tema": "grafite"
+ }
+}

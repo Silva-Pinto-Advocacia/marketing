@@ -1,0 +1,144 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="__ASSETS__/fonts/fonts_local.css">
+<link rel="stylesheet" href="__ASSETS__/fonts/extra_local.css">
+<style>
+:root{--navy:#17181B;--gold:#F0CF86;--gold2:#C9A55A}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1920px;height:1080px;overflow:hidden;background:var(--navy);font-family:Manrope,sans-serif;color:#fff}
+#stage{position:absolute;inset:0;overflow:hidden}
+.abs{position:absolute}
+.full{position:absolute;inset:0}
+.cover{width:100%;height:100%;object-fit:cover}
+.office{position:absolute;inset:-40px;background:url(img/escritorio.jpg) center/cover;filter:blur(7px) brightness(.5) saturate(.95)}
+.office.nitida{inset:-30px;filter:blur(9px) brightness(.38) saturate(.95)}
+.veu{position:absolute;inset:0}
+.logo{position:absolute;top:44px;height:58px;opacity:.95}
+.cred{position:absolute;bottom:26px;font:500 16px "JetBrains Mono",monospace;color:rgba(255,255,255,.6);text-shadow:0 1px 3px #000}
+.tag{margin-bottom:10px;display:inline-flex;align-items:center;gap:14px;font:600 26px "JetBrains Mono",monospace;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+.tag:before{content:"";width:46px;height:2px;background:var(--gold)}
+.h1{font:400 128px/0.92 "Bebas Neue",Impact;letter-spacing:.01em}
+.h2{font:400 96px/0.95 "Bebas Neue",Impact}
+.h3{font:400 80px/1 "Bebas Neue",Impact}
+.g{color:var(--gold)}
+.sub{font:500 42px/1.35 Manrope;color:rgba(255,255,255,.9)}
+.ic{display:inline-block;width:1em;height:1em;vertical-align:-.12em}
+.ic svg{width:100%;height:100%;display:block}
+.chip{display:inline-flex;align-items:center;gap:12px;font:400 66px/1 "Bebas Neue";padding:12px 26px 6px;border:3px solid var(--gold);color:var(--gold);border-radius:12px;white-space:nowrap;background:rgba(23,24,27,.55)}
+.chip.cheio{background:var(--gold);color:var(--navy)}
+.item{display:flex;align-items:center;gap:30px;font:600 50px/1.22 Manrope;margin:30px 0}
+.num{flex:none;width:92px;height:92px;border-radius:50%;border:3px solid var(--gold);display:grid;place-items:center;font:400 58px "Bebas Neue";color:var(--gold);padding-top:4px}
+.bola{flex:none;width:96px;height:96px;border-radius:50%;background:rgba(240,207,134,.12);border:3px solid var(--gold);display:grid;place-items:center;color:var(--gold);font-size:44px}
+.card{background:rgba(23,24,27,.8);border:2px solid rgba(240,207,134,.45);border-radius:22px;padding:40px 48px}
+.marca{position:absolute;background:rgba(240,207,134,.42);mix-blend-mode:multiply;border-radius:4px;transform-origin:left center}
+/* painel do apresentador */
+#pres{position:absolute;top:0;width:860px;height:1080px;overflow:hidden;background:#111}
+#pres img{position:absolute;left:0;top:0;width:860px;transform-origin:50% 30%}
+#pres .linha{position:absolute;top:0;bottom:0;width:5px;background:var(--gold)}
+#pres .nome{position:absolute;left:40px;bottom:46px;font:700 26px Manrope;background:rgba(0,0,0,.55);padding:10px 18px;border-left:4px solid var(--gold)}
+#pres .nome small{display:block;font:500 18px "JetBrains Mono";color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+#conteudo{position:absolute;top:0;height:1080px;width:1060px;overflow:hidden}
+#close{position:absolute;inset:0;overflow:hidden}
+#close img{position:absolute;left:0;top:0;transform-origin:0 0}
+.terco{position:absolute;left:90px;bottom:90px}
+.grad-b{background:linear-gradient(0deg,rgba(23,24,27,.92) 0%,rgba(23,24,27,.35) 48%,rgba(23,24,27,.25) 100%)}
+.grad-l{background:linear-gradient(90deg,rgba(23,24,27,.95) 0%,rgba(23,24,27,.8) 42%,rgba(23,24,27,.2) 75%,rgba(23,24,27,.35) 100%)}
+.grad-x{background:linear-gradient(0deg,rgba(0,0,0,.75) 0%,rgba(0,0,0,0) 40%)}
+.doc{position:absolute;left:0;top:0;transform-origin:0 0;box-shadow:0 30px 90px rgba(0,0,0,.7)}
+</style></head><body>
+<div id="stage"></div>
+<script>
+const W=1920,H=1080,FPS=24;
+let S=null, cur=-1, ICONS={};
+const ease=p=>p<=0?0:p>=1?1:1-Math.pow(1-p,3);
+const lerp=(a,b,p)=>a+(b-a)*p;
+function pad(n,k){return String(n).padStart(k,'0')}
+function frameSrc(t){const i=Math.max(1,Math.min(S.nFrames,Math.round(t*FPS)+1));return `fr/f${pad(i,5)}.jpg`}
+function icon(html){return html.replace(/\{ic:([a-z-]+)\}/g,(m,n)=>`<span class="ic">${ICONS[n]||''}</span>`)}
+function build(sc){
+  const st=document.getElementById('stage'); let h='';
+  const logo=(side)=>`<img class="logo" style="${side}" src="__ASSETS__/brand/logo_mono.png">`;
+  if(sc.layout==='P'){
+    const esq=sc.side==='L';
+    h+=`<div id="conteudo" style="${esq?'right:0':'left:0'}"><div class="office"></div><div class="veu" style="background:linear-gradient(90deg,rgba(23,24,27,.55),rgba(23,24,27,.3))"></div>${logo(esq?'right:60px':'left:60px')}
+        <div class="abs" style="left:90px;right:80px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center">${icon(sc.html||'')}</div></div>
+        <div id="pres" style="${esq?'left:0':'right:0'}"><img><div class="linha" style="${esq?'right:0':'left:0'}"></div>${sc.nome?`<div class="nome"><small>advogado</small>Dr. Casil · Silva Pinto Advocacia</div>`:''}</div>`;
+  } else if(sc.layout==='X'){
+    h+=`<div id="close"><img></div><div class="full grad-x"></div>${logo('left:60px')}<div class="terco">${icon(sc.html||'')}</div>`;
+  } else if(sc.layout==='B'){
+    if(sc.photo) h+=`<div class="full" style="overflow:hidden"><img id="foto" class="abs" src="img/${sc.photo}" style="left:0;top:0;width:1920px;height:1080px;object-fit:cover;transform-origin:50% 50%"></div>`;
+    if(sc.clips) h+=`<img id="clip" class="full cover">`;
+    h+=`<div class="full ${sc.grad||'grad-b'}"></div>${logo('left:60px')}<div class="abs" style="left:90px;right:90px;bottom:90px">${icon(sc.html||'')}</div>`;
+    if(sc.credit) h+=`<div class="cred" style="right:60px">${sc.credit}</div>`;
+  } else if(sc.layout==='D'){
+    h+=`<div class="office"></div><div class="veu" style="background:rgba(23,24,27,.25)"></div><div id="docw" class="full"><img class="doc" src="img/${sc.doc.img}" style="width:${sc.doc.w}px;height:${sc.doc.h}px">${(sc.doc.marcas||[]).map(m=>`<div class="marca" data-mat="${m.at}" style="left:${m.r[0]-6}px;top:${m.r[1]-4}px;width:${m.r[2]+12}px;height:${m.r[3]+8}px"></div>`).join('')}</div>
+        <div class="abs" style="left:0;top:0;right:0;padding:36px 60px;background:linear-gradient(180deg,rgba(23,24,27,.92),rgba(23,24,27,0))">${icon(sc.html||'')}</div>${logo('right:60px')}`;
+    if(sc.credit) h+=`<div class="cred" style="right:60px">${sc.credit}</div>`;
+  } else if(sc.layout==='I'){
+    if(sc.photo) h+=`<div class="full" style="overflow:hidden"><img id="foto" class="abs" src="img/${sc.photo}" style="left:0;top:0;width:1920px;height:1080px;object-fit:cover"></div><div class="full" style="background:rgba(23,24,27,.82)"></div>`;
+    else h+=`<div class="office"></div><div class="veu" style="background:rgba(23,24,27,.3)"></div>`;
+    h+=`${logo('right:60px')}<div class="abs" style="left:110px;right:110px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center">${icon(sc.html||'')}</div>`;
+    if(sc.credit) h+=`<div class="cred" style="right:60px">${sc.credit}</div>`;
+  } else if(sc.layout==='O'){
+    h+=`<div class="office nitida" style="transform-origin:50% 45%"></div><div class="full" style="background:radial-gradient(900px 600px at 50% 50%,rgba(23,24,27,.2),rgba(23,24,27,.85))"></div><div class="abs" style="left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">${icon(sc.html||'')}</div>`;
+  }
+  st.innerHTML=h;
+  sc._an=[...st.querySelectorAll('[data-at]')];
+}
+function kb(el,sc,p){ if(!el||!sc.kb) return; const [z0,z1,x0,x1,y0,y1]=sc.kb; const e=p; el.style.transform=`translate(${lerp(x0,x1,e)}px,${lerp(y0,y1,e)}px) scale(${lerp(z0,z1,e)})`; }
+function animar(sc,t){
+  for(const el of sc._an){
+    const at=parseFloat(el.dataset.at), d=parseFloat(el.dataset.d||0.45), a=el.dataset.a||'up';
+    const p=ease((t-at)/d);
+    let tf='';
+    if(a==='up') tf=`translateY(${(1-p)*40}px)`;
+    else if(a==='left') tf=`translateX(${(1-p)*-60}px)`;
+    else if(a==='pop') tf=`scale(${lerp(.6,1,p)+ (p<1? Math.sin(p*Math.PI)*0.08:0)})`;
+    else if(a==='wipe'){ el.style.clipPath=`inset(0 ${(1-p)*100}% 0 0)`; el.style.opacity=t>=at?1:0; continue;}
+    else if(a==='fade') tf='';
+    el.style.opacity=p; el.style.transform=tf;
+    if(el.dataset.cont){ const [v0,v1]=el.dataset.cont.split(',').map(Number); el.textContent=Math.round(lerp(v0,v1,p)); }
+  }
+}
+window.render=async function(t){
+  let i=S.scenes.findIndex(s=>t>=s.t0&&t<s.t1); if(i<0) i=S.scenes.length-1;
+  const sc=S.scenes[i]; if(i!==cur){cur=i;build(sc);}
+  const lt=t-sc.t0, p=Math.min(1,lt/(sc.t1-sc.t0));
+  const imgs=[];
+  if(sc.layout==='P'){
+    const im=document.querySelector('#pres img'); const s=860/1080, z=1+0.035*p;
+    im.src=frameSrc(t); imgs.push(im);
+    const off=sc.off; im.style.transform=`translateY(${-off*s}px) scale(${z})`;
+  } else if(sc.layout==='X'){
+    const im=document.querySelector('#close img'); im.src=frameSrc(t); imgs.push(im);
+    const z0=sc.zoom||1.7778, z=z0*(1+0.03*p); const cx=sc.cx, cy=sc.cy;
+    im.style.width='1080px'; im.style.transform=`translate(${W/2-cx*z}px,${H/2-cy*z}px) scale(${z})`;
+  } else if(sc.layout==='B'||sc.layout==='I'){
+    kb(document.getElementById('foto'),sc,p);
+    if(sc.clips){ let acc=0, c=sc.clips[sc.clips.length-1], off=0; for(const cl of sc.clips){ if(lt<acc+cl[1]){c=cl;off=lt-acc;break;} acc+=cl[1]; off=lt-acc+cl[1]; }
+      const n=Math.max(1,Math.min(c[2],Math.round(off*FPS)+1)); const im=document.getElementById('clip'); im.src=`clips/${c[0]}/c${pad(n,4)}.jpg`; imgs.push(im);
+      im.style.transform=`scale(${1.02+0.04*p})`; }
+  } else if(sc.layout==='D'){
+    const ks=sc.doc.cam; let k=0; while(k<ks.length-1&&lt>=ks[k+1][0]) k++;
+    const a=ks[k], b=ks[Math.min(k+1,ks.length-1)];
+    const q=b[0]>a[0]?ease(Math.min(1,(lt-a[0])/Math.min(1.1,b[0]-a[0]))):1;
+    // a câmera fica parada no ponto e só anda na transição de ~1 s
+    const cx=lerp(a[1],b[1],lt>=b[0]?1:0), cy=lerp(a[2],b[2],lt>=b[0]?1:0);
+    let X,Y,Z; if(lt<b[0]){X=a[1];Y=a[2];Z=a[3];} else {X=b[1];Y=b[2];Z=b[3];}
+    // movimento: interpola entre o ponto anterior e o atual no primeiro 1,1 s depois de cada parada
+    const prev=ks[Math.max(0,k-1)], qq=ease(Math.min(1,(lt-a[0])/1.1));
+    X=lerp(prev[1],a[1],k?qq:1); Y=lerp(prev[2],a[2],k?qq:1); Z=lerp(prev[3],a[3],k?qq:1);
+    Z*= (1+0.015*Math.sin(lt*0.6));
+    const w=document.getElementById('docw'); w.style.transform=`translate(${W/2-X*Z}px,${H/2+40-Y*Z}px) scale(${Z})`; w.style.transformOrigin='0 0';
+    for(const m of w.querySelectorAll('.marca')){ const at=parseFloat(m.dataset.mat)-sc.t0, pp=ease((lt-at)/0.5); m.style.transform=`scaleX(${pp})`; m.style.opacity=lt>=at?1:0; }
+  } else if(sc.layout==='O'){
+    document.querySelector('.office').style.transform=`scale(${1+0.05*p})`;
+  }
+  animar(sc,t);
+  await Promise.all(imgs.map(im=>im.decode().catch(()=>{})));
+  await Promise.all([...document.querySelectorAll('img')].filter(i=>!i.complete).map(i=>i.decode().catch(()=>{})));
+  return i;
+};
+window.init=function(data,icons){S=data;ICONS=icons;};
+</script>
+</body></html>

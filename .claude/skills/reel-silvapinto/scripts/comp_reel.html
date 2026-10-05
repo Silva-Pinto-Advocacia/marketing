@@ -23,12 +23,12 @@
   /* top chrome */
   .prog{position:absolute;left:0;top:0;height:6px;width:0;background:linear-gradient(90deg,var(--gold2),var(--gold3));z-index:5}
   .logo{position:absolute;left:56px;top:50px;z-index:4;display:flex;flex-direction:column;align-items:flex-start;filter:drop-shadow(0 4px 14px rgba(0,0,0,.6))}
-  .logo img{width:92px;height:auto;margin-bottom:14px;margin-left:2px}
-  .logo .n1{font-family:Fraunces,Georgia,serif;font-weight:300;font-size:36px;letter-spacing:.16em;text-transform:uppercase;color:#EDE9DD;line-height:1}
-  .logo .n2{font-family:Manrope,sans-serif;font-weight:600;font-size:15px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-top:9px;margin-left:2px}
+  /* a logo é sempre a arte oficial (brasão + SILVA PINTO na letra da marca + ADVOCACIA), nunca o nome digitado
+     numa fonte parecida: pedido do Casil, 05/10/2026 */
+  .logo img{width:250px;height:auto}
   .card .clogo{display:none}
   .card .grain{display:none}
-  .outro .ologo{width:200px;margin-bottom:50px}
+  .outro .ologo{width:420px;margin-bottom:60px}
 
   /* captions over video bottom */
   .cap{position:absolute;left:0;right:0;top:1160px;height:230px;padding:0 48px;display:flex;align-items:flex-end;justify-content:center;flex-wrap:wrap;text-align:center;font-weight:800;font-size:78px;line-height:1.05;letter-spacing:-0.015em;
@@ -190,7 +190,7 @@
   .deitado #bname .n{font-size:84px}
   .deitado #bname .fios{width:640px}
   .deitado .outro .in{left:140px;right:140px}
-  .deitado .outro .ologo{width:130px;margin-bottom:30px}
+  .deitado .outro .ologo{width:300px;margin-bottom:30px}
   .deitado .outro .h{font-size:132px}
   .deitado .outro .pill{margin-top:36px;font-size:36px;padding:24px 40px}
   .deitado .outro .brand{margin-top:34px;font-size:20px}
@@ -202,15 +202,19 @@
   #cut{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;will-change:transform,filter}
   #atras{position:absolute;left:0;right:0;top:150px;height:420px;z-index:1;text-align:center;pointer-events:none}
   #atras div{position:absolute;left:0;right:0;top:0}
+  /* variação "letra": cada letra vira um span, e o dourado (background-clip:text) do bloco não pinta dentro de
+     inline-block — as letras ficavam transparentes e o texto por trás nunca aparecia (03/10/2026) */
+  #atras div span{background:inherit;-webkit-background-clip:text;background-clip:text;color:transparent;padding-top:.24em;margin-top:-.24em}  /* a caixa da letra cobre o acento (o É saía sem o acento) */
   #atras div{font-family:"Bebas Neue",Impact,sans-serif;font-size:350px;line-height:.82;letter-spacing:.01em;padding-top:.12em;
     background:linear-gradient(180deg,#FFF6DE 0%,#F4D692 50%,#E2B862 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 10px 30px rgba(0,0,0,.45))}
   .cap.pop{font-family:Manrope,sans-serif;font-weight:800;font-size:94px;text-transform:uppercase;letter-spacing:-.02em;line-height:1.08;
     text-shadow:0 0 2px #000,0 3px 0 rgba(0,0,0,.85),0 6px 0 rgba(0,0,0,.35),0 14px 34px rgba(0,0,0,.7)}
   .cap.pop .capin{background:none;padding:0 20px}
-  .cap.pop span{position:relative;margin:0 10px 10px}
+  .cap.pop span{position:relative;margin:0 15px 10px}
   .cap.pop span.todo{color:#fff;opacity:.0}
   .cap.pop span.done{color:#fff}
-  .cap.pop span.cur{color:#fff;transform:scale(1.1) translateY(-4px)}
+  /* palavra dita cresce 6% (com 10% a palavra longa engolia o espaço da vizinha: "FOICONSIDERADO", 05/10/2026) */
+  .cap.pop span.cur{color:#fff;transform:scale(1.06) translateY(-4px)}
   .cap.pop span.k{color:var(--navy);text-shadow:none;z-index:1}
   .cap.pop span.k::before{content:"";position:absolute;left:-14px;right:-14px;top:4px;bottom:-2px;z-index:-1;border-radius:12px;transform:rotate(-2.5deg) scaleX(var(--hk,1));transform-origin:0 50%;
     background:linear-gradient(180deg,#FFF3D6 0%,#F4D692 55%,#EBC776 100%);box-shadow:0 8px 22px rgba(0,0,0,.45)}
@@ -237,10 +241,14 @@
   .ps .ring path{fill:none;stroke:#F4D692;stroke-width:14;vector-effect:non-scaling-stroke;stroke-linecap:round;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
   .ps .rays{position:absolute;left:-60px;top:-30px;width:300px;height:300px;pointer-events:none}
   .ps .rays i{position:absolute;left:150px;top:150px;width:60px;height:8px;border-radius:4px;background:#F4D692;transform-origin:-70px 50%}
-  #selo{position:absolute;left:540px;top:1490px;z-index:4;opacity:0;display:flex;flex-direction:column;align-items:center;pointer-events:none}
-  #selo .disc{width:300px;height:300px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 8px #F4D692,0 24px 60px rgba(0,0,0,.55)}
-  #selo .disc img{width:210px}
-  #selo .pl{white-space:nowrap;margin-top:-26px;background:#17181B;color:var(--gold);font-family:"JetBrains Mono",monospace;font-size:26px;letter-spacing:.2em;text-transform:uppercase;padding:14px 26px;border-radius:12px;transform:rotate(-3deg);box-shadow:0 10px 26px rgba(0,0,0,.5)}
+  #selo{position:absolute;left:540px;top:1150px;z-index:4;opacity:0;display:flex;flex-direction:column;align-items:center;pointer-events:none}
+  /* o brasao grande, solto, sobre um brilho dourado com raios girando. Era um disco branco de 300 px com o
+     brasao de 210 px dentro: "a logo da instituicao esta muito pequena" (Casil, 02/10/2026) */
+  #selo .disc{position:relative;display:grid;place-items:center}
+  #selo .disc img{position:relative;width:430px;max-height:520px;object-fit:contain;filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 26px rgba(255,255,255,.5)) drop-shadow(0 28px 44px rgba(0,0,0,.6))}
+  #selo .halo{position:absolute;left:50%;top:50%;width:820px;height:820px;margin:-410px 0 0 -410px;border-radius:50%;background:radial-gradient(circle,rgba(244,214,146,.6) 0%,rgba(244,214,146,.2) 36%,rgba(244,214,146,0) 66%)}
+  #selo .raios{position:absolute;left:50%;top:50%;width:1000px;height:1000px;margin:-500px 0 0 -500px;border-radius:50%;background:repeating-conic-gradient(rgba(255,236,190,.26) 0 6deg,rgba(255,236,190,0) 6deg 20deg);-webkit-mask:radial-gradient(circle,#000 16%,transparent 60%);mask:radial-gradient(circle,#000 16%,transparent 60%)}
+  #selo .pl{white-space:nowrap;margin-top:18px;position:relative;background:#17181B;color:var(--gold);font-family:"JetBrains Mono",monospace;font-size:26px;letter-spacing:.2em;text-transform:uppercase;padding:14px 26px;border-radius:12px;transform:rotate(-3deg);box-shadow:0 10px 26px rgba(0,0,0,.5)}
   .leak{position:absolute;inset:-200px;z-index:6;pointer-events:none;opacity:0;mix-blend-mode:screen;
     background:radial-gradient(ellipse 40% 60% at var(--lx,30%) 40%, rgba(255,190,90,.85) 0%, rgba(255,140,50,.35) 40%, rgba(255,120,40,0) 70%)}
   .card.slam .in{background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(23,24,27,.75) 0%, rgba(23,24,27,.45) 60%, rgba(23,24,27,0) 100%)}
@@ -275,6 +283,17 @@
   .prova .stamp.verde{color:#1E7B3A;border-color:#1E7B3A;background:rgba(30,123,58,.06)}
   .prova .stamp.dourado{color:#A87A24;border-color:#C9962F;background:rgba(240,207,134,.12)}
   .prova .pg.real img.real{display:block;width:100%;height:100%}
+  /* movimento no documento (Casil, 02/10/2026: "tornar mais dinamico a parte em que aparece so o diario
+     oficial"): paradas numeradas da camera, etiquetas que pulam com a fala, a bolha com o rosto e o brilho */
+  .prova .pfr{position:absolute;border:5px solid #E2B65A;border-radius:10px;box-shadow:0 0 0 3px rgba(23,24,27,.25),0 0 30px rgba(226,182,90,.45);opacity:0}
+  .prova .num{position:absolute;width:86px;height:86px;border-radius:50%;background:#17181B;color:#F4D692;font-family:"Bebas Neue",Impact;font-size:66px;line-height:92px;text-align:center;box-shadow:0 0 0 5px #F4D692,0 12px 30px rgba(0,0,0,.45);opacity:0}
+  .prova .cham{position:absolute;top:250px;z-index:4;background:#17181B;color:#F4D692;border-radius:18px;padding:14px 26px 10px;font-family:"Bebas Neue",Impact;font-size:64px;line-height:.92;box-shadow:0 0 0 5px #F4D692,0 18px 44px rgba(0,0,0,.55);opacity:0;white-space:nowrap}
+  .prova .cham small{display:block;font-family:"JetBrains Mono",monospace;font-size:20px;letter-spacing:.2em;color:#fff;margin-top:6px}
+  .prova .cham.esq{left:56px;transform-origin:0 50%}
+  .prova .cham.dir{right:56px;transform-origin:100% 50%}
+  .prova .bolha{position:absolute;left:44px;top:1300px;width:250px;height:250px;border-radius:50%;z-index:4;overflow:hidden;box-shadow:0 0 0 7px #F4D692,0 22px 50px rgba(0,0,0,.6);opacity:0;background:#222}
+  .prova .bolha .bv{position:absolute;inset:0;background-repeat:no-repeat}
+  .prova .brilho{position:absolute;top:-20%;bottom:-20%;width:38%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));pointer-events:none}
   .prova .hlr{position:absolute;background:rgba(244,214,146,.6);mix-blend-mode:multiply;transform-origin:0 50%;border-radius:4px}
   /* cena "ranking": VOCE sobe na classificacao */
   .ps .rk{position:relative;margin-top:12px;height:236px}
@@ -293,7 +312,7 @@
   <div class="vwin"><img id="vid" alt=""><div class="vig"></div><div class="fade"></div><div class="lado" id="lado"></div></div>
   <div id="atras"><div id="at1"></div><div id="at2"></div></div>
   <div id="cutwin"><img id="cut" alt=""></div>
-  <div id="selo"><div class="disc"><img id="seloimg" alt=""></div><div class="pl" id="selotx"></div></div>
+  <div id="selo"><div class="disc"><div class="raios"></div><div class="halo"></div><img id="seloimg" alt=""></div><div class="pl" id="selotx"></div></div>
   <div id="provas"></div>
   <div class="leak" id="leak"></div>
   <div class="cap" id="cap"></div>
@@ -303,7 +322,7 @@
     
   </div>
 
-  <div class="logo" id="tag"><img id="logomono" src="" alt=""><div class="n1" id="brandn1"></div><div class="n2" id="brandn2"></div></div><img class="pmerj" id="pmerj" src="" alt="">
+  <div class="logo" id="tag"><img id="logolockup" src="" alt=""></div><img class="pmerj" id="pmerj" src="" alt="">
   <div class="prog" id="prog"></div>
   <div id="bhalo"></div><img id="bimg" src="" alt=""><div id="bname"><div class="k" id="bk"></div><div class="n goldtxt" id="bn"></div><div class="fios"><i class="l"></i><i class="r"></i></div></div>
 
@@ -324,7 +343,7 @@ const TL=__TIMELINE__; const FPS=TL.fps; const VW=TL.W||1080;
 if(TL.formato==='deitado') document.documentElement.classList.add('deitado');
   if(TL.pivot){ document.getElementById('vid').style.transformOrigin=TL.pivot[0]+'% '+TL.pivot[1]+'%'; }
 // brand + assets from the timeline (set by build_timeline.py from config.json)
-(function(){ const b=TL.brand||{}; document.getElementById('logomono').src=b.mono||''; document.getElementById('ologo').src=b.mono||''; document.getElementById('brandn1').textContent=b.name||''; document.getElementById('brandn2').textContent=b.sub||''; document.getElementById('owa').textContent=b.whatsapp||''; document.getElementById('obrand').textContent=b.outroLine||''; const pm=document.getElementById('pmerj'); if(TL.badge){ pm.src=TL.badge; if(TL.badgeWidth) pm.style.width=TL.badgeWidth+'px'; } else { pm.style.display='none'; } const ins=(TL.inserts||[])[0]; document.querySelector('#insert img').src=ins?ins.img:''; })();
+(function(){ const b=TL.brand||{}; document.getElementById('logolockup').src=b.lockup||''; document.getElementById('ologo').src=b.lockup||''; document.getElementById('owa').textContent=b.whatsapp||''; document.getElementById('obrand').textContent=(b.outroLine||'').replace(/^\s*silva pinto advocacia\s*·?\s*/i,''); const pm=document.getElementById('pmerj'); if(TL.badge){ pm.src=TL.badge; if(TL.badgeWidth) pm.style.width=TL.badgeWidth+'px'; } else { pm.style.display='none'; } const ins=(TL.inserts||[])[0]; document.querySelector('#insert img').src=ins?ins.img:''; })();
 (function(){ const tt=TL.titulo, el=document.getElementById('titulo'); if(!tt){ el.style.display='none'; return; } document.getElementById('titulotx').innerHTML=tt.texto;
   if(tt.topo!=null) el.style.top=tt.topo+'px'; if(tt.compacto) el.classList.add('compacto');
   if(tt.alinhar==='esquerda'||tt.alinhar==='barra'){ el.classList.add(tt.alinhar); el.style.left=(tt.alinhar==='barra'?380:56)+'px'; el.style.right=(52+(TL.badgeWidth||200)+24)+'px'; } const ch=document.getElementById('tituloch'); if(tt.chamada) ch.textContent=tt.chamada; else ch.style.display='none'; })();
@@ -379,7 +398,14 @@ TL.scenes.forEach((s,i)=>{
     const hl=(s.img&&s.destaque)?`<div class="hlr" style="left:${s.destaque[0]*k}px;top:${s.destaque[1]*k}px;width:${s.destaque[2]*k}px;height:${s.destaque[3]*k}px"></div>`:'';
     // dados pessoais (nomes, CPF, numero do processo) sempre tarjados, do primeiro ao ultimo quadro
     const tj=(s.img&&s.tarjas||[]).map(b=>`<div class="tarja" style="left:${b[0]*k-3}px;top:${b[1]*k-2}px;width:${b[2]*k+6}px;height:${b[3]*k+4}px"></div>`).join('');
-    d.innerHTML=`<div class="pbg"></div><div class="glow"></div><div class="pg${s.img?' real':''}" style="width:${pw}px;height:${ph}px;left:${(1080-pw)/2}px;top:${Math.round(340+(1180-ph)/2)}px">${s.img?`<img class="real" src="${s.img}">`+hl+tj:MODELO}<svg class="anot" style="width:${pw}px;height:${ph}px"><path class="pcirc"/><path class="pseta"/></svg>${s.carimbo!=null?`<div class="stamp ${s.carimbo_cor||''}">${s.carimbo_texto||'PASSÍVEL DE<br>ANULAÇÃO'}</div>`:''}</div>${s.etiqueta?`<div class="pstk">${s.etiqueta}</div>`:''}<div class="rodape"></div>`;
+    const pr=(s.img&&s.paradas||[]).filter(q=>q.alvo).map((q,j)=>`<div class="pfr" data-at="${q.at}" style="left:${q.alvo[0]*k-10}px;top:${q.alvo[1]*k-10}px;width:${q.alvo[2]*k+20}px;height:${q.alvo[3]*k+20}px"></div>`
+      +(q.etiqueta?`<div class="num" data-at="${q.at}" style="left:${Math.max(4,q.alvo[0]*k-36)}px;top:${Math.max(4,q.alvo[1]*k-40)}px">${q.etiqueta}</div>`:'')).join('');
+    const ch=(s.chamadas||[]).map((c,j)=>`<div class="cham ${c.lado==='dir'||c.lado==='esq'?c.lado:(j%2?'dir':'esq')}" data-at="${c.at}">${c.texto||''}</div>`).join('');
+    const bo=s.bolha?`<div class="bolha"><div class="bv"></div></div>`:'';
+    d.innerHTML=`<div class="pbg"></div><div class="glow"></div><div class="pg${s.img?' real':''}" style="width:${pw}px;height:${ph}px;left:${(1080-pw)/2}px;top:${Math.round(340+(1180-ph)/2)}px">${s.img?`<img class="real" src="${s.img}">`+hl+tj+pr+'<div class="brilho"></div>':MODELO}<svg class="anot" style="width:${pw}px;height:${ph}px"><path class="pcirc"/><path class="pseta"/></svg>${s.carimbo!=null?`<div class="stamp ${s.carimbo_cor||''}">${s.carimbo_texto||'PASSÍVEL DE<br>ANULAÇÃO'}</div>`:''}</div>${s.etiqueta?`<div class="pstk">${s.etiqueta}</div>`:''}<div class="rodape"></div>${ch}${bo}`;
+    // a camera: as paradas (cada edital, cada trecho citado) e, por ultimo, o alvo no marca-texto
+    if(s.img&&s.alvo){ const cam=(s.paradas||[]).filter(q=>q.alvo).map(q=>({t:q.at,b:q.alvo.map(v=>v*k)}));
+      cam.push({t:s.marca??s.t+0.8,b:s.alvo.map(v=>v*k)}); d.dataset.cam=JSON.stringify(cam.sort((a,b)=>a.t-b.t)); }
     if(s.img&&s.alvo){ const A=s.alvo.map(v=>v*k); d.dataset.alvo=JSON.stringify(A);
       // documento real: a camera vai ate o trecho, ate ele ficar legivel no celular (~820 px de largura)
       const Z=Math.max(1.1,Math.min(3.2,1000/Math.max(60,A[2]))); d.dataset.zoom=Z;
@@ -462,7 +488,9 @@ window.seek=async function(t){
   // captions
   const cap=document.getElementById('cap'); const ch=TL.chunks.find(c=>t>=c.s&&t<c.e+0.1);
   const abOn=AB&&TL.formato!=='deitado'&&t>=AB.t-0.05&&t<AB.t+AB.dur+0.15;   // em pe, o brasao da abertura ocupa a metade inferior
-  if(ch&&cardOp<0.35&&!abOn&&t<TL.outroAt){ cap.style.opacity=1; const q=prog(t,ch.s,0.16); cap.style.transform=`scale(${0.92+0.08*eb(q)}) translateY(${(1-eo(q))*16}px)`;
+  // o selo grande do dinamico tambem: a legenda passava por tras dele (02/10/2026)
+  const seloOn=LAB&&LAB.selo&&t>=LAB.selo.t-0.05&&t<LAB.selo.fim+0.1;
+  if(ch&&cardOp<0.35&&!abOn&&!seloOn&&t<TL.outroAt){ cap.style.opacity=1; const q=prog(t,ch.s,0.16); cap.style.transform=`scale(${0.92+0.08*eb(q)}) translateY(${(1-eo(q))*16}px)`;
     if(TL.legenda==='caixa'){ let a=0; ch.words.forEach((w,j)=>{ if(t>=w.s) a=j; });
       cap.innerHTML='<span class="capin"><i class="hl"></i>'+ch.words.map((w,j)=>`<span class="${j<a?'done':(j===a?'cur':'todo')}">${w.w}</span>`).join(' ')+'</span>';
       const sp=cap.querySelectorAll('.capin > span'), A=sp[a], P=sp[Math.max(0,a-1)], q=a===0?1:eio(prog(t,ch.words[a].s,0.14)), hl=cap.querySelector('.hl'), L=(x,y)=>x+(y-x)*q;
@@ -518,6 +546,7 @@ window.seek=async function(t){
     at.style.display=(AT.length&&t<LAB.cutUntil)?'block':'none';
     if(LAB.selo){ const sl=document.getElementById('selo'), ls=t-LAB.selo.t, qs=prog(ls,0,0.42), qx=prog(t,LAB.selo.fim,0.22);
       sl.style.opacity=(ls<0||qx>=1)?0:1; sl.style.transform=`translate(-50%,0) rotate(${(1-eo(qs))*-14}deg) scale(${Math.max(0,eb(qs))*(1-eio(qx))})`;
+      sl.querySelector('.raios').style.transform=`rotate(${ls*28}deg)`; sl.querySelector('.halo').style.opacity=0.75+0.25*Math.sin(ls*5);
       const pm=document.getElementById('pmerj'), qp=prog(t,LAB.selo.fim+0.1,0.35); pm.style.opacity=(t>=TL.outroAt||qp<=0)?0:1; pm.style.transformOrigin='100% 0'; pm.style.transform=`scale(${eb(qp)})`; }
     // clarao de luz quente nas trocas de plano em chicote e na entrada das cenas
     let lk=0, lx=30; const marcas=[...TL.shots.filter(s=>s.tr==='whip').map(s=>s.t-0.1), ...TL.scenes.map(s=>s.t)];
@@ -552,13 +581,35 @@ window.seek=async function(t){
     const pg=pv.querySelector('.pg');
     const push=eio(prog(t,MA-0.25,0.55)), push2=eio(prog(t,CA-0.15,0.3))*0.08;
     const fr=Math.floor(t*FPS); let sx=0, sy=0; const sk=t>=CA&&t<CA+0.3?1-(t-CA)/0.3:0; if(sk>0){ sx=(hash(fr)-0.5)*40*sk; sy=(hash(fr+5)-0.5)*40*sk; }
-    if(pv.dataset.zoom){ const A=JSON.parse(pv.dataset.alvo), Z=+pv.dataset.zoom, cx=A[0]+A[2]/2, cy=A[1]+A[3]/2;
+    if(pv.dataset.cam){ const pL=pg.offsetLeft, pT=pg.offsetTop; let S=1, Tx=0, Ty=0;
+      // vai de parada em parada: cada uma enquadra o trecho ate ele ficar legivel (~1000 px de largura)
+      for(const c of JSON.parse(pv.dataset.cam)){ const q=eio(prog(t,c.t-0.25,0.6)); if(q<=0) break;
+        const Z=Math.max(1.1,Math.min(3.2,1000/Math.max(60,c.b[2]))), cx=c.b[0]+c.b[2]/2, cy=c.b[1]+c.b[3]/2;
+        S+=(Z-S)*q; Tx+=(540-pL-cx*Z-Tx)*q; Ty+=(880-pT-cy*Z-Ty)*q; }
+      // deriva lenta (a folha nunca para), entrada, soco do carimbo e saida: escala em torno do centro da tela
+      const f=(1+0.12*(1-eo(qin)))*(1+push2)*(1+0.9*eio(qout))*(1+0.05*prog(lt,0,PV.dur));
+      Tx=540-pL+(pL+Tx-540)*f; Ty=880-pT+(pT+Ty-880)*f; S*=f;
+      const rot=(-9*(1-eo(qin))-1.5)*(1-Math.min(1,(S/f-1)*6)), ox=540-pL, oy=880-pT;
+      pg.style.transformOrigin='0 0';
+      pg.style.transform=`translate(${sx}px,${(1-eb(qin))*1300+sy}px) translate(${ox}px,${oy}px) rotate(${rot}deg) translate(${-ox}px,${-oy}px) translate(${Tx}px,${Ty}px) scale(${S})`;
+      pg.querySelectorAll('.pfr').forEach(e=>{ const q=prog(t,+e.dataset.at,0.3); e.style.opacity=q>0?Math.min(1,q*2.5):0; e.style.transform=`scale(${1.12-0.12*eo(q)})`; });
+      pg.querySelectorAll('.num').forEach(e=>{ const q=prog(t,+e.dataset.at+0.05,0.35); e.style.opacity=q>0?1:0; e.style.transform=`rotate(${(1-eo(q))*-25}deg) scale(${Math.max(0,eb(q))})`; });
+      const br=pg.querySelector('.brilho'); if(br){ const q=prog(lt,0.35,0.8); br.style.left=(-45+170*eio(q))+'%'; br.style.opacity=q>0&&q<1?1:0; } }
+    else if(pv.dataset.zoom){ const A=JSON.parse(pv.dataset.alvo), Z=+pv.dataset.zoom, cx=A[0]+A[2]/2, cy=A[1]+A[3]/2;
       pg.style.transformOrigin=`${cx}px ${cy}px`;
       const tx=(540-(pg.offsetLeft+cx))*push, ty=(880-(pg.offsetTop+cy))*push;
       pg.style.transform=`translate(${sx+tx}px,${(1-eb(qin))*1300+sy+ty}px) rotate(${(-9*(1-eo(qin))-1.5)*(1-push)}deg) scale(${(1+0.12*(1-eo(qin)))*(1+(Z-1)*push+push2)*(1+0.9*eio(qout))})`; }
     else { pg.style.transformOrigin='45% 62%';
       pg.style.transform=`translate(${sx}px,${(1-eb(qin))*1300+sy - push*30}px) rotate(${-9*(1-eo(qin))-1.5+push*1.5}deg) scale(${(1+0.12*(1-eo(qin)))*(1+0.1*push+push2)*(1+0.9*eio(qout))})`; }
     pv.style.opacity=1-eio(qout)*0.9;
+    // etiquetas: cada uma pula na sua palavra e sai quando chega a seguinte
+    const chs=[...pv.querySelectorAll('.cham')];
+    chs.forEach((e,j)=>{ const a=+e.dataset.at, nx=chs[j+1]?+chs[j+1].dataset.at:fim, q=prog(t,a,0.35), qx=prog(t,nx-0.05,0.2);
+      e.style.opacity=(q>0&&qx<1)?1:0; e.style.transform=`rotate(${e.classList.contains('dir')?3:-3}deg) scale(${Math.max(0,eb(q))*(1-eio(qx))})`; });
+    // a bolha com o rosto: ele continua na tela enquanto o documento fala por ele
+    const bo=pv.querySelector('.bolha'); if(bo){ const q=prog(lt,0.5,0.4); bo.style.opacity=q>0?1-eio(qout):0; bo.style.transform=`scale(${Math.max(0,eb(q))})`;
+      const k=0.37, py=(TL.pivot?TL.pivot[1]:38)/100*1920; const bv=bo.querySelector('.bv');
+      bv.style.backgroundImage=`url(${frameSrc(t)})`; bv.style.backgroundSize=`${1080*k}px ${1920*k}px`; bv.style.backgroundPosition=`${125-540*k}px ${125-py*k}px`; }
     pv.querySelectorAll('.m1').forEach(e=>e.style.setProperty('--m',eo(prog(t,MA,0.22))));
     pv.querySelectorAll('.m2').forEach(e=>e.style.setProperty('--m',eio(prog(t,MA+0.12,0.5))));
     pv.querySelectorAll('.hlr').forEach(e=>e.style.transform=`scaleX(${eio(prog(t,MA,0.5))})`);

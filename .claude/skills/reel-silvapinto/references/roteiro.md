@@ -10,6 +10,11 @@ até elas, com mais vídeo, título fixo e pautas que tenham um número, uma pes
 
 Os formatos dos vídeos que mais engajam nos concorrentes estão em `formatos.md`.
 
+> **Atualização de 05/10/2026:** o gancho, a ponte judicial, a chamada e as capas agora seguem
+> `atencao.md` (texto do Casil). Onde este arquivo divergir, vale `atencao.md`: a dor do candidato vem
+> antes do órgão, há um CTA só por vídeo, o Reels cabe sempre em 60 s com o cartão final e o brasão do
+> órgão entra em tudo. Os números de setembro abaixo continuam valendo como base.
+
 ---
 
 ## 0. O nosso trunfo: a copy
@@ -34,7 +39,8 @@ mediana de 3 interações. A copy boa fica escondida embaixo de um formato que o
    inteira na legenda. Foi assim que o Daniel Assunção levou o público para o texto (CBMDF, 7 vezes a
    mediana dele).
 
-**A abertura: o momento do concurso, depois a dor.** Ideia do Casil (24/09), confirmada pelos
+**A abertura (substituída em 05/10 por `atencao.md`: a dor do candidato com o fato, depois a lacuna).**
+Registro da regra anterior, o momento do concurso e depois a dor: ideia do Casil (24/09), confirmada pelos
 nossos posts: o que abriu com o contexto e a virada ("CBMMG divulgou o resultado — mas manteve 9
 questões ilegais. Ficou eliminado ou mal classificado?") teve 53 interações; os que abriram só com a
 dor ("Eliminado na heteroidentificação?") ou só com a data ("Amanhã o CBMMG define…") tiveram zero.
@@ -150,8 +156,8 @@ fixo, um texto grande de gancho basta na abertura.
 mais engajaram nos concorrentes têm mediana de 0,9 transição por minuto (ver `formatos.md`).
 
 **O que conferir antes de renderizar:**
-- Duração até 60 segundos. Se a gravação passar disso, entregar também uma versão curta.
-- Os 3 primeiros segundos dizem o momento do concurso e a dor, nessa ordem, na fala ou em texto grande.
+- Duração até 60 segundos com o cartão final, sempre (o build aperta as pausas e, se não couber, pede o corte).
+- Os 3 primeiros segundos dizem a dor do candidato, o fato e a lacuna (`atencao.md`).
 - O documento de prova aparece na tela.
 
 ---
@@ -160,7 +166,8 @@ mais engajaram nos concorrentes têm mediana de 0,9 transição por minuto (ver 
 
 - **Frequência:** 3 reels por semana. Hoje é cerca de 1 por mês.
 - **Primeira linha da legenda = o gancho do vídeo**: o momento do concurso e a dor, com o número.
-- **Peça o comentário com palavra-chave e material:** "comente CBMMG que eu te envio a análise".
+- **Um CTA só, pelo objetivo** (`atencao.md` §8). Palavra-chave com material ("comente CBMMG que eu te
+  envio a análise") quando o objetivo é lead; "manda para quem fez a prova com você" quando é alcance.
   Comentário faz o Instagram mostrar o vídeo a mais gente e abre conversa no direct.
 - **Primeira linha da legenda em texto normal**, não em caixa alta.
 - **Regras da OAB (Provimento 205/2021):** informar, não captar. Decisão conquistada pode ser
@@ -173,7 +180,7 @@ mais engajaram nos concorrentes têm mediana de 0,9 transição por minuto (ver 
 
 - Vídeo que só avisa uma data.
 - Mais de uma ideia no mesmo vídeo.
-- Passar de 60 segundos sem necessidade.
+- Passar de 60 segundos (nunca, com o cartão final).
 - Prometer resultado ("você vai voltar ao concurso").
 - Abertura com logo, vinheta ou "olá, pessoal": o gancho vem no primeiro segundo.
 - Copy boa só em imagem estática: toda análise forte ganha um vídeo que leve até ela.

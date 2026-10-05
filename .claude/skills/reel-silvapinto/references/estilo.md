@@ -22,10 +22,11 @@ aprovado explicitamente por ele; a seção "O que foi rejeitado" é tão importa
 
 ## 2. Marca
 
-- Canto superior esquerdo: monograma SP (`assets/brand/logo_mono.png`, 92 px) com "SILVA PINTO" em
-  Fraunces 300, 36 px, tracking 0,16 em, cor #EDE9DD, e "ADVOCACIA" em Manrope 600, 15 px, tracking
-  0,42 em, dourado. Ele pediu a logo COM o nome do escritório. A versão empilhada oficial ainda não chegou
-  como arquivo; se um dia chegar (PNG/SVG), substituir esse bloco por ela.
+- Canto superior esquerdo: a **logo oficial empilhada** (`assets/brand/logo_lockup.png`, 250 px de largura:
+  brasão SP dourado, "SILVA PINTO" na letra da marca em #EDE9DD e "ADVOCACIA" dourado). Recortada em
+  05/10/2026 da arte que o Casil mandou ("use sempre a logo com o tipo de letra correto"). Antes era o
+  monograma com o nome digitado em Fraunces, que não é a letra da marca: não voltar a isso. O cartão final
+  usa a mesma arte (420 px).
 - Canto superior direito: logo ou brasão do órgão do concurso (PMERJ, IASES, TJRJ...), 200 px de largura
   (160-180 quando o rosto chega perto do canto), estático, não acompanha o zoom. Ele pediu "menor"
   quando estava com 435 px e pediu que a logo do órgão esteja SEMPRE presente (IASES, set/2026). A mesma
@@ -58,7 +59,7 @@ Degradê dourado das manchetes: `linear-gradient(180deg,#FFF3D6 0%,#F4D692 55%,#
 
 Fontes (em `assets/fonts`, carregadas localmente): Bebas Neue (manchetes e números grandes), Manrope 800
 (legendas), Manrope 600 (textos de apoio), JetBrains Mono (kickers em caixa alta com tracking 0,28 em),
-Fraunces 300 (nome do escritório na logo).
+Fraunces 300 não é mais usada na logo: o nome do escritório vem sempre da arte oficial (`logo_lockup.png`).
 
 Armadilhas de renderização que já custaram versões:
 - `background-clip:text` não pinta acentos que saem da caixa do elemento. Dar `padding-top:.14em` (ou
@@ -174,8 +175,15 @@ continua o padrão da skill. Mesmos dados (cenas, textos grandes, título), outr
 - **Abertura com texto por trás da pessoa.** O assunto em letras gigantes douradas (Bebas, até 350 px, encolhe
   para caber), uma palavra de cada vez, nos primeiros 3 s, passando POR TRÁS da cabeça. O `recortar.py` recorta a
   pessoa do fundo (rembg) e a composição a põe por cima do texto. Sem o recorte, a abertura fica só com o selo.
-- **Selo do brasão:** disco branco com fio dourado e o brasão do órgão, que salta com mola na metade inferior,
-  com o kicker numa etiqueta grafite inclinada; some aos ~2,7 s e o brasão aparece no canto com mola.
+- **Selo do brasão:** o brasão do órgão grande (430 px), solto, sobre um brilho dourado com raios girando, que
+  salta com mola na metade inferior, com o kicker numa etiqueta grafite inclinada; a legenda some enquanto ele
+  está na tela; some aos ~2,7 s e o brasão aparece no canto com mola. Era um disco branco de 300 px com o brasão
+  de 210 px dentro: "a logo da instituição está muito pequena" (Casil, 02/10/2026; aprovado na v3 do CFSd 2014).
+- **Documento com movimento** (v3 do CFSd 2014): a câmera para em cada trecho citado (`paradas`, moldura dourada
+  numerada), etiquetas grandes pulam com a fala (`chamadas`) e o rosto dele fica numa bolha no canto, para a parte
+  "em que aparece só o Diário Oficial" não ficar parada.
+- **Texto letra a letra** (`letra`): cada letra é um span com o mesmo dourado; antes de 03/10/2026 as letras
+  saíam transparentes e o texto por trás nunca aparecia.
 - **Legenda que pula:** caixa alta, 94 px, entra com mola e um leve giro; cada palavra aparece quando é falada;
   as palavras-chave (números e palavras dos textos grandes, das cenas e do título, ou `palavras_chave`) ganham
   marca-texto dourado inclinado.
