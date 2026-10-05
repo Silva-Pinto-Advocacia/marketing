@@ -18,6 +18,16 @@ TV, então a tela precisa estar sempre cheia e conectada ao assunto, sem pressa 
 | **Ícones, infográficos e elementos animados** no grafite e dourado da marca | Mesmo pedido |
 | O estilo "jornal" (papel creme, serifa) feito no HyperFrames **foi recusado** | Comparado lado a lado em 04/10: "o atual está muito melhor que o novo". O mesmo vale para o Reels |
 
+## Roteiro, título e capa
+
+Seguem `atencao.md` (texto do Casil, 05/10/2026): dor → fato → lacuna nos primeiros 15 a 30 s, explicação por
+capítulos, limite administrativo, ponte judicial ("o que acontece se você não estiver no TAC"), resumo
+("Então guarda isso…") e **um CTA só** (no YouTube, "o contato está na descrição"; nada de somar inscreva-se,
+manda e comenta). Fatos com a classificação de origem de `atencao.md` §6: o que é análise do escritório
+aparece separado do que é fonte oficial (no vídeo de teste, a frase "uma solução coletiva para um grupo
+específico" entrou num quadro "Na prática", fora da etiqueta "segundo o MPRJ"). Exemplo completo:
+`examples/guia_atencao/pacote_psicotecnico_pmerj2014.md`.
+
 ## Os seis layouts (`scripts/youtube/cenas.py`)
 
 | Layout | O que é | Quando |
@@ -66,6 +76,8 @@ palavra (`a(t)`, com `t` tirado das palavras transcritas).
   créditos de imagem e o WhatsApp com mensagem pronta (`wa.me/5521993996262?text=Vim%20do%20YouTube%20(<tema>)`)
   para saber de onde veio o contato.
 - **Legenda .srt** completa, gerada das palavras (linhas de até 42 caracteres). A tela só traz palavras-chave.
-- **Capa:** briefing em 3 opções para o teste A/B do YouTube Studio (rosto com o fundo original, 2 a 5
-  palavras, brasão do órgão quando for PM ou bombeiro).
+- **Capa:** briefing em 3 opções para o teste A/B do YouTube Studio, pelo método de `atencao.md` §11
+  (emoção, metáfora visual, ambiente da carreira, rosto com o fundo original, 2 a 5 palavras que completam
+  o título) e **sempre com o brasão do órgão** (decisão de 05/10/2026), sem parecer comunicação oficial.
+- **Cartão final:** a logo oficial (`logo_lockup.png`), nunca o nome digitado (`final()` em `cenas.py`).
 - **Cartão final** com 15 s se for usar a tela final do YouTube (os botões só entram nos últimos 5 a 20 s).

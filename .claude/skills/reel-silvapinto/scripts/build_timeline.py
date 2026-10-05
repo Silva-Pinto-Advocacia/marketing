@@ -24,19 +24,44 @@ DEITADO = cfg.get("formato") == "deitado"
 VW, VH = (1920, 1080) if DEITADO else (1080, 1920)
 AREA = "painel da direita vazio" if DEITADO else "metade inferior vazia"
 words = json.load(open(os.path.join(proj, cfg.get("words", "words.json"))))
+# "remover": trechos da fala que saem do reel ([[ini, fim], ...] em segundos do video original), para caber nos
+# 60 s. As palavras dentro deles somem e o corte de pausa faz o resto (o buraco vira uma pausa longa)
+REMOVER = [(float(a), float(b)) for a, b in cfg.get("remover", [])]
+if REMOVER:
+    antes = len(words)
+    words = [w for w in words if not any(a - 0.05 <= w["s"] and w["e"] <= b + 0.05 for a, b in REMOVER)]
+    print(f"remover: {antes - len(words)} palavras fora ({', '.join(f'{a:.1f}-{b:.1f}s' for a, b in REMOVER)})")
 sents = json.load(open(os.path.join(proj, cfg.get("sents", "sents.json"))))
+if REMOVER: sents = [x for x in sents if not any(a - 0.05 <= x["s"] and x["e"] <= b + 0.05 for a, b in REMOVER)]
 frames_dir = os.path.join(proj, cfg.get("frames", "src_frames"))
 frame_count = len([f for f in os.listdir(frames_dir) if f.endswith(".jpg")])
 src_total = frame_count / FPS
 
 # ---------- EDL: cut pauses longer than GAP; keep PRE before speech and POST after ----------
-GAP = cfg.get("silence_gap", 0.55); PRE, POST = 0.14, 0.22
-segs = []; start = max(0.0, words[0]["s"] - 0.25)
-for a, b in zip(words, words[1:]):
-    if b["s"] - a["e"] > GAP:
-        segs.append([start, a["e"] + POST]); start = b["s"] - PRE
-# "tail": seconds kept after the last word (frames beyond the source hold the last frame, audio is padded)
-segs.append([start, words[-1]["e"] + cfg.get("tail", 1.2)])
+# Reel sempre ate 60 s, com o cartao final (decisao do Casil, 05/10/2026: "corte para encaixar sempre os reels nos
+# 60s"). Se passar, as pausas sao apertadas em ate dois niveis; se ainda passar, o build para e diz quanto cortar
+# do roteiro. "limite_s" so muda se o Casil pedir.
+LIMITE = cfg.get("limite_s", 60.0)
+def cortar(GAP, PRE, POST):
+    segs = []; start = max(0.0, words[0]["s"] - min(0.25, PRE + 0.1))
+    for a, b in zip(words, words[1:]):
+        if b["s"] - a["e"] > GAP:
+            segs.append([start, a["e"] + POST]); start = b["s"] - PRE
+    # "tail": seconds kept after the last word (frames beyond the source hold the last frame, audio is padded)
+    segs.append([start, words[-1]["e"] + cfg.get("tail", 1.2)])
+    return segs
+NIVEIS = [(cfg.get("silence_gap", 0.55), 0.14, 0.22), (0.35, 0.10, 0.16), (0.25, 0.08, 0.12)]
+for nivel, (GAP, PRE, POST) in enumerate(NIVEIS):
+    segs = cortar(GAP, PRE, POST)
+    if sum(b - a for a, b in segs) <= LIMITE: break
+total_previsto = sum(b - a for a, b in segs)
+if total_previsto > LIMITE:
+    # codigo 3 = passou do limite: o editar_reel_skill.py do motor-conteudo le este codigo e acrescenta um "remover"
+    print(f"o reel tem {total_previsto:.1f}s mesmo com as pausas apertadas; o limite e {LIMITE:.0f}s. "
+          f"Tire ~{total_previsto - LIMITE + 0.5:.1f}s com \"remover\" no config.json (uma frase de explicacao, nunca "
+          f"o gancho, a ponte judicial ou a chamada) ou grave de novo.", file=sys.stderr)
+    sys.exit(3)
+if nivel: print(f"limite de {LIMITE:.0f}s: pausas apertadas (nivel {nivel}: corte acima de {GAP}s)")
 edl = []; acc = 0.0
 for s0, s1 in segs:
     d = s1 - s0; edl.append({"src": round(s0, 3), "out": round(acc, 3), "dur": round(d, 3)}); acc += d
@@ -363,6 +388,7 @@ def P(x):
     if not x: return x
     return os.path.join(SKILL_ASSETS, x[len("assets/"):]) if x.startswith("assets/") else os.path.join(proj, x)
 brand = dict(cfg.get("brand", {})); brand["mono"] = P(brand.get("mono", "assets/brand/logo_mono.png"))
+brand["lockup"] = P(brand.get("lockup", "assets/brand/logo_lockup.png"))   # arte oficial da logo (05/10/2026)
 for ins in inserts: ins["img"] = P(ins["img"])
 if abertura: abertura["img"] = P(abertura["img"])
 if dinamico and dinamico["selo"]: dinamico["selo"]["img"] = P(dinamico["selo"]["img"])

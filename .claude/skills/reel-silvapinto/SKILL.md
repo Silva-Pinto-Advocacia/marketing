@@ -23,6 +23,9 @@ Leia antes de começar:
   apresentador com o fundo original em faixa ou close, alternando em cortes com imagens do assunto (licença livre,
   com crédito), documentos e infográficos. Código em `scripts/youtube/`, exemplo completo em
   `examples/youtube_pmerj2014/`. Use sempre que o pedido for vídeo para o YouTube.
+- `references/atencao.md`: **o guia de pauta, gancho, título, capa, ponte judicial e chamada** (texto do
+  Casil, aprovado em 05/10/2026). Vale sobre `roteiro.md` onde os dois divergirem. Ler antes de qualquer
+  pauta, roteiro, gancho, título ou capa. Exemplo aplicado: `examples/guia_atencao/`.
 - `references/roteiro.md`: a pauta, a estrutura de 30 a 60 s, a gravação e a publicação, com os
   números da comparação com 14 concorrentes (setembro de 2026). É o guia do Casil para gravar; use
   para conferir a pauta antes de editar e para responder pedidos de roteiro.
@@ -31,14 +34,17 @@ Leia antes de começar:
 
 Saíram da medição dos posts do escritório e dos concorrentes; o porquê está em `roteiro.md`.
 
-- **Até 60 segundos.** Se a gravação passar disso, editar a versão pedida e oferecer também um corte
-  de até 60 s (os reels curtos renderam mais em 5 de 7 perfis). Não cortar sem avisar: o PMERJ de
-  93 s foi aprovado assim.
-- **Gancho nos 3 primeiros segundos: o momento do concurso, depois a dor** ("Saiu o gabarito
-  definitivo do CBMMG. Ficou fora por uma questão?"). Contexto sozinho vira aviso de data; dor
-  sozinha não diz de que concurso se fala (ver `roteiro.md`, "A abertura"). Se a fala não abre
-  assim, o primeiro texto grande dourado faz esse papel, com o momento no kicker ("saiu o
-  gabarito") e a dor ou o número no título ("9 QUESTÕES / ILEGAIS").
+- **Sempre até 60 segundos, com o cartão final** (decisão de 05/10/2026: "corte para encaixar sempre os
+  reels nos 60s"). O `build_timeline.py` aperta as pausas sozinho; se ainda passar, para com o código 3 e
+  diz quanto tirar. Aí, liste em `remover` (config.json) a frase de explicação que sai, nunca o gancho, a
+  ponte judicial nem a chamada, e avise o Casil do que foi cortado.
+- **Gancho nos 3 primeiros segundos: a dor do candidato com o fato e a lacuna** ("Foi considerado inapto
+  no psicotécnico? Antes de aceitar esse resultado, confira 3 pontos."). O candidato vem antes da
+  instituição (`atencao.md`, §0 a §2). Se a fala não abre assim, o primeiro texto grande dourado faz esse
+  papel, com a dor ou o número no título ("INAPTO?", "9 QUESTÕES / ILEGAIS").
+- **Ponte judicial quando houver fundamento**: limite da via administrativa → a ilegalidade não some → o
+  Judiciário pode controlar a legalidade → análise individual. Só com as frases aprovadas de `atencao.md`
+  §5; nunca "só a Justiça resolve" nem promessa de resultado.
 - **Aviso de data não é pauta.** Se o vídeo só anuncia um prazo ou resultado ("amanhã sai…"), sugerir
   reescrever o gancho para o que o candidato perde ou pode recuperar (exemplos em `roteiro.md`); os
   posts assim tiveram zero interações.
@@ -72,8 +78,14 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
 - **Em pé por padrão.** Deitado só quando o Casil pedir (o teleprompter do Redes tem a opção): mesmos
   elementos, com o rosto no centro, a legenda embaixo e textos grandes, infográficos e o brasão da
   abertura no painel da direita.
-- **Chamada com palavra-chave e material** ("comente CBMMG que eu te envio a análise") no `cta`, além
-  do WhatsApp.
+- **Um CTA principal por vídeo, escolhido pelo objetivo** (`atencao.md` §8): alcance ("manda para quem fez a
+  prova com você"), autoridade ("salva"), lead ("comenta PSICOTÉCNICO e eu te envio os 3 pontos por escrito",
+  só com material que exista) ou tráfego pago. Nunca dois no mesmo fechamento. O cartão final com o WhatsApp
+  fica sempre, como assinatura (decisão de 05/10/2026).
+- **Logo do escritório é sempre a arte oficial** (`assets/brand/logo_lockup.png`: brasão SP + SILVA PINTO na
+  letra da marca + ADVOCACIA), no canto e no cartão final. Nunca o nome digitado em outra fonte.
+- **Brasão do órgão em tudo**: canto, abertura e capa (decisão de 05/10/2026), sem fazer a peça parecer
+  comunicação oficial.
 - **Entregar pronto para publicar**: o reel do IASES foi ao ar sem a edição. Na entrega, lembrar que
   é o `reel_web.mp4` que deve subir, com a primeira linha da legenda igual ao gancho.
 
@@ -116,9 +128,10 @@ encerramento (já embutido em `comp_reel.html`).
 
 ## Quando o pedido é outro
 
-- "Me dá uma pauta / um roteiro / o que eu gravo": responder com a estrutura de `roteiro.md`
-  (gancho, quem é afetado, prova, o que fazer, chamada), com as falas prontas e o tempo de cada
-  bloco, a partir da notícia ou do caso que ele trouxer.
+- "Me dá uma pauta / um roteiro / o que eu gravo": responder na ordem de `atencao.md` (dor → fato →
+  lacuna → explicação → limite administrativo → ponte judicial → um CTA), com as falas prontas, o tempo
+  de cada bloco (o Reels inteiro em até 60 s), o título, a sugestão de capa (emoção, metáfora, carreira,
+  brasão) e o filtro editorial (§12) conferido. Modelo: `examples/guia_atencao/pacote_psicotecnico_pmerj2014.md`.
 
 - "Analisa o estilo desse vídeo": `scripts/analyze_ref.py` (ver pipeline.md) e atualizar
   `references/estilo.md` com os números medidos.

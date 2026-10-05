@@ -22,6 +22,7 @@ import statistics
 
 FPS = 24
 LOGO = "__ASSETS__/brand/logo_mono.png"
+LOCKUP = "__ASSETS__/brand/logo_lockup.png"   # arte oficial: brasão + SILVA PINTO na letra da marca + ADVOCACIA
 _R = {}
 _NCLIP = {}
 
@@ -99,9 +100,8 @@ def chk(n, txt, t, ic=None):
 
 def final(t0, dur=3.6):
     return dict(t0=t0, t1=t0 + dur, layout="O",
-                html=f'<img src="{LOGO}" style="height:150px" {a(t0 + 0.1, "pop", .6)}>'
-                     f'<div class="h2" style="margin-top:26px" {a(t0 + 0.5)}>Silva Pinto <span class="g">Advocacia</span></div>'
-                     f'<div class="tag" style="margin-top:14px" {a(t0 + 0.8, "fade")}>Concursos públicos</div>'
+                html=f'<img src="{LOCKUP}" style="width:620px" {a(t0 + 0.1, "pop", .6)}>'
+                     f'<div class="tag" style="margin-top:34px" {a(t0 + 0.8, "fade")}>Concursos públicos</div>'
                      f'<div class="sub" style="font-size:24px;margin-top:40px;color:rgba(255,255,255,.7)" {a(t0 + 1.1, "fade")}>'
                      f'Conteúdo informativo. Cada caso é analisado individualmente.</div>')
 
