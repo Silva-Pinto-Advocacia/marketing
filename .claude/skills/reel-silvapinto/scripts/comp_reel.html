@@ -201,7 +201,7 @@
   #cutwin{position:absolute;inset:0;overflow:hidden;z-index:1;pointer-events:none}
   #cut{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;will-change:transform,filter}
   #atras{position:absolute;left:0;right:0;top:150px;height:420px;z-index:1;text-align:center;pointer-events:none}
-  #atras div{position:absolute;left:0;right:0;top:0}
+  #atras div{position:absolute;left:0;right:0;top:0;white-space:nowrap}  /* nunca quebra: na variação "letra" o navegador quebrava entre as letras ("QUESTÕE" + "S", 06/10/2026) */
   /* variação "letra": cada letra vira um span, e o dourado (background-clip:text) do bloco não pinta dentro de
      inline-block — as letras ficavam transparentes e o texto por trás nunca aparecia (03/10/2026) */
   #atras div span{background:inherit;-webkit-background-clip:text;background-clip:text;color:transparent;padding-top:.24em;margin-top:-.24em}  /* a caixa da letra cobre o acento (o É saía sem o acento) */
@@ -442,7 +442,18 @@ const hash=n=>{ const x=Math.sin(n*127.1)*43758.5453; return x-Math.floor(x); };
 const vid=document.getElementById('vid');
 function setFrame(t){ const src=frameSrc(t); if(vid.getAttribute('src')!==src){ vid.src=src; return vid.decode().catch(()=>{}); } return Promise.resolve(); }
 
+// Nenhum título grande parte uma palavra (06/10/2026): se a palavra mais larga não cabe na linha, a fonte do
+// bloco encolhe até caber. Roda na primeira vez que o bloco aparece com largura (as fontes já carregaram).
+const _med=document.createElement('span'); _med.style.cssText='position:absolute;left:-9999px;top:0;white-space:nowrap;visibility:hidden';
+function larguraDe(el,txt){ const cs=getComputedStyle(el); Object.assign(_med.style,{fontFamily:cs.fontFamily,fontSize:cs.fontSize,fontWeight:cs.fontWeight,fontStyle:cs.fontStyle,letterSpacing:cs.letterSpacing,textTransform:cs.textTransform});
+  _med.textContent=txt; if(!_med.isConnected) document.body.appendChild(_med); return _med.getBoundingClientRect().width; }
+function palavraInteira(el){ const cs=getComputedStyle(el), disp=el.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight); if(!(disp>0)) return false;
+  const pal=(el.innerText||'').split(/\s+/).filter(Boolean); let fs=parseFloat(cs.fontSize);
+  for(let i=0;i<8&&pal.length;i++){ const w=Math.max(...pal.map(x=>larguraDe(el,x))); if(w<=disp||fs<=40) break; fs=Math.max(40,Math.floor(fs*disp/w)-1); el.style.fontSize=fs+'px'; }
+  return true; }
+const GRANDES='.card .t, .outro .h, .ps .head, #bname .n';
 window.seek=async function(t){
+  document.querySelectorAll(GRANDES).forEach(el=>{ if(!el.dataset.cabe&&palavraInteira(el)) el.dataset.cabe=1; });
   await setFrame(t);
   document.getElementById('prog').style.width=(clamp(t/TL.total,0,1)*VW)+'px';
   // video motion: punches + slow drift
@@ -536,7 +547,8 @@ window.seek=async function(t){
       cut.style.transformOrigin=vid.style.transformOrigin; cut.style.transform=tr; cut.style.filter=vid.style.filter; } else cw.style.display='none';
     const at=document.getElementById('atras');
     // o texto gigante cabe na largura: a fonte encolhe na primeira vez (as fontes ja carregaram)
-    if(!at.dataset.fit){ at.dataset.fit=1; ['at1','at2'].forEach(id=>{ const e=document.getElementById(id); let fs=350; e.style.fontSize=fs+'px'; const larg=()=>{ const r=document.createRange(); r.selectNodeContents(e); return r.getBoundingClientRect().width; }; while(larg()>1020&&fs>150){ fs-=10; e.style.fontSize=fs+'px'; } }); }
+    // com a linha sem quebra a medida é a palavra inteira (antes, quebrada, a primeira linha cabia e nada encolhia)
+    if(!at.dataset.fit){ at.dataset.fit=1; ['at1','at2'].forEach(id=>{ const e=document.getElementById(id); let fs=350; e.style.fontSize=fs+'px'; const larg=()=>{ const r=document.createRange(); r.selectNodeContents(e); return r.getBoundingClientRect().width; }; for(let i=0;i<8&&larg()>1000&&fs>90;i++){ fs=Math.max(90,Math.floor(fs*1000/larg())-2); e.style.fontSize=fs+'px'; } }); }
     const janelas=AT.length>1?[[0.05,1.3],[1.35,LAB.cutUntil-0.3]]:[[0.05,(LAB.cutUntil||0)-0.3]];
     const VA=(LAB.var||{}).atras||'sobe';
     janelas.forEach(([a,b],j)=>{ const q=prog(t,a,0.42), x=prog(t,b,0.28), e=document.getElementById(j?'at2':'at1'); e.style.opacity=(t<a?0:Math.min(1,q*2))*(1-x);
