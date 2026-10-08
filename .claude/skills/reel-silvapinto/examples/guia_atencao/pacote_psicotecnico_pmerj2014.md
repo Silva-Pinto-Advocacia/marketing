@@ -1,5 +1,10 @@
 # Teste do Guia Silva Pinto — o que mudou e como publicar
 
+> **Atenção (08/10/2026):** valem por cima deste exemplo as decisões 5 a 8 de `references/atencao.md`. Decisão de
+> terceiro vira notícia com esperança; nunca se diz que liminar ou decisão pode cair; o tom é animador. Frases deste
+> exemplo que desanimam ("não significa automaticamente que exista uma nova ação viável", "TAC não é nomeação") não se
+> usam mais.
+
 **Versão revisada — 05/10/2026** (texto do Casil; exemplo de referência do guia `references/atencao.md`)
 
 > Ajustes das decisões de 05/10/2026: o brasão do órgão entra também nas capas; o Reels cabe em 60 s com o

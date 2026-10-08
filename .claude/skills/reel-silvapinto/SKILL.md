@@ -48,6 +48,14 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
 - **Aviso de data não é pauta.** Se o vídeo só anuncia um prazo ou resultado ("amanhã sai…"), sugerir
   reescrever o gancho para o que o candidato perde ou pode recuperar (exemplos em `roteiro.md`); os
   posts assim tiveram zero interações.
+- **Decisão judicial: de quem é?** (08/10/2026, `atencao.md`, decisões 5 a 8) De cliente nosso, destaque muito grande para
+  a vitória judicial do escritório, sem identificar o cliente. De terceiro, notícia com muita esperança para quem não
+  ajuizou ("pode estar na mesma situação"), sem promessa. E **nunca** dizer que liminar ou decisão pode cair: tom
+  sempre animador, que convence a contratar.
+- **Sem gravação, o clone do HeyGen grava**, sempre de frente para a câmera. Reels: "Terno Bege" (`5938d6e63b6d487b842d3832a5bf5eed`,
+  terno bege, mármore) é o padrão; também servem "Terno Bege -- 8" (camisa e gravata) e "-- 6" (blazer). YouTube: o
+  fundo do escritório (`references/youtube.md`). O sentado olhando para o lado (`f20c93aa…`, "-- 9") é só para entrevista,
+  e o "-- 7" tem legenda gravada no vídeo ("pode aderir ao TAC"): fora.
 - **Prova na tela.** Decisão, edital, gabarito ou trecho de sentença entram como `insert`; a questão do
   caderno entra como cena `prova` em tela cheia (marca-texto, círculo, seta e carimbo na palavra dita, ver
   estilo.md §12). Se ele citar um documento que não veio junto, pedir o arquivo. Nunca questão inventada
