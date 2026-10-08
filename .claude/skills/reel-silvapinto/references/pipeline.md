@@ -93,6 +93,10 @@ transcrição retimada, ou `{"src": 5.65}` para um instante do vídeo original.
 | `scenes` | infográficos: `from`, `to` ("next", "outro" ou âncora), `type` e campos do tipo |
 | `hits` | âncoras dos zoom-hits |
 | `inserts` | `{at, img, dur}` |
+
+Cortes de contexto em tela cheia (B-roll) não são campo do `config.json`: entram no vídeo da fala antes de tudo,
+com `python scripts/broll.py fala.mp4 broll.json fala_com_cortes.mp4` (`broll.json`: `[{t, dur, clip, credito}]`, o
+clipe já em 9:16). O áudio não muda, então a transcrição feita antes continua valendo.
 | `outro` | `{at}`; nas edições aprovadas entra logo depois da última palavra (`{"word": <última>, "after": ..., "offset": 0.3}`), com `tail` 3 a 4; pode cobrir a última frase, mas ela some atrás do WhatsApp |
 | `tail` | segundos mantidos depois da última palavra (padrão 1,2; usar 3 a 4 quando o encerramento entra sobre o fim da fala: o último quadro congela e o áudio é preenchido) |
 | `silence_gap`, `min_shot`, `framings` | ajustes finos do ritmo (padrões 0.55 s, 6.5 s, [1,1.13,1,1.26,...]). Sem `framings`, o build mede o rosto: se ele ocupa mais de 32% da altura, usa [1, 1.12, 1, 1.22] e zoom-hit 1.12; acima de 42%, [1, 1.08, 1, 1.15] e 1.1 (os valores das edições manuais de out/2026; rosto grande com zoom forte vira "só a cabeça") |
