@@ -56,6 +56,12 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   terno bege, mármore) é o padrão; também servem "Terno Bege -- 8" (camisa e gravata) e "-- 6" (blazer). YouTube: o
   fundo do escritório (`references/youtube.md`). O sentado olhando para o lado (`f20c93aa…`, "-- 9") é só para entrevista,
   e o "-- 7" tem legenda gravada no vídeo ("pode aderir ao TAC"): fora.
+- **Cortes de contexto (08/10/2026).** De 2 a 4 cortes de 2 a 3 s com vídeo ou foto da corporação (tropa em formatura,
+  policiais em serviço de longe, viaturas, farda e boina em detalhe), sem rosto identificável, nunca no gancho nem na
+  chamada. Só licença PD, CC0 ou CC BY, com o crédito no rodapé (`references/youtube.md`, "Direitos de imagem").
+  `scripts/broll.py` encaixa os cortes na fala ANTES da edição; a legenda e os infográficos vêm por cima.
+- **Nome do concurso como o candidato fala** (08/10/2026): "PMERJ 2014", nunca "CFSd 2014". A sigla do curso só
+  aparece no documento oficial, quando ele estiver na tela.
 - **Prova na tela.** Decisão, edital, gabarito ou trecho de sentença entram como `insert`; a questão do
   caderno entra como cena `prova` em tela cheia (marca-texto, círculo, seta e carimbo na palavra dita, ver
   estilo.md §12). Se ele citar um documento que não veio junto, pedir o arquivo. Nunca questão inventada
