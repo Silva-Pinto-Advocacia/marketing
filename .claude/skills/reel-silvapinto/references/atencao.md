@@ -15,6 +15,30 @@
 > 4. **O roteiro do pacote vale sobre o exemplo genérico**: no Reels, o fim é limite administrativo → ponte
 >    judicial → um CTA, sem a frase extra de resumo; o "Então guarda isso…" é do fechamento do YouTube.
 >
+> **Decisões do Casil em 08/10/2026, que valem sobre o resto deste guia (inclusive sobre as de 05/10)**
+>
+> 5. **Decisão judicial de cliente nosso: destaque muito grande para a vitória judicial do escritório.** "Quando se
+>    tratar de cliente nosso, nós temos que dar um destaque muito grande para o fato de se tratar de uma vitória
+>    judicial do escritório." O cliente nunca é identificado: nome, CPF, inscrição e número do processo ficam fora do
+>    texto e tarjados no documento. Sóbrio, sem emoji de comemoração. O Dr. Casil foi informado de que o Provimento
+>    205/2021 (art. 4º §2º, art. 5º §3º, art. 6º parágrafo único) hoje veda mencionar resultado obtido em processo do
+>    escritório e decidiu destacar mesmo assim: não "corrigir" isto de volta sem ele pedir.
+> 6. **Decisão de quem não é cliente: notícia, com muita esperança.** "Quando não for cliente nosso, a gente vai
+>    noticiar, como notícia mesmo, dando muita esperança de que o candidato que não ajuizou a ação pode estar numa
+>    situação igual e ser igualmente beneficiado." O fato oficial (Diário Oficial, site da banca) em tom de notícia,
+>    e a esperança como possibilidade: "se você foi eliminado pelo mesmo motivo, pode estar na mesma situação de quem
+>    voltou, e pode ser possível buscar o mesmo resultado". Nunca "você também vai voltar". Faixa e carimbo dizem a
+>    fonte ("DIÁRIO OFICIAL RJ"), nunca "DECISÃO FAVORÁVEL", que leria como vitória nossa.
+> 7. **Nunca dizer que liminar ou decisão pode cair.** "Na copy você diz que a liminar pode ser derrubada e esse é um
+>    dos maiores medos do candidato. É o que mais atrapalha eles a nos contratarem. Nós nunca podemos fazer menção a
+>    isso." Fica fora: liminar revogada, derrubada ou cassada, tutela que caiu, decisão provisória que pode ser revista,
+>    recurso da Fazenda, candidato que voltou e foi reprovado depois. O que sobra da cautela é "cada caso é analisado
+>    individualmente".
+> 8. **O tom é sempre animador e entusiasta, para convencer o candidato a nos contratar**, de maneira ética: sem
+>    promessa de resultado, sem gratuidade, sem identificar ninguém. "Quanto antes, melhor" é urgência verdadeira e
+>    pode fechar a fala; o CTA de contato ("Chama a gente no WhatsApp e descubra se o seu caso é igual") vale como o
+>    CTA único.
+>
 > Exemplo completo aplicado (psicotécnico no Reels e PMERJ 2014 no YouTube):
 > `examples/guia_atencao/pacote_psicotecnico_pmerj2014.md`.
 
@@ -272,6 +296,10 @@ PROBLEMA
 > **Se esses pontos mudam sua classificação, a discussão deixa de ser teórica.**
 
 ## Frases proibidas
+
+> A liminar pode ser revogada / derrubada / cassada. (decisão de 08/10/2026: é o maior medo do candidato)
+
+> A decisão provisória pode ser revista. / A Fazenda vai recorrer. / Ele voltou, mas foi reprovado depois.
 
 > Só a Justiça resolve.
 

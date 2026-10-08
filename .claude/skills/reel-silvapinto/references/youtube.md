@@ -16,6 +16,9 @@ TV, então a tela precisa estar sempre cheia e conectada ao assunto, sem pressa 
 | **Sem fundo ampliado artificialmente** | Testado em 04/10: o mármore estendido ficou bom, mas o ombro encosta na emenda em ~80% do tempo. A saída definitiva é gravar o clone em 16:9 |
 | **Imagens conectadas ao assunto**: corporação, viaturas, prova, tribunal, Diário Oficial | Pedido dele: "vou falar da PM, preciso ter imagens da corporação, de policiais, de viaturas" |
 | **Ícones, infográficos e elementos animados** no grafite e dourado da marca | Mesmo pedido |
+| **Sem gravação, o apresentador é o clone do HeyGen em 16:9 com o fundo do escritório** (a foto que o dono enviou: madeira, logo SILVA PINTO, estante iluminada), de camisa ou de terno. Hoje: camisa branca `b1b7e81275e7441fa5a26ad2d45c5f32` (padrão; testado em 08/10, 1920x1080) e `e1c1cd6cf9094597ba7872984d134a0d` (mais perto) | "Para YouTube, padrão: os nossos avatares tendo como fundo aquela imagem do escritório" (08/10/2026). Os looks de terno no escritório (`fd4a1c47…`, `aa9ab1ac…`) têm "PRÁTICA JURÍDICA" e "RECURSO EM CONCURSOS" gravados na imagem, e o `32b6f70f…` tem a logo espelhada: fora até haver um look de terno sem texto |
+| Os **cortes para a figura dele** vêm desse clone, já em 16:9, alternando com vídeos e imagens do assunto | "Quando tivermos os cortes para a minha figura, usar um daqueles avatares já no formato para YouTube que tem a imagem do meu escritório no fundo" (08/10) |
+| O avatar **sentado olhando para o lado** (`f20c93aa…`, "Terno Bege -- 9", estante) é só para **formato de entrevista** | "Esse sentado sem olhar para a câmera é um formato de entrevista que eu quero fazer um uso específico" (08/10) |
 | O estilo "jornal" (papel creme, serifa) feito no HyperFrames **foi recusado** | Comparado lado a lado em 04/10: "o atual está muito melhor que o novo". O mesmo vale para o Reels |
 
 ## Roteiro, título e capa
