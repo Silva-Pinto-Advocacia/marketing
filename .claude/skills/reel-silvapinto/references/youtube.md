@@ -42,8 +42,8 @@ up/left/pop/wipe/fade, `a(t, ...)` aceita `glow` (brasão do órgão entrando co
 use na abertura e nas aberturas de capítulo, e os dois brasões quando a fala cita duas corporações), `grow` (barra
 que cresce: linha do tempo de validade, régua de anos) e `draw` (seta ou linha SVG que se desenha, `<path
 pathLength="1">`, nas sequências "anulação → recálculo → reclassificação"). Contadores com `data-cont` e
-`data-fmt="milhar"` ("3.000"). Exemplo em `examples/youtube_pmerj2014/` para o resto; os helpers da PCMG
-(`brasoes`, `seta`, `barra`, `pessoas`) ficam como modelo na conversa de 09/10.
+`data-fmt="milhar"` ("3.000"). Modelo pronto: `examples/youtube_pcmg/cenas_pcmg.py` (helpers `brasoes`, `seta`, `barra`, `pessoas`, `mil`;
+fala deitada do app em duas partes emendadas, layout W predominante).
 
 | Layout | O que é | Quando |
 |---|---|---|
