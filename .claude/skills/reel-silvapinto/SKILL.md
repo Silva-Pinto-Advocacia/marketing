@@ -62,6 +62,15 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   `scripts/broll.py` encaixa os cortes na fala ANTES da edição; a legenda e os infográficos vêm por cima.
 - **Nome do concurso como o candidato fala** (08/10/2026): "PMERJ 2014", nunca "CFSd 2014". A sigla do curso só
   aparece no documento oficial, quando ele estiver na tela.
+- **Pronúncia das siglas no clone** (09/10/2026: "A gente não pronuncia P-M-E-R-J. [...] grave isso para todos os
+  concursos daqui para frente. Que sejam análogos." e "Pronúncia é 'pemérje'"). A voz do HeyGen soletra sigla em
+  maiúsculas; as do Rio em ERJ se leem como uma palavra só, com o acento no "ÉR" e o "je" no fim: PMERJ = "Pemérje",
+  PCERJ = "Pecérje", CBMERJ = "Cebemérje"; se o começo já tem vogal, a sigla inteira é palavra (ALERJ = "Alérje",
+  UERJ = "Uérje"). As outras (PCMG, PMSP, TJRJ, PPRJ) seguem soletradas. No sistema, `app/services/pronuncia.py`
+  (silvapinto-comercial) faz isso sozinho na fala que vai ao HeyGen; num clone pedido à mão, escreva a sigla já
+  assim na fala. Só a fala muda: legenda, título e copy continuam com a sigla escrita, e a edição devolve
+  "Pemérje"/"Pemérgi" para "PMERJ" na legenda (`corrigir_siglas_faladas`). Sigla nova que fuja da regra: teste na
+  voz do clone antes e registre em `FALADAS`.
 - **Prova na tela.** Decisão, edital, gabarito ou trecho de sentença entram como `insert`; a questão do
   caderno entra como cena `prova` em tela cheia (marca-texto, círculo, seta e carimbo na palavra dita, ver
   estilo.md §12). Se ele citar um documento que não veio junto, pedir o arquivo. Nunca questão inventada
