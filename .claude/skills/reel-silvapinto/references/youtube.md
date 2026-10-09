@@ -20,6 +20,7 @@ TV, então a tela precisa estar sempre cheia e conectada ao assunto, sem pressa 
 | **No app do HeyGen, o YouTube sai DEITADO: Landscape (16:9) com o "Professional in white shirt"** | "Quando eu fizer YouTube, no formato horizontal" (09/10/2026). Configuração completa em SKILL.md, "Quando o dono gera o clone no app do HeyGen" |
 | Os **cortes para a figura dele** vêm desse clone, já em 16:9, alternando com vídeos e imagens do assunto | "Quando tivermos os cortes para a minha figura, usar um daqueles avatares já no formato para YouTube que tem a imagem do meu escritório no fundo" (08/10) |
 | O avatar **sentado olhando para o lado** (`f20c93aa…`, "Terno Bege -- 9", estante) é só para **formato de entrevista** | "Esse sentado sem olhar para a câmera é um formato de entrevista que eu quero fazer um uso específico" (08/10) |
+| **Título explosivo, chamativo**: abre com o gancho em caixa alta e o órgão ("BOMBA NA PCMG: 3 MIL NOVAS VAGAS — e quem ficou fora do último concurso?"), até ~70 caracteres antes do corte da busca, e entrega duas variações para o teste A/B do Studio | O dono, 09/10/2026: "quero um título bem explosivo, bem chamativo, como, por exemplo, bomba na PCMG: 3 mil novas vagas". O chamativo é o fato; a promessa de resultado continua fora (nada de "você vai voltar"), e a descrição diz "previsão" quando for anúncio |
 | O estilo "jornal" (papel creme, serifa) feito no HyperFrames **foi recusado** | Comparado lado a lado em 04/10: "o atual está muito melhor que o novo". O mesmo vale para o Reels |
 
 ## Roteiro, título e capa
