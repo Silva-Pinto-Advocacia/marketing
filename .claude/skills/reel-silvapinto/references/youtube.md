@@ -31,12 +31,13 @@ aparece separado do que é fonte oficial (no vídeo de teste, a frase "uma solu�
 específico" entrou num quadro "Na prática", fora da etiqueta "segundo o MPRJ"). Exemplo completo:
 `examples/guia_atencao/pacote_psicotecnico_pmerj2014.md`.
 
-## Os seis layouts (`scripts/youtube/cenas.py`)
+## Os sete layouts (`scripts/youtube/cenas.py`)
 
 | Layout | O que é | Quando |
 |---|---|---|
+| `W(t0, t1, html, lado="R"/"L"/"B")` | **Só com a fala deitada** (o clone do escritório, 1920x1080): ele em tela cheia, com o escritório inteiro, e o texto num lado escurecido (`R` sobre a estante, `L` sobre a parede, `B` terço inferior). Sem html, plano limpo | O plano principal do apresentador desde 09/10/2026 ("quero aquele visual em que estou no escritório, para youtube. ele preenche bem a tela widescreen"). Alterne com `P` e `X` para não ficar parado |
 | `P(t0, t1, "L"/"R", html)` | Apresentador numa faixa de 860 px com o fundo original; do outro lado, texto sobre a foto do escritório desfocada (`img/escritorio.jpg`) | A maior parte do tempo em que ele explica; alterne o lado entre capítulos |
-| `X(t0, t1, html)` | Close no rosto, tela cheia | Frase de ênfase ("Mas atenção", "Um detalhe importante"), até ~7 s: amplia a fonte 1,78x e fica mais mole |
+| `X(t0, t1, html)` | Close no rosto, tela cheia | Frase de ênfase ("Mas atenção", "Um detalhe importante"), até ~7 s: amplia a fonte 1,78x no vertical e 1,45x no deitado, e fica mais mole |
 | `B(t0, t1, html, photo= / clips=)` | Imagem de apoio em tela cheia: foto com movimento lento ou trechos de vídeo | No começo de cada capítulo e quando a fala cita um lugar, órgão ou cena |
 | `D(t0, t1, html, doc)` | Documento real com câmera e marca-texto nas frases ditas | Diário Oficial (com dados pessoais tarjados), comunicado oficial, decisão, edital |
 | `I(t0, t1, html)` | Infográfico em tela cheia: comparação, critérios, fluxo, pessoas | Quando a fala explica uma regra ou um contraste |
@@ -51,7 +52,13 @@ palavra (`a(t)`, com `t` tirado das palavras transcritas).
 1. **Fala.** Grave ou gere no HeyGen; corte pausas como no reel (`transcribe.py`, `build_timeline.py`,
    EDL do `timeline.json`) e exporte a fala cortada (`fala.mp4`). As palavras do `timeline.json` são o
    relógio das cenas.
-2. **Quadros e rosto:** `python scripts/youtube/preparar.py fala <pasta> fala.mp4`.
+2. **Quadros e rosto:** `python scripts/youtube/preparar.py fala <pasta> fala.mp4`. Vale para a fala vertical e
+   para a deitada; o `rosto.json` guarda o tamanho do quadro e `P`, `X` e `W` se ajustam a ele (no deitado, a
+   faixa do `P` é um recorte de 860 px centrado no rosto).
+   **Fundo desfocado (`img/escritorio.jpg`)** para o lado do texto no `P`, o `I` e o cartão final: com o clone
+   do escritório, `preparar.py fundo <pasta> fala.mp4` o monta de um quadro da fala sem o apresentador (a parede
+   de madeira e a estante, emendadas). Apagar o apresentador e preencher o buraco (inpaint) deixa uma mancha que
+   aparece mesmo desfocada (testado em 09/10/2026).
 3. **Imagens:** `python scripts/youtube/busca_commons.py lista "<termo>" ...` e `baixa <pasta>/img "File:..."`;
    vídeo de apoio com `preparar.py apoio <pasta> <nome> <video> <início> <duração> [crop=...]`.
    Também entram: `escritorio.jpg` (projeto do escritório, só desfocado), brasão do órgão, página do

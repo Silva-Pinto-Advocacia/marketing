@@ -39,6 +39,14 @@ body{width:1920px;height:1080px;overflow:hidden;background:var(--navy);font-fami
 #pres .nome small{display:block;font:500 18px "JetBrains Mono";color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
 #conteudo{position:absolute;top:0;height:1080px;width:1060px;overflow:hidden}
 #close{position:absolute;inset:0;overflow:hidden}
+/* fala deitada em tela cheia (W): o escritório inteiro, o texto num lado escurecido */
+#wide{position:absolute;inset:0;overflow:hidden}
+#wide img{position:absolute;left:0;top:0}
+.lado-R{background:linear-gradient(270deg,rgba(23,24,27,.9) 0%,rgba(23,24,27,.72) 26%,rgba(23,24,27,0) 40%)}
+.lado-L{background:linear-gradient(90deg,rgba(23,24,27,.9) 0%,rgba(23,24,27,.72) 26%,rgba(23,24,27,0) 40%)}
+.lado-B{background:linear-gradient(0deg,rgba(23,24,27,.9) 0%,rgba(23,24,27,.55) 26%,rgba(23,24,27,0) 45%)}
+.nomew{position:absolute;left:60px;bottom:52px;font:700 26px Manrope;background:rgba(0,0,0,.55);padding:10px 18px;border-left:4px solid var(--gold)}
+.nomew small{display:block;font:500 18px "JetBrains Mono";color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
 #close img{position:absolute;left:0;top:0;transform-origin:0 0}
 .terco{position:absolute;left:90px;bottom:90px}
 .grad-b{background:linear-gradient(0deg,rgba(23,24,27,.92) 0%,rgba(23,24,27,.35) 48%,rgba(23,24,27,.25) 100%)}
@@ -63,6 +71,11 @@ function build(sc){
     h+=`<div id="conteudo" style="${esq?'right:0':'left:0'}"><div class="office"></div><div class="veu" style="background:linear-gradient(90deg,rgba(23,24,27,.55),rgba(23,24,27,.3))"></div>${logo(esq?'right:60px':'left:60px')}
         <div class="abs" style="left:90px;right:80px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center">${icon(sc.html||'')}</div></div>
         <div id="pres" style="${esq?'left:0':'right:0'}"><img><div class="linha" style="${esq?'right:0':'left:0'}"></div>${sc.nome?`<div class="nome"><small>advogado</small>Dr. Casil · Silva Pinto Advocacia</div>`:''}</div>`;
+  } else if(sc.layout==='W'){
+    const L=sc.lado||'R', pos=L==='R'?'left:1310px;right:60px;top:0;bottom:0;justify-content:center':L==='L'?'left:80px;width:540px;top:0;bottom:0;justify-content:center':'left:90px;right:90px;bottom:80px';
+    h+=`<div id="wide"><img></div>${sc.html?`<div class="full lado-${L}"></div>`:''}${L==='L'?logo('right:60px'):''}
+        ${sc.html?`<div class="abs" style="${pos};display:flex;flex-direction:column">${icon(sc.html)}</div>`:''}
+        ${sc.nome?`<div class="nomew"><small>advogado</small>Dr. Casil · Silva Pinto Advocacia</div>`:''}`;
   } else if(sc.layout==='X'){
     h+=`<div id="close"><img></div><div class="full grad-x"></div>${logo('left:60px')}<div class="terco">${icon(sc.html||'')}</div>`;
   } else if(sc.layout==='B'){
@@ -106,13 +119,19 @@ window.render=async function(t){
   const lt=t-sc.t0, p=Math.min(1,lt/(sc.t1-sc.t0));
   const imgs=[];
   if(sc.layout==='P'){
-    const im=document.querySelector('#pres img'); const s=860/1080, z=1+0.035*p;
+    const im=document.querySelector('#pres img'), z=1+0.035*p;
     im.src=frameSrc(t); imgs.push(im);
-    const off=sc.off; im.style.transform=`translateY(${-off*s}px) scale(${z})`;
+    if(sc.offx!==undefined){ // fala deitada: o quadro na altura da tela, a faixa centrada no rosto
+      const s=1080/S.fh; im.style.width=(S.fw*s)+'px'; im.style.transform=`translateX(${-sc.offx*s}px) scale(${z})`;
+    } else { const s=860/1080, off=sc.off; im.style.transform=`translateY(${-off*s}px) scale(${z})`; }
   } else if(sc.layout==='X'){
     const im=document.querySelector('#close img'); im.src=frameSrc(t); imgs.push(im);
     const z0=sc.zoom||1.7778, z=z0*(1+0.03*p); const cx=sc.cx, cy=sc.cy;
-    im.style.width='1080px'; im.style.transform=`translate(${W/2-cx*z}px,${H/2-cy*z}px) scale(${z})`;
+    im.style.width=(S.fw||1080)+'px'; im.style.transform=`translate(${W/2-cx*z}px,${H/2-cy*z}px) scale(${z})`;
+  } else if(sc.layout==='W'){
+    const im=document.querySelector('#wide img'); im.src=frameSrc(t); imgs.push(im);
+    const s=1080/S.fh, z=1+0.04*p; // aproximação lenta, presa no rosto
+    im.style.width=(S.fw*s)+'px'; im.style.transformOrigin=`${sc.cx*s}px ${sc.cy*s}px`; im.style.transform=`scale(${z})`;
   } else if(sc.layout==='B'||sc.layout==='I'){
     kb(document.getElementById('foto'),sc,p);
     if(sc.clips){ let acc=0, c=sc.clips[sc.clips.length-1], off=0; for(const cl of sc.clips){ if(lt<acc+cl[1]){c=cl;off=lt-acc;break;} acc+=cl[1]; off=lt-acc+cl[1]; }
