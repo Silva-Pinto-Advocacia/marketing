@@ -24,6 +24,9 @@ TV, então a tela precisa estar sempre cheia e conectada ao assunto, sem pressa 
 
 ## Roteiro, título e capa
 
+**Tamanho: a fala inteira em até 5.000 caracteres** (mire 4.800), o limite do app do HeyGen; dá ~5 min de vídeo
+em 1.1x. Regra e motivo em SKILL.md, "Quando o dono gera o clone no app do HeyGen".
+
 Seguem `atencao.md` (texto do Casil, 05/10/2026): dor → fato → lacuna nos primeiros 15 a 30 s, explicação por
 capítulos, limite administrativo, ponte judicial ("o que acontece se você não estiver no TAC"), resumo
 ("Então guarda isso…") e **um CTA só** (no YouTube, "o contato está na descrição"; nada de somar inscreva-se,

@@ -44,7 +44,7 @@ fizer YouTube, no formato horizontal."
 | Look | **"Terno Bege"** (de frente, de terno) | **"Professional in white shirt"** (o escritório) |
 | Motor | Advanced Settings > **Avatar IV** (o app abre no V, que gasta ~50% mais) | Avatar IV |
 | Voz | "CASIL" (maiúsculas), ElevenLabs Multilingual v2, Speed 1.1 | "CASIL", Multilingual v2, Speed 1.05, uma cena por bloco (até 1.000 caracteres) |
-| Tamanho | até 5.000 caracteres por vídeo | até 5.000 caracteres por vídeo; acima disso, em partes |
+| Tamanho | a fala inteira com até 5.000 caracteres | a fala inteira com até 5.000 caracteres (mire 4.800): um vídeo só, nunca em partes |
 
 - **Nunca** os looks "Casil in his law office" e "Casil in his professional office": têm "PRÁTICA JURÍDICA" e
   "RECURSO EM CONCURSOS" gravados na foto. Nem o "Terno Bege -- 9" (sentado, só para entrevista).
@@ -52,10 +52,13 @@ fizer YouTube, no formato horizontal."
   errado.
 - **Cole só a fala**: título de cena, colchete de observação e marcação de entonação são lidos em voz alta
   (as marcações [normal]/[empathetic] só valem no motor ElevenLabs V3).
-- **Até 5.000 caracteres por vídeo.** O app corta o roteiro aí sem avisar: o YouTube da PCMG (09/10/2026) parou
-  em "verificar agora se aquela pontuação...". Roteiro maior vai em partes, cada uma num vídeo com a mesma
-  configuração e cortada no fim de um bloco (a parte 2 começa repetindo a frase que ficou pela metade). Na edição,
-  as partes são emendadas numa pausa entre frases.
+- **Todo roteiro cabe em 5.000 caracteres** (decisão do dono, 09/10/2026: "a partir de agora faça sempre
+  vídeos limitando os caracteres ao limite do heygen"). O app corta o texto aí sem avisar: o YouTube da PCMG
+  parou em "verificar agora se aquela pontuação..." e ele teve de gerar uma parte 2. Conte com `len()` o texto
+  exato que ele vai colar (só a fala) e mire **4.800**, para sobrar folga. Na prática, 5.000 caracteres dão
+  ~5:30 de fala no app e ~5 min depois da aceleração 1.1x: é o tamanho máximo de um YouTube. Se o assunto não
+  cabe, corte explicação, nunca o gancho, a ponte judicial nem o CTA; ou proponha dois vídeos com assuntos
+  separados, cada um completo. Ao entregar o texto, diga a contagem ("4.712 de 5.000 caracteres").
 - **Velocidade.** O YouTube da PCMG saiu lento para ele ("passe para velocidade 1.1x"). A edição acelera antes de
   transcrever, para as palavras ficarem nos tempos novos:
   `ffmpeg -i in.mp4 -filter_complex "[0:v]setpts=PTS/1.1,fps=25[v];[0:a]atempo=1.1[a]" -map "[v]" -map "[a]" out.mp4`.
