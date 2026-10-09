@@ -86,7 +86,10 @@ palavra (`a(t)`, com `t` tirado das palavras transcritas).
 - **Descrição:** capítulos com tempo (o YouTube exige o primeiro em 0:00 e pelo menos três), fontes,
   créditos de imagem e o WhatsApp com mensagem pronta (`wa.me/5521993996262?text=Vim%20do%20YouTube%20(<tema>)`)
   para saber de onde veio o contato.
-- **Legenda .srt** completa, gerada das palavras (linhas de até 42 caracteres). A tela só traz palavras-chave.
+- **Legenda .srt** completa, gerada das palavras (linhas de até 42 caracteres) com `scripts/youtube/legenda_srt.py`.
+  Antes, compare a transcrição com o roteiro (difflib) e passe o que o reconhecimento errou em `--corrige`: na
+  PCMG, "prescrição 5º Enaldo Decreto" era "quinquenal do". Vídeo em partes: uma entrada por parte, com o
+  deslocamento da emenda. A tela só traz palavras-chave.
 - **Capa:** briefing em 3 opções para o teste A/B do YouTube Studio, pelo método de `atencao.md` §11
   (emoção, metáfora visual, ambiente da carreira, rosto com o fundo original, 2 a 5 palavras que completam
   o título) e **sempre com o brasão do órgão** (decisão de 05/10/2026), sem parecer comunicação oficial.

@@ -44,6 +44,7 @@ fizer YouTube, no formato horizontal."
 | Look | **"Terno Bege"** (de frente, de terno) | **"Professional in white shirt"** (o escritório) |
 | Motor | Advanced Settings > **Avatar IV** (o app abre no V, que gasta ~50% mais) | Avatar IV |
 | Voz | "CASIL" (maiúsculas), ElevenLabs Multilingual v2, Speed 1.1 | "CASIL", Multilingual v2, Speed 1.05, uma cena por bloco (até 1.000 caracteres) |
+| Tamanho | até 5.000 caracteres por vídeo | até 5.000 caracteres por vídeo; acima disso, em partes |
 
 - **Nunca** os looks "Casil in his law office" e "Casil in his professional office": têm "PRÁTICA JURÍDICA" e
   "RECURSO EM CONCURSOS" gravados na foto. Nem o "Terno Bege -- 9" (sentado, só para entrevista).
@@ -51,6 +52,13 @@ fizer YouTube, no formato horizontal."
   errado.
 - **Cole só a fala**: título de cena, colchete de observação e marcação de entonação são lidos em voz alta
   (as marcações [normal]/[empathetic] só valem no motor ElevenLabs V3).
+- **Até 5.000 caracteres por vídeo.** O app corta o roteiro aí sem avisar: o YouTube da PCMG (09/10/2026) parou
+  em "verificar agora se aquela pontuação...". Roteiro maior vai em partes, cada uma num vídeo com a mesma
+  configuração e cortada no fim de um bloco (a parte 2 começa repetindo a frase que ficou pela metade). Na edição,
+  as partes são emendadas numa pausa entre frases.
+- **Velocidade.** O YouTube da PCMG saiu lento para ele ("passe para velocidade 1.1x"). A edição acelera antes de
+  transcrever, para as palavras ficarem nos tempos novos:
+  `ffmpeg -i in.mp4 -filter_complex "[0:v]setpts=PTS/1.1,fps=25[v];[0:a]atempo=1.1[a]" -map "[v]" -map "[a]" out.mp4`.
 - Baixar o vídeo pronto é grátis: ele aparece em `GET /v3/videos` (título padrão "Vídeo de Avatar").
 - O sistema faz isso sozinho no Compor ("Versão para o HeyGen": a lista vem pelo "Formato" do vídeo).
 
