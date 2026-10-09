@@ -108,9 +108,14 @@ function animar(sc,t){
     else if(a==='left') tf=`translateX(${(1-p)*-60}px)`;
     else if(a==='pop') tf=`scale(${lerp(.6,1,p)+ (p<1? Math.sin(p*Math.PI)*0.08:0)})`;
     else if(a==='wipe'){ el.style.clipPath=`inset(0 ${(1-p)*100}% 0 0)`; el.style.opacity=t>=at?1:0; continue;}
+    else if(a==='draw'){ el.style.strokeDasharray=1; el.style.strokeDashoffset=1-p; el.style.opacity=t>=at?1:0; continue;} // <path pathLength="1">
+    else if(a==='grow'){ el.style.transformOrigin=el.dataset.origem||'left center'; el.style.transform=`scaleX(${p})`; el.style.opacity=t>=at?1:0; continue;}
+    else if(a==='glow'){ const g=Math.max(0,Math.sin(Math.min(1,(t-at)/1.6)*Math.PI)); tf=`scale(${lerp(.55,1,p)+(p<1?Math.sin(p*Math.PI)*0.1:0)})`;
+      el.style.filter=`drop-shadow(0 0 ${8+34*g}px rgba(240,207,134,${.25+.55*g}))`; }
     else if(a==='fade') tf='';
     el.style.opacity=p; el.style.transform=tf;
-    if(el.dataset.cont){ const [v0,v1]=el.dataset.cont.split(',').map(Number); el.textContent=Math.round(lerp(v0,v1,p)); }
+    if(el.dataset.cont){ const [v0,v1]=el.dataset.cont.split(',').map(Number), v=Math.round(lerp(v0,v1,p));
+      el.textContent=el.dataset.fmt==='milhar'?v.toLocaleString('pt-BR'):v; }
   }
 }
 window.render=async function(t){

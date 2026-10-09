@@ -37,6 +37,14 @@ específico" entrou num quadro "Na prática", fora da etiqueta "segundo o MPRJ")
 
 ## Os sete layouts (`scripts/youtube/cenas.py`)
 
+**Motion graphics (09/10/2026, pedido do dono: "explorar mais motion graphics, usar os brasões")**: além de
+up/left/pop/wipe/fade, `a(t, ...)` aceita `glow` (brasão do órgão entrando com brilho dourado que pulsa e assenta;
+use na abertura e nas aberturas de capítulo, e os dois brasões quando a fala cita duas corporações), `grow` (barra
+que cresce: linha do tempo de validade, régua de anos) e `draw` (seta ou linha SVG que se desenha, `<path
+pathLength="1">`, nas sequências "anulação → recálculo → reclassificação"). Contadores com `data-cont` e
+`data-fmt="milhar"` ("3.000"). Exemplo em `examples/youtube_pmerj2014/` para o resto; os helpers da PCMG
+(`brasoes`, `seta`, `barra`, `pessoas`) ficam como modelo na conversa de 09/10.
+
 | Layout | O que é | Quando |
 |---|---|---|
 | `W(t0, t1, html, lado="R"/"L"/"B")` | **Só com a fala deitada** (o clone do escritório, 1920x1080): ele em tela cheia, com o escritório inteiro, e o texto num lado escurecido (`R` sobre a estante, `L` sobre a parede, `B` terço inferior). Sem html, plano limpo | O plano principal do apresentador desde 09/10/2026 ("quero aquele visual em que estou no escritório, para youtube. ele preenche bem a tela widescreen"). Alterne com `P` e `X` para não ficar parado |
