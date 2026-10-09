@@ -30,6 +30,36 @@ Leia antes de começar:
   números da comparação com 14 concorrentes (setembro de 2026). É o guia do Casil para gravar; use
   para conferir a pauta antes de editar e para responder pedidos de roteiro.
 
+## Quando o dono gera o clone no app do HeyGen (09/10/2026)
+
+Ele passou a gerar o clone direto no app (sai cerca de 3 vezes mais barato por minuto que pela API). Todo
+texto que for para lá vai com a **configuração do app junto**. O reel da PCMG saiu num look deitado dentro do
+quadro em pé (faixas brancas, imagem numa tira de 1080x604) e com "PRÁTICA JURÍDICA" gravado na foto. Ele
+pediu: "quando eu fizer um vídeo de Reels, você me dá um prompt em que ele saia no formato vertical. Quando eu
+fizer YouTube, no formato horizontal."
+
+| | Reel / Story | YouTube |
+|---|---|---|
+| Formato | Create > Create a Video > **Portrait (9:16)** | **Landscape (16:9)** |
+| Look | **"Terno Bege"** (de frente, de terno) | **"Professional in white shirt"** (o escritório) |
+| Motor | Advanced Settings > **Avatar IV** (o app abre no V, que gasta ~50% mais) | Avatar IV |
+| Voz | "CASIL" (maiúsculas), ElevenLabs Multilingual v2, Speed 1.1 | "CASIL", Multilingual v2, Speed 1.05, uma cena por bloco (até 1.000 caracteres) |
+
+- **Nunca** os looks "Casil in his law office" e "Casil in his professional office": têm "PRÁTICA JURÍDICA" e
+  "RECURSO EM CONCURSOS" gravados na foto. Nem o "Terno Bege -- 9" (sentado, só para entrevista).
+- Na prévia ele ocupa a tela inteira; faixa em cima e embaixo (reel) ou dos lados (YouTube) é look do formato
+  errado.
+- **Cole só a fala**: título de cena, colchete de observação e marcação de entonação são lidos em voz alta
+  (as marcações [normal]/[empathetic] só valem no motor ElevenLabs V3).
+- Baixar o vídeo pronto é grátis: ele aparece em `GET /v3/videos` (título padrão "Vídeo de Avatar").
+- O sistema faz isso sozinho no Compor ("Versão para o HeyGen": a lista vem pelo "Formato" do vídeo).
+
+**Na fala, sem ano do concurso e sem nome de autoridade** (o dono, 09/10/2026): "não coloquei o nome do
+governador, nem coloquei o ano do concurso, porque os candidatos fazem muita confusão entre o ano de
+lançamento do edital e o ano de realização da prova, isso pode nos atrapalhar." Diga o órgão e o cargo ("o
+último concurso da Polícia Civil de Minas", "o governador"). Fica só o ano que é o nome pelo qual o candidato
+conhece o concurso ("PMERJ 2014"). Isso vale para a fala; a legenda e a descrição podem trazer a fonte com data.
+
 ## Regras de pauta (valem para toda edição)
 
 Saíram da medição dos posts do escritório e dos concorrentes; o porquê está em `roteiro.md`.
