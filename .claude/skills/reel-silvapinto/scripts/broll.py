@@ -35,7 +35,12 @@ def _medir(video):
 
 
 def _credito_png(texto, w, h, destino):
-    """O crédito numa camada transparente do tamanho do quadro, pequeno, no rodapé, legível sobre qualquer imagem."""
+    """O crédito numa camada transparente do tamanho do quadro, pequeno, legível sobre qualquer imagem.
+
+    No reel em pé ele fica no alto, centralizado, logo abaixo da barra do título (revisão de 09/10/2026: no
+    rodapé ele sumia; o zoom de até 1,22x da edição empurrava a linha para fora do quadro e o degradê da base
+    cobria o resto). Centralizado e a ~18% da altura, ele continua dentro do quadro com o zoom no pivô do
+    rosto. No vídeo deitado, o rodapé à esquerda."""
     from PIL import Image, ImageDraw, ImageFont
 
     im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
@@ -43,7 +48,11 @@ def _credito_png(texto, w, h, destino):
     fonte = next((f for f in FONTES if os.path.exists(f)), None)
     tam = max(18, round(w * 0.024))
     f = ImageFont.truetype(fonte, tam) if fonte else ImageFont.load_default()
-    x, y = round(w * 0.04), round(h * 0.958)
+    if h > w:
+        largura = d.textlength(texto, font=f)
+        x, y = round((w - largura) / 2), round(h * 0.175)
+    else:
+        x, y = round(w * 0.04), round(h * 0.958)
     caixa = d.textbbox((x, y), texto, font=f)
     d.rounded_rectangle((caixa[0] - 10, caixa[1] - 6, caixa[2] + 10, caixa[3] + 6), radius=8, fill=(0, 0, 0, 120))
     d.text((x, y), texto, font=f, fill=(255, 255, 255, 215))
