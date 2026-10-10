@@ -20,9 +20,13 @@ TV, então a tela precisa estar sempre cheia e conectada ao assunto, sem pressa 
 | **No app do HeyGen, o YouTube sai DEITADO: Landscape (16:9) com o "Professional in white shirt"** | "Quando eu fizer YouTube, no formato horizontal" (09/10/2026). Configuração completa em SKILL.md, "Quando o dono gera o clone no app do HeyGen" |
 | Os **cortes para a figura dele** vêm desse clone, já em 16:9, alternando com vídeos e imagens do assunto | "Quando tivermos os cortes para a minha figura, usar um daqueles avatares já no formato para YouTube que tem a imagem do meu escritório no fundo" (08/10) |
 | O avatar **sentado olhando para o lado** (`f20c93aa…`, "Terno Bege -- 9", estante) é só para **formato de entrevista** | "Esse sentado sem olhar para a câmera é um formato de entrevista que eu quero fazer um uso específico" (08/10) |
+| **Título explosivo, chamativo**: abre com o gancho em caixa alta e o órgão ("BOMBA NA PCMG: 3 MIL NOVAS VAGAS — e quem ficou fora do último concurso?"), até ~70 caracteres antes do corte da busca, e entrega duas variações para o teste A/B do Studio | O dono, 09/10/2026: "quero um título bem explosivo, bem chamativo, como, por exemplo, bomba na PCMG: 3 mil novas vagas". O chamativo é o fato; a promessa de resultado continua fora (nada de "você vai voltar"), e a descrição diz "previsão" quando for anúncio |
 | O estilo "jornal" (papel creme, serifa) feito no HyperFrames **foi recusado** | Comparado lado a lado em 04/10: "o atual está muito melhor que o novo". O mesmo vale para o Reels |
 
 ## Roteiro, título e capa
+
+**Tamanho: a fala inteira em até 5.000 caracteres** (mire 4.800), o limite do app do HeyGen; dá ~5 min de vídeo
+em 1.1x. Regra e motivo em SKILL.md, "Quando o dono gera o clone no app do HeyGen".
 
 Seguem `atencao.md` (texto do Casil, 05/10/2026): dor → fato → lacuna nos primeiros 15 a 30 s, explicação por
 capítulos, limite administrativo, ponte judicial ("o que acontece se você não estiver no TAC"), resumo
@@ -33,6 +37,14 @@ específico" entrou num quadro "Na prática", fora da etiqueta "segundo o MPRJ")
 `examples/guia_atencao/pacote_psicotecnico_pmerj2014.md`.
 
 ## Os sete layouts (`scripts/youtube/cenas.py`)
+
+**Motion graphics (09/10/2026, pedido do dono: "explorar mais motion graphics, usar os brasões")**: além de
+up/left/pop/wipe/fade, `a(t, ...)` aceita `glow` (brasão do órgão entrando com brilho dourado que pulsa e assenta;
+use na abertura e nas aberturas de capítulo, e os dois brasões quando a fala cita duas corporações), `grow` (barra
+que cresce: linha do tempo de validade, régua de anos) e `draw` (seta ou linha SVG que se desenha, `<path
+pathLength="1">`, nas sequências "anulação → recálculo → reclassificação"). Contadores com `data-cont` e
+`data-fmt="milhar"` ("3.000"). Modelo pronto: `examples/youtube_pcmg/cenas_pcmg.py` (helpers `brasoes`, `seta`, `barra`, `pessoas`, `mil`;
+fala deitada do app em duas partes emendadas, layout W predominante).
 
 | Layout | O que é | Quando |
 |---|---|---|
@@ -86,7 +98,10 @@ palavra (`a(t)`, com `t` tirado das palavras transcritas).
 - **Descrição:** capítulos com tempo (o YouTube exige o primeiro em 0:00 e pelo menos três), fontes,
   créditos de imagem e o WhatsApp com mensagem pronta (`wa.me/5521993996262?text=Vim%20do%20YouTube%20(<tema>)`)
   para saber de onde veio o contato.
-- **Legenda .srt** completa, gerada das palavras (linhas de até 42 caracteres). A tela só traz palavras-chave.
+- **Legenda .srt** completa, gerada das palavras (linhas de até 42 caracteres) com `scripts/youtube/legenda_srt.py`.
+  Antes, compare a transcrição com o roteiro (difflib) e passe o que o reconhecimento errou em `--corrige`: na
+  PCMG, "prescrição 5º Enaldo Decreto" era "quinquenal do". Vídeo em partes: uma entrada por parte, com o
+  deslocamento da emenda. A tela só traz palavras-chave.
 - **Capa:** briefing em 3 opções para o teste A/B do YouTube Studio, pelo método de `atencao.md` §11
   (emoção, metáfora visual, ambiente da carreira, rosto com o fundo original, 2 a 5 palavras que completam
   o título) e **sempre com o brasão do órgão** (decisão de 05/10/2026), sem parecer comunicação oficial.
