@@ -152,6 +152,19 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   comunicação oficial.
 - **Entregar pronto para publicar**: o reel do IASES foi ao ar sem a edição. Na entrega, lembrar que
   é o `reel_web.mp4` que deve subir, com a primeira linha da legenda igual ao gancho.
+- **Todo vídeo pronto vai para a biblioteca "Vídeos do escritório"**
+  (https://claude.ai/artifact/1LizvJYdUDX6gPT6KyzW99, decisão de 10/10/2026). A máquina da sessão é
+  apagada quando fica parada, o chat só manda arquivo até 30 MB e o app do Android não salva vídeo
+  grande vindo do chat: assim se perderam os originais de 04 e 06/10. Ao entregar:
+  - ler a página (Artifact, `action: "read"` com a URL);
+  - pôr o cartão do vídeo no topo da grade (o mais novo primeiro), com capa e legenda;
+  - publicar na mesma URL, com o vídeo em `v/` e a capa em `c/` por `files` (os que já estão lá
+    ficam);
+  - mandar o link.
+
+  Vídeo de até 15 MB entra inteiro. Acima disso, vai numa página própria, com o vídeo em partes de
+  14 MiB juntadas no navegador, e o cartão da biblioteca aponta para ela. Modelo: o kit do YouTube
+  da PCMG, https://claude.ai/artifact/PAXzb8SZq7YxSBRYYov1N8.
 
 ## Fluxo
 
@@ -179,8 +192,8 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
    rosto, brasão pequeno, nada opaco.
 5. **Render completo em segundo plano**, depois `assemble.py`. Extrair folha de contatos do MP4 e
    conferir de novo antes de entregar.
-6. **Entregar** `reel_web.mp4` pelo chat, dizer o que ficou como paliativo e o que a filmagem
-   resolveria, oferecer subir o master no Drive.
+6. **Entregar** o `reel_web.mp4` pela biblioteca (regra acima) e mandar o link. Pelo chat, só a
+   prévia que caiba em 30 MB. Dizer o que ficou como paliativo e o que a filmagem resolveria.
 
 ## Texto dos overlays
 
