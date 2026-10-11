@@ -115,7 +115,9 @@ def D(t0, t1, html, doc, credit=""):
 
 # ── elementos de texto ──────────────────────────────────────────────────────
 def a(t, an="up", d=0.45):
-    """Entrada animada no tempo t (absoluto): up | left | pop | wipe | fade."""
+    """Entrada animada no tempo t (absoluto): up | left | pop | wipe | fade | glow (brasão: pop com brilho
+    dourado que pulsa e assenta) | grow (barra que cresce da esquerda; data-origem muda o ponto) | draw (linha
+    SVG que se desenha: <path pathLength="1" ...>). Contador: data-cont="0,3000" (data-fmt="milhar" põe o ponto)."""
     return f'data-at="{t}" data-a="{an}" data-d="{d}"'
 
 
