@@ -313,12 +313,20 @@ tem_rosto = len(face_tops) >= 3
 # camera ajustada ao rosto, como nas edicoes manuais de out/2026: rosto grande no quadro pede zooms menores
 # (senao cai no "so a cabeca", recusado) e o centro do zoom na altura do rosto (senao o zoom corta a testa).
 # Valores do config.json valem sempre; isto so preenche o que faltar.
+# A legenda comeca em 1160 px e os textos grandes em 1120: o rosto (com o queixo) termina acima de ROSTO_ATE.
+# A cabeca nao sobe acima de CABECA_DESDE (a barra do alto: logo, titulo compacto e o brasao do orgao).
+ROSTO_ATE, CABECA_DESDE = 1140, 120
 pivot = cfg.get("pivot")
 nivel_auto = None
 if tem_rosto and not DEITADO:
     alt_rosto = (face_bots[-1 - len(face_bots) // 10] - face_tops[len(face_tops) // 10]) / VH
     if pivot is None:
         pivot = [50, round(max(18, min(42, face_cy[len(face_cy) // 2] / VH * 100)))]
+        # selfie de perto (13/10/2026: o queixo em 1396 px sem zoom, "os elementos estao sempre sobrepondo meu
+        # rosto"): com o centro do zoom nos olhos, cada zoom empurra o queixo para baixo, sobre a legenda e os
+        # textos. Com o centro no queixo, o rosto cresce so para cima
+        bot_b = face_bots[-1 - len(face_bots) // 10]
+        if bot_b > ROSTO_ATE: pivot = [50, round(min(85, float(bot_b) / VH * 100), 1)]
     if alt_rosto > 0.42: nivel_auto = ([1.0, 1.08, 1.0, 1.15, 1.08, 1.0], 1.1)
     elif alt_rosto > 0.32: nivel_auto = ([1.0, 1.12, 1.0, 1.22, 1.12, 1.0], 1.12)
     print(f"camera: rosto ocupa {alt_rosto:.0%} da altura, pivo {pivot}"
@@ -406,12 +414,21 @@ for sc in scenes:
 # cobrirem o rosto. Reel do PMES com avatar (02/10/2026): o titulo e o "Explico na legenda" caiam na testa.
 # Deteccao opcional: sem OpenCV, segue o layout padrao ----------
 rosto = None
+subir = 0
 if tem_rosto:
     smax = max([x["scale"] for x in shots] + [h["scale"] for h in hits] + [1.0])
     py = VH * (pivot or [50, 38])[1] / 100
     top, bot = face_tops[len(face_tops) // 10], face_bots[-1 - len(face_bots) // 10]
     rosto = {"topo": int(py + (top - py) * smax), "base": int(py + (bot - py) * smax)}
     print(f"rosto: de {rosto['topo']} a {rosto['base']} px (com zoom {smax:.2f})")
+    # o rosto que ainda desce ate a legenda faz o video subir (o corpo sai por baixo, onde ficam os textos e as
+    # cenas, sobre o degrade escuro). So ate a cabeca, no zoom maximo, encostar na barra do alto
+    if not DEITADO:
+        subir = cfg.get("subir")
+        if subir is None: subir = max(0, min(rosto["base"] - ROSTO_ATE, rosto["topo"] - CABECA_DESDE))
+        if subir:
+            rosto = {"topo": rosto["topo"] - subir, "base": rosto["base"] - subir}
+            print(f"rosto: o video subiu {subir} px; agora de {rosto['topo']} a {rosto['base']} px")
 
 titulo = None
 if cfg.get("titulo"):
@@ -489,6 +506,7 @@ tl = {"fps": FPS, "frameCount": frame_count, "framePrefix": cfg.get("frames", "s
       "source": os.path.join(proj, cfg["video"]), "pivot": pivot, "titulo": titulo,
       "abertura": abertura, "legenda": estilo["legenda"], "estilo": estilo,
       "formato": "deitado" if DEITADO else "em_pe", "W": VW, "H": VH, "rosto": rosto, "capTop": cap_top,
+      "subir": subir, "rostoCy": int(face_cy[len(face_cy) // 2]) if tem_rosto else None,
       # do reel na rua que o Casil aprovou (out/2026): zoom de entrada e transicao em zoom entre os planos
       "transicao": cfg.get("transicao", "corte"), "entradaZoom": cfg.get("entrada_zoom"),
       "visual": VISUAL, "dinamico": dinamico, "sfx": sfx}

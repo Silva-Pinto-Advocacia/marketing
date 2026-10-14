@@ -75,7 +75,8 @@ Armadilhas de renderização que já custaram versões:
   curta sozinha. Palavra falada em dourado com leve escala 1,07; palavras já ditas em branco; por vir em
   branco a 55%.
 - Manrope 800, 78 px, centralizadas no peito (topo em 1160 px), com sombra forte. Nunca sobre o rosto: o build acha o
-  rosto e desce a legenda para baixo do queixo quando preciso (até 1200 px).
+  rosto e desce a legenda para baixo do queixo quando preciso (até 1200 px). Rosto grande (selfie de perto), o
+  vídeo sobe até o queixo ficar em 1140 px e o zoom parte do queixo: legenda, textos e cenas embaixo do rosto.
 - Halo escuro em cápsula que ACOMPANHA a largura do texto (`radial-gradient` num `inline-block` com
   `padding:22px 54px`). Ele rejeitou o halo de largura fixa: "passa muito do texto, fica um espaço em branco".
 - Cada grupo entra com um pop de escala 0,92 → 1 em 0,16 s.

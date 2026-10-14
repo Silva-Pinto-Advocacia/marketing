@@ -38,11 +38,45 @@ k = 0
 for b in cfg.get("blur_patches", []):
     vf += f",split[a{k}][b{k}];[b{k}]crop={b['w']}:{b['h']}:{b['x']}:{b['y']},gblur=sigma={b.get('sigma', 14)}[c{k}];[a{k}][c{k}]overlay={b['x']}:{b['y']}"
     k += 1
+
+
+def queixo(video, n=8):
+    """O queixo mais baixo (px do video de origem) em n quadros, como o build_timeline mede: y + 1,15 h da caixa
+    do rosto. None sem OpenCV ou sem rosto."""
+    try:
+        import cv2
+    except ImportError:
+        return None
+    casc = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+    cap = cv2.VideoCapture(video); total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT) or 0); bases = []
+    for i in range(n):
+        cap.set(cv2.CAP_PROP_POS_FRAMES, int(total * (i + 0.5) / n))
+        ok, img = cap.read()
+        if not ok: continue
+        g = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        fs = casc.detectMultiScale(g, 1.1, 6, minSize=(g.shape[1] // 9, g.shape[1] // 9))
+        if len(fs):
+            x, y, w, h = max(fs, key=lambda f: f[2] * f[3]); bases.append((int(y + 1.15 * h), g.shape[0]))
+    cap.release()
+    return max(bases) if len(bases) >= 3 else None
+
+
 bb = cfg.get("bottom_blur")
+crop = cfg.get("crop")
+# o desfoque da faixa de baixo nunca pega o rosto. Selfie de perto (13/10/2026): o queixo ia ate ~1400 px e o
+# desfoque comecava em 1280, borrando a boca. A faixa desce para baixo do queixo; sem espaco, sai
+if bb and not crop:
+    q = queixo(video)
+    if q and q[0] + 20 > bb["y"]:
+        bb = dict(bb, y=q[0] + 20)
+        bb["h"] = min(bb["h"], q[1] - bb["y"])
+        if bb["h"] < bb.get("feather", 110) + 40:
+            print(f"desfoque de baixo: saiu (o queixo vai ate {q[0]} px)"); bb = None
+        else:
+            print(f"desfoque de baixo: desceu para {bb['y']} px (o queixo vai ate {q[0]} px)")
 if bb:
     vf += (f",split[g][h];[h]crop=iw:{bb['h']}:0:{bb['y']},gblur=sigma={bb.get('sigma', 20)},format=rgba,"
            f"geq=r='r(X,Y)':g='g(X,Y)':b='b(X,Y)':a='clip(Y*255/{bb.get('feather', 110)},0,255)'[i];[g][i]overlay=0:{bb['y']}")
-crop = cfg.get("crop")
 if crop:
     vf += f",crop={crop['w']}:{crop['h']}:{crop['x']}:{crop['y']},scale={W}:{H}:flags=lanczos,unsharp=5:5:{cfg.get('sharpen', 0.6)}:5:5:0.0"
 else:
