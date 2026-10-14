@@ -349,6 +349,11 @@ if(TL.formato==='deitado') document.documentElement.classList.add('deitado');
   if(tt.alinhar==='esquerda'||tt.alinhar==='barra'){ el.classList.add(tt.alinhar); el.style.left=(tt.alinhar==='barra'?380:56)+'px'; el.style.right=(52+(TL.badgeWidth||200)+24)+'px'; } const ch=document.getElementById('tituloch'); if(tt.chamada) ch.textContent=tt.chamada; else ch.style.display='none'; })();
 if(TL.legenda==='caixa') document.body.classList.add('cap-caixa');
 if(TL.capTop&&TL.formato!=='deitado') document.getElementById('cap').style.top=TL.capTop+'px';
+// rosto grande: o video subiu TL.subir px e deixa uma faixa vazia embaixo. O degrade fica opaco antes da borda
+// do video, e a faixa tem a cor dele: nao aparece emenda
+if(TL.subir>0&&TL.formato!=='deitado'){ const b=Math.max(40,Math.round((820-TL.subir)/820*100));
+  document.querySelector('.vwin .fade').style.background=`linear-gradient(to bottom, rgba(23,24,27,0) 0%, rgba(23,24,27,.5) ${Math.round(b*.32)}%, rgba(23,24,27,.85) ${Math.round(b*.62)}%, rgb(23,24,27) ${b}%)`;
+  document.querySelector('.vwin').style.background='rgb(23,24,27)'; }
 // abertura com brasao central (opcional): posicoes calculadas uma vez
 const AB=TL.abertura||null;
 (function(){ if(!AB){ ['bhalo','bimg','bname'].forEach(id=>document.getElementById(id).style.display='none'); return; }
@@ -457,7 +462,7 @@ window.seek=async function(t){
   await setFrame(t);
   document.getElementById('prog').style.width=(clamp(t/TL.total,0,1)*VW)+'px';
   // video motion: punches + slow drift
-  let scale=1.0, blur=0, dx=0, dy=0;
+  let scale=1.0, blur=0, dx=0, dy=-(TL.subir||0);   // o rosto grande sobe para a legenda e os textos ficarem embaixo dele
   // shot framing (hard cut) + slow handheld-like drift inside the shot
   const sh=TL.shots.find(x=>t>=x.t&&t<x.end)||TL.shots[TL.shots.length-1];
   if(sh){ const L=Math.max(1,sh.end-sh.t); const p=(t-sh.t)/L; scale=sh.scale*(1+sh.drift*Math.sin(p*Math.PI)); dx=Math.sin(p*Math.PI*1.3)*6*(sh.scale-0.9); }
@@ -620,7 +625,7 @@ window.seek=async function(t){
       e.style.opacity=(q>0&&qx<1)?1:0; e.style.transform=`rotate(${e.classList.contains('dir')?3:-3}deg) scale(${Math.max(0,eb(q))*(1-eio(qx))})`; });
     // a bolha com o rosto: ele continua na tela enquanto o documento fala por ele
     const bo=pv.querySelector('.bolha'); if(bo){ const q=prog(lt,0.5,0.4); bo.style.opacity=q>0?1-eio(qout):0; bo.style.transform=`scale(${Math.max(0,eb(q))})`;
-      const k=0.37, py=(TL.pivot?TL.pivot[1]:38)/100*1920; const bv=bo.querySelector('.bv');
+      const k=0.37, py=TL.rostoCy||(TL.pivot?TL.pivot[1]:38)/100*1920;   // o centro do rosto: o do zoom pode estar no queixo const bv=bo.querySelector('.bv');
       bv.style.backgroundImage=`url(${frameSrc(t)})`; bv.style.backgroundSize=`${1080*k}px ${1920*k}px`; bv.style.backgroundPosition=`${125-540*k}px ${125-py*k}px`; }
     pv.querySelectorAll('.m1').forEach(e=>e.style.setProperty('--m',eo(prog(t,MA,0.22))));
     pv.querySelectorAll('.m2').forEach(e=>e.style.setProperty('--m',eio(prog(t,MA+0.12,0.5))));

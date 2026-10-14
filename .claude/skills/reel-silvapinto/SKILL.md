@@ -132,7 +132,10 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   ou quando o Redes mandar; rodar o `recortar.py` antes do build.
 - **Nada sobre o rosto.** O build acha o rosto e tira o título de cima da cabeça e a legenda de cima do
   queixo (imprime o que mudou). Conferir na prévia: a etiqueta "Explico na legenda" na testa foi
-  reclamação do Casil (02/10/2026).
+  reclamação do Casil (02/10/2026). Selfie de perto (queixo abaixo de 1140 px): o zoom parte do queixo e o
+  vídeo sobe até o rosto terminar em 1140 px, com a cabeça abaixo de 120 px; legenda, textos grandes e
+  cenas ficam embaixo dele ("os elementos estão sempre sobrepondo meu rosto", 13/10/2026). `"subir"` no
+  config.json fixa quantos px.
 - **Logo grande no primeiro segundo** quando a abertura é com brasão: ele entra grande no centro da
   metade inferior e só depois voa para o canto.
 - **A metade inferior sempre ocupada.** Os infográficos sincronizados com a fala são o diferencial do
