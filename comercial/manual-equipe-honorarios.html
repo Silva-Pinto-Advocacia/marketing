@@ -1,0 +1,531 @@
+<title>Como apresentar os honorários — Silva Pinto</title>
+<style>
+  :root{
+    --paper:#F5F6F8; --card:#FFFFFF; --sunk:#EDEFF3;
+    --ink:#141C2E; --ink-2:#3D485F; --ink-3:#6B7689;
+    --rule:#D9DEE6; --rule-2:#E7EAF0;
+    --brass:#9A7429; --brass-soft:#F3EBD8;
+    --oxblood:#9B3B34; --oxblood-soft:#F7E7E5;
+    --pine:#2C6350; --pine-soft:#E2EDE8;
+    --bubble:#E8F3E4; --bubble-ink:#16261A;
+    --shadow:0 1px 2px rgba(20,28,46,.06), 0 6px 20px rgba(20,28,46,.05);
+    --serif: ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono: ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0F141F; --card:#171E2C; --sunk:#131A27;
+      --ink:#EDF0F5; --ink-2:#B6BECD; --ink-3:#8A94A6;
+      --rule:#2A3346; --rule-2:#222A3A;
+      --brass:#D6AC5C; --brass-soft:#2B2415;
+      --oxblood:#E08A82; --oxblood-soft:#2E1917;
+      --pine:#7FC3A6; --pine-soft:#14251E;
+      --bubble:#1D3324; --bubble-ink:#DDEBD9;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0F141F; --card:#171E2C; --sunk:#131A27;
+    --ink:#EDF0F5; --ink-2:#B6BECD; --ink-3:#8A94A6;
+    --rule:#2A3346; --rule-2:#222A3A;
+    --brass:#D6AC5C; --brass-soft:#2B2415;
+    --oxblood:#E08A82; --oxblood-soft:#2E1917;
+    --pine:#7FC3A6; --pine-soft:#14251E;
+    --bubble:#1D3324; --bubble-ink:#DDEBD9;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.3);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.6;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:660px; margin:0 auto; padding:0 20px 96px}
+
+  /* ---------- header ---------- */
+  header{padding:40px 0 28px}
+  .eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--brass); margin:0 0 14px;
+  }
+  h1{
+    font-family:var(--serif); font-weight:600; font-size:clamp(30px,7.5vw,42px);
+    line-height:1.12; letter-spacing:-.015em; margin:0 0 14px; text-wrap:balance;
+  }
+  .dek{font-size:17px; color:var(--ink-2); margin:0; max-width:52ch}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:20; margin:0 -20px 36px;
+    padding:10px 20px; background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--rule-2);
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+  }
+  .navrow{display:flex; gap:6px; white-space:nowrap}
+  nav a{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.05em;
+    text-transform:uppercase; text-decoration:none; color:var(--ink-3);
+    padding:6px 10px; border-radius:6px; transition:background .15s,color .15s;
+  }
+  nav a:hover,nav a:focus-visible{background:var(--sunk); color:var(--ink)}
+
+  /* ---------- sections ---------- */
+  section{margin:0 0 52px; scroll-margin-top:64px}
+  h2{
+    font-family:var(--serif); font-weight:600; font-size:25px; line-height:1.2;
+    letter-spacing:-.01em; margin:0 0 6px; text-wrap:balance;
+  }
+  .sub{color:var(--ink-3); font-size:14.5px; margin:0 0 22px}
+  p{margin:0 0 14px}
+  strong{font-weight:650}
+
+  .lede{
+    font-family:var(--serif); font-size:20px; line-height:1.45;
+    color:var(--ink); border-left:3px solid var(--brass);
+    padding:2px 0 2px 18px; margin:0 0 8px;
+  }
+
+  /* ---------- tempos ---------- */
+  ol.tempos{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px}
+  ol.tempos li{
+    display:grid; grid-template-columns:34px 1fr; gap:14px;
+    padding:16px 0; border-bottom:1px solid var(--rule-2);
+  }
+  ol.tempos li:last-child{border-bottom:0}
+  .num{
+    font-family:var(--mono); font-size:13px; font-weight:600; color:var(--brass);
+    padding-top:2px; font-variant-numeric:tabular-nums;
+  }
+  .t-name{font-weight:650; display:block; margin-bottom:3px}
+  .t-body{color:var(--ink-2); font-size:15px}
+  .t-body em{color:var(--ink); font-style:italic}
+
+  /* ---------- faixa switch ---------- */
+  .switch{display:flex; gap:6px; margin:0 0 18px; flex-wrap:wrap}
+  .switch button{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; text-transform:uppercase;
+    background:var(--sunk); color:var(--ink-3); border:1px solid transparent;
+    padding:8px 12px; border-radius:7px; cursor:pointer; transition:all .15s;
+  }
+  .switch button:hover{color:var(--ink)}
+  .switch button[aria-selected="true"]{
+    background:var(--card); color:var(--ink); border-color:var(--rule); box-shadow:var(--shadow);
+  }
+
+  /* ---------- bubble ---------- */
+  .bubble-shell{
+    background:var(--sunk); border:1px solid var(--rule-2); border-radius:14px;
+    padding:16px; margin:0 0 12px;
+  }
+  .bubble{
+    background:var(--bubble); color:var(--bubble-ink); border-radius:12px 12px 12px 4px;
+    padding:15px 16px; font-size:14.5px; line-height:1.62; white-space:pre-wrap;
+    box-shadow:var(--shadow);
+  }
+  .bubble b{font-weight:700}
+  .copybar{display:flex; align-items:center; gap:12px; margin-top:12px}
+  .copybtn{
+    font-family:var(--sans); font-size:14px; font-weight:600;
+    background:var(--ink); color:var(--paper); border:0; border-radius:8px;
+    padding:10px 18px; cursor:pointer; transition:opacity .15s;
+  }
+  .copybtn:hover{opacity:.85}
+  .copynote{font-size:13px; color:var(--ink-3)}
+
+  /* ---------- tables ---------- */
+  .tablewrap{overflow-x:auto; border:1px solid var(--rule); border-radius:12px; background:var(--card)}
+  table{border-collapse:collapse; width:100%; font-size:14.5px}
+  th,td{padding:12px 14px; text-align:left; border-bottom:1px solid var(--rule-2)}
+  thead th{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-3); font-weight:500; background:var(--sunk);
+  }
+  tbody tr:last-child td{border-bottom:0}
+  td.num-cell,th.num-cell{font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap}
+  .star{color:var(--brass)}
+  .row-target td{background:var(--brass-soft)}
+  .row-target td:first-child{font-weight:650}
+  .parc{display:block; font-size:12.5px; color:var(--ink-3); font-family:var(--mono)}
+
+  /* ---------- callouts ---------- */
+  .call{
+    border-radius:12px; padding:16px 18px; margin:0 0 16px; font-size:15px;
+    border:1px solid var(--rule);
+  }
+  .call.pine{background:var(--pine-soft); border-color:color-mix(in srgb,var(--pine) 30%,transparent)}
+  .call.ox{background:var(--oxblood-soft); border-color:color-mix(in srgb,var(--oxblood) 30%,transparent)}
+  .call.brass{background:var(--brass-soft); border-color:color-mix(in srgb,var(--brass) 30%,transparent)}
+  .call .label{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    display:block; margin-bottom:7px;
+  }
+  .call.pine .label{color:var(--pine)}
+  .call.ox .label{color:var(--oxblood)}
+  .call.brass .label{color:var(--brass)}
+  .call p:last-child{margin-bottom:0}
+
+  /* ---------- objections ---------- */
+  .obj{border-top:1px solid var(--rule-2); padding:18px 0}
+  .obj:last-of-type{border-bottom:1px solid var(--rule-2)}
+  .obj .said{
+    font-family:var(--serif); font-size:18px; font-style:italic; color:var(--ink);
+    margin:0 0 10px;
+  }
+  .obj .said::before{content:"— "; color:var(--ink-3); font-style:normal}
+  .obj .do{font-size:15px; color:var(--ink-2); margin:0}
+  .obj .do q{color:var(--ink); quotes:"“" "”"}
+  .obj .tag{
+    font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--brass); display:block; margin-bottom:6px;
+  }
+
+  /* ---------- errors ---------- */
+  ul.errs{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
+  ul.errs li{
+    display:grid; grid-template-columns:22px 1fr; gap:12px; align-items:start;
+    padding:13px 0; border-bottom:1px solid var(--rule-2); font-size:15px;
+  }
+  ul.errs li:last-child{border-bottom:0}
+  .x{color:var(--oxblood); font-weight:700; font-family:var(--mono); line-height:1.6}
+
+  /* ---------- follow up ---------- */
+  .fu{display:flex; flex-direction:column; gap:0}
+  .fu-item{
+    display:grid; grid-template-columns:78px 1fr; gap:16px;
+    padding:16px 0; border-bottom:1px solid var(--rule-2);
+  }
+  .fu-item:last-child{border-bottom:0}
+  .when{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--brass); padding-top:3px;
+  }
+  .fu-what{font-size:15px}
+  .fu-what strong{display:block; margin-bottom:3px}
+  .fu-what span{color:var(--ink-2)}
+
+  /* ---------- sources ---------- */
+  .src{font-size:14px; color:var(--ink-2)}
+  .src li{margin-bottom:9px}
+  .src b{color:var(--ink); font-weight:650}
+
+  footer{
+    border-top:1px solid var(--rule); padding-top:22px; margin-top:8px;
+    font-size:13px; color:var(--ink-3);
+  }
+  @media (max-width:480px){
+    .fu-item{grid-template-columns:1fr; gap:4px}
+    .when{padding-top:0}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Protocolo Até a Posse · Manual da equipe</p>
+  <h1>Como apresentar os honorários</h1>
+  <p class="dek">A ordem exata da conversa, a mensagem pronta e o que responder em cada objeção. Feito para abrir no celular no meio do atendimento.</p>
+</header>
+
+<nav>
+  <div class="navrow">
+    <a href="#regra">A regra</a>
+    <a href="#tempos">Os 5 tempos</a>
+    <a href="#mensagem">Mensagem pronta</a>
+    <a href="#precos">Preços</a>
+    <a href="#silencio">Depois de mandar</a>
+    <a href="#objecoes">Objeções</a>
+    <a href="#erros">7 erros</a>
+    <a href="#followup">Follow-up</a>
+  </div>
+</nav>
+
+<section id="regra">
+  <h2>A regra que vale mais que todas as outras</h2>
+  <p class="sub">Se você lembrar de uma só coisa deste manual, lembre desta.</p>
+  <p class="lede">Nunca mande um preço sozinho. Sempre os três, sempre na mesma mensagem, sempre do mais caro para o mais barato — e sempre com uma recomendação sua no fim.</p>
+  <p>Preço sozinho o lead compara com o do concorrente, porque é a única coisa que ele tem para comparar. Três preços juntos ele compara entre si — e aí ele já não está decidindo <em>se</em> contrata, está decidindo <em>qual</em>. É uma conversa completamente diferente, com o mesmo número.</p>
+  <div class="call brass">
+    <span class="label">O dado</span>
+    <p>A Gong analisou mais de um milhão de conversas de venda: <strong>60% das objeções de preço não são falta de dinheiro — são valor mal construído antes do número.</strong> Se o lead achou caro, quase sempre o erro foi antes do preço, não no preço.</p>
+  </div>
+</section>
+
+<section id="tempos">
+  <h2>Os 5 tempos</h2>
+  <p class="sub">Esta ordem não é sugestão. Trocar a ordem desmonta a estrutura.</p>
+  <ol class="tempos">
+    <li>
+      <span class="num">01</span>
+      <div>
+        <span class="t-name">A conta, antes de qualquer preço</span>
+        <span class="t-body">Diga quanto custaria contratar fase por fase. <em>“Esse concurso tem seis fases. Uma de cada vez, seriam seis contratos de R$ 1.500 — R$ 9.000.”</em> E emende o custo que não é dinheiro: ele teria que decidir tudo de novo seis vezes, sempre logo depois de ser eliminado, que é o pior momento pra decidir.</span>
+      </div>
+    </li>
+    <li>
+      <span class="num">02</span>
+      <div>
+        <span class="t-name">Os três níveis, numa mensagem só</span>
+        <span class="t-body">Carreira, Blindado, Básico — nessa ordem. Para cada um: <strong>o que cobre → o valor → a parcela</strong>. Nunca mande a parcela sem o valor cheio: é o valor cheio que o lead compara com os R$ 9.000.</span>
+      </div>
+    </li>
+    <li>
+      <span class="num">03</span>
+      <div>
+        <span class="t-name">A economia, em reais</span>
+        <span class="t-body">No Blindado, diga o número: <em>“você economiza R$ 6.000”</em>. Nunca “você paga um terço”. Acima de cem reais, valor absoluto pesa mais que porcentagem — mesma economia, impacto diferente.</span>
+      </div>
+    </li>
+    <li>
+      <span class="num">04</span>
+      <div>
+        <span class="t-name">A recomendação, com o caso dele dentro</span>
+        <span class="t-body">Diga qual você indica e por quê, usando o número <em>dele</em>: a nota, a distância pro corte, a fase. Nunca “a maioria escolhe esse”. Recomendar não é empurrar — cardápio sem recomendação é o que faz o lead pedir pra pensar.</span>
+      </div>
+    </li>
+    <li>
+      <span class="num">05</span>
+      <div>
+        <span class="t-name">O incremento, e a pergunta de hoje</span>
+        <span class="t-body">É o fechamento mais forte que existe na nossa tabela: <em>“a fase sozinha é R$ 149 por mês; por mais R$ 149 por mês você leva as seis.”</em> Ele para de decidir sobre R$ 3.000 e passa a decidir sobre R$ 149. Termine com pergunta que só tem saída de hoje.</span>
+      </div>
+    </li>
+  </ol>
+  <div class="call pine" style="margin-top:20px">
+    <span class="label">O momento antes do preço</span>
+    <p>A última coisa antes de mandar os valores deve ser <strong>uma pergunta que faça ele dizer o tamanho do que está em jogo</strong> — “quanto é o salário do cargo?”, “há quanto tempo você estuda pra isso?”. Só mande o preço <strong>depois que ele responder</strong>. Cialdini chama isso de momento privilegiado: o preço cai numa cabeça que acabou de calcular sozinha o que perde.</p>
+  </div>
+</section>
+
+<section id="mensagem">
+  <h2>A mensagem pronta</h2>
+  <p class="sub">Escolha a faixa do concurso, copie e ajuste o final com o caso dele.</p>
+  <div class="switch" role="tablist" aria-label="Faixa do concurso">
+    <button role="tab" aria-selected="true" data-f="1">Faixa 1 · Policiais e militares</button>
+    <button role="tab" aria-selected="false" data-f="2">Faixa 2 · Tribunais</button>
+    <button role="tab" aria-selected="false" data-f="3">Faixa 3 · Jurídicas</button>
+  </div>
+  <div class="bubble-shell">
+    <div class="bubble" id="bubble"></div>
+    <div class="copybar">
+      <button class="copybtn" id="copy">Copiar mensagem</button>
+      <span class="copynote" id="copynote">Ajuste a última frase com a nota e a fase dele.</span>
+    </div>
+  </div>
+  <div class="call ox">
+    <span class="label">Atenção</span>
+    <p>Essa é a <strong>única</strong> mensagem longa que a gente manda. No resto da conversa vale a regra normal: no máximo dois balões, uma ideia em cada. Se você picar os três níveis em mensagens separadas, o lead responde ao primeiro que leu — que é o mais caro — e leva um susto.</p>
+  </div>
+</section>
+
+<section id="precos">
+  <h2>A tabela</h2>
+  <p class="sub">Os três níveis cobrem todas as instâncias, até STJ e STF. Sempre.</p>
+  <div class="switch" role="tablist" aria-label="Faixa de preço">
+    <button role="tab" aria-selected="true" data-p="1">Faixa 1</button>
+    <button role="tab" aria-selected="false" data-p="2">Faixa 2</button>
+    <button role="tab" aria-selected="false" data-p="3">Faixa 3</button>
+  </div>
+  <p class="sub" id="faixa-desc" style="margin-top:-8px"></p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Nível</th><th>Cobre</th><th class="num-cell">À vista no PIX</th></tr>
+      </thead>
+      <tbody id="ptable"></tbody>
+    </table>
+  </div>
+  <div class="call brass" style="margin-top:16px">
+    <span class="label">A âncora desta faixa</span>
+    <p id="anchor-note"></p>
+  </div>
+  <p style="font-size:14.5px;color:var(--ink-2)">Ajuste a conta ao número real de fases do concurso — nem todo certame tem seis. A regra é sempre <strong>nº de fases × valor do Básico</strong>.</p>
+</section>
+
+<section id="silencio">
+  <h2>Depois de mandar: não mande mais nada</h2>
+  <p class="sub">O erro mais comum e o mais fácil de corrigir.</p>
+  <p>A Gong mediu que os melhores vendedores <strong>ficam 2,1 segundos em silêncio depois de dizer o preço</strong>. Os medianos preenchem o silêncio na hora. No WhatsApp o equivalente é literal: mandou a proposta, <strong>não mande outro balão</strong>. Nem “ficou alguma dúvida?”, nem “o que achou?”, nem um áudio explicando de novo.</p>
+  <p>Mandar mensagem em seguida comunica insegurança no preço, e insegurança sua vira desconfiança dele. Deixe o número respirar. Ele vai responder.</p>
+  <div class="call ox">
+    <span class="label">Nunca pergunte</span>
+    <p><q>Isso resolveu sua dúvida?</q> — essa pergunta produz um “sim” falso e enterra a objeção real, que era a única coisa que você precisava descobrir. Se for perguntar alguma coisa, pergunte <strong>o que ainda pesa</strong>, não se está tudo bem.</p>
+  </div>
+</section>
+
+<section id="objecoes">
+  <h2>As seis objeções</h2>
+  <p class="sub">Duas tentativas por objeção. Na terceira, oferece a reunião com o Dr. Casil.</p>
+
+  <div class="obj">
+    <p class="said">Tá caro.</p>
+    <p class="do"><span class="tag">Não defenda o preço — mude a régua</span> Antes de responder, tire o peso da mesa: <q>Eu sei que num primeiro momento parece muito, e faz sentido você achar isso.</q> Aí a pergunta: <q>Quanto você deixaria de ganhar por mês ficando fora desse cargo? Agora multiplica por 24 meses, que é o tempo até um novo concurso.</q> Termine buscando concordância: <q>Concorda?</q></p>
+  </div>
+
+  <div class="obj">
+    <p class="said">Vou pensar.</p>
+    <p class="do"><span class="tag">Isso quase nunca é tempo — é uma dúvida que ele não disse</span> Não brigue e não pressione. Descubra: <q>Claro, faz todo sentido. Só me diz uma coisa pra eu te ajudar a pensar: o que ainda te deixa em dúvida — o valor, a forma de pagar, ou a estratégia do caso?</q> Descoberta a dúvida real, trate <em>ela</em> e volte a fechar hoje.</p>
+  </div>
+
+  <div class="obj">
+    <p class="said">Não tenho esse valor agora.</p>
+    <p class="do"><span class="tag">Desça de produto, nunca de preço</span> Na ordem: 12× no cartão → entrada menor com o saldo parcelado ou dois cartões → e só então o nível de baixo. <q>O Blindado eu não consigo mexer. Mas tem o Básico, que resolve essa fase aqui com a mesma cobertura de instâncias, por R$ 1.500. A diferença é que ele cobre só esta fase, e não as seis. Isso resolve pra você?</q></p>
+  </div>
+
+  <div class="obj">
+    <p class="said">Me dá um desconto.</p>
+    <p class="do"><span class="tag">Devolva a pergunta</span> Você não baixa preço. Mas também não diz “não” seco — pergunte: <q>O que você quer que eu tire?</q> Isso devolve o problema pra ele de um jeito colaborativo, e a resposta natural leva ao nível de baixo. Se ele insistir: condição diferente quem trata é o Dr. Casil, e você oferece a reunião.</p>
+  </div>
+
+  <div class="obj">
+    <p class="said">Vi advogado mais barato.</p>
+    <p class="do"><span class="tag">Nunca fale mal do concorrente</span> <q>No mercado sempre vai ter alguém cobrando menos.</q> Aí mude a pergunta: ele quer alguém aprendendo no caso dele, ou uma banca que faz isso há 12 anos e conhece os erros daquela banca específica? E diga o que costuma faltar no barato: <strong>o relatório técnico</strong>, que é o que anula a questão. Sem essa base, o barato sai caríssimo — porque o que se perde é a vaga.</p>
+  </div>
+
+  <div class="obj">
+    <p class="said">Preciso falar com minha esposa.</p>
+    <p class="do"><span class="tag">Ótimo sinal — nunca contorne</span> Quem consulta o cônjuge está decidindo de verdade. Proponha a reunião com os dois juntos, com hora marcada, hoje ou amanhã.</p>
+  </div>
+</section>
+
+<section id="erros">
+  <h2>Os sete erros que matam a venda</h2>
+  <p class="sub">Cada um destes já custou lead nosso este ano.</p>
+  <ul class="errs">
+    <li><span class="x">✕</span><div>Mandar <strong>um preço sozinho</strong>, sem os outros dois.</div></li>
+    <li><span class="x">✕</span><div>Começar pelo <strong>mais barato</strong>. Destrói a comparação inteira.</div></li>
+    <li><span class="x">✕</span><div>Picar os três níveis em <strong>mensagens separadas</strong>.</div></li>
+    <li><span class="x">✕</span><div>Mandar <strong>a parcela sem o valor cheio</strong>. A âncora não conecta com valor mensal.</div></li>
+    <li><span class="x">✕</span><div><strong>Baixar o preço.</strong> Quem descobre que o preço é negociável para de comprar e passa a esperar o próximo desconto.</div></li>
+    <li><span class="x">✕</span><div>Apresentar os três e perguntar <strong>“qual você prefere?”</strong> sem recomendar nenhum.</div></li>
+    <li><span class="x">✕</span><div>Terminar com <strong>“qualquer coisa estou à disposição”</strong>. Você acabou de dar ao lead a saída que ele não tinha pedido.</div></li>
+  </ul>
+  <div class="call pine" style="margin-top:18px">
+    <span class="label">Sobre o preço à vista</span>
+    <p>À vista no PIX <strong>é mais barato de verdade</strong>, porque não entra a taxa da maquininha. Diga isso como fato — <q>à vista sai por tanto porque não tem a taxa do cartão</q> — e <strong>nunca como favor</strong>. “Consegui um desconto especial pra você” é a frase que faz o lead concluir que o preço era inventado.</p>
+  </div>
+</section>
+
+<section id="followup">
+  <h2>O follow-up</h2>
+  <p class="sub">80% das vendas precisam de cinco ou mais toques. Quase metade dos vendedores para no primeiro.</p>
+  <p>A regra: <strong>todo toque leva informação nova.</strong> “Tudo bem? Espero que esteja bem” não é follow-up — é um lembrete de que você quer o dinheiro dele.</p>
+  <div class="fu">
+    <div class="fu-item">
+      <span class="when">Mesmo dia</span>
+      <div class="fu-what"><strong>Prova, não cobrança</strong><span>Não repita o preço. Mande o print de uma liminar do mesmo concurso ou da mesma banca. Sem texto de venda junto.</span></div>
+    </div>
+    <div class="fu-item">
+      <span class="when">Dia seguinte</span>
+      <div class="fu-what"><strong>A pergunta que descobre a objeção</strong><span>“Só pra eu te ajudar direito: o que travou foi o valor, a forma de pagar, ou você quer entender melhor a estratégia?”</span></div>
+    </div>
+    <div class="fu-item">
+      <span class="when">Dia 3 ou 4</span>
+      <div class="fu-what"><strong>O prazo real</strong><span>Os 120 dias do mandado de segurança, e quantos já correram no caso dele. Número concreto, nunca urgência inventada.</span></div>
+    </div>
+    <div class="fu-item">
+      <span class="when">Dia 7</span>
+      <div class="fu-what"><strong>Muda o ângulo</strong><span>Áudio, não texto. Ou a oferta de reunião com o Dr. Casil, com hora marcada. Nossos casos fechados têm em média sete áudios; os perdidos, menos de um.</span></div>
+    </div>
+    <div class="fu-item">
+      <span class="when">Dia 14</span>
+      <div class="fu-what"><strong>A saída honesta</strong><span>“Me diz só uma coisa: você quer que eu continue acompanhando o seu caso, ou prefere que eu encerre por aqui?” Essa é a mensagem com a maior taxa de resposta de todas — inclusive de gente que some há duas semanas.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="fontes">
+  <h2>Por que funciona</h2>
+  <p class="sub">Isto não é opinião. As sete fontes por trás de cada regra deste manual.</p>
+  <ul class="src">
+    <li><b>Gong Labs</b> — análise de mais de 1 milhão de conversas: 60% das objeções de preço são valor mal construído; os melhores pausam 2,1s depois do preço; “isso resolveu sua dúvida?” produz sim falso.</li>
+    <li><b>Robert Cialdini, <i>Pre-Suasion</i></b> — o momento privilegiado: o que você faz nos segundos <i>antes</i> da oferta define como ela é recebida.</li>
+    <li><b>Chris Voss, <i>Never Split the Difference</i></b> — auditoria de acusação (nomeie a objeção antes dele), rotulagem e perguntas calibradas: “o que você quer que eu tire?”.</li>
+    <li><b>Dixon &amp; McKenna, <i>The JOLT Effect</i></b> — 40% a 60% dos negócios se perdem para a indecisão, não para o concorrente. A saída é recomendar, não apresentar cardápio.</li>
+    <li><b>Prelec &amp; Loewenstein</b> — a dor de pagar: o cérebro processa o pagamento como desconforto real, e o parcelamento empurra essa dor para o futuro. Por isso o valor cheio primeiro (âncora) e a parcela logo em seguida (alívio).</li>
+    <li><b>Thaler &amp; Sunstein, <i>Nudge</i></b> — “se você é vendedor, você é um arquiteto de escolha”. A ordem e a recomendação não são manipulação: são parte do trabalho.</li>
+    <li><b>Pesquisa de cadência de follow-up</b> — 80% das vendas exigem cinco ou mais toques; cada toque tem que trazer algo novo, nunca “só passando pra saber”.</li>
+  </ul>
+</section>
+
+<footer>
+  Silva Pinto Sociedade Individual de Advocacia · Uso interno · Protocolo Até a Posse
+</footer>
+
+</div>
+
+<script>
+const FAIXAS = {
+  1: {nome:"Policiais e militares", ex:"PMERJ, CBMERJ, PMMG, PMDF, PP/RJ, PCMG, PCSC, GCM, SEAP, IASES",
+      basico:"1.500", basicoP:"149", blindado:"3.000", blindadoP:"298",
+      carreira:"5.000", carreiraP:"497", ancora:"9.000", economia:"6.000", inc:"149", incC:"199"},
+  2: {nome:"Tribunais e administrativas", ex:"TJRJ, ALERJ, CNU, demais tribunais",
+      basico:"2.500", basicoP:"249", blindado:"5.000", blindadoP:"497",
+      carreira:"8.500", carreiraP:"845", ancora:"15.000", economia:"10.000", inc:"249", incC:"348"},
+  3: {nome:"Carreiras jurídicas", ex:"juiz, promotor, defensor, procurador, delegado",
+      basico:"3.500", basicoP:"349", blindado:"7.000", blindadoP:"695",
+      carreira:"11.500", carreiraP:"1.142", ancora:"21.000", economia:"14.000", inc:"349", incC:"447"}
+};
+
+function msg(f){
+  const d = FAIXAS[f];
+  return "Esse concurso tem seis fases: objetiva, discursiva, TAF, exame de saúde, psicológico e investigação social. "
+   + "Contratando uma de cada vez, seriam seis contratos de R$ " + d.basico + " — R$ " + d.ancora + " —, "
+   + "e você decidindo tudo de novo seis vezes, sempre logo depois de ser eliminado, que é o pior momento pra decidir.\n\n"
+   + "O CARREIRA cobre este concurso inteiro e também outro concurso da mesma carreira, se sair edital em até 12 meses, incluindo eliminação no curso de formação "
+   + "e ação por preterição na nomeação. O Dr. Casil acompanha pessoalmente e a ação sai em 24 horas. "
+   + "R$ " + d.carreira + " à vista no PIX, ou 12x de R$ " + d.carreiraP + ".\n\n"
+   + "O BLINDADO cobre as seis fases deste concurso, em todas as instâncias, até STJ e STF. "
+   + "R$ " + d.blindado + " à vista no PIX, ou 12x de R$ " + d.blindadoP + ". "
+   + "Você economiza R$ " + d.economia + " em relação a contratar fase por fase.\n\n"
+   + "O BÁSICO é essa fase aqui, sozinha, também em todas as instâncias. "
+   + "R$ " + d.basico + " à vista, ou 12x de R$ " + d.basicoP + ".\n\n"
+   + "Eu recomendo o Blindado, e repara por quê: a fase sozinha é R$ " + d.basicoP + " por mês. "
+   + "Por mais R$ " + d.inc + " por mês, você leva as seis. "
+   + "[AQUI: a nota dele e a fase — ex.: “Você está a 3 pontos do corte na objetiva, resolvida essa fase você entra bem colocado”] "
+   + "Posso te mandar o contrato pra assinar ainda hoje?";
+}
+
+function renderBubble(f){
+  document.getElementById('bubble').textContent = msg(f);
+}
+function renderTable(f){
+  const d = FAIXAS[f];
+  document.getElementById('faixa-desc').textContent = d.nome + " — " + d.ex;
+  document.getElementById('ptable').innerHTML =
+    '<tr class="row-target"><td>Blindado <span class="star">★</span></td><td>Todas as fases deste concurso</td>'
+    + '<td class="num-cell">R$ ' + d.blindado + '<span class="parc">12× R$ ' + d.blindadoP + '</span></td></tr>'
+    + '<tr><td>Carreira</td><td>Este concurso e outro da mesma carreira (edital em até 12 meses), curso de formação e preterição</td>'
+    + '<td class="num-cell">R$ ' + d.carreira + '<span class="parc">12× R$ ' + d.carreiraP + '</span></td></tr>'
+    + '<tr><td>Básico</td><td>Uma fase deste concurso</td>'
+    + '<td class="num-cell">R$ ' + d.basico + '<span class="parc">12× R$ ' + d.basicoP + '</span></td></tr>';
+  document.getElementById('anchor-note').innerHTML =
+    'Seis fases × R$ ' + d.basico + ' = <strong>R$ ' + d.ancora + '</strong>. É esse o número que você diz antes de qualquer preço. '
+    + 'E o Blindado economiza <strong>R$ ' + d.economia + '</strong> — diga em reais, nunca em porcentagem.';
+}
+
+function bind(attr, fn){
+  document.querySelectorAll('[data-' + attr + ']').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('[data-' + attr + ']').forEach(o => o.setAttribute('aria-selected','false'));
+      b.setAttribute('aria-selected','true');
+      fn(b.dataset[attr]);
+    });
+  });
+}
+bind('f', renderBubble);
+bind('p', renderTable);
+renderBubble(1);
+renderTable(1);
+
+document.getElementById('copy').addEventListener('click', () => {
+  const sel = document.querySelector('[data-f][aria-selected="true"]').dataset.f;
+  const note = document.getElementById('copynote');
+  navigator.clipboard.writeText(msg(sel)).then(
+    () => { note.textContent = 'Copiado. Agora ajuste a parte entre colchetes.'; },
+    () => { note.textContent = 'Não consegui copiar — selecione o texto acima à mão.'; }
+  );
+});
+</script>
