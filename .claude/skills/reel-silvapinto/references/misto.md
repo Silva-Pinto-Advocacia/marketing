@@ -33,6 +33,17 @@ chamada, batida nos carimbos, voz a −14 LUFS.
 Legenda: 1 a 3 palavras, cada uma aparecendo quando é dita, na altura do peito (1160 px) e, na tela dividida,
 dentro do cartão (1590 px). Logo horizontal do escritório no alto, centralizado.
 
+## Gravação em pé ou deitada (29/10/2026)
+
+O Casil: "os dois estilos como opções, ambas adaptadas à gravação em pé, ou deitada, a depender de como eu enviar".
+A composição lê o tamanho dos quadros (`fonte` no `cenas.json`) e enquadra as duas, sem recortar antes:
+
+- **deitada (1920x1080)**: na tela cheia, um recorte em pé que segue o rosto; no cartão, um recorte largo;
+- **em pé (1080x1920, celular ou HeyGen)**: a tela cheia é o quadro inteiro; no cartão, o rosto fica a 30% da
+  altura e, como ele sai grande, a legenda desce para baixo do queixo (até 1800 px).
+
+O vídeo final é sempre em pé (Reels e Stories). Para o YouTube, o formato é outro (`youtube.md`).
+
 ## Nada sobre o rosto (regra fixa)
 
 O Casil, sobre o reel de teste: "não termos o texto tampando meu rosto no começo do vídeo" (a etiqueta
@@ -78,7 +89,8 @@ aparece pequeno no canto enquanto a imagem está na tela). Pexels e Pixabay recu
 720p esticado para a tela inteira fica macio; o `preparar.py` aplica um pouco de nitidez. Para a tela cheia, o
 ideal é vídeo em pé ou 4K (pedir ao Redes quando houver gravação própria).
 
-Já testados no reel de teste (Mixkit; `x`/`x9` em `examples/misto_vsl/broll.json`):
+O catálogo usado pelo botão do Redes está em `scripts/misto/catalogo.json` (16 temas, com o recorte de cada clipe).
+Os primeiros, testados no reel de teste (Mixkit):
 
 | tema | id | serve para |
 |---|---|---|
@@ -90,6 +102,14 @@ Já testados no reel de teste (Mixkit; `x`/`x9` em `examples/misto_vsl/broll.jso
 | corrida / atletismo | 32813 | TAF |
 | médico com paciente | 6562 | exame de saúde, inaptidão médica |
 | juiz e martelo | 47687 | decisão, "o Judiciário só anula o ilegal" |
+| luzes de viatura | 49328 | Polícia Militar, Civil, PRF |
+| bombeiro com mangueira | 32361 | Corpo de Bombeiros |
+| pilha de livros | 50733 | estudo, legislação |
+| ampulheta e relógio | 28892 | prazo, recurso com data |
+| papelada | 45923 | processo, recurso administrativo |
+| martelo e livro do juiz | 46820 | tribunal, julgamento |
+| mãos no notebook | 4907 | inscrição, resultado no site |
+| estudante na biblioteca | 4531 | candidata, preparação |
 
 Por carreira (termos para buscar; conferir licença e rosto antes de usar):
 
@@ -102,6 +122,15 @@ Por carreira (termos para buscar; conferir licença e rosto antes de usar):
 | Saúde / exames | — | consultório, exame médico, laudo |
 | Psicotécnico | — | teste em papel, entrevista, relógio |
 | Heteroidentificação | — | comissão em mesa, documento (sem rostos) |
+
+## Do roteiro às cenas (o botão do Redes)
+
+Quem não escreve HTML à mão (o motor do Redes) passa um roteiro em JSON a `misto.montar_do_roteiro(pj, roteiro,
+t_chamada, semente, brasao)`: `etiqueta`, `titulo_fim` e `trechos` com `t0` (segundos da fala cortada), `tipo`,
+`tema` (do `scripts/misto/catalogo.json`) e um `bloco` (`frase`, `numero`, `lista`, `barras`, `carimbo`, `brasao`,
+`antes_depois`; textos crus, escapados na montagem). `broll_do_catalogo` baixa os clipes dos temas usados. Se a
+conferência acusar colisão, `ajustes_por_colisao` diz o que mudar (o trecho vira tela dividida; se já era, perde o
+bloco; a etiqueta sai) e monta-se de novo.
 
 ## Comandos
 
