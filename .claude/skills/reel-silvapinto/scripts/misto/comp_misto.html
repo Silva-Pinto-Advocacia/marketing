@@ -88,20 +88,24 @@ const pad=(n,k)=>String(n).padStart(k,'0');
 function icon(h){return h.replace(/\{ic:([a-z-]+)\}/g,(m,n)=>`<span class="ic">${ICONS[n]||''}</span>`)}
 function face(t){const i=clamp(Math.round(t*FPS),0,R.cx.length-1);return [R.cx[i],R.cy[i]]}
 function quadro(t){return `fr/f${pad(clamp(Math.round(t*FPS)+1,1,S.nFrames),5)}.jpg`}
-function posCartao(img,t){ // recorte ~1106x1080 centrado no rosto, na altura do cartão (984)
-  const [cx]=face(t), s=984/1080, vis=1008/s, x0=clamp(cx-vis/2,0,1920-vis);
-  img.style.width='1920px'; img.style.transform=`scale(${s}) translate(${-x0}px,0)`; }
+// A gravação pode vir deitada (1920x1080) ou em pé (1080x1920): S.fonte traz o tamanho dos quadros.
+const fonte=()=>[(S.fonte&&S.fonte.w)||1920,(S.fonte&&S.fonte.h)||1080];
+function posCartao(img,t){ // o cartão (1008x984) recorta a gravação em volta do rosto
+  const [cx,cy]=face(t), [SW,SH]=fonte(), s=Math.max(1008/SW,984/SH), vw=1008/s, vh=984/s;
+  const x0=clamp(cx-vw/2,0,SW-vw), y0=clamp(cy-vh*0.30,0,SH-vh);
+  img._map={s,x0,y0};
+  img.style.width=SW+'px'; img.style.transform=`scale(${s}) translate(${-x0}px,${-y0}px)`; }
 // rosto: retângulo do alto do cabelo ao fim da barba a partir do centro e da largura do quadrado do Haar
 // (medido no reel de teste de 29/10/2026: cabelo a 0,43 largura acima do centro, barba a 0,71 abaixo; com folga)
 function caixaRosto(t){const i=clamp(Math.round(t*FPS),0,R.cx.length-1),cx=R.cx[i],cy=R.cy[i],fw=(R.fw&&R.fw[i])||290;
   return {x0:cx-0.5*fw,x1:cx+0.5*fw,y0:cy-0.55*fw,y1:cy+0.78*fw}}
 // topo (px na tela): com a etiqueta da abertura, ele desce na tela até o alto da cabeça ficar abaixo de `topo`;
 // a faixa que sobra em cima é o fundo do escritório, com uma transição suave para o vídeo.
-function posCheio(img,t,z=1,topo=0){ const [cx,cy]=face(t), s=(1920/1080)*z, vis=1080/s, x0=clamp(cx-vis/2,0,1920-vis);
-  let y0=clamp(cy-(1920/s)*0.30,0,1080-1920/s);
+function posCheio(img,t,z=1,topo=0){ const [cx,cy]=face(t), [SW,SH]=fonte(), s=Math.max(1080/SW,1920/SH)*z, vis=1080/s, x0=clamp(cx-vis/2,0,SW-vis);
+  let y0=clamp(cy-(1920/s)*0.30,0,SH-1920/s);
   if(topo){const b=caixaRosto(t); y0=Math.min(y0,b.y0-topo/s); y0=Math.max(y0,-topo/s)}
   img._map={s,x0,y0};
-  img.style.width='1920px'; img.style.transform=`scale(${s}) translate(${-x0}px,${-y0}px)`;
+  img.style.width=SW+'px'; img.style.transform=`scale(${s}) translate(${-x0}px,${-y0}px)`;
   if(y0<0){const a=(-y0*s)/1920*100; img.parentNode.style.webkitMaskImage=img.parentNode.style.maskImage=`linear-gradient(180deg,transparent ${a}%,#000 ${a+7}%)`}
   else img.parentNode.style.webkitMaskImage=img.parentNode.style.maskImage='none'; }
 function animar(root,t){
@@ -129,7 +133,10 @@ function legenda(t,sc){
   if(sc.layout==='cta'||sc.layout==='fim'){cap.innerHTML='';return}
   const g=S.caps.find(c=>t>=c.t0&&t<c.t1);
   if(!g){cap.innerHTML='';return}
-  const rr=rostoNaTela(t,sc); cap.style.top=Math.max(sc.layout==='split'?1590:1160,rr&&sc.layout==='full'?Math.round(rr.y1+40):0)+'px';
+  // a legenda fica abaixo do queixo: na tela cheia desce o quanto precisar; no cartão, até 1800 (a gravação em pé
+  // deixa o rosto grande no cartão)
+  const rr=rostoNaTela(t,sc), base=sc.layout==='split'?1590:1160, teto=sc.layout==='split'?1800:1700;
+  cap.style.top=Math.min(teto,Math.max(base,rr?Math.round(rr.y1+30):0))+'px';
   cap.innerHTML=g.words.filter(w=>t>=w.s-0.02).map(w=>`<span>${w.w}</span>`).join('');
 }
 window.render=async function(t){
@@ -176,11 +183,11 @@ window.render=async function(t){
   return i;
 };
 function rostoNaTela(t,sc){ // o retângulo do rosto na tela, quando ele aparece (tela cheia ou cartão)
-  const box=caixaRosto(t), [cx]=face(t);
+  const box=caixaRosto(t);
   if(sc.layout==='full'){const m=document.getElementById('presC')._map; if(!m) return null;
     return {x0:(box.x0-m.x0)*m.s,x1:(box.x1-m.x0)*m.s,y0:(box.y0-m.y0)*m.s,y1:(box.y1-m.y0)*m.s}}
-  if(sc.layout==='split'){const s=984/1080, vis=1008/s, x0=clamp(cx-vis/2,0,1920-vis);
-    return {x0:36+(box.x0-x0)*s,x1:36+(box.x1-x0)*s,y0:900+box.y0*s,y1:900+box.y1*s}}
+  if(sc.layout==='split'){const m=document.getElementById('pres')._map; if(!m) return null;
+    return {x0:36+(box.x0-m.x0)*m.s,x1:36+(box.x1-m.x0)*m.s,y0:900+(box.y0-m.y0)*m.s,y1:900+(box.y1-m.y0)*m.s}}
   return null;
 }
 window.__colisoes=[];

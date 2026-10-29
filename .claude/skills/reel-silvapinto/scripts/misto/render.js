@@ -11,7 +11,7 @@ const SK=path.resolve(__dirname,'../..'), ICD=SK+'/assets/icons';
   const S=JSON.parse(fs.readFileSync(P+'/cenas.json')), RO=JSON.parse(fs.readFileSync(P+'/rosto.json'));
   const icons={}; for(const f of fs.readdirSync(ICD)) icons[f.replace('.svg','')]=fs.readFileSync(ICD+'/'+f,'utf8').replace(/\s(width|height)="24"/g,'');
   fs.writeFileSync(P+'/comp.built.html',fs.readFileSync(__dirname+'/comp_misto.html','utf8').split('__ASSETS__').join('file://'+SK+'/assets'));
-  const b=await chromium.launch({args:['--allow-file-access-from-files']});
+  const b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,args:['--allow-file-access-from-files']});  // CHROMIUM_PATH: o Chrome do runner do GitHub
   async function pagina(){const p=await b.newPage({viewport:{width:1080,height:1920}});await p.goto('file://'+P+'/comp.built.html');
     await p.evaluate(([s,r,i])=>init(s,r,i),[S,RO,icons]);await p.evaluate(()=>document.fonts.ready);return p}
   const relatar=(cols)=>{ if(!cols.length){fs.rmSync(P+'/colisoes.json',{force:true});console.log('rosto livre: nenhum texto sobre o rosto nem legenda sobre outro texto');return 0}

@@ -4,7 +4,7 @@
     python3 preparar.py <projeto> broll      # só refaz os recortes de b-roll (depois de mudar broll.json)
     python3 preparar.py <projeto> rosto      # só refaz o rosto.json
 
-Lê <projeto>/fala.mov (a fala já cortada, 1920x1080, 30 fps) e <projeto>/broll.json:
+Lê <projeto>/fala.mov (a fala já cortada, deitada ou em pé) e <projeto>/broll.json:
     {"gabarito": {"arquivo": "clips/20468.mp4", "ini": 8, "dur": 5, "x": 200, "x9": 480}, ...}
 `x` é o deslocamento do recorte do painel (1080x880) e `x9` o do recorte em pé (1080x1920), em pixels do
 arquivo original; sem eles, o recorte fica no centro. `dur` deve cobrir a cena mais longa que usa o clipe.
@@ -28,7 +28,9 @@ def tamanho(arq):
 
 def quadros():
     shutil.rmtree(f'{P}/fr', ignore_errors=True); os.makedirs(f'{P}/fr')
-    ff('-i', f'{P}/fala.mov', '-vf', 'fps=30,scale=in_color_matrix=bt709:in_range=tv:out_color_matrix=bt470bg:out_range=pc',
+    # deitada até 1920x1080, em pé até 1080x1920 (a composição lê o tamanho do primeiro quadro)
+    w, h = tamanho(f'{P}/fala.mov'); lado = 'min(iw\\,1920):-2' if w >= h else 'min(iw\\,1080):-2'
+    ff('-i', f'{P}/fala.mov', '-vf', f'fps=30,scale={lado}:in_color_matrix=bt709:in_range=tv:out_color_matrix=bt470bg:out_range=pc',
        '-q:v', '2', f'{P}/fr/f%05d.jpg')
 
 

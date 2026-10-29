@@ -1,0 +1,146 @@
+{
+ "gabarito": {
+  "id": 20468,
+  "url": "https://assets.mixkit.co/videos/20468/20468-720.mp4",
+  "ini": 8,
+  "dur": 10,
+  "x": 241,
+  "x9": 480,
+  "serve": "folha de respostas sendo marcada: resultado, nota, prova objetiva, gabarito"
+ },
+ "estudante": {
+  "id": 8810,
+  "url": "https://assets.mixkit.co/videos/8810/8810-720.mp4",
+  "ini": 3,
+  "dur": 10,
+  "x": 201,
+  "x9": 440,
+  "serve": "pessoa estudando: o candidato, a preparação, os sonhos, anos de estudo"
+ },
+ "justica": {
+  "id": 12315,
+  "url": "https://assets.mixkit.co/videos/12315/12315-720.mp4",
+  "ini": 4,
+  "dur": 7.0,
+  "x": 0,
+  "x9": 230,
+  "serve": "estátua da justiça com a balança: Judiciário, direito, legalidade"
+ },
+ "prova": {
+  "id": 20235,
+  "url": "https://assets.mixkit.co/videos/20235/20235-720.mp4",
+  "ini": 10,
+  "dur": 10,
+  "x": 281,
+  "x9": 520,
+  "serve": "prova sendo feita: questão, banca, prova discursiva"
+ },
+ "lupa": {
+  "id": 46977,
+  "url": "https://assets.mixkit.co/videos/46977/46977-720.mp4",
+  "ini": 6,
+  "dur": 10,
+  "x": 181,
+  "x9": 420,
+  "serve": "lupa sobre documentos: conferir a nota, o edital, o recurso, revisão"
+ },
+ "taf": {
+  "id": 32813,
+  "url": "https://assets.mixkit.co/videos/32813/32813-720.mp4",
+  "ini": 2,
+  "dur": 10,
+  "x": 231,
+  "x9": 470,
+  "serve": "corrida de atletismo: TAF, teste físico, barra, corrida"
+ },
+ "medico": {
+  "id": 6562,
+  "url": "https://assets.mixkit.co/videos/6562/6562-720.mp4",
+  "ini": 4,
+  "dur": 10,
+  "x": 397,
+  "x9": 640,
+  "serve": "médico examinando paciente: exame de saúde, inaptidão médica, laudo"
+ },
+ "juiz": {
+  "id": 47687,
+  "url": "https://assets.mixkit.co/videos/47687/47687-720.mp4",
+  "ini": 2,
+  "dur": 10,
+  "x": 397,
+  "x9": 700,
+  "serve": "juiz escrevendo a sentença com o martelo: decisão judicial, sentença, liminar"
+ },
+ "viatura": {
+  "id": 49328,
+  "url": "https://assets.mixkit.co/videos/49328/49328-720.mp4",
+  "ini": 2,
+  "dur": 10,
+  "x": 0,
+  "x9": 198,
+  "serve": "luzes azuis de viatura: Polícia Militar, Polícia Civil, PRF, carreira policial"
+ },
+ "bombeiros": {
+  "id": 32361,
+  "url": "https://assets.mixkit.co/videos/32361/32361-720.mp4",
+  "ini": 2,
+  "dur": 10,
+  "x": 369,
+  "x9": 608,
+  "serve": "bombeiro com mangueira: Corpo de Bombeiros, carreira de bombeiro"
+ },
+ "livros": {
+  "id": 50733,
+  "url": "https://assets.mixkit.co/videos/50733/50733-720.mp4",
+  "ini": 1,
+  "dur": 7.9,
+  "x": 259,
+  "x9": 498,
+  "serve": "pilha de livros na estante: estudo, concurso, conteúdo, legislação"
+ },
+ "relogio": {
+  "id": 28892,
+  "url": "https://assets.mixkit.co/videos/28892/28892-720.mp4",
+  "ini": 1,
+  "dur": 9.3,
+  "x": 0,
+  "x9": 58,
+  "serve": "ampulheta e relógio: prazo, tempo, recurso com data, validade do concurso"
+ },
+ "papelada": {
+  "id": 45923,
+  "url": "https://assets.mixkit.co/videos/45923/45923-720.mp4",
+  "ini": 1,
+  "dur": 8.5,
+  "x": 239,
+  "x9": 478,
+  "serve": "pessoa de terno com pilha de papéis: processo, recurso administrativo, documentos"
+ },
+ "tribunal": {
+  "id": 46820,
+  "url": "https://assets.mixkit.co/videos/46820/46820-720.mp4",
+  "ini": 3,
+  "dur": 10,
+  "x": 397,
+  "x9": 875,
+  "serve": "martelo e livro do juiz: tribunal, julgamento, decisão"
+ },
+ "digitando": {
+  "id": 4907,
+  "url": "https://assets.mixkit.co/videos/4907/4907-720.mp4",
+  "ini": 2,
+  "dur": 10,
+  "x": 259,
+  "x9": 498,
+  "serve": "mãos digitando no notebook: inscrição, resultado no site, convocação online"
+ },
+ "biblioteca": {
+  "id": 4531,
+  "url": "https://assets.mixkit.co/videos/4531/4531-720.mp4",
+  "ini": 3,
+  "dur": 10,
+  "x": 397,
+  "x9": 798,
+  "serve": "estudante com notebook na biblioteca: candidata, preparação, aprovação"
+ }
+}
