@@ -23,6 +23,12 @@ Leia antes de começar:
   apresentador com o fundo original em faixa ou close, alternando em cortes com imagens do assunto (licença livre,
   com crédito), documentos e infográficos. Código em `scripts/youtube/`, exemplo completo em
   `examples/youtube_pmerj2014/`. Use sempre que o pedido for vídeo para o YouTube.
+- `references/misto.md`: **o estilo misto** (aprovado em 29/10/2026): ele em tela cheia, b-roll em tela cheia e,
+  de vez em quando, a tela dividida, sorteados por trecho com regras (rosto em 55% do vídeo, no máximo 6 s
+  sem ele). Código em `scripts/misto/`, exemplo em `examples/misto_vsl/`. Use quando ele pedir "o estilo
+  misto", "com b-roll", "alternando" ou "igual ao reel de teste". Traz a conferência automática "nada
+  sobre o rosto" e a regra do concurso específico (brasão grande na primeira menção e no canto,
+  infográficos com os dados, imagens da instituição e da carreira).
 - `references/atencao.md`: **o guia de pauta, gancho, título, capa, ponte judicial e chamada** (texto do
   Casil, aprovado em 05/10/2026). Vale sobre `roteiro.md` onde os dois divergirem. Ler antes de qualquer
   pauta, roteiro, gancho, título ou capa. Exemplo aplicado: `examples/guia_atencao/`.
@@ -132,10 +138,14 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   ou quando o Redes mandar; rodar o `recortar.py` antes do build.
 - **Nada sobre o rosto.** O build acha o rosto e tira o título de cima da cabeça e a legenda de cima do
   queixo (imprime o que mudou). Conferir na prévia: a etiqueta "Explico na legenda" na testa foi
-  reclamação do Casil (02/10/2026). Selfie de perto (queixo abaixo de 1140 px): o zoom parte do queixo e o
+  reclamação do Casil (02/10/2026), e a etiqueta "ELIMINADO NO CONCURSO?" na cabeça dele, de novo, no
+  reel de teste de 29/10/2026. No estilo misto, `render.js conferir` acusa isso sozinho. Selfie de perto (queixo abaixo de 1140 px): o zoom parte do queixo e o
   vídeo sobe até o rosto terminar em 1140 px, com a cabeça abaixo de 120 px; legenda, textos grandes e
   cenas ficam embaixo dele ("os elementos estão sempre sobrepondo meu rosto", 13/10/2026). `"subir"` no
   config.json fixa quantos px.
+- **Concurso específico = brasão + dados + imagens da instituição** (29/10/2026: "quando falarmos de um
+  concurso específico, termos infográficos, brasão da instituição, e b-rolls relacionados com aquela
+  instituição e a carreira"). Vale para qualquer estilo; no misto, ver `misto.md`.
 - **Logo grande no primeiro segundo** quando a abertura é com brasão: ele entra grande no centro da
   metade inferior e só depois voa para o canto.
 - **A metade inferior sempre ocupada.** Os infográficos sincronizados com a fala são o diferencial do

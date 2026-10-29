@@ -1,0 +1,921 @@
+{
+ "trechos": [
+  {
+   "nome": "gancho",
+   "a": 4.0,
+   "b": 11.65,
+   "e0": 0.0,
+   "t0": 0.0,
+   "dur": 6.666666666666667
+  },
+  {
+   "nome": "tese",
+   "a": 21.55,
+   "b": 28.48,
+   "e0": 13.433333,
+   "t0": 6.666666666666667,
+   "dur": 6.033333333333333
+  },
+  {
+   "nome": "judiciario",
+   "a": 45.35,
+   "b": 55.45,
+   "e0": 20.118840913043478,
+   "t0": 12.7,
+   "dur": 8.766666666666667
+  },
+  {
+   "nome": "situacoes",
+   "a": 63.9,
+   "b": 81.62,
+   "e0": 29.33478260869565,
+   "t0": 21.46666666666667,
+   "dur": 15.4
+  },
+  {
+   "nome": "honestidade",
+   "a": 248.3,
+   "b": 254.44,
+   "e0": 136.1,
+   "t0": 36.86666666666667,
+   "dur": 5.333333333333333
+  },
+  {
+   "nome": "ilegal",
+   "a": 314.27,
+   "b": 317.62,
+   "e0": 158.4724634347826,
+   "t0": 42.2,
+   "dur": 2.9
+  },
+  {
+   "nome": "chamada",
+   "a": 437.95,
+   "b": 440.95,
+   "e0": 227.86521739130433,
+   "t0": 45.1,
+   "dur": 2.6
+  }
+ ],
+ "total": 47.7,
+ "palavras": [
+  {
+   "w": "Se",
+   "s": 0.113,
+   "e": 0.53,
+   "trecho": "gancho"
+  },
+  {
+   "w": "você",
+   "s": 0.53,
+   "e": 0.809,
+   "trecho": "gancho"
+  },
+  {
+   "w": "chegou",
+   "s": 0.809,
+   "e": 0.93,
+   "trecho": "gancho"
+  },
+  {
+   "w": "aqui",
+   "s": 0.93,
+   "e": 1.122,
+   "trecho": "gancho"
+  },
+  {
+   "w": "porque",
+   "s": 1.122,
+   "e": 1.261,
+   "trecho": "gancho"
+  },
+  {
+   "w": "foi",
+   "s": 1.261,
+   "e": 1.452,
+   "trecho": "gancho"
+  },
+  {
+   "w": "eliminado",
+   "s": 1.452,
+   "e": 1.835,
+   "trecho": "gancho"
+  },
+  {
+   "w": "num",
+   "s": 1.835,
+   "e": 1.922,
+   "trecho": "gancho"
+  },
+  {
+   "w": "concurso",
+   "s": 2.026,
+   "e": 2.357,
+   "trecho": "gancho"
+  },
+  {
+   "w": "público,",
+   "s": 2.357,
+   "e": 2.843,
+   "trecho": "gancho"
+  },
+  {
+   "w": "ficou",
+   "s": 3.33,
+   "e": 3.365,
+   "trecho": "gancho"
+  },
+  {
+   "w": "por",
+   "s": 3.365,
+   "e": 3.626,
+   "trecho": "gancho"
+  },
+  {
+   "w": "poucos",
+   "s": 3.626,
+   "e": 3.904,
+   "trecho": "gancho"
+  },
+  {
+   "w": "pontos",
+   "s": 3.904,
+   "e": 4.27,
+   "trecho": "gancho"
+  },
+  {
+   "w": "ou",
+   "s": 4.27,
+   "e": 4.565,
+   "trecho": "gancho"
+  },
+  {
+   "w": "recebeu",
+   "s": 4.565,
+   "e": 4.948,
+   "trecho": "gancho"
+  },
+  {
+   "w": "uma",
+   "s": 4.948,
+   "e": 5.209,
+   "trecho": "gancho"
+  },
+  {
+   "w": "resposta",
+   "s": 5.209,
+   "e": 5.435,
+   "trecho": "gancho"
+  },
+  {
+   "w": "da",
+   "s": 5.435,
+   "e": 5.626,
+   "trecho": "gancho"
+  },
+  {
+   "w": "banca",
+   "s": 5.626,
+   "e": 5.922,
+   "trecho": "gancho"
+  },
+  {
+   "w": "examinadora",
+   "s": 5.922,
+   "e": 6.478,
+   "trecho": "gancho"
+  },
+  {
+   "w": "que",
+   "s": 6.478,
+   "e": 6.652,
+   "trecho": "gancho"
+  },
+  {
+   "w": "A",
+   "s": 6.928,
+   "e": 7.101,
+   "trecho": "tese"
+  },
+  {
+   "w": "palavra",
+   "s": 7.101,
+   "e": 7.31,
+   "trecho": "tese"
+  },
+  {
+   "w": "da",
+   "s": 7.31,
+   "e": 7.554,
+   "trecho": "tese"
+  },
+  {
+   "w": "banca,",
+   "s": 7.554,
+   "e": 7.867,
+   "trecho": "tese"
+  },
+  {
+   "w": "a",
+   "s": 8.006,
+   "e": 8.18,
+   "trecho": "tese"
+  },
+  {
+   "w": "palavra",
+   "s": 8.18,
+   "e": 8.371,
+   "trecho": "tese"
+  },
+  {
+   "w": "que",
+   "s": 8.371,
+   "e": 8.58,
+   "trecho": "tese"
+  },
+  {
+   "w": "elimina,",
+   "s": 8.58,
+   "e": 9.067,
+   "trecho": "tese"
+  },
+  {
+   "w": "a",
+   "s": 9.501,
+   "e": 9.658,
+   "trecho": "tese"
+  },
+  {
+   "w": "palavra",
+   "s": 9.658,
+   "e": 9.954,
+   "trecho": "tese"
+  },
+  {
+   "w": "que",
+   "s": 9.954,
+   "e": 10.162,
+   "trecho": "tese"
+  },
+  {
+   "w": "bota",
+   "s": 10.162,
+   "e": 10.354,
+   "trecho": "tese"
+  },
+  {
+   "w": "em",
+   "s": 10.354,
+   "e": 10.51,
+   "trecho": "tese"
+  },
+  {
+   "w": "risco",
+   "s": 10.51,
+   "e": 10.771,
+   "trecho": "tese"
+  },
+  {
+   "w": "os",
+   "s": 10.771,
+   "e": 10.91,
+   "trecho": "tese"
+  },
+  {
+   "w": "teus",
+   "s": 10.91,
+   "e": 11.101,
+   "trecho": "tese"
+  },
+  {
+   "w": "sonhos,",
+   "s": 11.101,
+   "e": 11.728,
+   "trecho": "tese"
+  },
+  {
+   "w": "não",
+   "s": 11.971,
+   "e": 12.058,
+   "trecho": "tese"
+  },
+  {
+   "w": "é",
+   "s": 12.058,
+   "e": 12.214,
+   "trecho": "tese"
+  },
+  {
+   "w": "a",
+   "s": 12.214,
+   "e": 12.319,
+   "trecho": "tese"
+  },
+  {
+   "w": "última.",
+   "s": 12.319,
+   "e": 12.649,
+   "trecho": "tese"
+  },
+  {
+   "w": "e",
+   "s": 12.649,
+   "e": 12.693,
+   "trecho": "tese"
+  },
+  {
+   "w": "O",
+   "s": 12.848,
+   "e": 12.9,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "Poder",
+   "s": 12.9,
+   "e": 13.109,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "Judiciário",
+   "s": 13.109,
+   "e": 13.613,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "hoje",
+   "s": 13.613,
+   "e": 13.874,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "reconhece",
+   "s": 13.874,
+   "e": 14.639,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "que",
+   "s": 14.639,
+   "e": 15.022,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "há,",
+   "s": 15.022,
+   "e": 15.439,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "sim,",
+   "s": 15.439,
+   "e": 15.926,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "situações",
+   "s": 15.926,
+   "e": 17.074,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "em",
+   "s": 17.074,
+   "e": 17.439,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "que",
+   "s": 17.439,
+   "e": 17.543,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "a",
+   "s": 17.543,
+   "e": 17.613,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "gente",
+   "s": 17.613,
+   "e": 17.735,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "pode",
+   "s": 17.735,
+   "e": 17.926,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "estar",
+   "s": 17.926,
+   "e": 18.17,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "trazendo",
+   "s": 18.17,
+   "e": 18.517,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "de",
+   "s": 18.517,
+   "e": 18.761,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "volta",
+   "s": 18.761,
+   "e": 18.987,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "aquele",
+   "s": 18.987,
+   "e": 19.196,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "candidato",
+   "s": 19.196,
+   "e": 19.596,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "que",
+   "s": 19.596,
+   "e": 19.752,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "já",
+   "s": 19.752,
+   "e": 19.961,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "foi",
+   "s": 19.961,
+   "e": 20.117,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "eliminado",
+   "s": 20.117,
+   "e": 20.5,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "no",
+   "s": 20.5,
+   "e": 20.622,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "concurso.",
+   "s": 20.622,
+   "e": 21.404,
+   "trecho": "judiciario"
+  },
+  {
+   "w": "Uma",
+   "s": 21.571,
+   "e": 21.728,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "questão",
+   "s": 21.728,
+   "e": 22.006,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "ilegal",
+   "s": 22.006,
+   "e": 22.354,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "mantida",
+   "s": 22.354,
+   "e": 22.806,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "no",
+   "s": 22.806,
+   "e": 22.928,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "gabarito",
+   "s": 22.928,
+   "e": 23.31,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "definitivo,",
+   "s": 23.31,
+   "e": 24.023,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "uma",
+   "s": 24.197,
+   "e": 24.319,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "nota",
+   "s": 24.319,
+   "e": 24.493,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "mal",
+   "s": 24.493,
+   "e": 24.736,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "calculada,",
+   "s": 24.736,
+   "e": 25.571,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "uma",
+   "s": 26.232,
+   "e": 26.458,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "repetição",
+   "s": 26.458,
+   "e": 26.928,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "não",
+   "s": 26.928,
+   "e": 27.171,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "contabilizada",
+   "s": 27.171,
+   "e": 27.936,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "no",
+   "s": 27.936,
+   "e": 28.128,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "TAF,",
+   "s": 28.128,
+   "e": 28.545,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "uma",
+   "s": 29.258,
+   "e": 29.467,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "inaptidão",
+   "s": 29.467,
+   "e": 30.058,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "indevida",
+   "s": 30.058,
+   "e": 30.806,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "no",
+   "s": 30.806,
+   "e": 30.98,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "exame",
+   "s": 30.98,
+   "e": 31.154,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "de",
+   "s": 31.154,
+   "e": 31.328,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "saúde",
+   "s": 31.328,
+   "e": 31.78,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "ou",
+   "s": 32.301,
+   "e": 32.893,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "uma",
+   "s": 32.893,
+   "e": 33.293,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "inaptidão",
+   "s": 33.293,
+   "e": 34.162,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "injusta",
+   "s": 34.162,
+   "e": 35.101,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "na",
+   "s": 35.101,
+   "e": 35.275,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "entrevista",
+   "s": 35.275,
+   "e": 35.693,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "de",
+   "s": 35.693,
+   "e": 35.832,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "heteroidentificação",
+   "s": 35.832,
+   "e": 36.023,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "que",
+   "s": 36.719,
+   "e": 36.875,
+   "trecho": "situacoes"
+  },
+  {
+   "w": "Isso",
+   "s": 36.893,
+   "e": 37.397,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "significa",
+   "s": 37.397,
+   "e": 37.901,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "que",
+   "s": 37.901,
+   "e": 38.058,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "nós",
+   "s": 38.058,
+   "e": 38.267,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "vamos",
+   "s": 38.267,
+   "e": 38.58,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "inventar",
+   "s": 38.58,
+   "e": 39.067,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "a",
+   "s": 39.067,
+   "e": 39.136,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "fundamentação",
+   "s": 39.136,
+   "e": 39.797,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "para",
+   "s": 39.797,
+   "e": 39.936,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "tentar",
+   "s": 39.936,
+   "e": 40.128,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "reverter",
+   "s": 40.128,
+   "e": 40.493,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "a",
+   "s": 40.493,
+   "e": 40.562,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "tua",
+   "s": 40.562,
+   "e": 40.632,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "eliminação?",
+   "s": 40.632,
+   "e": 41.067,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "De",
+   "s": 41.067,
+   "e": 41.641,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "forma",
+   "s": 41.641,
+   "e": 41.867,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "alguma.",
+   "s": 41.867,
+   "e": 42.206,
+   "trecho": "honestidade"
+  },
+  {
+   "w": "o",
+   "s": 42.217,
+   "e": 42.27,
+   "trecho": "ilegal"
+  },
+  {
+   "w": "Poder",
+   "s": 42.27,
+   "e": 42.461,
+   "trecho": "ilegal"
+  },
+  {
+   "w": "Judiciário",
+   "s": 42.461,
+   "e": 42.896,
+   "trecho": "ilegal"
+  },
+  {
+   "w": "só",
+   "s": 42.896,
+   "e": 43.122,
+   "trecho": "ilegal"
+  },
+  {
+   "w": "vai",
+   "s": 43.122,
+   "e": 43.278,
+   "trecho": "ilegal"
+  },
+  {
+   "w": "anular",
+   "s": 43.278,
+   "e": 43.939,
+   "trecho": "ilegal"
+  },
+  {
+   "w": "aquilo",
+   "s": 43.939,
+   "e": 44.27,
+   "trecho": "ilegal"
+  },
+  {
+   "w": "que",
+   "s": 44.27,
+   "e": 44.409,
+   "trecho": "ilegal"
+  },
+  {
+   "w": "realmente",
+   "s": 44.409,
+   "e": 44.67,
+   "trecho": "ilegal"
+  },
+  {
+   "w": "for",
+   "s": 44.67,
+   "e": 44.791,
+   "trecho": "ilegal"
+  },
+  {
+   "w": "ilegal.",
+   "s": 44.791,
+   "e": 45.113,
+   "trecho": "ilegal"
+  },
+  {
+   "w": "Clica",
+   "s": 45.283,
+   "e": 45.404,
+   "trecho": "chamada"
+  },
+  {
+   "w": "no",
+   "s": 45.404,
+   "e": 45.491,
+   "trecho": "chamada"
+  },
+  {
+   "w": "botão",
+   "s": 45.491,
+   "e": 45.7,
+   "trecho": "chamada"
+  },
+  {
+   "w": "abaixo,",
+   "s": 45.7,
+   "e": 46.483,
+   "trecho": "chamada"
+  },
+  {
+   "w": "vem",
+   "s": 46.709,
+   "e": 46.796,
+   "trecho": "chamada"
+  },
+  {
+   "w": "falar",
+   "s": 46.796,
+   "e": 46.987,
+   "trecho": "chamada"
+  },
+  {
+   "w": "comigo",
+   "s": 46.987,
+   "e": 47.23,
+   "trecho": "chamada"
+  },
+  {
+   "w": "e",
+   "s": 47.23,
+   "e": 47.317,
+   "trecho": "chamada"
+  },
+  {
+   "w": "com",
+   "s": 47.317,
+   "e": 47.404,
+   "trecho": "chamada"
+  },
+  {
+   "w": "a",
+   "s": 47.404,
+   "e": 47.422,
+   "trecho": "chamada"
+  },
+  {
+   "w": "minha",
+   "s": 47.422,
+   "e": 47.509,
+   "trecho": "chamada"
+  },
+  {
+   "w": "equipe",
+   "s": 47.509,
+   "e": 47.7,
+   "trecho": "chamada"
+  }
+ ]
+}

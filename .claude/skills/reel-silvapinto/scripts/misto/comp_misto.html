@@ -1,0 +1,203 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="__ASSETS__/fonts/fonts_local.css">
+<link rel="stylesheet" href="__ASSETS__/fonts/extra_local.css">
+<style>
+/* Estilo "misto" (aprovado em 29/10/2026): ele em tela cheia, b-roll em tela cheia e, de vez em quando, a tela
+   dividida (painel em cima, ele num cartão embaixo), sorteados por trecho (sorteio.py). Legenda curta. Paleta do escritório: grafite #17181B, dourado #F0CF86. */
+:root{--navy:#17181B;--gold:#F0CF86;--gold2:#C9A55A;--ui:#1E2026;--linha:rgba(240,207,134,.28)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;background:#0f1013;font-family:Manrope,sans-serif;color:#fff}
+.abs{position:absolute}
+#fundo{position:absolute;inset:0;background:radial-gradient(900px 700px at 50% 22%,#22242b 0%,#121318 60%,#0c0d10 100%)}
+#fundo:after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(180deg,#000 0%,#000 40%,transparent 50%)}
+#painel{position:absolute;left:0;top:0;width:1080px;height:880px;overflow:hidden}
+#clip{position:absolute;inset:0;width:1080px;height:880px;object-fit:cover;display:none;transform-origin:50% 50%}
+#veu{position:absolute;inset:0}
+#ui{position:absolute;inset:0;padding:150px 64px 40px}
+#brasao{position:absolute;right:44px;top:30px;height:110px;z-index:31;filter:drop-shadow(0 4px 14px rgba(0,0,0,.6))}
+#logo{position:absolute;left:50%;top:44px;transform:translateX(-50%);height:58px;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6));z-index:30}
+#cartao{position:absolute;left:36px;top:900px;width:1008px;height:984px;border-radius:38px;overflow:hidden;background:#000;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);border:1.5px solid rgba(255,255,255,.12)}
+#cartao img,#cheio img{position:absolute;left:0;top:0;transform-origin:0 0}
+#cheio{position:absolute;inset:0;overflow:hidden;display:none;z-index:20}
+#cheio .escuro{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 30%,rgba(0,0,0,0) 55%,rgba(12,13,16,.82) 92%)}
+#sobre .sub,#sobre .h,#sobre .kick{text-shadow:0 4px 22px rgba(0,0,0,.85)}#sobre .ouro{text-shadow:none}
+#cap{position:absolute;left:0;right:0;text-align:center;z-index:40;font:800 62px/1.1 Manrope;letter-spacing:-.01em;pointer-events:none}
+#cap span{display:inline-block;margin:0 9px;text-shadow:0 0 2px #000,0 4px 0 rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.8)}
+#scan{position:absolute;left:0;right:0;height:6px;z-index:60;display:none;
+  background:linear-gradient(90deg,rgba(240,207,134,0),#FFF3D6 30%,#fff 50%,#FFF3D6 70%,rgba(240,207,134,0));
+  box-shadow:0 0 30px 10px rgba(240,207,134,.55),0 0 90px 30px rgba(240,207,134,.25)}
+#sticker{position:absolute;left:50%;top:132px;transform:translateX(-50%);z-index:45;display:none;background:#fff;color:#17181B;
+  border-radius:26px;padding:22px 34px;font:800 58px/1.02 Manrope;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.45);letter-spacing:-.015em}
+#sticker small{display:block;font:700 26px/1.2 'JetBrains Mono';letter-spacing:.14em;color:#9C7A2E;margin-bottom:8px}
+#cta{position:absolute;inset:0;z-index:50;display:none}
+#credito{position:absolute;left:40px;z-index:41;font:500 22px Manrope;color:rgba(255,255,255,.72);text-shadow:0 1px 6px rgba(0,0,0,.9);display:none}
+#broll{position:absolute;inset:0;overflow:hidden;display:none;z-index:22}#broll img{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;transform-origin:50% 45%}
+#broll .veu9{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,13,16,.55) 0%,rgba(12,13,16,.1) 30%,rgba(12,13,16,.25) 55%,rgba(12,13,16,.9) 100%)}
+#sobre{position:absolute;inset:0;z-index:35;display:none}
+.zona{position:absolute;left:64px;right:64px;bottom:96px}
+#ui .zona{bottom:60px}
+#fim{position:absolute;inset:0;z-index:70;display:none;background:radial-gradient(900px 900px at 50% 45%,#23252c,#0d0e11);
+  flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 70px}
+/* elementos do painel */
+.kick{display:inline-flex;align-items:center;gap:12px;font:600 26px 'JetBrains Mono';letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
+.kick:before{content:"";width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+.vidro{background:rgba(23,24,27,.78);border:1.5px solid var(--linha);border-radius:28px;padding:34px 38px;backdrop-filter:blur(6px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.h{font:400 112px/.92 'Bebas Neue';letter-spacing:.01em}
+.h.m{font-size:92px}.h.g,.g{color:var(--gold)}
+.ouro{background:linear-gradient(180deg,#FFF3D6 0%,#F4D692 45%,#EBC776 70%,#B98E3E 100%);-webkit-background-clip:text;background-clip:text;color:transparent;padding-top:.12em;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5))}
+.sub{font:600 40px/1.25 Manrope;color:rgba(255,255,255,.88)}
+.linha{display:flex;align-items:center;gap:22px;font:700 44px/1.15 Manrope;margin:20px 0}
+.bola{flex:none;width:86px;height:86px;border-radius:50%;display:grid;place-items:center;background:rgba(240,207,134,.12);border:3px solid var(--gold);color:var(--gold);font-size:42px}
+.bola.x{border-color:#E8735A;color:#E8735A;background:rgba(232,115,90,.12)}
+.ic{display:inline-block;width:1em;height:1em}.ic svg{width:100%;height:100%;display:block}
+.chip{display:inline-flex;align-items:center;gap:14px;font:400 60px/1 'Bebas Neue';padding:16px 28px 10px;border-radius:16px;border:3px solid var(--gold);color:var(--gold);background:rgba(23,24,27,.7)}
+.chip.cheio{background:var(--gold);color:#17181B}
+.carimbo{display:inline-block;font:400 92px/1 'Bebas Neue';color:#E8735A;border:7px solid #E8735A;border-radius:14px;padding:14px 26px 6px;transform:rotate(-7deg);letter-spacing:.03em;background:rgba(23,24,27,.55)}
+.barra{height:34px;border-radius:17px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
+.barra i{position:absolute;left:0;top:0;bottom:0;border-radius:17px}
+.pontos{display:flex;gap:12px}.pontos b{width:56px;height:10px;border-radius:5px;background:rgba(255,255,255,.18)}.pontos b.on{background:var(--gold)}
+.brilho{position:relative;overflow:hidden}
+.brilho:after{content:"";position:absolute;top:-20%;bottom:-20%;width:30%;left:var(--bx,-40%);background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-18deg);mix-blend-mode:overlay}
+.botao{display:inline-flex;align-items:center;gap:18px;font:800 60px/1 Manrope;color:#17181B;background:linear-gradient(180deg,#FFF3D6,#EBC776);
+  border-radius:999px;padding:30px 54px;box-shadow:0 20px 60px rgba(240,207,134,.35)}
+.toque{position:absolute;width:120px;height:120px;border-radius:50%;border:5px solid rgba(255,255,255,.9)}
+</style></head><body>
+<div id="fundo"></div>
+<div id="painel"><img id="clip"><div id="veu"></div><div id="ui"></div></div>
+<img id="logo" src="__ASSETS__/brand/logo_horizontal.webp">
+<img id="brasao" style="display:none">
+<div id="cartao"><img id="pres"></div>
+<div id="cheio"><img id="presC"><div class="escuro"></div></div>
+<div id="broll"><img id="clip9"><div class="veu9"></div></div>
+<div id="sobre"></div>
+<div id="sticker"></div>
+<div id="cta"></div>
+<div id="fim"></div>
+<div id="cap"></div>
+<div id="scan"></div>
+<div id="credito"></div>
+<script>
+const W=1080,H=1920,FPS=30;
+let S=null,R=null,ICONS={},cur=-1;
+const ease=p=>p<=0?0:p>=1?1:1-Math.pow(1-p,3);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lerp=(a,b,p)=>a+(b-a)*p;
+const pad=(n,k)=>String(n).padStart(k,'0');
+function icon(h){return h.replace(/\{ic:([a-z-]+)\}/g,(m,n)=>`<span class="ic">${ICONS[n]||''}</span>`)}
+function face(t){const i=clamp(Math.round(t*FPS),0,R.cx.length-1);return [R.cx[i],R.cy[i]]}
+function quadro(t){return `fr/f${pad(clamp(Math.round(t*FPS)+1,1,S.nFrames),5)}.jpg`}
+function posCartao(img,t){ // recorte ~1106x1080 centrado no rosto, na altura do cartão (984)
+  const [cx]=face(t), s=984/1080, vis=1008/s, x0=clamp(cx-vis/2,0,1920-vis);
+  img.style.width='1920px'; img.style.transform=`scale(${s}) translate(${-x0}px,0)`; }
+// rosto: retângulo do alto do cabelo ao fim da barba a partir do centro e da largura do quadrado do Haar
+// (medido no reel de teste de 29/10/2026: cabelo a 0,43 largura acima do centro, barba a 0,71 abaixo; com folga)
+function caixaRosto(t){const i=clamp(Math.round(t*FPS),0,R.cx.length-1),cx=R.cx[i],cy=R.cy[i],fw=(R.fw&&R.fw[i])||290;
+  return {x0:cx-0.5*fw,x1:cx+0.5*fw,y0:cy-0.55*fw,y1:cy+0.78*fw}}
+// topo (px na tela): com a etiqueta da abertura, ele desce na tela até o alto da cabeça ficar abaixo de `topo`;
+// a faixa que sobra em cima é o fundo do escritório, com uma transição suave para o vídeo.
+function posCheio(img,t,z=1,topo=0){ const [cx,cy]=face(t), s=(1920/1080)*z, vis=1080/s, x0=clamp(cx-vis/2,0,1920-vis);
+  let y0=clamp(cy-(1920/s)*0.30,0,1080-1920/s);
+  if(topo){const b=caixaRosto(t); y0=Math.min(y0,b.y0-topo/s); y0=Math.max(y0,-topo/s)}
+  img._map={s,x0,y0};
+  img.style.width='1920px'; img.style.transform=`scale(${s}) translate(${-x0}px,${-y0}px)`;
+  if(y0<0){const a=(-y0*s)/1920*100; img.parentNode.style.webkitMaskImage=img.parentNode.style.maskImage=`linear-gradient(180deg,transparent ${a}%,#000 ${a+7}%)`}
+  else img.parentNode.style.webkitMaskImage=img.parentNode.style.maskImage='none'; }
+function animar(root,t){
+  for(const el of root.querySelectorAll('[data-at]')){
+    const at=+el.dataset.at,d=+(el.dataset.d||.45),a=el.dataset.a||'up',p=ease((t-at)/d);let tf='';
+    if(a==='up')tf=`translateY(${(1-p)*50}px)`;else if(a==='left')tf=`translateX(${(1-p)*-70}px)`;
+    else if(a==='pop')tf=`scale(${lerp(.55,1,p)+(p<1?Math.sin(p*Math.PI)*.1:0)})`;
+    else if(a==='stamp')tf=`scale(${lerp(2.4,1,p)}) rotate(-7deg)`;
+    else if(a==='grow'){el.style.transformOrigin='left center';el.style.transform=`scaleX(${p})`;el.style.opacity=t>=at?1:0;continue}
+    else if(a==='draw'){el.style.strokeDasharray=1;el.style.strokeDashoffset=1-p;el.style.opacity=t>=at?1:0;continue}
+    else if(a==='risca'){el.style.transform=`scaleX(${p})`;el.style.transformOrigin='left center';el.style.opacity=t>=at?1:0;continue}
+    el.style.opacity=a==='stamp'?(t>=at?1:0):p; el.style.transform=tf;
+    if(el.classList.contains('brilho')){const q=clamp((t-at-.25)/.9);el.style.setProperty('--bx',(-40+180*q)+'%')}
+    if(el.dataset.cont){const [v0,v1]=el.dataset.cont.split(',').map(Number);el.textContent=Math.round(lerp(v0,v1,p)).toLocaleString('pt-BR')}
+  }
+}
+function build(sc){
+  const alvo=sc.layout==='split'?'ui':'sobre'; document.getElementById('ui').innerHTML=alvo==='ui'?icon(sc.html||''):''; document.getElementById('sobre').innerHTML=alvo==='sobre'?icon(sc.html||''):'';
+  document.getElementById('veu').style.background=sc.veu||'transparent';
+  document.getElementById('cta').innerHTML=icon(sc.cta||'');
+  document.getElementById('fim').innerHTML=icon(sc.fim||'');
+}
+function legenda(t,sc){
+  const cap=document.getElementById('cap');
+  if(sc.layout==='cta'||sc.layout==='fim'){cap.innerHTML='';return}
+  const g=S.caps.find(c=>t>=c.t0&&t<c.t1);
+  if(!g){cap.innerHTML='';return}
+  const rr=rostoNaTela(t,sc); cap.style.top=Math.max(sc.layout==='split'?1590:1160,rr&&sc.layout==='full'?Math.round(rr.y1+40):0)+'px';
+  cap.innerHTML=g.words.filter(w=>t>=w.s-0.02).map(w=>`<span>${w.w}</span>`).join('');
+}
+window.render=async function(t){
+  let i=S.scenes.findIndex(s=>t>=s.t0&&t<s.t1); if(i<0)i=S.scenes.length-1;
+  const sc=S.scenes[i]; if(i!==cur){cur=i;build(sc)}
+  const lt=t-sc.t0, imgs=[];
+  const cheio=document.getElementById('cheio'), cta=document.getElementById('cta'), fim=document.getElementById('fim');
+  // painel: b-roll
+  const clip=document.getElementById('clip');
+  if(sc.clip){clip.style.display='block';const n=S.nclip[sc.clip];const k=clamp(Math.round((lt+(sc.clipOff||0))*FPS)+1,1,n);
+    clip.src=`cl/${sc.clip}/c${pad(k,4)}.jpg`;clip.style.transform=`scale(${1.04+0.05*clamp(lt/(sc.t1-sc.t0))})`;imgs.push(clip)}
+  else clip.style.display='none';
+  const ui=document.getElementById('ui'); const pe=ease(lt/0.3); ui.style.opacity=pe; ui.style.transform=`scale(${lerp(1.03,1,pe)})`;
+  // cartão
+  const pres=document.getElementById('pres'); pres.src=quadro(t); posCartao(pres,t); imgs.push(pres);
+  // tela cheia (abertura e chamada)
+  const presC=document.getElementById('presC');
+  if(sc.layout==='full'||sc.layout==='cta'){cheio.style.display='block';presC.src=quadro(Math.min(t,S.fala-0.05));posCheio(presC,Math.min(t,S.fala-0.05),sc.layout==='cta'?1.04:1,sc.topoRosto||0);imgs.push(presC);
+    presC.style.filter=sc.layout==='cta'?`blur(${16*ease(lt/0.5)}px) brightness(${lerp(1,.45,ease(lt/0.5))})`:'none'; cheio.style.clipPath='none'}
+  else cheio.style.display='none';
+  const br=document.getElementById('broll'), c9=document.getElementById('clip9');
+  if(sc.layout==='broll'){br.style.display='block';const n=S.nclip9[sc.clip];const k=clamp(Math.round((lt+(sc.clipOff||0))*FPS)+1,1,n);c9.src=`cl9/${sc.clip}/c${pad(k,4)}.jpg`;c9.style.transform=`scale(${1.02+0.06*clamp(lt/(sc.t1-sc.t0))})`;imgs.push(c9)} else br.style.display='none';
+  const so=document.getElementById('sobre'); so.style.display=(sc.layout==='full'||sc.layout==='broll')?'block':'none'; animar(so,t); const pz=ease(lt/0.3); so.style.opacity=pz;
+  // escaneamento: a tela cheia some de cima para baixo, atrás de uma linha de luz
+  const scan=document.getElementById('scan');
+  if(sc.scan&&lt<0.42){const p=ease(lt/0.42);cheio.style.display='block';presC.src=quadro(t);posCheio(presC,t,1,(S.scenes[Math.max(0,i-1)].topoRosto)||0);presC.style.filter='none';imgs.push(presC);
+    cheio.style.clipPath=`inset(${p*100}% 0 0 0)`;scan.style.display='block';scan.style.top=(p*1920-3)+'px'}
+  else scan.style.display='none';
+  // etiqueta da abertura
+  const st=document.getElementById('sticker'); if(S.sticker&&t<S.sticker.t1){st.innerHTML=S.sticker.html;st.style.display='block';const p=ease(t/0.35);st.style.transform=`translateX(-50%) scale(${lerp(.7,1,p)})`;st.style.opacity=t>S.sticker.t1-0.25?(S.sticker.t1-t)/0.25:p}else st.style.display='none';
+  document.getElementById('logo').style.display=sc.layout==='fim'?'none':'block';
+  cta.style.display=sc.layout==='cta'?'block':'none'; fim.style.display=sc.layout==='fim'?'flex':'none';
+  animar(document.getElementById('ui'),t); animar(cta,t); animar(fim,t);
+  if(sc.layout==='cta'){ // toque animado e setas
+    const tq=cta.querySelector('.toque'); if(tq){const c=((t-sc.t0-0.9)%1.2+1.2)%1.2/1.2; tq.style.opacity=t>sc.t0+0.9?(1-c):0; tq.style.transform=`scale(${lerp(.4,1.6,c)})`}
+    const sv=cta.querySelector('.setas'); if(sv){sv.style.transform=`translateY(${Math.sin((t-sc.t0)*6)*14}px)`}
+  }
+  legenda(t,sc);
+  const cr=document.getElementById('credito'), ct=sc.clip&&S.creditos&&S.creditos[sc.clip];  // crédito da imagem (CC BY)
+  if(ct&&(sc.layout==='broll'||sc.layout==='split')){cr.style.display='block';cr.textContent=ct;cr.style.top=(sc.layout==='split'?842:1866)+'px'} else cr.style.display='none';
+  const br9=document.getElementById('brasao'); if(S.brasao){br9.src=S.brasao;br9.style.display=(sc.layout==='fim'||sc.layout==='cta')?'none':'block'}
+  conferirRosto(t,sc); conferirLegenda(t);
+  await Promise.all([...document.querySelectorAll('img')].filter(im=>im.style.display!=='none').map(im=>im.decode().catch(()=>{})));
+  return i;
+};
+function rostoNaTela(t,sc){ // o retângulo do rosto na tela, quando ele aparece (tela cheia ou cartão)
+  const box=caixaRosto(t), [cx]=face(t);
+  if(sc.layout==='full'){const m=document.getElementById('presC')._map; if(!m) return null;
+    return {x0:(box.x0-m.x0)*m.s,x1:(box.x1-m.x0)*m.s,y0:(box.y0-m.y0)*m.s,y1:(box.y1-m.y0)*m.s}}
+  if(sc.layout==='split'){const s=984/1080, vis=1008/s, x0=clamp(cx-vis/2,0,1920-vis);
+    return {x0:36+(box.x0-x0)*s,x1:36+(box.x1-x0)*s,y0:900+box.y0*s,y1:900+box.y1*s}}
+  return null;
+}
+window.__colisoes=[];
+function conferirRosto(t,sc){
+  const r=rostoNaTela(t,sc); if(!r) return;
+  const els=[...document.querySelectorAll('#sticker,#logo,#brasao,#cap span,#sobre .zona,#sobre [data-at]')].filter(e=>e.offsetParent!==null&&getComputedStyle(e).opacity>0.05);
+  for(const e of els){const b=e.getBoundingClientRect(); if(b.width<2||b.height<2) continue;
+    // logo e brasão ficam no alto da tela: para eles conta só o rosto em si (da sobrancelha ao queixo), não o cabelo
+    const y0=(e.id==='logo'||e.id==='brasao')?r.y0+(r.y1-r.y0)*0.25:r.y0;
+    if(b.left<r.x1&&b.right>r.x0&&b.top<r.y1&&b.bottom>y0) window.__colisoes.push({t:+t.toFixed(2),el:e.id||e.className||e.tagName,txt:(e.textContent||'').slice(0,30)})}
+}
+// legenda em cima do texto/infográfico da cena: também é erro (um tapa o outro)
+function conferirLegenda(t){
+  const z=[...document.querySelectorAll('#sobre .zona,#ui .zona')].filter(e=>e.offsetParent!==null); if(!z.length) return;
+  for(const c of document.querySelectorAll('#cap span')){const b=c.getBoundingClientRect();
+    for(const e of z){const r=e.getBoundingClientRect(); if(b.left<r.right&&b.right>r.left&&b.top<r.bottom&&b.bottom+16>r.top){
+      window.__colisoes.push({t:+t.toFixed(2),el:'legenda sobre o texto da cena',txt:(c.textContent||'').slice(0,30)});return}}}
+}
+window.init=function(s,r,ic){S=s;R=r;ICONS=ic};
+</script></body></html>

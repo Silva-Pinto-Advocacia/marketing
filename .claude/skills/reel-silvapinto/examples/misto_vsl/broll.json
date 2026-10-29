@@ -1,0 +1,10 @@
+{
+ "gabarito":  {"arquivo": "clips/20468.mp4", "ini": 8,  "dur": 5, "x": 200, "x9": 480},
+ "estudante": {"arquivo": "clips/8810.mp4",  "ini": 3,  "dur": 6, "x": 200, "x9": 440},
+ "justica":   {"arquivo": "clips/12315.mp4", "ini": 4,  "dur": 6, "x": 300, "x9": 230},
+ "prova":     {"arquivo": "clips/20235.mp4", "ini": 10, "dur": 4, "x": 250, "x9": 520},
+ "lupa":      {"arquivo": "clips/46977.mp4", "ini": 6,  "dur": 4, "x": 200, "x9": 420},
+ "taf":       {"arquivo": "clips/32813.mp4", "ini": 2,  "dur": 5, "x": 200, "x9": 470},
+ "medico":    {"arquivo": "clips/6562.mp4",  "ini": 4,  "dur": 5, "x": 330, "x9": 640},
+ "juiz":      {"arquivo": "clips/47687.mp4", "ini": 2,  "dur": 5, "x": 150, "x9": 700}
+}
