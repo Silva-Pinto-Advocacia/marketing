@@ -133,8 +133,9 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   ("abre com o brasão", "legenda com caixa"), fixar em `estilo` no `config.json` (ver `pipeline.md`). A
   faixa de decisão não é sorteada: entra sempre que o vídeo anuncia uma decisão.
 - **Dois visuais: formal (padrão) e dinâmico** (`estilo.visual`, estilo.md §11): o dinâmico tem texto
-  por trás da pessoa na abertura, legenda que pula com marca-texto, um plano por frase com chicote, adesivos,
-  palavras que caem, clarões e efeitos sonoros. Usar quando o Casil pedir ("mais dinâmico", "menos formal")
+  por trás da pessoa na abertura, legenda que pula com marca-texto, adesivos, palavras que caem, clarões e efeitos
+  sonoros, com a câmera do formal (24/11/2026: os cortes por frase e os zooms foram rejeitados, "interrompendo muito
+  a minha fala"; ver estilo.md §11 e §13). Usar quando o Casil pedir ("mais dinâmico", "menos formal")
   ou quando o Redes mandar; rodar o `recortar.py` antes do build.
 - **Nada sobre o rosto.** O build acha o rosto e tira o título de cima da cabeça e a legenda de cima do
   queixo (imprime o que mudou). Conferir na prévia: a etiqueta "Explico na legenda" na testa foi

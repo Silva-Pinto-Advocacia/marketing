@@ -355,8 +355,13 @@ levels = cfg.get("framings", nivel_auto[0] if nivel_auto else [1.0, 1.13, 1.0, 1
 shots = [{"t": bounds[i], "end": bounds[i + 1], "scale": levels[i % len(levels)],
           "drift": 0.06 if levels[i % len(levels)] > 1.0 else 0.035} for i in range(len(bounds) - 1)]
 # visual dinamico: um plano por frase (2,2 s no minimo), trocando o enquadramento com chicote, corte seco com
-# tremor ou soco de zoom; as cenas comecam em plano novo, com chicote
-if VISUAL == "dinamico":
+# tremor ou soco de zoom; as cenas comecam em plano novo, com chicote.
+# (24/11/2026) DESLIGADO por padrao. O Casil, sobre os anuncios do TJRJ: "gostei muito da diagramacao, dos efeitos
+# visuais, mas eu nao gostei dos cortes. [...] os cortes e os zooms ficaram estranhos, interrompendo muito a minha
+# fala, parecendo cortes de videos diferentes". O dinamico fica com a camera do formal (planos longos, trocas so nas
+# pausas cortadas e nos inicios de frase com 6,5 s de distancia) e com todo o resto (selo, legenda que pula,
+# adesivos, textos que caem, efeitos sonoros). "dinamico_cortes": true volta ao plano por frase.
+if VISUAL == "dinamico" and cfg.get("dinamico_cortes"):
     lv = cfg.get("framings", nivel_auto[0][:4] if nivel_auto else [1.0, 1.12, 1.04, 1.18])
     inicios = [round(s["t"], 2) for s in scenes]
     cand = sorted(set([round(c["s"], 2) for c in chunks] + inicios))
@@ -374,6 +379,7 @@ if VISUAL == "dinamico":
             if tr == "whip": lado = rv.choice([-1, 1])
             ant = tr
         shots.append({"t": a, "end": c, "scale": lv[i % len(lv)], "drift": 0.04, "tr": tr, "dir": lado}); a = c
+if VISUAL == "dinamico":
     # cada adesivo entra de um jeito, nunca igual ao anterior, e a inclinacao alterna de lado
     ult, lado_t = None, rv.choice([-1, 1])
     for sc in scenes:
@@ -491,6 +497,7 @@ for sc in scenes:
 if VISUAL == "dinamico":
     cut_in = lambda x: any(sc.get("type") == "prova" and sc["t"] - 0.3 <= x <= sc["t"] + sc["dur"] for sc in scenes)
     for s_ in shots[1:]:
+        if not s_.get("tr"): continue   # (24/11/2026) sem os cortes por frase, a troca de plano e muda, como no formal
         x = s_["t"] - (0.12 if s_["tr"] == "whip" else 0)
         if not cut_in(x): sfx.append({"k": {"whip": "whoosh", "corte": "tick"}.get(s_["tr"], "pop"), "t": x})
     for c in cards:
