@@ -140,7 +140,7 @@ Como está implementado (`build_timeline.py` + `comp_reel.html`):
 - Zoom-hits de 1,2x com 1,1 s nas palavras-chave do config (`hits`).
 - Um insert do brasão sobre o vídeo desfocado e escurecido quando o órgão é citado.
 
-Rejeitado: corte a cada frase com enquadramento aleatório (v4, "horrível"); zoom suave contínuo sem trocas
+Rejeitado: corte a cada frase com enquadramento aleatório (v4, "horrível"), e de novo em 24/11/2026 com chicote e soco de zoom no dinâmico ("interrompendo muito a minha fala, parecendo cortes de vídeos diferentes"); zoom suave contínuo sem trocas
 de plano (v6-v8, "não é o estilo"); transição de zoom pequena demais nos cortes.
 
 ## 8. Ritmo e áudio
@@ -188,10 +188,12 @@ continua o padrão da skill. Mesmos dados (cenas, textos grandes, título), outr
 - **Legenda que pula:** caixa alta, 94 px, entra com mola e um leve giro; cada palavra aparece quando é falada;
   as palavras-chave (números e palavras dos textos grandes, das cenas e do título, ou `palavras_chave`) ganham
   marca-texto dourado inclinado.
-- **Um plano por frase (2,2 s no mínimo), com transição:** chicote lateral com borrão de movimento (na entrada de
-  cada cena), corte seco com tremor de câmera e soco de zoom, alternados. Diferente do v4 recusado ("corte a cada
-  frase com enquadramento aleatório"): lá o corte era seco e sem motivo; aqui cada troca tem movimento e som, e os
-  enquadramentos seguem o rosto medido.
+- **A câmera é a do formal** (24/11/2026). O plano por frase com chicote, tremor e soco de zoom foi REJEITADO nos
+  anúncios do TJRJ: "gostei muito da diagramação, dos efeitos visuais, mas eu não gostei dos cortes. [...] os cortes e
+  os zooms ficaram estranhos, interrompendo muito a minha fala, parecendo cortes de vídeos diferentes." O dinâmico
+  agora troca de plano como o formal (planos longos, troca só nas pausas cortadas e em início de frase a 6,5 s de
+  distância, corte seco sem som) e guarda o resto: selo, legenda que pula, adesivos, textos que caem, clarões nas
+  cenas e efeitos sonoros. O plano por frase só volta com `"dinamico_cortes": true` no config, e só se ele pedir.
 - **Adesivos:** os infográficos `text` e `cta` viram cartões brancos inclinados com contorno dourado e etiqueta
   grafite, que entram com mola e giro e saem encolhendo. No `counter`, o número ganha um círculo dourado
   desenhado à mão e uma explosão de raios.
@@ -232,3 +234,17 @@ a prova é o documento.
   posição para o topo na palavra `sobe` (ex. "classificação"), com uma seta verde desenhando. Sem número de
   posição: ele não foi dito.
 
+
+## 13. Fala reordenada para anúncio (24/11/2026)
+
+Nos anúncios do TJRJ a fala foi remontada para abrir com a frase mais forte, tirada do meio do vídeo, e o Casil achou
+que o resultado parecia "cortes de vídeos diferentes". Junto com a câmera do dinâmico (acima), as emendas de trechos
+gravados em momentos diferentes pesaram: a cabeça muda de posição e a luz muda de um trecho para o outro.
+
+- Reordene o mínimo: no máximo UM trecho puxado para a frente (o gancho), e o resto na ordem gravada.
+- A emenda entre trechos fora de ordem entra numa pausa e escondida por um elemento de tela inteira (o selo, um texto
+  grande ou o insert do brasão), nunca seca no meio do rosto.
+- Prefira o gancho escrito (título fixo e selo) à fala remontada: o vídeo começa onde ele começou a falar, e o gancho
+  forte aparece na tela desde o primeiro quadro.
+- O texto gigante por trás da pessoa não serve para selfie de perto (rosto acima de ~55% da altura): a cabeça cobre a
+  palavra e o recorte deixa emenda visível no paletó. Nesses vídeos, abra só com o selo e o título fixo desde 0,1 s.

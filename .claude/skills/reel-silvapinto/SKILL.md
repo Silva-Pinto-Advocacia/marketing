@@ -133,8 +133,9 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
   ("abre com o brasão", "legenda com caixa"), fixar em `estilo` no `config.json` (ver `pipeline.md`). A
   faixa de decisão não é sorteada: entra sempre que o vídeo anuncia uma decisão.
 - **Dois visuais: formal (padrão) e dinâmico** (`estilo.visual`, estilo.md §11): o dinâmico tem texto
-  por trás da pessoa na abertura, legenda que pula com marca-texto, um plano por frase com chicote, adesivos,
-  palavras que caem, clarões e efeitos sonoros. Usar quando o Casil pedir ("mais dinâmico", "menos formal")
+  por trás da pessoa na abertura, legenda que pula com marca-texto, adesivos, palavras que caem, clarões e efeitos
+  sonoros, com a câmera do formal (24/11/2026: os cortes por frase e os zooms foram rejeitados, "interrompendo muito
+  a minha fala"; ver estilo.md §11 e §13). Usar quando o Casil pedir ("mais dinâmico", "menos formal")
   ou quando o Redes mandar; rodar o `recortar.py` antes do build.
 - **Nada sobre o rosto.** O build acha o rosto e tira o título de cima da cabeça e a legenda de cima do
   queixo (imprime o que mudou). Conferir na prévia: a etiqueta "Explico na legenda" na testa foi
@@ -207,6 +208,27 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
    conferir de novo antes de entregar.
 6. **Entregar** o `reel_web.mp4` pela biblioteca (regra acima) e mandar o link. Pelo chat, só a
    prévia que caiba em 30 MB. Dizer o que ficou como paliativo e o que a filmagem resolveria.
+7. **Enviar ao Redes** (27/11/2026, o dono: "o editor de vídeo já enviar o vídeo pronto para o Redes, sem
+   que eu precise baixar o vídeo e fazer o upload lá"). Com o reel aprovado, mande o MP4 final ao sistema:
+
+   ```sh
+   curl -sS -X POST https://silvapinto-comercial.onrender.com/api/redes/video-pronto \
+     -H "X-Redes-Video-Token: chave-injetada" \
+     -F "arquivo=@reel_web.mp4;type=video/mp4" \
+     --form-string "titulo=<o assunto do vídeo>" \
+     --form-string "concurso=<ex.: PMES 2026>" \
+     --form-string "legenda=<a legenda, se já estiver pronta>" \
+     --form-string "destino=os dois"
+   ```
+
+   O valor do cabeçalho é um marcador: o segredo de rede do ambiente põe a chave de verdade. **Nunca escreva
+   a chave** no comando, em arquivo ou na conversa. `destino`: `reel` (rascunho de reel no Redes),
+   `anuncio` (candidato a anúncio de vídeo no pacote de tráfego pago) ou `os dois` (o padrão).
+   Respostas: **200** entrou (passe ao dono o `editor` e os `avisos` do JSON; quem revisa e publica é ele,
+   no Editor); **401** a chave não chegou ou mudou (o dono confere o segredo de rede do ambiente: host
+   `silvapinto-comercial.onrender.com`, cabeçalho `X-Redes-Video-Token`, sem prefixo); **413** acima de
+   500 MB; **415** não é MP4; **503** a entrada está desligada (o dono gera a chave em
+   `/marketing/redes/video-pronto/chave`). Nada é publicado por este envio.
 
 ## Texto dos overlays
 
