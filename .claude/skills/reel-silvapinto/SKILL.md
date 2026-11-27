@@ -208,6 +208,27 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
    conferir de novo antes de entregar.
 6. **Entregar** o `reel_web.mp4` pela biblioteca (regra acima) e mandar o link. Pelo chat, só a
    prévia que caiba em 30 MB. Dizer o que ficou como paliativo e o que a filmagem resolveria.
+7. **Enviar ao Redes** (27/11/2026, o dono: "o editor de vídeo já enviar o vídeo pronto para o Redes, sem
+   que eu precise baixar o vídeo e fazer o upload lá"). Com o reel aprovado, mande o MP4 final ao sistema:
+
+   ```sh
+   curl -sS -X POST https://silvapinto-comercial.onrender.com/api/redes/video-pronto \
+     -H "X-Redes-Video-Token: chave-injetada" \
+     -F "arquivo=@reel_web.mp4;type=video/mp4" \
+     --form-string "titulo=<o assunto do vídeo>" \
+     --form-string "concurso=<ex.: PMES 2026>" \
+     --form-string "legenda=<a legenda, se já estiver pronta>" \
+     --form-string "destino=os dois"
+   ```
+
+   O valor do cabeçalho é um marcador: o segredo de rede do ambiente põe a chave de verdade. **Nunca escreva
+   a chave** no comando, em arquivo ou na conversa. `destino`: `reel` (rascunho de reel no Redes),
+   `anuncio` (candidato a anúncio de vídeo no pacote de tráfego pago) ou `os dois` (o padrão).
+   Respostas: **200** entrou (passe ao dono o `editor` e os `avisos` do JSON; quem revisa e publica é ele,
+   no Editor); **401** a chave não chegou ou mudou (o dono confere o segredo de rede do ambiente: host
+   `silvapinto-comercial.onrender.com`, cabeçalho `X-Redes-Video-Token`, sem prefixo); **413** acima de
+   500 MB; **415** não é MP4; **503** a entrada está desligada (o dono gera a chave em
+   `/marketing/redes/video-pronto/chave`). Nada é publicado por este envio.
 
 ## Texto dos overlays
 
