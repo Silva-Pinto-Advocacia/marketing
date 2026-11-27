@@ -218,12 +218,27 @@ Saíram da medição dos posts do escritório e dos concorrentes; o porquê est�
      --form-string "titulo=<o assunto do vídeo>" \
      --form-string "concurso=<ex.: PMES 2026>" \
      --form-string "legenda=<a legenda, se já estiver pronta>" \
+     --form-string "anuncio_titulo=<o título do anúncio, pela transcrição>" \
+     --form-string "anuncio_texto=<o texto principal do anúncio, pela transcrição>" \
      --form-string "destino=os dois"
    ```
 
    O valor do cabeçalho é um marcador: o segredo de rede do ambiente põe a chave de verdade. **Nunca escreva
-   a chave** no comando, em arquivo ou na conversa. `destino`: `reel` (rascunho de reel no Redes),
-   `anuncio` (candidato a anúncio de vídeo no pacote de tráfego pago) ou `os dois` (o padrão).
+   a chave** no comando, em arquivo ou na conversa. **`destino` é sempre `os dois`** (o dono, 27/11/2026: o
+   mesmo vídeo vai ao tráfego pago e às postagens do feed, como reel; ele descarta o que não quiser, em
+   cada lugar). O `titulo` não repete o concurso (o Redes já junta os dois: "PCERJ 2021 — …" só quando o
+   título não começa por ele).
+
+   **A copy do anúncio sai da TRANSCRIÇÃO** (27/11/2026, o dono, sobre o anúncio do PCERJ 2021 que falava
+   de "17 questões" num vídeo sobre 3 convocações: "o título e o texto nao tem nada a ver com isso"):
+   `anuncio_titulo` (até 125 letras) e `anuncio_texto` (até 600, em 2 ou 3 parágrafos curtos) dizem **só o
+   que o dono disse no vídeo**, com os números e os fatos dele, e nenhum outro. As regras da Meta e do
+   manual de tráfego valem: nada de promessa de resultado ("garantido", "você vai passar", "com
+   certeza"), nada de chamar para contratar nem de "WhatsApp"/"fale com" (quem chama é o botão do
+   anúncio), e nada que aponte atributo pessoal de quem lê (cor, raça, deficiência, saúde; na
+   heteroidentificação, PcD, saúde e psicológica, nada de "você"). A urgência pode entrar, se o dono a
+   disse. `anuncio_descricao` (até 125) é opcional. Sem os campos, o sistema usa o título e a legenda do
+   vídeo; com a copy recusada pela conferência, também.
    Respostas: **200** entrou (passe ao dono o `editor` e os `avisos` do JSON; quem revisa e publica é ele,
    no Editor); **401** a chave não chegou ou mudou (o dono confere o segredo de rede do ambiente: host
    `silvapinto-comercial.onrender.com`, cabeçalho `X-Redes-Video-Token`, sem prefixo); **413** acima de
